@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                  = "IdentitySdkCore"
-  spec.version               = "4.0.0"
+  spec.version               = "4.0.0-beta.1"
   spec.summary               = "ReachFive IdentitySdkCore"
   spec.description           = <<-DESC
       ReachFive Identity Sdk Core
@@ -11,7 +11,7 @@ Pod::Spec.new do |spec|
   spec.authors               = { "egor" => "egor@reach5.co" }
   spec.swift_versions        = ["5"]
   spec.source                = { :git => "https://github.com/ReachFive/identity-ios-sdk.git", :tag => "#{spec.version}" }
-  spec.source_files          = "IdentitySdkCore/Classes/**/*.*"
+  spec.source_files          = "IdentitySdkCore/Classes/**/*.swift"
   spec.platform              = :ios
   spec.ios.deployment_target = '12.2'
 
