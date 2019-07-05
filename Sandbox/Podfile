@@ -1,0 +1,10 @@
+use_frameworks!
+
+platform :ios, '12.2'
+
+target 'Sandbox' do
+  pod 'IdentitySdkCore', :path => '../IdentitySdkCore'
+  pod 'IdentitySdkWebView', :path => '../IdentitySdkWebView'
+  pod 'IdentitySdkGoogle', :path => '../IdentitySdkGoogle'
+  pod 'IdentitySdkFacebook', :path => '../IdentitySdkFacebook'
+end

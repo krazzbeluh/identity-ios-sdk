@@ -1,0 +1,99 @@
+PODS:
+  - Alamofire (4.8.2)
+  - AlamofireNetworkLogger (0.0.2):
+    - Alamofire (~> 4.0)
+  - AlamofireObjectMapper (5.2.0):
+    - Alamofire (~> 4.7)
+    - ObjectMapper (~> 3.4)
+  - FacebookCore (0.7.0):
+    - FBSDKCoreKit (~> 5.0)
+  - FacebookLogin (0.7.0):
+    - FacebookCore (~> 0.7)
+    - FBSDKCoreKit (~> 5.0)
+    - FBSDKLoginKit (~> 5.0)
+  - FBSDKCoreKit (5.2.1):
+    - FBSDKCoreKit/Basics (= 5.2.1)
+    - FBSDKCoreKit/Core (= 5.2.1)
+  - FBSDKCoreKit/Basics (5.2.1)
+  - FBSDKCoreKit/Core (5.2.1):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (5.2.1):
+    - FBSDKCoreKit (~> 5.0)
+  - GoogleSignIn (4.4.0):
+    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
+    - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GoogleToolboxForMac/DebugUtils (2.2.1):
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+  - GoogleToolboxForMac/Defines (2.2.1)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.2.1)":
+    - GoogleToolboxForMac/DebugUtils (= 2.2.1)
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.1)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.2.1)"
+  - GTMSessionFetcher/Core (1.2.2)
+  - IdentitySdkCore (4.0.0):
+    - Alamofire (~> 4.8)
+    - AlamofireNetworkLogger
+    - AlamofireObjectMapper (~> 5.2)
+  - IdentitySdkFacebook (4.0.0):
+    - FacebookCore (~> 0.7)
+    - FacebookLogin (~> 0.7)
+    - IdentitySdkCore (~> 4.0)
+  - IdentitySdkGoogle (4.0.0):
+    - GoogleSignIn (~> 4.4)
+    - IdentitySdkCore (~> 4.0)
+  - IdentitySdkWebView (4.0.0):
+    - IdentitySdkCore (~> 4.0)
+  - ObjectMapper (3.5.1)
+
+DEPENDENCIES:
+  - IdentitySdkCore (from `../IdentitySdkCore`)
+  - IdentitySdkFacebook (from `../IdentitySdkFacebook`)
+  - IdentitySdkGoogle (from `../IdentitySdkGoogle`)
+  - IdentitySdkWebView (from `../IdentitySdkWebView`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireNetworkLogger
+    - AlamofireObjectMapper
+    - FacebookCore
+    - FacebookLogin
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - GoogleSignIn
+    - GoogleToolboxForMac
+    - GTMSessionFetcher
+    - ObjectMapper
+
+EXTERNAL SOURCES:
+  IdentitySdkCore:
+    :path: "../IdentitySdkCore"
+  IdentitySdkFacebook:
+    :path: "../IdentitySdkFacebook"
+  IdentitySdkGoogle:
+    :path: "../IdentitySdkGoogle"
+  IdentitySdkWebView:
+    :path: "../IdentitySdkWebView"
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  AlamofireNetworkLogger: a035a0146fec0bcc5b0c392dd71fd06817a29b4f
+  AlamofireObjectMapper: 92b6ce2423a9d159e686f6a1d514a009bf903ddc
+  FacebookCore: 4eee98476cb37a485af5d337eb21f8cd5b3c7e6c
+  FacebookLogin: 94cdad6850e86a2b04704dedfe7674a7af8148eb
+  FBSDKCoreKit: e1ab8d86f5eea2d7aa6ab12acca3e1d2dcb11983
+  FBSDKLoginKit: 6e20e44775ddf4b159a8ca676834325e13d12221
+  GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
+  GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
+  GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
+  IdentitySdkCore: 9494bd112085e423eb3fd0f5276f34b5121baf85
+  IdentitySdkFacebook: 7aff2995e5158e66a71f39a07ce8369d22136245
+  IdentitySdkGoogle: d2de180473fb84b6e95891324f4702751530e711
+  IdentitySdkWebView: 760e2aa9dfd4c68405cc817ec9adf683754babf4
+  ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
+
+PODFILE CHECKSUM: ab481d7e6c0294743895b1d3a294428fb1afc12d
+
+COCOAPODS: 1.7.3
