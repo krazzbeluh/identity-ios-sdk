@@ -32,26 +32,26 @@ PODS:
     - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.1)"
   - "GoogleToolboxForMac/NSString+URLArguments (2.2.1)"
   - GTMSessionFetcher/Core (1.2.2)
-  - IdentitySdkCore (4.0.0):
+  - IdentitySdkCore (4.0.0-beta.1):
     - Alamofire (~> 4.8)
     - AlamofireNetworkLogger
     - AlamofireObjectMapper (~> 5.2)
-  - IdentitySdkFacebook (4.0.0):
+  - IdentitySdkFacebook (4.0.0-beta.1):
     - FacebookCore (~> 0.7)
     - FacebookLogin (~> 0.7)
-    - IdentitySdkCore (~> 4.0)
-  - IdentitySdkGoogle (4.0.0):
+    - IdentitySdkCore
+  - IdentitySdkGoogle (4.0.0-beta.1):
     - GoogleSignIn (~> 4.4)
-    - IdentitySdkCore (~> 4.0)
-  - IdentitySdkWebView (4.0.0):
-    - IdentitySdkCore (~> 4.0)
+    - IdentitySdkCore
+  - IdentitySdkWebView (4.0.0-beta.1):
+    - IdentitySdkCore
   - ObjectMapper (3.5.1)
 
 DEPENDENCIES:
-  - IdentitySdkCore (from `../IdentitySdkCore`)
-  - IdentitySdkFacebook (from `../IdentitySdkFacebook`)
-  - IdentitySdkGoogle (from `../IdentitySdkGoogle`)
-  - IdentitySdkWebView (from `../IdentitySdkWebView`)
+  - IdentitySdkCore (from `../IdentitySdkCore.podspec`)
+  - IdentitySdkFacebook (from `../IdentitySdkFacebook.podspec`)
+  - IdentitySdkGoogle (from `../IdentitySdkGoogle.podspec`)
+  - IdentitySdkWebView (from `../IdentitySdkWebView.podspec`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -69,13 +69,13 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   IdentitySdkCore:
-    :path: "../IdentitySdkCore"
+    :path: "../IdentitySdkCore.podspec"
   IdentitySdkFacebook:
-    :path: "../IdentitySdkFacebook"
+    :path: "../IdentitySdkFacebook.podspec"
   IdentitySdkGoogle:
-    :path: "../IdentitySdkGoogle"
+    :path: "../IdentitySdkGoogle.podspec"
   IdentitySdkWebView:
-    :path: "../IdentitySdkWebView"
+    :path: "../IdentitySdkWebView.podspec"
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -88,12 +88,12 @@ SPEC CHECKSUMS:
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
   GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
-  IdentitySdkCore: 9494bd112085e423eb3fd0f5276f34b5121baf85
-  IdentitySdkFacebook: 7aff2995e5158e66a71f39a07ce8369d22136245
-  IdentitySdkGoogle: d2de180473fb84b6e95891324f4702751530e711
-  IdentitySdkWebView: 760e2aa9dfd4c68405cc817ec9adf683754babf4
+  IdentitySdkCore: 86687dc9e6d27580c7b02837bb89dc0ac21267a1
+  IdentitySdkFacebook: 263e98260808b6c8733056a08390ccd4e7be5d26
+  IdentitySdkGoogle: e631cea149193c061fb1f0c6584e37d5deaf7bbb
+  IdentitySdkWebView: 41fd6c8cbbd54b983ef36770156229d210dc5066
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
 
-PODFILE CHECKSUM: ab481d7e6c0294743895b1d3a294428fb1afc12d
+PODFILE CHECKSUM: fa6a6b821d687dc609e07a126a4c3e72452c80b4
 
 COCOAPODS: 1.7.3

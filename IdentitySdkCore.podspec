@@ -6,12 +6,12 @@ Pod::Spec.new do |spec|
       ReachFive Identity Sdk Core
   DESC
   spec.homepage              = "https://github.com/ReachFive/identity-ios-sdk"
-  spec.license               = { :type => "MIT", :file => "IdentitySdkCore/LICENSE" }
+  spec.license               = { :type => "MIT", :file => "LICENSE" }
   spec.author                = "ReachFive"
   spec.authors               = { "egor" => "egor@reach5.co" }
   spec.swift_versions        = ["5"]
   spec.source                = { :git => "https://github.com/ReachFive/identity-ios-sdk.git", :tag => "#{spec.version}" }
-  spec.source_files          = "IdentitySdkCore/IdentitySdkCore/Classes/**/*.swift"
+  spec.source_files          = "IdentitySdkCore/IdentitySdkCore/Classes/**/*.*"
   spec.platform              = :ios
   spec.ios.deployment_target = '12.2'
 

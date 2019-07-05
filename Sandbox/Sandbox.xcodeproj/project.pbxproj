@@ -103,7 +103,7 @@
 				341731F7229D6B6400681CFD /* Frameworks */,
 				341731F8229D6B6400681CFD /* Resources */,
 				D749846787C43CE94EBEEB6E /* [CP] Embed Pods Frameworks */,
-				E1AA89D3413D8D2555FAE08E /* [CP] Copy Pods Resources */,
+				84AC4B92D0B0EFDD64E12CAA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -164,6 +164,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		84AC4B92D0B0EFDD64E12CAA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sandbox/Pods-Sandbox-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sandbox/Pods-Sandbox-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sandbox/Pods-Sandbox-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D749846787C43CE94EBEEB6E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -179,23 +196,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sandbox/Pods-Sandbox-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E1AA89D3413D8D2555FAE08E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Sandbox/Pods-Sandbox-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Sandbox/Pods-Sandbox-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sandbox/Pods-Sandbox-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FDD2E9DEC1BF5CB9300AA469 /* [CP] Check Pods Manifest.lock */ = {
