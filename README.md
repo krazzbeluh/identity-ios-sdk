@@ -99,7 +99,7 @@ When completed, your config should look something similar to the following (but 
 
 ![google custom scheme config](https://developers.google.com/identity/sign-in/ios/images/xcode_infotab_url_type_values.png)
 
-add `GIDSignInUIDelegate` to your `ViewCoàntroller`
+add `GIDSignInUIDelegate` to your `ViewController`
 
 ```swift
 import GoogleSignIn
