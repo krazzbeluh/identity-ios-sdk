@@ -1,6 +1,8 @@
+require_relative './version'
+
 Pod::Spec.new do |spec|
   spec.name                  = "IdentitySdkWebView"
-  spec.version               = "4.0.0-beta.1"
+  spec.version               = $VERSION
   spec.summary               = "ReachFive IdentitySdkWebView"
   spec.description           = <<-DESC
       ReachFive Identity Sdk WebView
@@ -13,7 +15,7 @@ Pod::Spec.new do |spec|
   spec.source                = { :git => "https://github.com/ReachFive/identity-ios-sdk.git", :tag => "#{spec.version}" }
   spec.source_files          = "IdentitySdkWebView/IdentitySdkWebView/Classes/**/*.*"
   spec.platform              = :ios
-  spec.ios.deployment_target = '12.2'
+  spec.ios.deployment_target = $IOS_DEPLOYMENT_TARGET
 
   spec.dependency 'IdentitySdkCore', '~> 4.0.0-beta.1'
 end

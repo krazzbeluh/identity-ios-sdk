@@ -1,6 +1,8 @@
+require_relative './version'
+
 Pod::Spec.new do |spec|
   spec.name                  = "IdentitySdkCore"
-  spec.version               = "4.0.0-beta.1"
+  spec.version               = $VERSION
   spec.summary               = "ReachFive IdentitySdkCore"
   spec.description           = <<-DESC
       ReachFive Identity Sdk Core
@@ -13,7 +15,7 @@ Pod::Spec.new do |spec|
   spec.source                = { :git => "https://github.com/ReachFive/identity-ios-sdk.git", :tag => "#{spec.version}" }
   spec.source_files          = "IdentitySdkCore/IdentitySdkCore/Classes/**/*.*"
   spec.platform              = :ios
-  spec.ios.deployment_target = '12.2'
+  spec.ios.deployment_target = $IOS_DEPLOYMENT_TARGET
 
   spec.dependency 'Alamofire', '~> 4.8'
   spec.dependency 'AlamofireObjectMapper', '~> 5.2'

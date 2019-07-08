@@ -103,7 +103,7 @@ public class ReachFive: NSObject {
         }
     }
     
-    func verifyPhoneNumber(
+    public func verifyPhoneNumber(
         authToken: AuthToken,
         phoneNumber: String,
         verificationCode: String,
@@ -118,18 +118,45 @@ public class ReachFive: NSObject {
             )
     }
     
-    func updateEmail(
+    public func updateEmail(
         authToken: AuthToken,
         email: String,
         redirectUrl: String? = nil,
         callback: @escaping Callback<Profile, ReachFiveError>
     ) {
+        let updateEmailRequest = UpdateEmailRequest(email: email, redirectUrl: redirectUrl)
         reachFiveApi
             .updateEmail(
                 authToken: authToken,
-                updateEmailRequest: UpdateEmailRequest(email: email, redirectUrl: redirectUrl),
+                updateEmailRequest: updateEmailRequest,
                 callback: callback
             )
+    }
+    
+    public func updateProfile(
+        authToken: AuthToken,
+        profile: Profile,
+        callback: @escaping Callback<Profile, ReachFiveError>
+    ) {
+        reachFiveApi.updateProfile(authToken: authToken, profile: profile, callback: callback)
+    }
+    
+    public func requestPasswordReset(
+        authToken: AuthToken,
+        email: String?,
+        phoneNumber: String?,
+        redirectUrl: String? = nil,
+        callback: @escaping Callback<Void, ReachFiveError>
+    ) {
+        let requestPasswordResetRequest = RequestPasswordResetRequest(
+            clientId: sdkConfig.clientId, email: email, phoneNumber: phoneNumber, redirectUrl: redirectUrl
+        )
+        reachFiveApi
+            .requestPasswordReset(
+                authToken: authToken,
+                requestPasswordResetRequest: requestPasswordResetRequest,
+                callback: callback
+        )
     }
     
     public override var description: String {
