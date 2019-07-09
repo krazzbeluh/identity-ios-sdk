@@ -3,22 +3,18 @@ import UIKit
 import WebKit
 import IdentitySdkCore
 
-public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
-    var webView: WKWebView!
+public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {    
+    @IBOutlet weak var webView: WKWebView!
     
     var url: String? = nil
     var delegate: Callback<Dictionary<String, String?>, ReachFiveError>? = nil
     
-    public override func loadView() {
-        super.viewDidLoad()
-        webView = WKWebView()
-        webView.allowsBackForwardNavigationGestures = true
-        webView.navigationDelegate = self
-        view = webView
-    }
-    
     public override func viewDidLoad() {
         super.viewDidLoad()
+                
+        webView.allowsBackForwardNavigationGestures = true
+        webView.navigationDelegate = self
+        
         let url = URL(string: self.url!)!
         webView.load(URLRequest(url: url))
     }
