@@ -6,16 +6,18 @@ public class AuthCodeRequest: NSObject, ImmutableMappable {
     let code: String
     let grantType: String
     let redirectUri: String
+    let codeVerifier: String
 
-    public convenience init(clientId: String, code: String) {
-        self.init(clientId: clientId, code: code, grantType: "authorization_code", redirectUri: "reachfive://callback")
+    public convenience init(clientId: String, code: String, pkce: Pkce) {
+        self.init(clientId: clientId, code: code, grantType: "authorization_code", redirectUri: "reachfive://callback", codeVerifier: pkce.codeVerifier)
     }
     
-    public init(clientId: String, code: String, grantType: String, redirectUri: String) {
+    public init(clientId: String, code: String, grantType: String, redirectUri: String, codeVerifier: String) {
         self.clientId = clientId
         self.code = code
         self.grantType = grantType
         self.redirectUri = redirectUri
+        self.codeVerifier = codeVerifier
     }
     
     public required init(map: Map) throws {
@@ -23,6 +25,7 @@ public class AuthCodeRequest: NSObject, ImmutableMappable {
         code = try map.value("code")
         grantType = try map.value("grant_type")
         redirectUri = try map.value("redirect_uri")
+        codeVerifier = try map.value("code_verifier")
     }
     
     public func mapping(map: Map) {
@@ -30,6 +33,7 @@ public class AuthCodeRequest: NSObject, ImmutableMappable {
         code >>> map["code"]
         grantType >>> map["grant_type"]
         redirectUri >>> map["redirect_uri"]
+        codeVerifier >>> map["code_verifier"]
     }
     
     public override var description: String {

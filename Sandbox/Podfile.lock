@@ -5,6 +5,7 @@ PODS:
   - AlamofireObjectMapper (5.2.0):
     - Alamofire (~> 4.7)
     - ObjectMapper (~> 3.4)
+  - CryptoSwift (1.0.0)
   - FacebookCore (0.7.0):
     - FBSDKCoreKit (~> 5.0)
   - FacebookLogin (0.7.0):
@@ -36,6 +37,7 @@ PODS:
     - Alamofire (~> 4.8)
     - AlamofireNetworkLogger
     - AlamofireObjectMapper (~> 5.2)
+    - CryptoSwift (~> 1.0.0)
   - IdentitySdkFacebook (4.0.0-beta.2):
     - FacebookCore (~> 0.7)
     - FacebookLogin (~> 0.7)
@@ -58,6 +60,7 @@ SPEC REPOS:
     - Alamofire
     - AlamofireNetworkLogger
     - AlamofireObjectMapper
+    - CryptoSwift
     - FacebookCore
     - FacebookLogin
     - FBSDKCoreKit
@@ -81,6 +84,7 @@ SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   AlamofireNetworkLogger: a035a0146fec0bcc5b0c392dd71fd06817a29b4f
   AlamofireObjectMapper: 92b6ce2423a9d159e686f6a1d514a009bf903ddc
+  CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
   FacebookCore: 4eee98476cb37a485af5d337eb21f8cd5b3c7e6c
   FacebookLogin: 94cdad6850e86a2b04704dedfe7674a7af8148eb
   FBSDKCoreKit: e1ab8d86f5eea2d7aa6ab12acca3e1d2dcb11983
@@ -88,7 +92,7 @@ SPEC CHECKSUMS:
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
   GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
-  IdentitySdkCore: a1429c35a7f0e28d12a944141bc267069f91c072
+  IdentitySdkCore: 38a9c7467970cae2d791c345dbd1db7da33f58a8
   IdentitySdkFacebook: 8b7e66d186100bfd83c9f5a4788060ba395660f5
   IdentitySdkGoogle: 055c10075159ac16d87c13c726c93a8b0a689cc8
   IdentitySdkWebView: a59540c2e7e5f641d341ae156bbb4b720d393b54

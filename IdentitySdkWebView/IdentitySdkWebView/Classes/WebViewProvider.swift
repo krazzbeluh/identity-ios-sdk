@@ -31,14 +31,15 @@ class ConfiguredWebViewProvider: NSObject, Provider {
         let frameworkBundle = Bundle(identifier: "org.cocoapods.IdentitySdkWebView")
         let storyboard = UIStoryboard(name: "WebView", bundle: frameworkBundle)
         let webViewController = storyboard.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
-        let url = self.buildUrl(sdkConfig: sdkConfig, providerConfig: providerConfig, scope: scope)
+        let pkce = Pkce.generate()
+        let url = self.buildUrl(sdkConfig: sdkConfig, providerConfig: providerConfig, scope: scope, pkce: pkce)
         webViewController.url = url
         webViewController.delegate = {
             switch $0 {
             case .success(let params):
                 let code = params["code"] as? String
                 if code != nil {
-                    let authCodeRequest = AuthCodeRequest(clientId: self.sdkConfig.clientId, code: code!)
+                    let authCodeRequest = AuthCodeRequest(clientId: self.sdkConfig.clientId, code: code!, pkce: pkce)
                     self.reachFiveApi.authWithCode(authCodeRequest: authCodeRequest, callback: { response in
                         switch response {
                         case .success(let openIdTokenResponse):
@@ -47,7 +48,7 @@ class ConfiguredWebViewProvider: NSObject, Provider {
                         }
                     })
                 } else {
-                    callback(.failure(.TechnicalError(reason: "No code")))
+                    callback(.failure(.TechnicalError(reason: "No authorization code")))
                 }
             case .failure(let error):
                 callback(.failure(.TechnicalError(reason: error.localizedDescription)))
@@ -68,14 +69,16 @@ class ConfiguredWebViewProvider: NSObject, Provider {
         
     }
     
-    func buildUrl(sdkConfig: SdkConfig, providerConfig: ProviderConfig, scope: [String]) -> String {
+    func buildUrl(sdkConfig: SdkConfig, providerConfig: ProviderConfig, scope: [String], pkce: Pkce) -> String {
         let params = [
             "provider": providerConfig.provider,
             "client_id": sdkConfig.clientId,
             "response_type": "code",
             "redirect_uri": "reachfive://callback",
             "scope": scope.joined(separator: " "),
-            "platform": "ios"
+            "platform": "ios",
+            "code_challenge": pkce.codeChallenge,
+            "code_challenge_method": pkce.codeChallengeMethod,
         ]
         let queryStrings = params
             .map { "\($0)=\($1)" }

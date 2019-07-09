@@ -3,23 +3,27 @@ PODS:
   - AlamofireObjectMapper (5.2.0):
     - Alamofire (~> 4.7)
     - ObjectMapper (~> 3.4)
+  - CryptoSwift (1.0.0)
   - ObjectMapper (3.4.2)
 
 DEPENDENCIES:
   - Alamofire (~> 4.8.1)
   - AlamofireObjectMapper (~> 5.2)
+  - CryptoSwift (~> 1.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireObjectMapper
+    - CryptoSwift
     - ObjectMapper
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   AlamofireObjectMapper: 92b6ce2423a9d159e686f6a1d514a009bf903ddc
+  CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
 
-PODFILE CHECKSUM: 7de32308e88269ef76d7944743d29032ddc9aa13
+PODFILE CHECKSUM: 1dd29596cc90527164e55c82b1231c6c2ab6a7f1
 
 COCOAPODS: 1.7.3
