@@ -1,5 +1,11 @@
 # Identity iOS SDK
 
+## Cocoapods pods
+https://cocoapods.org/pods/IdentitySdkCore
+https://cocoapods.org/pods/IdentitySdkWebView
+https://cocoapods.org/pods/IdentitySdkFacebook
+https://cocoapods.org/pods/IdentitySdkGoogle
+
 ## Installation
 
 ### Cocoapods
