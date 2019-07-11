@@ -2,10 +2,10 @@ import Foundation
 import ObjectMapper
 
 public class RequestPasswordResetRequest: NSObject, ImmutableMappable {
-    let clientId: String
-    let email: String?
-    let phoneNumber: String?
-    let redirectUrl: String?
+    public let clientId: String
+    public let email: String?
+    public let phoneNumber: String?
+    public let redirectUrl: String?
 
     public init(clientId: String, email: String?, phoneNumber: String?, redirectUrl: String?) {
         self.clientId = clientId

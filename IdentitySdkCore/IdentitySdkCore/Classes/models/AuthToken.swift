@@ -1,11 +1,11 @@
 import Foundation
 
 public class AuthToken: NSObject {
-    let idToken: String?
-    let accessToken: String
-    let tokenType: String?
-    let expiresIn: Int?
-    let user: OpenIdUser?
+    public let idToken: String?
+    public let accessToken: String
+    public let tokenType: String?
+    public let expiresIn: Int?
+    public let user: OpenIdUser?
     
     public init(idToken: String?, accessToken: String, tokenType: String?, expiresIn: Int?, user: OpenIdUser?) {
         self.idToken = idToken

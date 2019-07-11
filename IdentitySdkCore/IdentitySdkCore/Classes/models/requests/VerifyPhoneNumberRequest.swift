@@ -2,8 +2,8 @@ import Foundation
 import ObjectMapper
 
 public class VerifyPhoneNumberRequest: NSObject, ImmutableMappable {
-    let phoneNumber: String
-    let verificationCode: String
+    public let phoneNumber: String
+    public let verificationCode: String
     
     public init(phoneNumber: String, verificationCode: String) {
         self.phoneNumber = phoneNumber

@@ -2,11 +2,11 @@ import Foundation
 import ObjectMapper
 
 public class AuthCodeRequest: NSObject, ImmutableMappable {
-    let clientId: String
-    let code: String
-    let grantType: String
-    let redirectUri: String
-    let codeVerifier: String
+    public let clientId: String
+    public let code: String
+    public let grantType: String
+    public let redirectUri: String
+    public let codeVerifier: String
 
     public convenience init(clientId: String, code: String, pkce: Pkce) {
         self.init(clientId: clientId, code: code, grantType: "authorization_code", redirectUri: "reachfive://callback", codeVerifier: pkce.codeVerifier)

@@ -2,22 +2,22 @@ import Foundation
 import ObjectMapper
 
 public class Profile: NSObject, ImmutableMappable {
-    let email: String
-    let password: String
-    let phoneNumber: String?
-    let gender: String?
-    let name: String?
-    let givenName: String?
-    let middleName: String?
-    let familyName: String?
-    let nickname: String?
-    let username: String?
-    let birthdate: String?
-    let picture: String?
-    let company: String?
-    let locale: String?
-    let address: ProfileAddress?
-    let customFields: Dictionary<String, Any>?
+    public let email: String
+    public let password: String
+    public let phoneNumber: String?
+    public let gender: String?
+    public let name: String?
+    public let givenName: String?
+    public let middleName: String?
+    public let familyName: String?
+    public let nickname: String?
+    public let username: String?
+    public let birthdate: String?
+    public let picture: String?
+    public let company: String?
+    public let locale: String?
+    public let address: ProfileAddress?
+    public let customFields: Dictionary<String, Any>?
     
     public init(
         email: String,

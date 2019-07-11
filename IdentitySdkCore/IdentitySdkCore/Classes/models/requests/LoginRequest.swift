@@ -2,11 +2,11 @@ import Foundation
 import ObjectMapper
 
 public class LoginRequest: NSObject, ImmutableMappable {    
-    let username: String
-    let password: String
-    let grantType: String
-    let clientId: String
-    let scope: String
+    public let username: String
+    public let password: String
+    public let grantType: String
+    public let clientId: String
+    public let scope: String
 
     public init(username: String, password: String, grantType: String, clientId: String, scope: String) {
         self.username = username

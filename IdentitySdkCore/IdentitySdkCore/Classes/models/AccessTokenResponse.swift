@@ -2,13 +2,13 @@ import Foundation
 import ObjectMapper
 
 public class AccessTokenResponse: NSObject, ImmutableMappable {
-    let idToken: String?
-    let accessToken: String
-    let code: String?
-    let tokenType: String?
-    let expiresIn: Int?
-    let error: String?
-    let errorDescription: String?
+    public let idToken: String?
+    public let accessToken: String
+    public let code: String?
+    public let tokenType: String?
+    public let expiresIn: Int?
+    public let error: String?
+    public let errorDescription: String?
     
     public init(idToken: String?, accessToken: String, code: String?, tokenType: String?, expiresIn: Int?, error: String?, errorDescription: String?) {
         self.idToken = idToken

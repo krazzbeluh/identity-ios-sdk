@@ -2,23 +2,23 @@ import Foundation
 import ObjectMapper
 
 public class OpenIdUser: NSObject, ImmutableMappable {
-    let id: String?
-    let name: String?
-    let preferredUsername: String?
-    let givenName: String?
-    let familyName: String?
-    let middleName: String?
-    let nickname: String?
-    let picture: String?
-    let website: String?
-    let email: String?
-    let emailVerified: Bool?
-    let gender: String?
-    let zoneinfo: String?
-    let locale: String?
-    let phoneNumber: String?
-    let phoneNumberVerified: Bool?
-    let address: ProfileAddress?
+    public let id: String?
+    public let name: String?
+    public let preferredUsername: String?
+    public let givenName: String?
+    public let familyName: String?
+    public let middleName: String?
+    public let nickname: String?
+    public let picture: String?
+    public let website: String?
+    public let email: String?
+    public let emailVerified: Bool?
+    public let gender: String?
+    public let zoneinfo: String?
+    public let locale: String?
+    public let phoneNumber: String?
+    public let phoneNumberVerified: Bool?
+    public let address: ProfileAddress?
     
     public init(
         id: String?,

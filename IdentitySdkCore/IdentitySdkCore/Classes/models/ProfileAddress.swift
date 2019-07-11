@@ -2,12 +2,12 @@ import Foundation
 import ObjectMapper
 
 public class ProfileAddress: NSObject, ImmutableMappable {
-    let formatted: String
-    let streetAddress: String
-    let locality: String
-    let region: String
-    let postalCode: String
-    let country: String
+    public let formatted: String
+    public let streetAddress: String
+    public let locality: String
+    public let region: String
+    public let postalCode: String
+    public let country: String
     
     public init(
         formatted: String,

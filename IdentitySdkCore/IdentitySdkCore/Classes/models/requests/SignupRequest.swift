@@ -2,10 +2,10 @@ import Foundation
 import ObjectMapper
 
 public class SignupRequest: NSObject, ImmutableMappable {
-    let clientId: String
-    let data: Profile
-    let scope: String
-    let acceptTos: Bool?
+    public let clientId: String
+    public let data: Profile
+    public let scope: String
+    public let acceptTos: Bool?
     
     public init(clientId: String, data: Profile, scope: String, acceptTos: Bool?) {
         self.clientId = clientId

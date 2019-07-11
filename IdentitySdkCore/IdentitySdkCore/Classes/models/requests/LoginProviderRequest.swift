@@ -2,13 +2,13 @@ import Foundation
 import ObjectMapper
 
 public class LoginProviderRequest: NSObject, ImmutableMappable {
-    let provider: String
-    let providerToken: String?
-    let code: String?
-    let origin: String?
-    let clientId: String
-    let responseType: String
-    let scope: String
+    public let provider: String
+    public let providerToken: String?
+    public let code: String?
+    public let origin: String?
+    public let clientId: String
+    public let responseType: String
+    public let scope: String
     
     public init(provider: String, providerToken: String?, code: String?, origin: String?, clientId: String, responseType: String, scope: String) {
         self.provider = provider

@@ -2,8 +2,8 @@ import Foundation
 import ObjectMapper
 
 public class UpdateEmailRequest: NSObject, ImmutableMappable {
-    let email: String
-    let redirectUrl: String?
+    public let email: String
+    public let redirectUrl: String?
 
     public init(email: String, redirectUrl: String?) {
         self.email = email
