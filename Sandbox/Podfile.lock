@@ -33,20 +33,20 @@ PODS:
     - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.1)"
   - "GoogleToolboxForMac/NSString+URLArguments (2.2.1)"
   - GTMSessionFetcher/Core (1.2.2)
-  - IdentitySdkCore (4.0.0-beta.2):
+  - IdentitySdkCore (4.0.0-beta.5):
     - Alamofire (~> 4.8)
     - AlamofireNetworkLogger
     - AlamofireObjectMapper (~> 5.2)
     - CryptoSwift (~> 1.0.0)
-  - IdentitySdkFacebook (4.0.0-beta.2):
+  - IdentitySdkFacebook (4.0.0-beta.5):
     - FacebookCore (~> 0.7)
     - FacebookLogin (~> 0.7)
-    - IdentitySdkCore (~> 4.0.0-beta.1)
-  - IdentitySdkGoogle (4.0.0-beta.2):
+    - IdentitySdkCore (~> 4.0.0-beta.4)
+  - IdentitySdkGoogle (4.0.0-beta.5):
     - GoogleSignIn (~> 4.4)
-    - IdentitySdkCore (~> 4.0.0-beta.1)
-  - IdentitySdkWebView (4.0.0-beta.2):
-    - IdentitySdkCore (~> 4.0.0-beta.1)
+    - IdentitySdkCore (~> 4.0.0-beta.4)
+  - IdentitySdkWebView (4.0.0-beta.5):
+    - IdentitySdkCore (~> 4.0.0-beta.4)
   - ObjectMapper (3.5.1)
 
 DEPENDENCIES:
@@ -92,10 +92,10 @@ SPEC CHECKSUMS:
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
   GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
   GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
-  IdentitySdkCore: 38a9c7467970cae2d791c345dbd1db7da33f58a8
-  IdentitySdkFacebook: 8b7e66d186100bfd83c9f5a4788060ba395660f5
-  IdentitySdkGoogle: 055c10075159ac16d87c13c726c93a8b0a689cc8
-  IdentitySdkWebView: a59540c2e7e5f641d341ae156bbb4b720d393b54
+  IdentitySdkCore: 99264e0a5b8e706346c513231b22a47b56ba0565
+  IdentitySdkFacebook: 3c777da5269d1a0d7cd973a7b737524f585a1be4
+  IdentitySdkGoogle: e5f4fea3c68cdab9f64d7ed257d53998b743d87c
+  IdentitySdkWebView: e1b1d4ca06dd43b5ee5255364f5133c3ca140c54
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
 
 PODFILE CHECKSUM: fb852a36c23ddc28f1c6bc4091d4d7dbb51df6f9
