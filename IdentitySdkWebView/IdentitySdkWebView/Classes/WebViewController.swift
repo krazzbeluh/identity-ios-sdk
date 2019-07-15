@@ -7,7 +7,7 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
     var webView: WKWebView!
     
     @IBOutlet var webViewContainer: UIView!
-    @IBOutlet weak var loader: UIActivityIndicatorView!
+    @IBOutlet weak var loader: UIActivityIndicatorView?
     
     var url: String? = nil
     var delegate: Callback<Dictionary<String, String?>, ReachFiveError>? = nil
@@ -92,8 +92,8 @@ public class WebViewController: UIViewController, WKNavigationDelegate, WKUIDele
     }
     
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        self.loader.stopAnimating()
-        self.loader.removeFromSuperview()
+        self.loader?.stopAnimating()
+        self.loader?.removeFromSuperview()
     }
     
     func parseQueriesStrings(query: String) -> Dictionary<String, String?> {
