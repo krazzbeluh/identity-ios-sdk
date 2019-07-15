@@ -95,7 +95,7 @@ SPEC CHECKSUMS:
   IdentitySdkCore: 99264e0a5b8e706346c513231b22a47b56ba0565
   IdentitySdkFacebook: 3c777da5269d1a0d7cd973a7b737524f585a1be4
   IdentitySdkGoogle: e5f4fea3c68cdab9f64d7ed257d53998b743d87c
-  IdentitySdkWebView: e1b1d4ca06dd43b5ee5255364f5133c3ca140c54
+  IdentitySdkWebView: 56f6210e7a5c7a9bcdae23d10c4fe97f0dfec228
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
 
 PODFILE CHECKSUM: fb852a36c23ddc28f1c6bc4091d4d7dbb51df6f9

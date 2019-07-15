@@ -54,7 +54,8 @@ class ConfiguredWebViewProvider: NSObject, Provider {
                 callback(.failure(.TechnicalError(reason: error.localizedDescription)))
             }
         }
-        viewController?.show(webViewController, sender: nil)
+        
+        viewController?.present(webViewController, animated: true, completion: { () in })
     }
     
     public func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
