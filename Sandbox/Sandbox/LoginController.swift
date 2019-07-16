@@ -9,8 +9,6 @@ class LoginController: UIViewController, UITableViewDataSource, UITableViewDeleg
     @IBOutlet weak var passwordInput: UITextField!
     @IBOutlet weak var providersTableView: UITableView!
     
-    var authToken: AuthToken?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,7 +56,12 @@ class LoginController: UIViewController, UITableViewDataSource, UITableViewDeleg
     func handleResult(result: Result<AuthToken, ReachFiveError>) {
         switch result {
         case .success(let authToken):
-            self.authToken = authToken
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let profileController = storyBoard.instantiateViewController(
+                withIdentifier: "ProfileScene"
+            ) as! ProfileController
+            profileController.authToken = authToken
+            self.self.navigationController?.pushViewController(profileController, animated: true)
         case .failure(let error):
             print(error)
         }
@@ -81,13 +84,5 @@ class LoginController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
-    }
-    
-    @IBAction func logoutAction(_ sender: Any) {
-        if self.authToken != nil {
-            AppDelegate.reachfive().logout(authToken: self.authToken!, callback: { result in
-                print("Logout ended \(result)")
-            })
-        }
     }
 }

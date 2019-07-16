@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3414A7CD22DDD39C00CF393A /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3414A7CC22DDD39C00CF393A /* ProfileController.swift */; };
 		341731FE229D6B6400681CFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341731FD229D6B6400681CFD /* AppDelegate.swift */; };
 		34173200229D6B6400681CFD /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341731FF229D6B6400681CFD /* LoginController.swift */; };
 		34173203229D6B6400681CFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34173201229D6B6400681CFD /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3414A7CC22DDD39C00CF393A /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		341731FA229D6B6400681CFD /* Sandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		341731FD229D6B6400681CFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		341731FF229D6B6400681CFD /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			children = (
 				341731FD229D6B6400681CFD /* AppDelegate.swift */,
 				341731FF229D6B6400681CFD /* LoginController.swift */,
+				3414A7CC22DDD39C00CF393A /* ProfileController.swift */,
 				34797ABC22A9607D00ED093C /* SignupController.swift */,
 				34173201229D6B6400681CFD /* Main.storyboard */,
 				34173204229D6B6400681CFD /* Assets.xcassets */,
@@ -230,6 +233,7 @@
 				34797ABD22A9607D00ED093C /* SignupController.swift in Sources */,
 				34173200229D6B6400681CFD /* LoginController.swift in Sources */,
 				341731FE229D6B6400681CFD /* AppDelegate.swift in Sources */,
+				3414A7CD22DDD39C00CF393A /* ProfileController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

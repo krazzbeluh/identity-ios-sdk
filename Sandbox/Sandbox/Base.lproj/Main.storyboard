@@ -13,7 +13,7 @@
         <!--Login-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginController" customModule="Sandbox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginScene" id="BYZ-38-t0r" customClass="LoginController" customModule="Sandbox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,22 +114,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Login" id="pxk-0X-m9H">
-                        <barButtonItem key="rightBarButtonItem" title="Logout" id="cpt-bq-Kpk">
-                            <connections>
-                                <action selector="logoutAction:" destination="BYZ-38-t0r" id="q6Z-pA-5zl"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Login" id="pxk-0X-m9H"/>
                     <connections>
                         <outlet property="emailInput" destination="lkK-Pj-5gw" id="whe-1C-in6"/>
                         <outlet property="passwordInput" destination="0A4-hq-HzO" id="aRM-dM-5rf"/>
                         <outlet property="providersTableView" destination="85m-7Z-vSr" id="Cg4-57-eV4"/>
+                        <segue destination="85A-IF-9ED" kind="show" id="793-jg-Aas"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1051" y="113"/>
+            <point key="canvasLocation" x="1000" y="124"/>
         </scene>
         <!--Signup-->
         <scene sceneID="H6o-jf-Xhj">
@@ -219,6 +214,44 @@
             </objects>
             <point key="canvasLocation" x="1928.985507246377" y="112.5"/>
         </scene>
+        <!--Profile-->
+        <scene sceneID="gX4-tg-Rcc">
+            <objects>
+                <viewController storyboardIdentifier="ProfileScene" title="Profile" id="85A-IF-9ED" customClass="ProfileController" customModule="Sandbox" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r8i-df-pOX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORh-Wp-axD">
+                                <rect key="frame" x="20" y="108" width="50" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ss7-L2-u8Z" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ORh-Wp-axD" secondAttribute="trailing" symbolic="YES" id="FJC-Nv-zaF"/>
+                            <constraint firstItem="ORh-Wp-axD" firstAttribute="leading" secondItem="r8i-df-pOX" secondAttribute="leadingMargin" id="KJW-5n-IaP"/>
+                            <constraint firstItem="ORh-Wp-axD" firstAttribute="top" secondItem="ss7-L2-u8Z" secondAttribute="top" constant="20" id="eLZ-2D-WhK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ss7-L2-u8Z"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="Bus-r5-WAu">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="2PB-cx-FAm">
+                            <connections>
+                                <action selector="logoutAction:" destination="85A-IF-9ED" id="P5U-KB-8PV"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nameLabel" destination="ORh-Wp-axD" id="8eM-Rf-FN8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7u3-k8-15u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1000" y="866"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="IZ8-Ke-q7Q">
             <objects>
@@ -230,7 +263,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="gxp-gI-YKo"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="EqX-eC-sbm"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b1t-2T-73d" userLabel="First Responder" sceneMemberID="firstResponder"/>
