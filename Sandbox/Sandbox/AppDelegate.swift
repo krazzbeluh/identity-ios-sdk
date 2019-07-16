@@ -11,7 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let reachfive = ReachFive(
         sdkConfig: SdkConfig(domain: "sdk-mobile-sandbox.reach5.net", clientId: "TYAIHFRJ2a1FGJ1T8pKD"),
-        providersCreators: [/*FacebookProvider(), GoogleProvider(), */WebViewProvider()]
+        providersCreators: [FacebookProvider(), GoogleProvider(), WebViewProvider()]
     )
     
     static func reachfive() -> ReachFive {

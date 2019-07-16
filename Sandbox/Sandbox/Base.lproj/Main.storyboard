@@ -114,7 +114,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Login" id="pxk-0X-m9H"/>
+                    <navigationItem key="navigationItem" title="Login" id="pxk-0X-m9H">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="cpt-bq-Kpk">
+                            <connections>
+                                <action selector="logoutAction:" destination="BYZ-38-t0r" id="q6Z-pA-5zl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="emailInput" destination="lkK-Pj-5gw" id="whe-1C-in6"/>
                         <outlet property="passwordInput" destination="0A4-hq-HzO" id="aRM-dM-5rf"/>
@@ -123,7 +129,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.8260869565217" y="112.5"/>
+            <point key="canvasLocation" x="1051" y="113"/>
         </scene>
         <!--Signup-->
         <scene sceneID="H6o-jf-Xhj">

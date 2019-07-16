@@ -118,6 +118,18 @@ public class ReachFiveApi {
             .response(completionHandler: handleVoidResponse(callback: callback))
     }
     
+    public func logout(authToken: AuthToken, callback: @escaping Callback<Void, ReachFiveError>) {
+        Alamofire
+            .request(createUrl(
+                path: "/identity/v1/logout?device=\(deviceInfo)"),
+                     method: .get,
+                     headers: tokenHeader(authToken.accessToken)
+            )
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .response(completionHandler: handleVoidResponse(callback: callback))
+    }
+    
     func handleVoidResponse(callback: @escaping Callback<Void, ReachFiveError>) -> (DefaultDataResponse) -> Void {
         return {(response: DefaultDataResponse) -> Void in
             if response.error != nil {

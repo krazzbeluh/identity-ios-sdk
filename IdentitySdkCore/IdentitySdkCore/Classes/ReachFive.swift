@@ -62,17 +62,25 @@ public class ReachFive: NSObject {
         }).compactMap { $0 }
     }
     
-    public func signupWithPassword(profile: Profile, scope: [String], callback: @escaping Callback<AccessTokenResponse, ReachFiveError>) {
+    private func handleAuthResponse(callback: @escaping Callback<AuthToken, ReachFiveError>) -> Callback<AccessTokenResponse, ReachFiveError> {
+        return { response in
+            callback(response.flatMap { openIdTokenResponse in
+                AuthToken.fromOpenIdTokenResponse(openIdTokenResponse: openIdTokenResponse)
+            })
+        }
+    }
+    
+    public func signupWithPassword(profile: Profile, scope: [String], callback: @escaping Callback<AuthToken, ReachFiveError>) {
         let signupRequest = SignupRequest(
             clientId: sdkConfig.clientId,
             data: profile,
             scope: scope.joined(separator: " "),
             acceptTos: nil
         )
-        reachFiveApi.signupWithPassword(signupRequest: signupRequest, callback: callback)
+        reachFiveApi.signupWithPassword(signupRequest: signupRequest, callback: handleAuthResponse(callback: callback))
     }
     
-    public func loginWithPassword(username: String, password: String, scope: [String], callback: @escaping Callback<AccessTokenResponse, ReachFiveError>) {
+    public func loginWithPassword(username: String, password: String, scope: [String], callback: @escaping Callback<AuthToken, ReachFiveError>) {
         let loginRequest = LoginRequest(
             username: username,
             password: password,
@@ -80,7 +88,7 @@ public class ReachFive: NSObject {
             clientId: sdkConfig.clientId,
             scope: scope.joined(separator: " ")
         )
-        reachFiveApi.loginWithPassword(loginRequest: loginRequest, callback: callback)
+        reachFiveApi.loginWithPassword(loginRequest: loginRequest, callback: handleAuthResponse(callback: callback))
     }
     
     public func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
@@ -157,6 +165,13 @@ public class ReachFive: NSObject {
                 requestPasswordResetRequest: requestPasswordResetRequest,
                 callback: callback
         )
+    }
+    
+    public func logout(authToken: AuthToken, callback: @escaping Callback<Void, ReachFiveError>) {
+        for provider in self.providers {
+            provider.logout()
+        }
+        reachFiveApi.logout(authToken: authToken, callback: callback)
     }
     
     public override var description: String {

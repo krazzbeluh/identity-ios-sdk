@@ -70,6 +70,8 @@ class ConfiguredWebViewProvider: NSObject, Provider {
         
     }
     
+    public func logout() {}
+    
     func buildUrl(sdkConfig: SdkConfig, providerConfig: ProviderConfig, scope: [String], pkce: Pkce) -> String {
         let params = [
             "provider": providerConfig.provider,
