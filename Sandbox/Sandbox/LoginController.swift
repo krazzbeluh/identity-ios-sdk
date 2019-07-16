@@ -5,6 +5,7 @@ import GoogleSignIn
 class LoginController: UIViewController, UITableViewDataSource, UITableViewDelegate, GIDSignInUIDelegate {
     var providers: [Provider] = []
     
+    @IBOutlet weak var error: UILabel!
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
     @IBOutlet weak var providersTableView: UITableView!
@@ -62,6 +63,8 @@ class LoginController: UIViewController, UITableViewDataSource, UITableViewDeleg
             ) as! ProfileController
             profileController.authToken = authToken
             self.self.navigationController?.pushViewController(profileController, animated: true)
+        case .failure(.RequestError(let requestErrors)):
+            self.error.text = requestErrors.errorUserMsg
         case .failure(let error):
             print(error)
         }

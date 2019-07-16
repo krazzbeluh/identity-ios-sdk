@@ -142,9 +142,18 @@ public class ReachFiveApi {
     
     func handleResponse<T>(callback: @escaping Callback<T, ReachFiveError>) -> ResponseHandler<T> {
         return {(response: DataResponse<T>) -> Void in
+            let data = response.data
             switch response.result {
-            case let .failure(error): callback(.failure(.TechnicalError(reason: error.localizedDescription)))
-            case let .success(value): callback(.success(value))
+            case let .failure(error):
+                if response.response?.statusCode == 400 && data != nil {
+                    let body = String(decoding: data!, as: UTF8.self)
+                    let requestErrors = try? RequestErrors(JSONString: body)
+                    callback(.failure(.RequestError(requestErrors: requestErrors!)))
+                } else {
+                    callback(.failure(.TechnicalError(reason: error.localizedDescription)))
+                }
+            case let .success(value):
+                callback(.success(value))
             }
         }
     }
