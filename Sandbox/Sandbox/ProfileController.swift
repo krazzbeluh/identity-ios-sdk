@@ -17,6 +17,8 @@ class ProfileController: UIViewController {
             AppDelegate.reachfive().logout(authToken: self.authToken!, callback: { result in
                 print("Logout ended \(result)")
             })
+            self.authToken = nil
+            self.navigationController?.popViewController(animated: true)
         }
     }
 
