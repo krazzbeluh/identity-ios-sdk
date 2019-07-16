@@ -1,2 +1,2 @@
-$VERSION = '4.0.0-beta.7'
+$VERSION = '4.0.0-beta.8'
 $IOS_DEPLOYMENT_TARGET = '10'

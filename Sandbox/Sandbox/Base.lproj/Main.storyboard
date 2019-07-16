@@ -119,7 +119,7 @@
                         <outlet property="emailInput" destination="lkK-Pj-5gw" id="whe-1C-in6"/>
                         <outlet property="passwordInput" destination="0A4-hq-HzO" id="aRM-dM-5rf"/>
                         <outlet property="providersTableView" destination="85m-7Z-vSr" id="Cg4-57-eV4"/>
-                        <segue destination="85A-IF-9ED" kind="show" id="793-jg-Aas"/>
+                        <segue destination="85A-IF-9ED" kind="show" identifier="LoginTransition" id="793-jg-Aas"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
