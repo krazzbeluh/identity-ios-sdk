@@ -100,6 +100,24 @@ public class ReachFiveApi {
             .responseObject(completionHandler: handleResponse(callback: callback))
     }
     
+    public func updatePassword(
+        authToken: AuthToken,
+        updatePasswordRequest: UpdatePasswordRequest,
+        callback: @escaping Callback<Void, ReachFiveError>
+    ) {
+        Alamofire
+            .request(
+                createUrl(path: "/identity/v1/update-password?device=\(deviceInfo)"),
+                method: .post,
+                parameters: updatePasswordRequest.toJSON(),
+                encoding: JSONEncoding.default,
+                headers: tokenHeader(authToken.accessToken)
+            )
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .response(completionHandler: handleVoidResponse(callback: callback))
+    }
+    
     public func requestPasswordReset(
         authToken: AuthToken,
         requestPasswordResetRequest: RequestPasswordResetRequest,
