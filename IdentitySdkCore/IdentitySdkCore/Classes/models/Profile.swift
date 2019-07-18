@@ -2,7 +2,7 @@ import Foundation
 import ObjectMapper
 
 public class Profile: NSObject, ImmutableMappable {
-    public let email: String
+    public let email: String?
     public let password: String
     public let phoneNumber: String?
     public let gender: String?
@@ -20,7 +20,7 @@ public class Profile: NSObject, ImmutableMappable {
     public let customFields: Dictionary<String, Any>?
     
     public init(
-        email: String,
+        email: String?,
         password: String,
         phoneNumber: String? = nil,
         gender: String? = nil,
@@ -56,7 +56,7 @@ public class Profile: NSObject, ImmutableMappable {
     }
     
     public required init(map: Map) throws {
-        email = try map.value("email")
+        email = try? map.value("email")
         password = try map.value("password")
         phoneNumber = try? map.value("phone_number")
         gender = try? map.value("gender")
