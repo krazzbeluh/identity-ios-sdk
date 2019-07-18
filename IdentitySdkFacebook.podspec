@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
   spec.platform              = :ios
   spec.ios.deployment_target = $IOS_DEPLOYMENT_TARGET
 
-  spec.dependency 'IdentitySdkCore', '~> 4.0.0-beta.6'
+  spec.dependency 'IdentitySdkCore', '~> 4.0.0-beta.9'
   spec.dependency 'FacebookCore', '~> 0.7'
   spec.dependency 'FacebookLogin', '~> 0.7'
 end
