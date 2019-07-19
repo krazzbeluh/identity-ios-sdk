@@ -61,7 +61,7 @@ public class ReachFiveApi {
                 method: .post,
                 parameters: verifyPhoneNumberRequest.toJSON(),
                 encoding: JSONEncoding.default,
-                headers: tokenHeader(authToken.accessToken)
+                headers: tokenHeader(authToken)
             )
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -75,7 +75,7 @@ public class ReachFiveApi {
                 method: .post,
                 parameters: updateEmailRequest.toJSON(),
                 encoding: JSONEncoding.default,
-                headers: tokenHeader(authToken.accessToken)
+                headers: tokenHeader(authToken)
             )
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -93,7 +93,7 @@ public class ReachFiveApi {
                 method: .post,
                 parameters: profile.toJSON(),
                 encoding: JSONEncoding.default,
-                headers: tokenHeader(authToken.accessToken)
+                headers: tokenHeader(authToken)
             )
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -111,7 +111,7 @@ public class ReachFiveApi {
                 method: .post,
                 parameters: updatePasswordRequest.toJSON(),
                 encoding: JSONEncoding.default,
-                headers: tokenHeader(authToken.accessToken)
+                headers: tokenHeader(authToken)
             )
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -129,7 +129,7 @@ public class ReachFiveApi {
                 method: .post,
                 parameters: requestPasswordResetRequest.toJSON(),
                 encoding: JSONEncoding.default,
-                headers: tokenHeader(authToken.accessToken)
+                headers: tokenHeader(authToken)
             )
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -141,7 +141,7 @@ public class ReachFiveApi {
             .request(createUrl(
                 path: "/identity/v1/logout?device=\(deviceInfo)"),
                      method: .get,
-                     headers: tokenHeader(authToken.accessToken)
+                     headers: tokenHeader(authToken)
             )
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
@@ -176,8 +176,8 @@ public class ReachFiveApi {
         }
     }
     
-    func tokenHeader(_ accessToken: String?) -> [String: String] {
-        return ["Authorization": accessToken ?? ""]
+    func tokenHeader(_ authToken: AuthToken) -> [String: String] {
+        return ["Authorization": "\(authToken.tokenType ?? "Bearer") \(authToken.accessToken)"]
     }
     
     func createUrl(path: String) -> String {
