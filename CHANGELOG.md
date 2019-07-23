@@ -1,5 +1,8 @@
 # Changelog
 
+## v4.0.0-beta.12
+Add getProfile
+
 ## v4.0.0
 
 ### 9th July 2019
