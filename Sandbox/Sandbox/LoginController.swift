@@ -75,10 +75,12 @@ class LoginController: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         let selectedProvider = providers[indexPath.row]
         
+        let scope = ["openid", "email", "profile", "phone", "full_write"]
+        
         AppDelegate.reachfive()
             .getProvider(name: selectedProvider.name)?
             .login(
-                scope: ReachFive.defaultScope,
+                scope: scope,
                 origin: "home",
                 viewController: self,
                 callback: { result in self.handleResult(result: result) }

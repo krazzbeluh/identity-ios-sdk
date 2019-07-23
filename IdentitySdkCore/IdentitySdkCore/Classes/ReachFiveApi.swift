@@ -54,6 +54,18 @@ public class ReachFiveApi {
             .responseObject(completionHandler: handleResponse(callback: callback))
     }
     
+    public func getProfile(authToken: AuthToken, callback: @escaping Callback<Profile, ReachFiveError>) {
+        Alamofire
+            .request(
+                createUrl(path: "/identity/v1/me?device=\(deviceInfo)"),
+                method: .get,
+                headers: tokenHeader(authToken)
+            )
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseObject(completionHandler: handleResponse(callback: callback))
+    }
+    
     public func verifyPhoneNumber(authToken: AuthToken, verifyPhoneNumberRequest: VerifyPhoneNumberRequest, callback: @escaping Callback<Void, ReachFiveError>) {
         Alamofire
             .request(

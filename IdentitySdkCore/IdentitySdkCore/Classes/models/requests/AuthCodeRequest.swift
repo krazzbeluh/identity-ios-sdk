@@ -9,10 +9,22 @@ public class AuthCodeRequest: NSObject, ImmutableMappable {
     public let codeVerifier: String
 
     public convenience init(clientId: String, code: String, pkce: Pkce) {
-        self.init(clientId: clientId, code: code, grantType: "authorization_code", redirectUri: "reachfive://callback", codeVerifier: pkce.codeVerifier)
+        self.init(
+            clientId: clientId,
+            code: code,
+            grantType: "authorization_code",
+            redirectUri: "reachfive://callback",
+            codeVerifier: pkce.codeVerifier
+        )
     }
     
-    public init(clientId: String, code: String, grantType: String, redirectUri: String, codeVerifier: String) {
+    public init(
+        clientId: String,
+        code: String,
+        grantType: String,
+        redirectUri: String,
+        codeVerifier: String
+    ) {
         self.clientId = clientId
         self.code = code
         self.grantType = grantType

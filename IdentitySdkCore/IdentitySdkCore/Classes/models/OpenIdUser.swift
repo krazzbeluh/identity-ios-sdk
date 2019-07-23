@@ -18,7 +18,7 @@ public class OpenIdUser: NSObject, ImmutableMappable {
     public let locale: String?
     public let phoneNumber: String?
     public let phoneNumberVerified: Bool?
-    public let address: ProfileAddress?
+    public let address: AddressRequest?
     
     public init(
         id: String?,
@@ -37,7 +37,7 @@ public class OpenIdUser: NSObject, ImmutableMappable {
         locale: String?,
         phoneNumber: String?,
         phoneNumberVerified: Bool?,
-        address: ProfileAddress?
+        address: AddressRequest?
     ) {
         self.id = id
         self.name = name

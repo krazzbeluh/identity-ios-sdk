@@ -252,7 +252,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ss7-L2-u8Z"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="Bus-r5-WAu">
+                    <navigationItem key="navigationItem" title="Profile" id="Bus-r5-WAu">
                         <barButtonItem key="rightBarButtonItem" title="Logout" id="2PB-cx-FAm">
                             <connections>
                                 <action selector="logoutAction:" destination="85A-IF-9ED" id="P5U-KB-8PV"/>
