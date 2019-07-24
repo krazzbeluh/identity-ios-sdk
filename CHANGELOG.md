@@ -1,5 +1,8 @@
 # Changelog
 
+## v4.0.0-beta.13
+Fix UserConsent
+
 ## v4.0.0-beta.12
 Add getProfile
 
