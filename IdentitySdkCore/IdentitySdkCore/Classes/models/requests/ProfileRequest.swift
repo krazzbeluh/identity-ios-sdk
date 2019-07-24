@@ -19,7 +19,7 @@ public class ProfileRequest: NSObject, ImmutableMappable {
     public let locale: String?
     public let bio: String?
     public let customFields: [String: Any]?
-    public let consents: [String: UserConsent]?
+    public let consents: [String: Consent]?
     public let tosAcceptedAt: String?
     public let liteOnly: Bool?
     
@@ -41,7 +41,7 @@ public class ProfileRequest: NSObject, ImmutableMappable {
         locale: String? = nil,
         bio: String? = nil,
         customFields: [String: Any]? = nil,
-        consents: [String: UserConsent]? = nil,
+        consents: [String: Consent]? = nil,
         tosAcceptedAt: String? = nil,
         liteOnly: Bool? = nil
     ) {

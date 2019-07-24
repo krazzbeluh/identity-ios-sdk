@@ -57,7 +57,7 @@ public class Profile: NSObject, ImmutableMappable {
         locale: String? = nil,
         bio: String? = nil,
         customFields: [String: Any]? = nil,
-        consents: [String: UserConsent]? = nil,
+        consents: [String: Consent]? = nil,
         tosAcceptedAt: String? = nil,
         createdAt: String? = nil,
         updatedAt: String? = nil,
