@@ -3,11 +3,11 @@ import ObjectMapper
 
 public class SignupRequest: NSObject, ImmutableMappable {
     public let clientId: String
-    public let data: ProfileRequest
+    public let data: ProfileSignupRequest
     public let scope: String
     public let acceptTos: Bool?
     
-    public init(clientId: String, data: ProfileRequest, scope: String, acceptTos: Bool?) {
+    public init(clientId: String, data: ProfileSignupRequest, scope: String, acceptTos: Bool?) {
         self.clientId = clientId
         self.data = data
         self.scope = scope

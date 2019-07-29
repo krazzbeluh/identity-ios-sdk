@@ -1,7 +1,7 @@
 import Foundation
 import ObjectMapper
 
-public class ProfileRequest: NSObject, ImmutableMappable {
+public class ProfileSignupRequest: NSObject, ImmutableMappable {
     public let password: String
     public let email: String?
     public let phoneNumber: String?
@@ -21,6 +21,7 @@ public class ProfileRequest: NSObject, ImmutableMappable {
     public let customFields: [String: Any]?
     public let consents: [String: Consent]?
     public let tosAcceptedAt: String?
+    public let company: String?
     public let liteOnly: Bool?
     
     public required init(
@@ -43,6 +44,7 @@ public class ProfileRequest: NSObject, ImmutableMappable {
         customFields: [String: Any]? = nil,
         consents: [String: Consent]? = nil,
         tosAcceptedAt: String? = nil,
+        company: String? = nil,
         liteOnly: Bool? = nil
     ) {
         self.password = password
@@ -64,6 +66,7 @@ public class ProfileRequest: NSObject, ImmutableMappable {
         self.customFields = customFields
         self.consents = consents
         self.tosAcceptedAt = tosAcceptedAt
+        self.company = company
         self.liteOnly = liteOnly
     }
     
@@ -87,6 +90,7 @@ public class ProfileRequest: NSObject, ImmutableMappable {
         customFields = try? map.value("custom_fields")
         consents = try? map.value("consents")
         tosAcceptedAt = try? map.value("tos_accepted_at")
+        company = try? map.value("company")
         liteOnly = try? map.value("lite_only")
     }
     
@@ -110,6 +114,7 @@ public class ProfileRequest: NSObject, ImmutableMappable {
         customFields >>> map["custom_fields"]
         consents >>> map["consents"]
         tosAcceptedAt >>> map["tos_accepted_at"]
+        company >>> map["company"]
         liteOnly >>> map["lite_only"]
     }
     

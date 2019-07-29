@@ -16,7 +16,7 @@ class SignupController: UIViewController {
         let password = passwordInput.text ?? ""
         let name = nameInput.text ?? ""
 
-        let profile = ProfileRequest(email: email, password: password, name: name)
-        AppDelegate.reachfive().signupWithPassword(profile: profile, scope: ReachFive.defaultScope, callback: { print($0) })
+        let profile = ProfileSignupRequest(password: password, email: email, name: name)
+        AppDelegate.reachfive().signup(profile: profile, scope: ReachFive.defaultScope, callback: { print($0) })
     }
 }

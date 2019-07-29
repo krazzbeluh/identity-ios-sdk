@@ -1,7 +1,7 @@
 import Foundation
 
 public extension ReachFive {
-    func signupWithPassword(profile: ProfileRequest, scope: [String], callback: @escaping Callback<AuthToken, ReachFiveError>) {
+    func signup(profile: ProfileSignupRequest, scope: [String], callback: @escaping Callback<AuthToken, ReachFiveError>) {
         let signupRequest = SignupRequest(
             clientId: sdkConfig.clientId,
             data: profile,

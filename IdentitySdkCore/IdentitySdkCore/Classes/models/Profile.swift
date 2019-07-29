@@ -30,6 +30,7 @@ public class Profile: NSObject, ImmutableMappable {
     public let tosAcceptedAt: String?
     public let createdAt: String?
     public let updatedAt: String?
+    public let company: String?
     public let liteOnly: Bool?
 
     public required init(
@@ -61,6 +62,7 @@ public class Profile: NSObject, ImmutableMappable {
         tosAcceptedAt: String? = nil,
         createdAt: String? = nil,
         updatedAt: String? = nil,
+        company: String? = nil,
         liteOnly: Bool? = nil
     ) {
         self.uid = uid
@@ -91,6 +93,7 @@ public class Profile: NSObject, ImmutableMappable {
         self.tosAcceptedAt = tosAcceptedAt
         self.createdAt = createdAt
         self.updatedAt = updatedAt
+        self.company = company
         self.liteOnly = liteOnly
     }
 
@@ -123,6 +126,7 @@ public class Profile: NSObject, ImmutableMappable {
         tosAcceptedAt = try? map.value("tos_accepted_at")
         createdAt = try? map.value("created_at")
         updatedAt = try? map.value("updated_at")
+        company = try? map.value("company")
         liteOnly = try? map.value("lite_only")
     }
 
@@ -155,6 +159,7 @@ public class Profile: NSObject, ImmutableMappable {
         tosAcceptedAt >>> map["tos_accepted_at"]
         createdAt >>> map["created_at"]
         updatedAt >>> map["updated_at"]
+        company >>> map["company"]
         liteOnly >>> map["lite_only"]
     }
     

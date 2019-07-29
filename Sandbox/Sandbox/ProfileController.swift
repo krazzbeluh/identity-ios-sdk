@@ -24,7 +24,7 @@ class ProfileController: UIViewController {
             authToken: self.authToken!,
             profile: Profile(nickname: "Updated nickname"),
             callback: { result in
-                result.map { profile in
+                let _ = result.map { profile in
                     self.nameLabel?.text = profile.nickname
                 }
             }
