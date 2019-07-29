@@ -1,4 +1,5 @@
 import Foundation
+import SafariServices
 import IdentitySdkCore
 
 public class WebViewProvider: ProviderCreator {
@@ -13,7 +14,12 @@ public class WebViewProvider: ProviderCreator {
     }
 }
 
-class ConfiguredWebViewProvider: NSObject, Provider {
+class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDelegate {
+    private let notificationName = Notification.Name("AuthCallbackNotification")
+    private var safariViewController: SFSafariViewController? = nil
+    private var pkce: Pkce = Pkce.generate()
+    private var callback: Callback<AuthToken, ReachFiveError> = { _ in }
+
     var name: String = WebViewProvider.NAME
     
     let sdkConfig: SdkConfig
@@ -28,41 +34,66 @@ class ConfiguredWebViewProvider: NSObject, Provider {
     }
     
     public func login(scope: [String], origin: String, viewController: UIViewController?, callback: @escaping Callback<AuthToken, ReachFiveError>) {
-        let frameworkBundle = Bundle(identifier: "org.cocoapods.IdentitySdkWebView")
-        let storyboard = UIStoryboard(name: "WebView", bundle: frameworkBundle)
-        let webViewController = storyboard.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
-        let pkce = Pkce.generate()
+        self.callback = callback
+        self.pkce = Pkce.generate()
         let url = self.buildUrl(sdkConfig: sdkConfig, providerConfig: providerConfig, scope: scope, pkce: pkce)
-        webViewController.url = url
-        webViewController.delegate = {
-            switch $0 {
-            case .success(let params):
-                let code = params["code"] as? String
-                if code != nil {
-                    let authCodeRequest = AuthCodeRequest(clientId: self.sdkConfig.clientId, code: code!, pkce: pkce)
-                    self.reachFiveApi.authWithCode(authCodeRequest: authCodeRequest, callback: { response in
-                        switch response {
-                        case .success(let openIdTokenResponse):
-                            callback(AuthToken.fromOpenIdTokenResponse(openIdTokenResponse: openIdTokenResponse))
-                        case .failure(let error): callback(.failure(ReachFiveError.TechnicalError(reason: error.localizedDescription)))
-                        }
-                    })
-                } else {
-                    callback(.failure(.TechnicalError(reason: "No authorization code")))
-                }
-            case .failure(let error):
-                callback(.failure(.TechnicalError(reason: error.localizedDescription)))
-            }
-        }
         
-        viewController?.show(webViewController, sender: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleLogin(_:)), name: self.notificationName, object: nil)
+        
+        self.safariViewController = SFSafariViewController.init(url: URL(string: url)!)
+        
+        viewController?.present(safariViewController!, animated: true)
     }
     
-    public func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return true
+    @objc func handleLogin(_ notification : Notification) {
+        NotificationCenter.default.removeObserver(self, name: self.notificationName, object: nil)
+        
+        let url = notification.object as? URL
+        
+        if let query = url?.query {
+            let params = parseQueriesStrings(query: query)
+            let code = params["code"]
+            if code != nil {
+                self.handleAuthCode(code!!)
+            } else {
+                self.callback(.failure(.TechnicalError(reason: "No authorization code")))
+            }
+        } else {
+            callback(.failure(.TechnicalError(reason: "No authorization code")))
+        }
+        
+        self.safariViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    private func handleAuthCode(_ code: String) {
+        let authCodeRequest = AuthCodeRequest(clientId: self.sdkConfig.clientId, code: code, pkce: self.pkce)
+        self.reachFiveApi.authWithCode(authCodeRequest: authCodeRequest, callback: { response in
+            switch response {
+            case .success(let openIdTokenResponse):
+                self.callback(AuthToken.fromOpenIdTokenResponse(openIdTokenResponse: openIdTokenResponse))
+            case .failure(let error):
+                self.callback(.failure(ReachFiveError.TechnicalError(reason: error.localizedDescription)))
+            }
+        })
+    }
+    
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        NotificationCenter.default.removeObserver(self, name: self.notificationName, object: nil)
+        controller.dismiss(animated: true, completion: nil)
     }
     
     public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+        if let sourceApplication = options[.sourceApplication] {
+            if (String(describing: sourceApplication) == "com.apple.SafariViewService") {
+                NotificationCenter.default.post(name: self.notificationName, object: url)
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         return true
     }
     
@@ -94,5 +125,16 @@ class ConfiguredWebViewProvider: NSObject, Provider {
     
     override var description: String {
         return "Provider: \(self.name)"
+    }
+    
+    func parseQueriesStrings(query: String) -> Dictionary<String, String?> {
+        return query.split(separator: "&").reduce(Dictionary<String, String?>(), { ( acc, param) in
+            var mutAcc = acc
+            let splited = param.split(separator: "=")
+            let key: String = String(splited.first!)
+            let value: String? = splited.count > 1 ? String(splited[1]) : nil
+            mutAcc.updateValue(value, forKey: key)
+            return mutAcc
+        })
     }
 }

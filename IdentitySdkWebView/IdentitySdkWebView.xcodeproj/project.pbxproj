@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		3404A3DA22C24E7B002FFEDB /* IdentitySdkWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 3404A3D822C24E7B002FFEDB /* IdentitySdkWebView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3404A3E222C24F31002FFEDB /* WebViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404A3E122C24F31002FFEDB /* WebViewProvider.swift */; };
-		3404A3FC22C35D98002FFEDB /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404A3FB22C35D97002FFEDB /* WebViewController.swift */; };
-		3404A3FE22C36BBC002FFEDB /* WebView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3404A3FD22C36BBC002FFEDB /* WebView.storyboard */; };
 		F8C182D7543CAD1709F2AC71 /* Pods_IdentitySdkWebView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 446C10DF194B6596A7B168B7 /* Pods_IdentitySdkWebView.framework */; };
 /* End PBXBuildFile section */
 
@@ -19,8 +17,6 @@
 		3404A3D822C24E7B002FFEDB /* IdentitySdkWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IdentitySdkWebView.h; sourceTree = "<group>"; };
 		3404A3D922C24E7B002FFEDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3404A3E122C24F31002FFEDB /* WebViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewProvider.swift; sourceTree = "<group>"; };
-		3404A3FB22C35D97002FFEDB /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
-		3404A3FD22C36BBC002FFEDB /* WebView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WebView.storyboard; sourceTree = "<group>"; };
 		446C10DF194B6596A7B168B7 /* Pods_IdentitySdkWebView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IdentitySdkWebView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B2E2D1E8DE485576D20DFE6 /* Pods-IdentitySdkWebView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentitySdkWebView.debug.xcconfig"; path = "Target Support Files/Pods-IdentitySdkWebView/Pods-IdentitySdkWebView.debug.xcconfig"; sourceTree = "<group>"; };
 		C1AFDDFB3063945DDB7B82E0 /* Pods-IdentitySdkWebView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentitySdkWebView.release.xcconfig"; path = "Target Support Files/Pods-IdentitySdkWebView/Pods-IdentitySdkWebView.release.xcconfig"; sourceTree = "<group>"; };
@@ -70,8 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				3404A3E122C24F31002FFEDB /* WebViewProvider.swift */,
-				3404A3FB22C35D97002FFEDB /* WebViewController.swift */,
-				3404A3FD22C36BBC002FFEDB /* WebView.storyboard */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -163,7 +157,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3404A3FE22C36BBC002FFEDB /* WebView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,7 +193,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3404A3E222C24F31002FFEDB /* WebViewProvider.swift in Sources */,
-				3404A3FC22C35D98002FFEDB /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
