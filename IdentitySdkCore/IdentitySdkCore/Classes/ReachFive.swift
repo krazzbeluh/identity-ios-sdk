@@ -11,8 +11,7 @@ public class ReachFive: NSObject {
     let providersCreators: Array<ProviderCreator>
     let reachFiveApi: ReachFiveApi
     var providers: [Provider] = []
-    
-    public static let defaultScope = ["openid", "email", "profile", "phone"]
+    internal var scope: [String] = []
     
     public init(sdkConfig: SdkConfig, providersCreators: Array<ProviderCreator>) {
         self.sdkConfig = sdkConfig
@@ -31,6 +30,7 @@ public class ReachFive: NSObject {
         return """
         Config: domain=\(sdkConfig.domain), clientId=\(sdkConfig.clientId)
         Providers: \(providers)
+        Scope: \(scope.joined(separator: ""))
         """
     }
 }

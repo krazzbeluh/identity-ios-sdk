@@ -38,6 +38,7 @@
 		34E18B8F22A6C32500952EBD /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E18B8E22A6C32500952EBD /* LoginRequest.swift */; };
 		34F7D3E422A54AA2003A7BC0 /* ReachFiveApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F7D3E322A54AA2003A7BC0 /* ReachFiveApi.swift */; };
 		34F7D3E622A54ADE003A7BC0 /* ProvidersConfigsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F7D3E522A54ADE003A7BC0 /* ProvidersConfigsResult.swift */; };
+		72DDB78E22EF354300048262 /* ClientConfigResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DDB78D22EF354300048262 /* ClientConfigResponse.swift */; };
 		E54C169342B380F36F732553 /* Pods_IdentitySdkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43DC4CBFA03F10FC9EF8CF04 /* Pods_IdentitySdkCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		34F7D3E322A54AA2003A7BC0 /* ReachFiveApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachFiveApi.swift; sourceTree = "<group>"; };
 		34F7D3E522A54ADE003A7BC0 /* ProvidersConfigsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidersConfigsResult.swift; sourceTree = "<group>"; };
 		43DC4CBFA03F10FC9EF8CF04 /* Pods_IdentitySdkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IdentitySdkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		72DDB78D22EF354300048262 /* ClientConfigResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientConfigResponse.swift; sourceTree = "<group>"; };
 		BD90675FB57876B852A4CA19 /* Pods-IdentitySdkCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentitySdkCore.release.xcconfig"; path = "Target Support Files/Pods-IdentitySdkCore/Pods-IdentitySdkCore.release.xcconfig"; sourceTree = "<group>"; };
 		C36DD42482ABE1F3925FA62A /* Pods-IdentitySdkCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentitySdkCore.debug.xcconfig"; path = "Target Support Files/Pods-IdentitySdkCore/Pods-IdentitySdkCore.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -177,6 +179,7 @@
 				34BDDA3722E5BE8C00D16DAE /* LoginSummary.swift */,
 				34BDDA3922E5BF1C00D16DAE /* Consent.swift */,
 				34BDDA3B22E5BF3600D16DAE /* Emails.swift */,
+				72DDB78D22EF354300048262 /* ClientConfigResponse.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				347FDB65229C02A800660687 /* SdkConfig.swift in Sources */,
 				34F7D3E422A54AA2003A7BC0 /* ReachFiveApi.swift in Sources */,
 				34F7D3E622A54ADE003A7BC0 /* ProvidersConfigsResult.swift in Sources */,
+				72DDB78E22EF354300048262 /* ClientConfigResponse.swift in Sources */,
 				34E18B8822A66EEF00952EBD /* Callback.swift in Sources */,
 				34689A9722CDFB5F002970F9 /* AuthToken.swift in Sources */,
 				34BDDA3A22E5BF1C00D16DAE /* Consent.swift in Sources */,

@@ -12,13 +12,19 @@ public extension ReachFive {
     func initialize(callback: @escaping Callback<[Provider], ReachFiveError>) {
         switch self.state {
         case .NotInitialazed:
-            reachFiveApi.providersConfigs(callback: { result in
-                callback(result.map({ providersConfigs in
-                    let providers = self.createProviders(providersConfigsResult: providersConfigs)
-                    self.providers = providers
-                    self.state = .Initialazed
-                    return providers
-                }))
+            reachFiveApi.clientConfig(callback: { configResult in
+                configResult.map({ clientConfig in
+                    self.scope = clientConfig.scope.components(separatedBy: " ")
+
+                    self.reachFiveApi.providersConfigs(callback: { result in
+                        callback(result.map({ providersConfigs in
+                            let providers = self.createProviders(providersConfigsResult: providersConfigs)
+                            self.providers = providers
+                            self.state = .Initialazed
+                            return providers
+                        }))
+                    })
+                })
             })
         case .Initialazed:
             callback(.success(self.providers))
