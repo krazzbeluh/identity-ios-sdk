@@ -52,7 +52,6 @@ public extension ReachFive {
     }
     
     func requestPasswordReset(
-        authToken: AuthToken,
         email: String?,
         phoneNumber: String?,
         redirectUrl: String? = nil,
@@ -63,7 +62,6 @@ public extension ReachFive {
         )
         reachFiveApi
             .requestPasswordReset(
-                authToken: authToken,
                 requestPasswordResetRequest: requestPasswordResetRequest,
                 callback: callback
         )

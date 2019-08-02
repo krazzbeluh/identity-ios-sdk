@@ -139,7 +139,6 @@ public class ReachFiveApi {
     }
     
     public func requestPasswordReset(
-        authToken: AuthToken,
         requestPasswordResetRequest: RequestPasswordResetRequest,
         callback: @escaping Callback<Void, ReachFiveError>
     ) {
@@ -148,8 +147,7 @@ public class ReachFiveApi {
                 path: "/identity/v1/forgot-password?device=\(deviceInfo)"),
                 method: .post,
                 parameters: requestPasswordResetRequest.toJSON(),
-                encoding: JSONEncoding.default,
-                headers: tokenHeader(authToken)
+                encoding: JSONEncoding.default
             )
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
