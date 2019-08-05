@@ -1,6 +1,7 @@
 import Foundation
 import SafariServices
 import IdentitySdkCore
+import BrightFutures
 
 public class WebViewProvider: ProviderCreator {
     public static let NAME = "webview"
@@ -67,14 +68,14 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
     
     private func handleAuthCode(_ code: String) {
         let authCodeRequest = AuthCodeRequest(clientId: self.sdkConfig.clientId, code: code, pkce: self.pkce)
-        self.reachFiveApi.authWithCode(authCodeRequest: authCodeRequest, callback: { response in
-            switch response {
-            case .success(let openIdTokenResponse):
-                self.callback(AuthToken.fromOpenIdTokenResponse(openIdTokenResponse: openIdTokenResponse))
-            case .failure(let error):
-                self.callback(.failure(ReachFiveError.TechnicalError(reason: error.localizedDescription)))
+        self.reachFiveApi.authWithCode(authCodeRequest: authCodeRequest)
+            .flatMap({ AuthToken.fromOpenIdTokenResponseFuture($0) })
+            .onSuccess { authToken in
+                self.callback(.success(authToken))
             }
-        })
+            .onFailure { error in
+                self.callback(.failure(error))
+            }
     }
     
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
@@ -101,7 +102,9 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
         
     }
     
-    public func logout() {}
+    public func logout() -> Future<Void, ReachFiveError> {
+        return Future()
+    }
     
     func buildUrl(sdkConfig: SdkConfig, providerConfig: ProviderConfig, scope: [String], pkce: Pkce) -> String {
         let params = [

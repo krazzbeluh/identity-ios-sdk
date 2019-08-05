@@ -1,7 +1,6 @@
 import Foundation
-import ObjectMapper
 
-public class UpdatePasswordRequest: NSObject, ImmutableMappable {
+public class UpdatePasswordRequest: Codable, DictionaryEncodable {
     let clientId: String?
     let password: String?
     let oldPassword: String?
@@ -23,27 +22,5 @@ public class UpdatePasswordRequest: NSObject, ImmutableMappable {
         self.email = email
         self.phoneNumber = phoneNumber
         self.verificationCode = verificationCode
-    }
-    
-    public required init(map: Map) throws {
-        clientId = try? map.value("client_id")
-        password = try? map.value("password")
-        oldPassword = try? map.value("old_password")
-        email = try? map.value("email")
-        phoneNumber = try? map.value("phone_number")
-        verificationCode = try? map.value("verification_code")
-    }
-    
-    public func mapping(map: Map) {
-        clientId >>> map["client_id"]
-        password >>> map["password"]
-        oldPassword >>> map["old_password"]
-        email >>> map["email"]
-        phoneNumber >>> map["phone_number"]
-        verificationCode >>> map["verification_code"]
-    }
-    
-    public override var description: String {
-        return self.toJSONString(prettyPrint: true) ?? super.description
     }
 }

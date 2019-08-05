@@ -1,77 +1,66 @@
 import Foundation
+import BrightFutures
 
 public extension ReachFive {
-    func getProfile(authToken: AuthToken, callback: @escaping Callback<Profile, ReachFiveError>) {
-        reachFiveApi.getProfile(authToken: authToken, callback: callback)
+    func getProfile(authToken: AuthToken) -> Future<Profile, ReachFiveError> {
+        return reachFiveApi.getProfile(authToken: authToken)
     }
     
     func verifyPhoneNumber(
         authToken: AuthToken,
         phoneNumber: String,
-        verificationCode: String,
-        callback: @escaping Callback<Void, ReachFiveError>
-    ) {
-        let verifyPhoneNumberRequest = VerifyPhoneNumberRequest(phoneNumber: phoneNumber, verificationCode: verificationCode)
-        reachFiveApi
-            .verifyPhoneNumber(
-                authToken: authToken,
-                verifyPhoneNumberRequest: verifyPhoneNumberRequest,
-                callback: callback
+        verificationCode: String
+    ) -> Future<Void, ReachFiveError> {
+        let verifyPhoneNumberRequest = VerifyPhoneNumberRequest(
+            phoneNumber: phoneNumber,
+            verificationCode: verificationCode
         )
+        return self.reachFiveApi
+            .verifyPhoneNumber(authToken: authToken, verifyPhoneNumberRequest: verifyPhoneNumberRequest)
     }
     
     func updateEmail(
         authToken: AuthToken,
         email: String,
-        redirectUrl: String? = nil,
-        callback: @escaping Callback<Profile, ReachFiveError>
-    ) {
+        redirectUrl: String? = nil
+    ) -> Future<Profile, ReachFiveError> {
         let updateEmailRequest = UpdateEmailRequest(email: email, redirectUrl: redirectUrl)
-        reachFiveApi
-            .updateEmail(
-                authToken: authToken,
-                updateEmailRequest: updateEmailRequest,
-                callback: callback
+        return reachFiveApi.updateEmail(
+            authToken: authToken,
+            updateEmailRequest: updateEmailRequest
         )
     }
     
     func updateProfile(
         authToken: AuthToken,
-        profile: Profile,
-        callback: @escaping Callback<Profile, ReachFiveError>
-    ) {
-        reachFiveApi.updateProfile(authToken: authToken, profile: profile, callback: callback)
+        profile: Profile
+    ) -> Future<Profile, ReachFiveError> {
+        return reachFiveApi.updateProfile(authToken: authToken, profile: profile)
     }
     
     func updatePassword(
         authToken: AuthToken,
-        updatePasswordRequest: UpdatePasswordRequest,
-        callback: @escaping Callback<Void, ReachFiveError>
-    ) {
-        reachFiveApi.updatePassword(authToken: authToken, updatePasswordRequest: updatePasswordRequest, callback: callback)
+        updatePasswordRequest: UpdatePasswordRequest
+    ) -> Future<Void, ReachFiveError> {
+        return reachFiveApi.updatePassword(
+            authToken: authToken,
+            updatePasswordRequest: updatePasswordRequest
+        )
     }
     
     func requestPasswordReset(
         email: String?,
         phoneNumber: String?,
-        redirectUrl: String? = nil,
-        callback: @escaping Callback<Void, ReachFiveError>
-    ) {
+        redirectUrl: String? = nil
+    ) -> Future<Void, ReachFiveError> {
         let requestPasswordResetRequest = RequestPasswordResetRequest(
-            clientId: sdkConfig.clientId, email: email, phoneNumber: phoneNumber, redirectUrl: redirectUrl
+            clientId: sdkConfig.clientId,
+            email: email,
+            phoneNumber: phoneNumber,
+            redirectUrl: redirectUrl
         )
-        reachFiveApi
-            .requestPasswordReset(
-                requestPasswordResetRequest: requestPasswordResetRequest,
-                callback: callback
+        return reachFiveApi.requestPasswordReset(
+            requestPasswordResetRequest: requestPasswordResetRequest
         )
-    }
-    
-    internal func handleAuthResponse(callback: @escaping Callback<AuthToken, ReachFiveError>) -> Callback<AccessTokenResponse, ReachFiveError> {
-        return { response in
-            callback(response.flatMap { openIdTokenResponse in
-                AuthToken.fromOpenIdTokenResponse(openIdTokenResponse: openIdTokenResponse)
-            })
-        }
     }
 }

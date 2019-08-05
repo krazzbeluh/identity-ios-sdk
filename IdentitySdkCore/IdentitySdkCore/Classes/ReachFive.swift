@@ -1,4 +1,5 @@
 import Foundation
+import BrightFutures
 
 enum State {
     case NotInitialazed
@@ -19,11 +20,11 @@ public class ReachFive: NSObject {
         self.reachFiveApi = ReachFiveApi(sdkConfig: sdkConfig)
     }
             
-    public func logout(authToken: AuthToken, callback: @escaping Callback<Void, ReachFiveError>) {
-        for provider in self.providers {
-            provider.logout()
-        }
-        reachFiveApi.logout(authToken: authToken, callback: callback)
+    public func logout(authToken: AuthToken) -> Future<Void, ReachFiveError> {
+        return self.providers
+            .map { $0.logout() }
+            .sequence()
+            .flatMap { _ in self.reachFiveApi.logout(authToken: authToken)}
     }
     
     public override var description: String {

@@ -1,7 +1,6 @@
 import Foundation
-import ObjectMapper
 
-public class OpenIdUser: NSObject, ImmutableMappable {
+public class OpenIdUser: Codable {
     public let id: String?
     public let name: String?
     public let preferredUsername: String?
@@ -57,49 +56,4 @@ public class OpenIdUser: NSObject, ImmutableMappable {
         self.phoneNumberVerified = phoneNumberVerified
         self.address = address
     }
-    
-    public required init(map: Map) throws {
-        id = try? map.value("id")
-        name = try? map.value("name")
-        preferredUsername = try? map.value("preferred_username")
-        givenName = try? map.value("given_name")
-        familyName = try? map.value("family_name")
-        middleName = try? map.value("middle_name")
-        nickname = try? map.value("nickname")
-        picture = try? map.value("picture")
-        website = try? map.value("website")
-        email = try? map.value("email")
-        emailVerified = try? map.value("email_verified")
-        gender = try? map.value("gender")
-        zoneinfo = try? map.value("zoneinfo")
-        locale = try? map.value("locale")
-        phoneNumber = try? map.value("phone_number")
-        phoneNumberVerified = try? map.value("phone_number_verified")
-        address = try? map.value("address")
-    }
-    
-    public func mapping(map: Map) {
-        id >>> map["id"]
-        name >>> map["name"]
-        preferredUsername >>> map["preferred_username"]
-        givenName >>> map["given_name"]
-        familyName >>> map["family_name"]
-        middleName >>> map["middle_name"]
-        nickname >>> map["nickname"]
-        picture >>> map["picture"]
-        website >>> map["website"]
-        email >>> map["email"]
-        emailVerified >>> map["email_verified"]
-        gender >>> map["gender"]
-        zoneinfo >>> map["zoneinfo"]
-        locale >>> map["locale"]
-        phoneNumber >>> map["phone_number"]
-        phoneNumberVerified >>> map["phone_number_verified"]
-        address >>> map["address"]
-    }
-    
-    public override var description: String {
-        return self.toJSONString(prettyPrint: true) ?? super.description
-    }
 }
-

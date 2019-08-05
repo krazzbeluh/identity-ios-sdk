@@ -1,13 +1,20 @@
 import Foundation
+import BrightFutures
 
-public class AuthToken: NSObject {
+public class AuthToken {
     public let idToken: String?
     public let accessToken: String
     public let tokenType: String?
     public let expiresIn: Int?
     public let user: OpenIdUser?
     
-    public init(idToken: String?, accessToken: String, tokenType: String?, expiresIn: Int?, user: OpenIdUser?) {
+    public init(
+        idToken: String?,
+        accessToken: String,
+        tokenType: String?,
+        expiresIn: Int?,
+        user: OpenIdUser?
+    ) {
         self.idToken = idToken
         self.accessToken = accessToken
         self.tokenType = tokenType
@@ -15,7 +22,16 @@ public class AuthToken: NSObject {
         self.user = user
     }
     
-    public static func fromOpenIdTokenResponse(openIdTokenResponse: AccessTokenResponse) -> Result<AuthToken, ReachFiveError> {
+    public static func fromOpenIdTokenResponseFuture(
+        _ openIdTokenResponse: AccessTokenResponse
+    ) -> Future<AuthToken, ReachFiveError> {
+        let promise = Promise<AuthToken, ReachFiveError>()
+        let authTokenResult = AuthToken.fromOpenIdTokenResponse(openIdTokenResponse: openIdTokenResponse)
+        promise.complete(authTokenResult)
+        return promise.future
+    }
+    
+    static func fromOpenIdTokenResponse(openIdTokenResponse: AccessTokenResponse) -> Result<AuthToken, ReachFiveError> {
         if openIdTokenResponse.idToken != nil {
             return fromIdToken(openIdTokenResponse.idToken!).flatMap { user in
                 return .success(withUser(openIdTokenResponse, user))
@@ -36,12 +52,13 @@ public class AuthToken: NSObject {
     }
     
     static func fromIdToken(_ idToken: String) -> Result<OpenIdUser, ReachFiveError> {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
         let parts = idToken.components(separatedBy: ".")
         if parts.count == 3 {
             let data = Base64.base64UrlSafeDecode(parts[1])
-            let content = String(data: data!, encoding: .utf8)
             let user = Result.init(catching: {
-                return try OpenIdUser(JSONString: content!)
+                return try decoder.decode(OpenIdUser.self, from: data!)
             })
             return user.mapError({ error in
                 return .TechnicalError(reason: error.localizedDescription)
@@ -49,9 +66,5 @@ public class AuthToken: NSObject {
         } else {
             return .failure(.TechnicalError(reason: "idToken invalid"))
         }
-    }
-    
-    public override var description: String {
-        return "AuthToken(accessToken=\(String(describing: accessToken)) user=\(String(describing: user)))"
     }
 }

@@ -1,7 +1,6 @@
 import Foundation
-import ObjectMapper
 
-public class AuthCodeRequest: NSObject, ImmutableMappable {
+public class AuthCodeRequest: Codable, DictionaryEncodable {
     public let clientId: String
     public let code: String
     public let grantType: String
@@ -30,25 +29,5 @@ public class AuthCodeRequest: NSObject, ImmutableMappable {
         self.grantType = grantType
         self.redirectUri = redirectUri
         self.codeVerifier = codeVerifier
-    }
-    
-    public required init(map: Map) throws {
-        clientId = try map.value("client_id")
-        code = try map.value("code")
-        grantType = try map.value("grant_type")
-        redirectUri = try map.value("redirect_uri")
-        codeVerifier = try map.value("code_verifier")
-    }
-    
-    public func mapping(map: Map) {
-        clientId >>> map["client_id"]
-        code >>> map["code"]
-        grantType >>> map["grant_type"]
-        redirectUri >>> map["redirect_uri"]
-        codeVerifier >>> map["code_verifier"]
-    }
-    
-    public override var description: String {
-        return self.toJSONString(prettyPrint: true) ?? super.description
     }
 }

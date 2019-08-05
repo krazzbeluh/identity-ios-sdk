@@ -16,15 +16,13 @@ class LoginController: UIViewController, UITableViewDataSource, UITableViewDeleg
         providersTableView.dataSource = self
         providersTableView.delegate = self
         
-        AppDelegate.reachfive().initialize(callback: { response in
-            switch response {
-            case .success(let providers):
+        AppDelegate.reachfive()
+            .initialize()
+            .onSuccess { providers in
                 self.providers.append(contentsOf: providers)
                 self.providersTableView.reloadData()
-            case .failure(let error):
-                print("initialize error \(error)")
             }
-        })
+            .onFailure { print("initialize error \($0)") }
     }
     
     public func reloadProvidersData(providers: [Provider]) {
@@ -35,9 +33,17 @@ class LoginController: UIViewController, UITableViewDataSource, UITableViewDeleg
     @IBAction func login(_ sender: Any) {
         let email = emailInput.text ?? ""
         let password = passwordInput.text ?? ""
-        AppDelegate.shared().reachfive.loginWithPassword(username: email, password: password, callback: { result in
-            self.handleResult(result: result)
-        })
+        AppDelegate.shared().reachfive
+            .loginWithPassword(username: email, password: password)
+            .onSuccess(callback: goToProfile)
+            .onFailure(callback: { error in
+                switch error {
+                case .RequestError(let requestErrors):
+                    self.error.text = requestErrors.errorUserMsg
+                default:
+                    self.error.text = error.localizedDescription
+                }
+            })
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,17 +63,19 @@ class LoginController: UIViewController, UITableViewDataSource, UITableViewDeleg
     func handleResult(result: Result<AuthToken, ReachFiveError>) {
         switch result {
         case .success(let authToken):
-            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let profileController = storyBoard.instantiateViewController(
-                withIdentifier: "ProfileScene"
-            ) as! ProfileController
-            profileController.authToken = authToken
-            self.self.navigationController?.pushViewController(profileController, animated: true)
-        case .failure(.RequestError(let requestErrors)):
-            self.error.text = requestErrors.errorUserMsg
+            goToProfile(authToken)
         case .failure(let error):
             print(error)
         }
+    }
+        
+    func goToProfile(_ authToken: AuthToken) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let profileController = storyBoard.instantiateViewController(
+            withIdentifier: "ProfileScene"
+        ) as! ProfileController
+        profileController.authToken = authToken
+        self.self.navigationController?.pushViewController(profileController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -1,4 +1,5 @@
 import Foundation
+import BrightFutures
 
 public extension ReachFive {
     func getProvider(name: String) -> Provider? {
@@ -9,30 +10,22 @@ public extension ReachFive {
         return providers
     }
     
-    func initialize(callback: @escaping Callback<[Provider], ReachFiveError>) {
+    func initialize() -> Future<[Provider], ReachFiveError> {
         switch self.state {
         case .NotInitialazed:
-            reachFiveApi.clientConfig(callback: { configResult in
-                configResult.map({ clientConfig in
-                    self.scope = clientConfig.scope.components(separatedBy: " ")
-
-                    self.reachFiveApi.providersConfigs(callback: { result in
-                        callback(result.map({ providersConfigs in
-                            let providers = self.createProviders(providersConfigsResult: providersConfigs)
-                            self.providers = providers
-                            self.state = .Initialazed
-                            return providers
-                        }))
-                    })
-                })
+            return self.reachFiveApi.clientConfig().flatMap({ clientConfig -> Future<ProvidersConfigsResult, ReachFiveError> in
+                self.scope = clientConfig.scope.components(separatedBy: " ")
+                return self.reachFiveApi.providersConfigs()
             })
+            .map { providersConfigs in
+                let providers = self.createProviders(providersConfigsResult: providersConfigs)
+                self.providers = providers
+                self.state = .Initialazed
+                return providers
+            }
         case .Initialazed:
-            callback(.success(self.providers))
+            return Future.init(value: self.providers)
         }
-    }
-    
-    func initialize() {
-        self.initialize(callback: { _ in })
     }
     
     private func createProviders(providersConfigsResult: ProvidersConfigsResult) -> [Provider] {
