@@ -31,6 +31,17 @@ public extension ReachFive {
         )
     }
     
+    func updatePhoneNumber(
+        authToken: AuthToken,
+        phoneNumber: String
+    ) -> Future<Profile, ReachFiveError> {
+        let updatePhoneNumberRequest = UpdatePhoneNumberRequest(phoneNumber: phoneNumber)
+        return reachFiveApi.updatePhoneNumber(
+            authToken: authToken,
+            updatePhoneNumberRequest: updatePhoneNumberRequest
+        )
+    }
+    
     func updateProfile(
         authToken: AuthToken,
         profile: Profile

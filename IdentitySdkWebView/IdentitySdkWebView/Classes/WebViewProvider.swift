@@ -19,7 +19,7 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
     private let notificationName = Notification.Name("AuthCallbackNotification")
     private var safariViewController: SFSafariViewController? = nil
     private var pkce: Pkce = Pkce.generate()
-    private var callback: Callback<AuthToken, ReachFiveError> = { _ in }
+    private var promise: Promise<AuthToken, ReachFiveError>?
 
     var name: String = WebViewProvider.NAME
     
@@ -34,8 +34,14 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
         self.name = providerConfig.provider
     }
     
-    public func login(scope: [String], origin: String, viewController: UIViewController?, callback: @escaping Callback<AuthToken, ReachFiveError>) {
-        self.callback = callback
+    public func login(
+        scope: [String],
+        origin: String,
+        viewController: UIViewController?
+    ) -> Future<AuthToken, ReachFiveError> {
+        self.promise?.failure(.AuthCanceled)
+        let promise = Promise<AuthToken, ReachFiveError>()
+        self.promise = promise
         self.pkce = Pkce.generate()
         let url = self.buildUrl(sdkConfig: sdkConfig, providerConfig: providerConfig, scope: scope, pkce: pkce)
         
@@ -44,6 +50,7 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
         self.safariViewController = SFSafariViewController.init(url: URL(string: url)!)
         
         viewController?.present(safariViewController!, animated: true)
+        return promise.future
     }
     
     @objc func handleLogin(_ notification : Notification) {
@@ -57,10 +64,10 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
             if code != nil {
                 self.handleAuthCode(code!!)
             } else {
-                self.callback(.failure(.TechnicalError(reason: "No authorization code")))
+                self.promise?.failure(.TechnicalError(reason: "No authorization code"))
             }
         } else {
-            callback(.failure(.TechnicalError(reason: "No authorization code")))
+            self.promise?.failure(.TechnicalError(reason: "No authorization code"))
         }
         
         self.safariViewController?.dismiss(animated: true, completion: nil)
@@ -71,10 +78,10 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
         self.reachFiveApi.authWithCode(authCodeRequest: authCodeRequest)
             .flatMap({ AuthToken.fromOpenIdTokenResponseFuture($0) })
             .onSuccess { authToken in
-                self.callback(.success(authToken))
+                self.promise?.success(authToken)
             }
             .onFailure { error in
-                self.callback(.failure(error))
+                self.promise?.failure(error)
             }
     }
     

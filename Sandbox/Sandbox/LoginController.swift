@@ -63,6 +63,7 @@ class LoginController: UIViewController, UITableViewDataSource, UITableViewDeleg
     func handleResult(result: Result<AuthToken, ReachFiveError>) {
         switch result {
         case .success(let authToken):
+            AuthTokenStorage.save(authToken)
             goToProfile(authToken)
         case .failure(let error):
             print(error)
@@ -74,7 +75,6 @@ class LoginController: UIViewController, UITableViewDataSource, UITableViewDeleg
         let profileController = storyBoard.instantiateViewController(
             withIdentifier: "ProfileScene"
         ) as! ProfileController
-        profileController.authToken = authToken
         self.self.navigationController?.pushViewController(profileController, animated: true)
     }
     
@@ -90,9 +90,11 @@ class LoginController: UIViewController, UITableViewDataSource, UITableViewDeleg
             .login(
                 scope: scope,
                 origin: "home",
-                viewController: self,
-                callback: { result in self.handleResult(result: result) }
+                viewController: self
             )
+            .onComplete { result in
+                self.handleResult(result: result)
+            }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

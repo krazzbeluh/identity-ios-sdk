@@ -1,7 +1,7 @@
 import Foundation
 import BrightFutures
 
-public class AuthToken {
+public class AuthToken: Codable {
     public let idToken: String?
     public let accessToken: String
     public let tokenType: String?
@@ -66,5 +66,25 @@ public class AuthToken {
         } else {
             return .failure(.TechnicalError(reason: "idToken invalid"))
         }
+    }
+}
+
+public class AuthTokenStorage {
+    static let key = "AUTH_TOKEN"
+    public static func save(_ authToken: AuthToken) {
+        let data = try? JSONEncoder().encode(authToken)
+        UserDefaults.standard.set(data, forKey: key)
+    }
+    
+    public static func get() -> AuthToken? {
+        if let data = UserDefaults.standard.value(forKey: key) as? Data {
+            return try? JSONDecoder().decode(AuthToken.self, from: data)
+        } else {
+            return nil
+        }
+    }
+    
+    public static func clear() {
+        UserDefaults.standard.removeObject(forKey: key)
     }
 }

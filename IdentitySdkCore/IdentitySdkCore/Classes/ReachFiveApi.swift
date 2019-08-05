@@ -154,6 +154,22 @@ public class ReachFiveApi {
             .responseJson(decoder: self.decoder)
     }
     
+    public func updatePhoneNumber(
+        authToken: AuthToken,
+        updatePhoneNumberRequest: UpdatePhoneNumberRequest
+    ) -> Future<Profile, ReachFiveError> {
+        return Alamofire
+            .request(
+                createUrl(path: "/identity/v1/update-phone-number?device=\(deviceInfo)"),
+                method: .post,
+                parameters: updatePhoneNumberRequest.dictionary(),
+                encoding: JSONEncoding.default,
+                headers: tokenHeader(authToken)
+            )
+            .validate(contentType: ["application/json"])
+            .responseJson(type: Profile.self, decoder: self.decoder)
+    }
+    
     public func requestPasswordReset(
         requestPasswordResetRequest: RequestPasswordResetRequest
     ) -> Future<Void, ReachFiveError> {

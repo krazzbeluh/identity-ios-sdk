@@ -2,7 +2,7 @@ import UIKit
 import IdentitySdkCore
 
 class ProfileController: UIViewController {
-    public var authToken: AuthToken?
+    var authToken: AuthToken? = AuthTokenStorage.get()
     
     @IBOutlet weak var nameLabel: UILabel!
 
@@ -10,7 +10,6 @@ class ProfileController: UIViewController {
         super.viewDidLoad()
         
         self.nameLabel?.text = self.authToken?.user?.name
-        
         
         AppDelegate.reachfive()
             .getProfile(authToken: self.authToken!)
@@ -33,6 +32,7 @@ class ProfileController: UIViewController {
             AppDelegate.reachfive().logout(authToken: self.authToken!)
                 .onComplete { result in
                     print("Logout ended \(result)")
+                    AuthTokenStorage.clear()
                     self.authToken = nil
                     self.navigationController?.popViewController(animated: true)
                 }
