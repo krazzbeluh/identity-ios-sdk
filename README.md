@@ -11,6 +11,19 @@
 
 Refer to the [public documentation](https://developer.reach5.co/guides/installation/ios) to install the SDKs and to initialize your ReachFive client.
 
+## Start developing
+
+Install [Cocoapods](https://cocoapods.org)
+
+```sh
+sudo gem install cocoapods
+
+cd Sandbox
+pod install
+
+open Sandbox.xcworkspace
+```
+
 ## Changelog
 
 Please refer to [changelog](CHANGELOG.md) to see the descriptions of each release.

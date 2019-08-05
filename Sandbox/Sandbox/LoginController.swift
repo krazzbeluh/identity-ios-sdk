@@ -33,7 +33,7 @@ class LoginController: UIViewController, UITableViewDataSource, UITableViewDeleg
     @IBAction func login(_ sender: Any) {
         let email = emailInput.text ?? ""
         let password = passwordInput.text ?? ""
-        AppDelegate.shared().reachfive
+        AppDelegate.reachfive()
             .loginWithPassword(username: email, password: password)
             .onSuccess(callback: goToProfile)
             .onFailure(callback: { error in
