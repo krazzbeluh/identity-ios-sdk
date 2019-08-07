@@ -26,7 +26,7 @@
 		347FDB67229C02FE00660687 /* ReachFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347FDB66229C02FE00660687 /* ReachFive.swift */; };
 		347FDB69229C04C200660687 /* ProviderConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347FDB68229C04C200660687 /* ProviderConfig.swift */; };
 		34B5295A22D376FF00B7B6AA /* Pkce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B5295922D376FF00B7B6AA /* Pkce.swift */; };
-		34BDDA3622E5BE6000D16DAE /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDDA3522E5BE6000D16DAE /* Address.swift */; };
+		34BDDA3622E5BE6000D16DAE /* ProfileAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDDA3522E5BE6000D16DAE /* ProfileAddress.swift */; };
 		34BDDA3822E5BE8C00D16DAE /* LoginSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDDA3722E5BE8C00D16DAE /* LoginSummary.swift */; };
 		34BDDA3A22E5BF1C00D16DAE /* Consent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDDA3922E5BF1C00D16DAE /* Consent.swift */; };
 		34BDDA3C22E5BF3600D16DAE /* Emails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDDA3B22E5BF3600D16DAE /* Emails.swift */; };
@@ -35,7 +35,6 @@
 		34BDDA4222E5D87E00D16DAE /* ReachFivePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDDA4122E5D87E00D16DAE /* ReachFivePassword.swift */; };
 		34BDDA4422E5D95B00D16DAE /* ReachFiveProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BDDA4322E5D95B00D16DAE /* ReachFiveProfile.swift */; };
 		34DD31FF22F3286400279E54 /* CustomField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DD31FE22F3286400279E54 /* CustomField.swift */; };
-		34E18B8822A66EEF00952EBD /* Callback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E18B8722A66EEF00952EBD /* Callback.swift */; };
 		34E18B8A22A6985C00952EBD /* SignupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E18B8922A6985C00952EBD /* SignupRequest.swift */; };
 		34E18B8C22A6BEC900952EBD /* AccessTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E18B8B22A6BEC900952EBD /* AccessTokenResponse.swift */; };
 		34E18B8F22A6C32500952EBD /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E18B8E22A6C32500952EBD /* LoginRequest.swift */; };
@@ -68,7 +67,7 @@
 		347FDB66229C02FE00660687 /* ReachFive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachFive.swift; sourceTree = "<group>"; };
 		347FDB68229C04C200660687 /* ProviderConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderConfig.swift; sourceTree = "<group>"; };
 		34B5295922D376FF00B7B6AA /* Pkce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pkce.swift; sourceTree = "<group>"; };
-		34BDDA3522E5BE6000D16DAE /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		34BDDA3522E5BE6000D16DAE /* ProfileAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAddress.swift; sourceTree = "<group>"; };
 		34BDDA3722E5BE8C00D16DAE /* LoginSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSummary.swift; sourceTree = "<group>"; };
 		34BDDA3922E5BF1C00D16DAE /* Consent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consent.swift; sourceTree = "<group>"; };
 		34BDDA3B22E5BF3600D16DAE /* Emails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emails.swift; sourceTree = "<group>"; };
@@ -77,7 +76,6 @@
 		34BDDA4122E5D87E00D16DAE /* ReachFivePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachFivePassword.swift; sourceTree = "<group>"; };
 		34BDDA4322E5D95B00D16DAE /* ReachFiveProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachFiveProfile.swift; sourceTree = "<group>"; };
 		34DD31FE22F3286400279E54 /* CustomField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomField.swift; sourceTree = "<group>"; };
-		34E18B8722A66EEF00952EBD /* Callback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Callback.swift; sourceTree = "<group>"; };
 		34E18B8922A6985C00952EBD /* SignupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRequest.swift; sourceTree = "<group>"; };
 		34E18B8B22A6BEC900952EBD /* AccessTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenResponse.swift; sourceTree = "<group>"; };
 		34E18B8E22A6C32500952EBD /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
@@ -121,7 +119,6 @@
 		34689A9A22CE3E34002970F9 /* utils */ = {
 			isa = PBXGroup;
 			children = (
-				34E18B8722A66EEF00952EBD /* Callback.swift */,
 				34689A9B22CE3E57002970F9 /* Base64.swift */,
 				340DA24722CF4CB200864149 /* UIDevice.swift */,
 				34B5295922D376FF00B7B6AA /* Pkce.swift */,
@@ -187,7 +184,7 @@
 				34689A9022CDFAE4002970F9 /* Profile.swift */,
 				34689A9422CDFB39002970F9 /* OpenIdUser.swift */,
 				34689A9622CDFB5F002970F9 /* AuthToken.swift */,
-				34BDDA3522E5BE6000D16DAE /* Address.swift */,
+				34BDDA3522E5BE6000D16DAE /* ProfileAddress.swift */,
 				34BDDA3722E5BE8C00D16DAE /* LoginSummary.swift */,
 				34BDDA3922E5BF1C00D16DAE /* Consent.swift */,
 				34BDDA3B22E5BF3600D16DAE /* Emails.swift */,
@@ -327,7 +324,7 @@
 				34BDDA4222E5D87E00D16DAE /* ReachFivePassword.swift in Sources */,
 				34BDDA3C22E5BF3600D16DAE /* Emails.swift in Sources */,
 				34689A9C22CE3E57002970F9 /* Base64.swift in Sources */,
-				34BDDA3622E5BE6000D16DAE /* Address.swift in Sources */,
+				34BDDA3622E5BE6000D16DAE /* ProfileAddress.swift in Sources */,
 				3474D28B22D32F3A005112C1 /* RequestPasswordResetRequest.swift in Sources */,
 				34E18B8A22A6985C00952EBD /* SignupRequest.swift in Sources */,
 				3417FF6622F8435F0009EC84 /* UpdatePhoneNumberRequest.swift in Sources */,
@@ -336,7 +333,6 @@
 				34F7D3E622A54ADE003A7BC0 /* ProvidersConfigsResult.swift in Sources */,
 				34E508B222F19F7700BF9BAF /* DataRequest.swift in Sources */,
 				72DDB78E22EF354300048262 /* ClientConfigResponse.swift in Sources */,
-				34E18B8822A66EEF00952EBD /* Callback.swift in Sources */,
 				34689A9722CDFB5F002970F9 /* AuthToken.swift in Sources */,
 				34DD31FF22F3286400279E54 /* CustomField.swift in Sources */,
 				34BDDA3A22E5BF1C00D16DAE /* Consent.swift in Sources */,

@@ -21,7 +21,7 @@ public class Profile: Codable, DictionaryEncodable {
     public let emails: Emails?
     public let phoneNumber: String?
     public let phoneNumberVerified: Bool?
-    public let addresses: [Address]?
+    public let addresses: [ProfileAddress]?
     public let locale: String?
     public let bio: String?
     public let customFields: [String: CustomField]?
@@ -53,7 +53,7 @@ public class Profile: Codable, DictionaryEncodable {
         emails: Emails? = nil,
         phoneNumber: String? = nil,
         phoneNumberVerified: Bool? = nil,
-        addresses: [Address]? = nil,
+        addresses: [ProfileAddress]? = nil,
         locale: String? = nil,
         bio: String? = nil,
         customFields: [String: CustomField]? = nil,

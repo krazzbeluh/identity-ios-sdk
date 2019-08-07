@@ -1,6 +1,6 @@
 import Foundation
 
-public class Address: Codable, DictionaryEncodable {
+public class ProfileAddress: Codable, DictionaryEncodable {
     public let title: String?
     public let isDefault: Bool?
     public let addressType: String?

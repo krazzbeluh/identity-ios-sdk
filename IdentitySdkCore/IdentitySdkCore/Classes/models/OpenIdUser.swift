@@ -17,7 +17,7 @@ public class OpenIdUser: Codable {
     public let locale: String?
     public let phoneNumber: String?
     public let phoneNumberVerified: Bool?
-    public let address: Address?
+    public let address: ProfileAddress?
     
     public init(
         id: String?,
@@ -36,7 +36,7 @@ public class OpenIdUser: Codable {
         locale: String?,
         phoneNumber: String?,
         phoneNumberVerified: Bool?,
-        address: Address?
+        address: ProfileAddress?
     ) {
         self.id = id
         self.name = name
