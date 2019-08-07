@@ -91,7 +91,7 @@ public class ReachFiveApi {
     public func verifyPhoneNumber(
         authToken: AuthToken,
         verifyPhoneNumberRequest: VerifyPhoneNumberRequest
-    ) -> Future<Void, ReachFiveError> {
+    ) -> Future<(), ReachFiveError> {
         return Alamofire
             .request(
                 createUrl(path: "/identity/v1/verify-phone-number?device=\(deviceInfo)"),
@@ -141,7 +141,7 @@ public class ReachFiveApi {
     public func updatePassword(
         authToken: AuthToken,
         updatePasswordRequest: UpdatePasswordRequest
-    ) -> Future<Void, ReachFiveError> {
+    ) -> Future<(), ReachFiveError> {
         return Alamofire
             .request(
                 createUrl(path: "/identity/v1/update-password?device=\(deviceInfo)"),
@@ -172,7 +172,7 @@ public class ReachFiveApi {
     
     public func requestPasswordReset(
         requestPasswordResetRequest: RequestPasswordResetRequest
-    ) -> Future<Void, ReachFiveError> {
+    ) -> Future<(), ReachFiveError> {
         return Alamofire
             .request(createUrl(
                 path: "/identity/v1/forgot-password?device=\(deviceInfo)"),
@@ -184,15 +184,13 @@ public class ReachFiveApi {
             .responseJson(decoder: self.decoder)
     }
     
-    public func logout(authToken: AuthToken) -> Future<Void, ReachFiveError> {
+    public func logout() -> Future<(), ReachFiveError> {
         return Alamofire
-            .request(createUrl(
-                path: "/identity/v1/logout?device=\(deviceInfo)"),
-                method: .get,
-                headers: tokenHeader(authToken)
+            .request(
+                createUrl(path: "/identity/v1/logout?device=\(deviceInfo)"),
+                method: .get
             )
             .validate(statusCode: 200..<300)
-            .validate(contentType: ["application/json"])
             .responseJson(decoder: self.decoder)
     }
     

@@ -10,7 +10,7 @@ public extension ReachFive {
         authToken: AuthToken,
         phoneNumber: String,
         verificationCode: String
-    ) -> Future<Void, ReachFiveError> {
+    ) -> Future<(), ReachFiveError> {
         let verifyPhoneNumberRequest = VerifyPhoneNumberRequest(
             phoneNumber: phoneNumber,
             verificationCode: verificationCode
@@ -52,7 +52,7 @@ public extension ReachFive {
     func updatePassword(
         authToken: AuthToken,
         updatePasswordRequest: UpdatePasswordRequest
-    ) -> Future<Void, ReachFiveError> {
+    ) -> Future<(), ReachFiveError> {
         return reachFiveApi.updatePassword(
             authToken: authToken,
             updatePasswordRequest: updatePasswordRequest
@@ -63,7 +63,7 @@ public extension ReachFive {
         email: String?,
         phoneNumber: String?,
         redirectUrl: String? = nil
-    ) -> Future<Void, ReachFiveError> {
+    ) -> Future<(), ReachFiveError> {
         let requestPasswordResetRequest = RequestPasswordResetRequest(
             clientId: sdkConfig.clientId,
             email: email,

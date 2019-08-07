@@ -109,8 +109,8 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
         
     }
     
-    public func logout() -> Future<Void, ReachFiveError> {
-        return Future()
+    public func logout() -> Future<(), ReachFiveError> {
+        return Future.init(value: ())
     }
     
     func buildUrl(sdkConfig: SdkConfig, providerConfig: ProviderConfig, scope: [String], pkce: Pkce) -> String {

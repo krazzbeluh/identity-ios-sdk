@@ -20,11 +20,11 @@ public class ReachFive: NSObject {
         self.reachFiveApi = ReachFiveApi(sdkConfig: sdkConfig)
     }
             
-    public func logout(authToken: AuthToken) -> Future<Void, ReachFiveError> {
+    public func logout() -> Future<(), ReachFiveError> {
         return self.providers
             .map { $0.logout() }
             .sequence()
-            .flatMap { _ in self.reachFiveApi.logout(authToken: authToken)}
+            .flatMap { _ in self.reachFiveApi.logout() }
     }
     
     public override var description: String {
