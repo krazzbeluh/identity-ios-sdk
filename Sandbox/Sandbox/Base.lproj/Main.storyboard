@@ -10,6 +10,85 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--PasswordLess-->
+        <scene sceneID="pPL-xw-jtO">
+            <objects>
+                <viewController title="PasswordLess" id="2x8-ac-8fG" customClass="PasswordlessController" customModule="Sandbox" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SYd-MM-Wb6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qjm-Sq-t5n">
+                                <rect key="frame" x="20" y="88" width="41" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eoo-7E-NMJ">
+                                <rect key="frame" x="20" y="117" width="374" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w53-Iq-oaM">
+                                <rect key="frame" x="20" y="193" width="115" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dXD-Kc-6mi">
+                                <rect key="frame" x="20" y="222" width="374" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AeC-Up-EXa">
+                                <rect key="frame" x="20" y="155" width="111" height="30"/>
+                                <state key="normal" title="Login with email"/>
+                                <connections>
+                                    <action selector="loginWithEmail:" destination="2x8-ac-8fG" eventType="touchUpInside" id="YWS-j0-P6U"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhI-pT-6LZ">
+                                <rect key="frame" x="20" y="260" width="174" height="30"/>
+                                <state key="normal" title="Login with phone number"/>
+                                <connections>
+                                    <action selector="loginWithPhoneNumber:" destination="2x8-ac-8fG" eventType="touchUpInside" id="fhP-yr-q1K"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rhI-pT-6LZ" firstAttribute="top" secondItem="dXD-Kc-6mi" secondAttribute="bottom" constant="8" symbolic="YES" id="4Of-dl-3gK"/>
+                            <constraint firstItem="AeC-Up-EXa" firstAttribute="top" secondItem="eoo-7E-NMJ" secondAttribute="bottom" constant="8" symbolic="YES" id="61a-ml-QYh"/>
+                            <constraint firstItem="AeC-Up-EXa" firstAttribute="leading" secondItem="SYd-MM-Wb6" secondAttribute="leadingMargin" id="F4i-IW-cLz"/>
+                            <constraint firstItem="Qjm-Sq-t5n" firstAttribute="top" secondItem="GPv-qX-wVK" secondAttribute="top" id="Ghs-ZO-88S"/>
+                            <constraint firstItem="AeC-Up-EXa" firstAttribute="leading" secondItem="w53-Iq-oaM" secondAttribute="leading" id="I9h-ct-GgA"/>
+                            <constraint firstItem="AeC-Up-EXa" firstAttribute="top" secondItem="SYd-MM-Wb6" secondAttribute="top" constant="155" id="LFC-SX-j7c"/>
+                            <constraint firstItem="AeC-Up-EXa" firstAttribute="leading" secondItem="rhI-pT-6LZ" secondAttribute="leading" id="LdE-Pf-c9b"/>
+                            <constraint firstItem="GPv-qX-wVK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rhI-pT-6LZ" secondAttribute="trailing" symbolic="YES" id="QyD-gL-uTw"/>
+                            <constraint firstItem="dXD-Kc-6mi" firstAttribute="trailing" secondItem="SYd-MM-Wb6" secondAttribute="trailingMargin" id="UYQ-DC-lfj"/>
+                            <constraint firstItem="AeC-Up-EXa" firstAttribute="leading" secondItem="dXD-Kc-6mi" secondAttribute="leading" id="V6K-rM-WJH"/>
+                            <constraint firstItem="GPv-qX-wVK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="w53-Iq-oaM" secondAttribute="trailing" symbolic="YES" id="daE-Xs-sFv"/>
+                            <constraint firstItem="dXD-Kc-6mi" firstAttribute="top" secondItem="w53-Iq-oaM" secondAttribute="bottom" constant="8" symbolic="YES" id="feT-IB-PbN"/>
+                            <constraint firstItem="AeC-Up-EXa" firstAttribute="leading" secondItem="eoo-7E-NMJ" secondAttribute="leading" id="idH-se-Aj0"/>
+                            <constraint firstItem="w53-Iq-oaM" firstAttribute="top" secondItem="AeC-Up-EXa" secondAttribute="bottom" constant="8" symbolic="YES" id="jXy-0L-AYr"/>
+                            <constraint firstItem="GPv-qX-wVK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AeC-Up-EXa" secondAttribute="trailing" symbolic="YES" id="jbp-Vi-FIe"/>
+                            <constraint firstItem="GPv-qX-wVK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Qjm-Sq-t5n" secondAttribute="trailing" symbolic="YES" id="oNS-1K-37a"/>
+                            <constraint firstItem="dXD-Kc-6mi" firstAttribute="trailing" secondItem="eoo-7E-NMJ" secondAttribute="trailing" id="uFH-mC-7ta"/>
+                            <constraint firstItem="AeC-Up-EXa" firstAttribute="leading" secondItem="Qjm-Sq-t5n" secondAttribute="leading" id="z99-kT-RuU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GPv-qX-wVK"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailInput" destination="eoo-7E-NMJ" id="a01-mH-9QJ"/>
+                        <outlet property="phoneNumberInput" destination="dXD-Kc-6mi" id="LLX-d8-j1g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AiK-8u-EgN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1928.985507246377" y="-573.21428571428567"/>
+        </scene>
         <!--Login-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -96,6 +175,13 @@
                                 <color key="textColor" red="1" green="0.4912648167" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yfl-0a-YfS">
+                                <rect key="frame" x="239" y="832" width="98" height="30"/>
+                                <state key="normal" title="PasswordLess"/>
+                                <connections>
+                                    <segue destination="2x8-ac-8fG" kind="show" id="zcF-eN-dtg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -106,6 +192,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="sOF-n0-xiN" secondAttribute="trailing" symbolic="YES" id="9mf-oV-56K"/>
                             <constraint firstItem="lkK-Pj-5gw" firstAttribute="top" secondItem="bil-zy-dCO" secondAttribute="bottom" constant="8" id="EAn-MS-Fkb"/>
                             <constraint firstItem="MIV-Nc-JGG" firstAttribute="top" secondItem="wHa-iv-6OM" secondAttribute="bottom" constant="8" symbolic="YES" id="Ead-Mr-4vA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yfl-0a-YfS" secondAttribute="trailing" constant="77" id="GMu-lK-dpa"/>
                             <constraint firstItem="0A4-hq-HzO" firstAttribute="trailing" secondItem="lkK-Pj-5gw" secondAttribute="trailing" id="IYP-0L-yY3"/>
                             <constraint firstItem="wHa-iv-6OM" firstAttribute="top" secondItem="0A4-hq-HzO" secondAttribute="bottom" constant="32" id="Js6-qR-Rq2"/>
                             <constraint firstItem="0A4-hq-HzO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Lz7-95-KaY"/>
@@ -116,6 +203,7 @@
                             <constraint firstItem="MIV-Nc-JGG" firstAttribute="top" secondItem="tAg-Nn-xCn" secondAttribute="bottom" constant="12" id="a8H-rw-2af"/>
                             <constraint firstItem="wym-09-o15" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="a8b-an-uS3"/>
                             <constraint firstItem="bil-zy-dCO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="13" id="bhQ-rG-i4f"/>
+                            <constraint firstItem="yfl-0a-YfS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wym-09-o15" secondAttribute="trailing" constant="8" symbolic="YES" id="dry-7G-MHl"/>
                             <constraint firstItem="sOF-n0-xiN" firstAttribute="top" secondItem="lkK-Pj-5gw" secondAttribute="bottom" constant="18" id="fcq-3w-NHv"/>
                             <constraint firstItem="0A4-hq-HzO" firstAttribute="leading" secondItem="wHa-iv-6OM" secondAttribute="leading" id="g7F-ol-DsA"/>
                             <constraint firstItem="0A4-hq-HzO" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="h1U-ZT-YvE"/>
@@ -124,6 +212,7 @@
                             <constraint firstItem="0A4-hq-HzO" firstAttribute="top" secondItem="sOF-n0-xiN" secondAttribute="bottom" constant="8" id="pX4-ZO-BdF"/>
                             <constraint firstItem="tAg-Nn-xCn" firstAttribute="leading" secondItem="wHa-iv-6OM" secondAttribute="trailing" constant="8" symbolic="YES" id="peE-BS-mNX"/>
                             <constraint firstItem="MIV-Nc-JGG" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="sq4-qv-puI"/>
+                            <constraint firstItem="yfl-0a-YfS" firstAttribute="baseline" secondItem="wym-09-o15" secondAttribute="baseline" id="vMB-fO-bxY"/>
                             <constraint firstItem="0A4-hq-HzO" firstAttribute="leading" secondItem="lkK-Pj-5gw" secondAttribute="leading" id="xTJ-ny-w94"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

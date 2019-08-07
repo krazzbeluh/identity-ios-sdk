@@ -11,6 +11,8 @@
 		3404A40C22CBA6DD002FFEDB /* AuthCodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404A40B22CBA6DD002FFEDB /* AuthCodeRequest.swift */; };
 		340DA24822CF4CB200864149 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340DA24722CF4CB200864149 /* UIDevice.swift */; };
 		3417FF6622F8435F0009EC84 /* UpdatePhoneNumberRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3417FF6522F8435F0009EC84 /* UpdatePhoneNumberRequest.swift */; };
+		3417FF6A22FAD1810009EC84 /* ReachFivePasswordLess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3417FF6922FAD1810009EC84 /* ReachFivePasswordLess.swift */; };
+		3417FF6C22FAD6CB0009EC84 /* StartPasswordlessRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3417FF6B22FAD6CB0009EC84 /* StartPasswordlessRequest.swift */; };
 		3455FCEC22F1B57400892794 /* DictionaryEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3455FCEB22F1B57400892794 /* DictionaryEncodable.swift */; };
 		34689A9122CDFAE4002970F9 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34689A9022CDFAE4002970F9 /* Profile.swift */; };
 		34689A9522CDFB39002970F9 /* OpenIdUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34689A9422CDFB39002970F9 /* OpenIdUser.swift */; };
@@ -50,6 +52,8 @@
 		3404A40B22CBA6DD002FFEDB /* AuthCodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCodeRequest.swift; sourceTree = "<group>"; };
 		340DA24722CF4CB200864149 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		3417FF6522F8435F0009EC84 /* UpdatePhoneNumberRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePhoneNumberRequest.swift; sourceTree = "<group>"; };
+		3417FF6922FAD1810009EC84 /* ReachFivePasswordLess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachFivePasswordLess.swift; sourceTree = "<group>"; };
+		3417FF6B22FAD6CB0009EC84 /* StartPasswordlessRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPasswordlessRequest.swift; sourceTree = "<group>"; };
 		3455FCEB22F1B57400892794 /* DictionaryEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryEncodable.swift; sourceTree = "<group>"; };
 		34689A9022CDFAE4002970F9 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		34689A9422CDFB39002970F9 /* OpenIdUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenIdUser.swift; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 				347FDB66229C02FE00660687 /* ReachFive.swift */,
 				34BDDA3F22E5D73900D16DAE /* ReachFiveProviders.swift */,
 				34BDDA4122E5D87E00D16DAE /* ReachFivePassword.swift */,
+				3417FF6922FAD1810009EC84 /* ReachFivePasswordLess.swift */,
 				34BDDA4322E5D95B00D16DAE /* ReachFiveProfile.swift */,
 				347FDB53229BE8F800660687 /* Provider.swift */,
 				34F7D3E322A54AA2003A7BC0 /* ReachFiveApi.swift */,
@@ -141,6 +146,7 @@
 				3474D28A22D32F3A005112C1 /* RequestPasswordResetRequest.swift */,
 				34BDDA3D22E5BFAC00D16DAE /* ProfileSignupRequest.swift */,
 				3417FF6522F8435F0009EC84 /* UpdatePhoneNumberRequest.swift */,
+				3417FF6B22FAD6CB0009EC84 /* StartPasswordlessRequest.swift */,
 			);
 			path = requests;
 			sourceTree = "<group>";
@@ -317,6 +323,7 @@
 			files = (
 				34BDDA3822E5BE8C00D16DAE /* LoginSummary.swift in Sources */,
 				347FDB69229C04C200660687 /* ProviderConfig.swift in Sources */,
+				3417FF6C22FAD6CB0009EC84 /* StartPasswordlessRequest.swift in Sources */,
 				347FDB54229BE8F800660687 /* Provider.swift in Sources */,
 				34E18B8C22A6BEC900952EBD /* AccessTokenResponse.swift in Sources */,
 				34689AA122CE5D08002970F9 /* UpdateEmailRequest.swift in Sources */,
@@ -333,6 +340,7 @@
 				34F7D3E622A54ADE003A7BC0 /* ProvidersConfigsResult.swift in Sources */,
 				34E508B222F19F7700BF9BAF /* DataRequest.swift in Sources */,
 				72DDB78E22EF354300048262 /* ClientConfigResponse.swift in Sources */,
+				3417FF6A22FAD1810009EC84 /* ReachFivePasswordLess.swift in Sources */,
 				34689A9722CDFB5F002970F9 /* AuthToken.swift in Sources */,
 				34DD31FF22F3286400279E54 /* CustomField.swift in Sources */,
 				34BDDA3A22E5BF1C00D16DAE /* Consent.swift in Sources */,

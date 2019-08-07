@@ -184,6 +184,18 @@ public class ReachFiveApi {
             .responseJson(decoder: self.decoder)
     }
     
+    public func startPasswordless(_ startPasswordlessRequest: StartPasswordlessRequest) -> Future<(), ReachFiveError> {
+        return Alamofire
+            .request(
+                createUrl(path: "/identity/v1/passwordless/start?device=\(deviceInfo)"),
+                method: .post,
+                parameters: startPasswordlessRequest.dictionary(),
+                encoding: JSONEncoding.default
+            )
+            .validate(statusCode: 200..<300)
+            .responseJson(decoder: self.decoder)
+    }
+    
     public func logout() -> Future<(), ReachFiveError> {
         return Alamofire
             .request(
