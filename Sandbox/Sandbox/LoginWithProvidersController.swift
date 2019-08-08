@@ -2,12 +2,9 @@ import UIKit
 import IdentitySdkCore
 import GoogleSignIn
 
-class LoginController: UIViewController, UITableViewDataSource, UITableViewDelegate, GIDSignInUIDelegate {
+class LoginWithProvidersController: UIViewController, UITableViewDataSource, UITableViewDelegate, GIDSignInUIDelegate {
     var providers: [Provider] = []
     
-    @IBOutlet weak var error: UILabel!
-    @IBOutlet weak var emailInput: UITextField!
-    @IBOutlet weak var passwordInput: UITextField!
     @IBOutlet weak var providersTableView: UITableView!
     
     override func viewDidLoad() {
@@ -29,23 +26,7 @@ class LoginController: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.providers = providers
         self.providersTableView.reloadData()
     }
-    
-    @IBAction func login(_ sender: Any) {
-        let email = emailInput.text ?? ""
-        let password = passwordInput.text ?? ""
-        AppDelegate.reachfive()
-            .loginWithPassword(username: email, password: password)
-            .onSuccess(callback: goToProfile)
-            .onFailure(callback: { error in
-                switch error {
-                case .RequestError(let requestErrors):
-                    self.error.text = requestErrors.errorUserMsg
-                default:
-                    self.error.text = error.localizedDescription
-                }
-            })
-    }
-    
+        
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return providers.count
     }
