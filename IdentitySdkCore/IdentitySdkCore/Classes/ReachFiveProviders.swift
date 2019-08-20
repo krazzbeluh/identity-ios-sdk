@@ -13,29 +13,39 @@ public extension ReachFive {
     func initialize() -> Future<[Provider], ReachFiveError> {
         switch self.state {
         case .NotInitialazed:
-            return self.reachFiveApi.clientConfig().flatMap({ clientConfig -> Future<ProvidersConfigsResult, ReachFiveError> in
+            return self.reachFiveApi.clientConfig().flatMap({ clientConfig -> Future<[Provider], ReachFiveError> in
                 self.scope = clientConfig.scope.components(separatedBy: " ")
-                return self.reachFiveApi.providersConfigs()
+                return self.reachFiveApi.providersConfigs().map { providersConfigs in
+                    let providers = self.createProviders(providersConfigsResult: providersConfigs, clientConfigResponse: clientConfig)
+                    self.providers = providers
+                    self.state = .Initialazed
+                    return providers
+                }
             })
-            .map { providersConfigs in
-                let providers = self.createProviders(providersConfigsResult: providersConfigs)
-                self.providers = providers
-                self.state = .Initialazed
-                return providers
-            }
+
         case .Initialazed:
             return Future.init(value: self.providers)
         }
     }
     
-    private func createProviders(providersConfigsResult: ProvidersConfigsResult) -> [Provider] {
+    private func createProviders(providersConfigsResult: ProvidersConfigsResult, clientConfigResponse: ClientConfigResponse) -> [Provider] {
         let webViewProvider = providersCreators.first(where: { $0.name == "webview" })
         return providersConfigsResult.items.map({ config in
             let nativeProvider = providersCreators.first(where: { $0.name == config.provider })
             if (nativeProvider != nil) {
-                return nativeProvider?.create(sdkConfig: sdkConfig, providerConfig: config, reachFiveApi: reachFiveApi)
+                return nativeProvider?.create(
+                    sdkConfig: sdkConfig,
+                    providerConfig: config,
+                    reachFiveApi: reachFiveApi,
+                    clientConfigResponse: clientConfigResponse
+                )
             } else if (webViewProvider != nil) {
-                return webViewProvider?.create(sdkConfig: sdkConfig, providerConfig: config, reachFiveApi: reachFiveApi)
+                return webViewProvider?.create(
+                    sdkConfig: sdkConfig,
+                    providerConfig: config,
+                    reachFiveApi: reachFiveApi,
+                    clientConfigResponse: clientConfigResponse
+                )
             } else {
                 return nil
             }

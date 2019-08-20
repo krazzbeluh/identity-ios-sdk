@@ -10,8 +10,18 @@ public class WebViewProvider: ProviderCreator {
     
     public init() {}
     
-    public func create(sdkConfig: SdkConfig, providerConfig: ProviderConfig, reachFiveApi: ReachFiveApi) -> Provider {
-        return ConfiguredWebViewProvider(sdkConfig: sdkConfig, providerConfig: providerConfig, reachFiveApi: reachFiveApi)
+    public func create(
+        sdkConfig: SdkConfig,
+        providerConfig: ProviderConfig,
+        reachFiveApi: ReachFiveApi,
+        clientConfigResponse: ClientConfigResponse
+    ) -> Provider {
+        return ConfiguredWebViewProvider(
+            sdkConfig: sdkConfig,
+            providerConfig: providerConfig,
+            reachFiveApi: reachFiveApi,
+            clientConfigResponse: clientConfigResponse
+        )
     }
 }
 
@@ -26,16 +36,18 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
     let sdkConfig: SdkConfig
     let providerConfig: ProviderConfig
     let reachFiveApi: ReachFiveApi
+    let clientConfigResponse: ClientConfigResponse
     
-    public init(sdkConfig: SdkConfig, providerConfig: ProviderConfig, reachFiveApi: ReachFiveApi) {
+    public init(sdkConfig: SdkConfig, providerConfig: ProviderConfig, reachFiveApi: ReachFiveApi, clientConfigResponse: ClientConfigResponse) {
         self.sdkConfig = sdkConfig
         self.providerConfig = providerConfig
         self.reachFiveApi = reachFiveApi
         self.name = providerConfig.provider
+        self.clientConfigResponse = clientConfigResponse
     }
     
     public func login(
-        scope: [String],
+        scope: [String]?,
         origin: String,
         viewController: UIViewController?
     ) -> Future<AuthToken, ReachFiveError> {
@@ -43,7 +55,12 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
         let promise = Promise<AuthToken, ReachFiveError>()
         self.promise = promise
         self.pkce = Pkce.generate()
-        let url = self.buildUrl(sdkConfig: sdkConfig, providerConfig: providerConfig, scope: scope, pkce: pkce)
+        let url = self.buildUrl(
+            sdkConfig: sdkConfig,
+            providerConfig: providerConfig,
+            scope: scope != nil ? scope!.joined(separator: " ") : self.clientConfigResponse.scope,
+            pkce: pkce
+        )
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleLogin(_:)), name: self.notificationName, object: nil)
         
@@ -113,13 +130,13 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
         return Future.init(value: ())
     }
     
-    func buildUrl(sdkConfig: SdkConfig, providerConfig: ProviderConfig, scope: [String], pkce: Pkce) -> String {
+    func buildUrl(sdkConfig: SdkConfig, providerConfig: ProviderConfig, scope: String, pkce: Pkce) -> String {
         let params = [
             "provider": providerConfig.provider,
             "client_id": sdkConfig.clientId,
             "response_type": "code",
             "redirect_uri": "reachfive://callback",
-            "scope": scope.joined(separator: " "),
+            "scope": scope,
             "platform": "ios",
             "code_challenge": pkce.codeChallenge,
             "code_challenge_method": pkce.codeChallengeMethod,
