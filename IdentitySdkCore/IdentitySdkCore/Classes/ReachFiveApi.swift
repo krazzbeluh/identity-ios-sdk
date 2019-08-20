@@ -139,16 +139,17 @@ public class ReachFiveApi {
     }
     
     public func updatePassword(
-        authToken: AuthToken,
+        authToken: AuthToken?,
         updatePasswordRequest: UpdatePasswordRequest
     ) -> Future<(), ReachFiveError> {
+        let headers: [String: String] = authToken != nil ? tokenHeader(authToken!) : [:]
         return Alamofire
             .request(
                 createUrl(path: "/identity/v1/update-password?device=\(deviceInfo)"),
                 method: .post,
                 parameters: updatePasswordRequest.dictionary(),
                 encoding: JSONEncoding.default,
-                headers: tokenHeader(authToken)
+                headers: headers
             )
             .validate(contentType: ["application/json"])
             .responseJson(decoder: self.decoder)

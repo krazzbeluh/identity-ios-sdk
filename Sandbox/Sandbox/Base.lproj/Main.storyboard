@@ -206,6 +206,75 @@
             </objects>
             <point key="canvasLocation" x="-259" y="113"/>
         </scene>
+        <!--Update Password-->
+        <scene sceneID="Qie-X7-E0X">
+            <objects>
+                <viewController title="Update Password" id="GDD-43-cxV" customClass="UpdatePasswordController" customModule="Sandbox" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oh4-V5-P11">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Old password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="row-j4-8AG">
+                                <rect key="frame" x="20" y="88" width="105" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="oldPassword" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nqs-3R-NMv" userLabel="OldPassword">
+                                <rect key="frame" x="20" y="117" width="374" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qmz-jb-Bep">
+                                <rect key="frame" x="20" y="155" width="113" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mTK-qf-v8M" userLabel="NewPassword">
+                                <rect key="frame" x="20" y="184" width="374" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kzo-Al-lH7">
+                                <rect key="frame" x="20" y="222" width="51" height="30"/>
+                                <state key="normal" title="Update"/>
+                                <connections>
+                                    <action selector="update:" destination="GDD-43-cxV" eventType="touchUpInside" id="gwV-pT-Pte"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="W3K-8i-RYY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Kzo-Al-lH7" secondAttribute="trailing" symbolic="YES" id="0vR-R9-6bO"/>
+                            <constraint firstItem="Qmz-jb-Bep" firstAttribute="top" secondItem="oh4-V5-P11" secondAttribute="top" constant="155" id="1kN-FV-pLv"/>
+                            <constraint firstItem="Qmz-jb-Bep" firstAttribute="leading" secondItem="oh4-V5-P11" secondAttribute="leadingMargin" id="AEB-dL-ykr"/>
+                            <constraint firstItem="Qmz-jb-Bep" firstAttribute="leading" secondItem="Nqs-3R-NMv" secondAttribute="leading" id="EsR-OL-CYC"/>
+                            <constraint firstItem="mTK-qf-v8M" firstAttribute="trailing" secondItem="oh4-V5-P11" secondAttribute="trailingMargin" id="K9e-yX-lIz"/>
+                            <constraint firstItem="Kzo-Al-lH7" firstAttribute="top" secondItem="mTK-qf-v8M" secondAttribute="bottom" constant="8" symbolic="YES" id="MzI-cN-Atw"/>
+                            <constraint firstItem="W3K-8i-RYY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Qmz-jb-Bep" secondAttribute="trailing" symbolic="YES" id="NwV-KQ-K3G"/>
+                            <constraint firstItem="mTK-qf-v8M" firstAttribute="leading" secondItem="Qmz-jb-Bep" secondAttribute="leading" id="dEY-uH-36r"/>
+                            <constraint firstItem="Qmz-jb-Bep" firstAttribute="top" secondItem="Nqs-3R-NMv" secondAttribute="bottom" constant="8" symbolic="YES" id="evd-sg-0Pl"/>
+                            <constraint firstItem="W3K-8i-RYY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="row-j4-8AG" secondAttribute="trailing" symbolic="YES" id="fOS-SI-5F1"/>
+                            <constraint firstItem="mTK-qf-v8M" firstAttribute="top" secondItem="Qmz-jb-Bep" secondAttribute="bottom" constant="8" symbolic="YES" id="gBT-RD-gAb"/>
+                            <constraint firstItem="Qmz-jb-Bep" firstAttribute="leading" secondItem="row-j4-8AG" secondAttribute="leading" id="gW4-fW-Pfn"/>
+                            <constraint firstItem="mTK-qf-v8M" firstAttribute="trailing" secondItem="Nqs-3R-NMv" secondAttribute="trailing" id="l3H-ss-dOU"/>
+                            <constraint firstItem="Kzo-Al-lH7" firstAttribute="leading" secondItem="mTK-qf-v8M" secondAttribute="leading" id="nGE-9Y-A4c"/>
+                            <constraint firstItem="row-j4-8AG" firstAttribute="top" secondItem="W3K-8i-RYY" secondAttribute="top" id="oSl-pp-FCx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="W3K-8i-RYY"/>
+                    </view>
+                    <connections>
+                        <outlet property="newPassword" destination="mTK-qf-v8M" id="jyA-Gj-arc"/>
+                        <outlet property="oldPassword" destination="Nqs-3R-NMv" id="qlY-we-oSd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mM7-to-ugn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1181.1594202898552" y="-606.02678571428567"/>
+        </scene>
         <!--Signup with password-->
         <scene sceneID="H6o-jf-Xhj">
             <objects>
@@ -510,6 +579,26 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <segue destination="Asd-ln-b7V" kind="show" id="8nR-HF-Icd"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="updatePassword" textLabel="YhV-DJ-t5z" style="IBUITableViewCellStyleDefault" id="PhC-yq-EVN">
+                                        <rect key="frame" x="0.0" y="232" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PhC-yq-EVN" id="QFF-Zv-dHi">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Update password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YhV-DJ-t5z">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="GDD-43-cxV" kind="show" id="8Z8-Fy-MaG"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>

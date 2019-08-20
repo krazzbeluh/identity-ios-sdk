@@ -49,13 +49,10 @@ public extension ReachFive {
         return reachFiveApi.updateProfile(authToken: authToken, profile: profile)
     }
     
-    func updatePassword(
-        authToken: AuthToken,
-        updatePasswordRequest: UpdatePasswordRequest
-    ) -> Future<(), ReachFiveError> {
+    func updatePassword(_ updatePasswordParams: UpdatePasswordParams) -> Future<(), ReachFiveError> {
+        let authToken = updatePasswordParams.getAuthToken()
         return reachFiveApi.updatePassword(
-            authToken: authToken,
-            updatePasswordRequest: updatePasswordRequest
+            authToken: authToken, updatePasswordRequest: UpdatePasswordRequest(updatePasswordParams: updatePasswordParams)
         )
     }
     

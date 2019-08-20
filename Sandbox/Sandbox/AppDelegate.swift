@@ -26,6 +26,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static func shared() -> AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
+    
+    static func createAlert(title: String, message: String) -> UIAlertController {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: UIAlertController.Style.alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        return alert
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         AlamofireNetworkLogger.shared.startLogging()

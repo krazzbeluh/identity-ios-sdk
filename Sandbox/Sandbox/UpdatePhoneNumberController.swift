@@ -14,21 +14,11 @@ class UpdatePhoneNumberController: UIViewController {
         AppDelegate.reachfive()
             .updatePhoneNumber(authToken: self.authToken!, phoneNumber: phoneNumberInput.text ?? "")
             .onSuccess { profile in
-                let alert = UIAlertController(
-                    title: "Update",
-                    message: "Update Success",
-                    preferredStyle: UIAlertController.Style.alert
-                )
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                let alert = AppDelegate.createAlert(title: "Update", message: "Update Success")
                 self.present(alert, animated: true, completion: nil)
             }
             .onFailure { error in
-                let alert = UIAlertController(
-                    title: "Update",
-                    message: "Update Error: \(error.localizedDescription)",
-                    preferredStyle: UIAlertController.Style.alert
-                )
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                let alert = AppDelegate.createAlert(title: "Update", message: "Update Error: \(error.localizedDescription)")
                 self.present(alert, animated: true, completion: nil)
             }
     }

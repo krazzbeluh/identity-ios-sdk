@@ -24,10 +24,11 @@ class LoginWithPasswordController: UIViewController {
     }
     
     func goToProfile(_ authToken: AuthToken) {
+        AuthTokenStorage.save(authToken)
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let profileController = storyBoard.instantiateViewController(
             withIdentifier: "ProfileScene"
-            ) as! ProfileController
+        ) as! ProfileController
         self.self.navigationController?.pushViewController(profileController, animated: true)
     }
 }
