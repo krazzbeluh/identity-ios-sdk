@@ -1,5 +1,43 @@
 # Changelog
 
+## v5.0.0
+
+- Use [Futures](https://github.com/Thomvis/BrightFutures) instead of callbacks, we use the [BrightFutures](https://github.com/Thomvis/BrightFutures) library
+- Passwordless Start, it allows to launch the passwordless authentication flow
+- Update password
+
+### Breaking changes
+We use Future instead callbacks, you need to transform yours callbacks into the Future
+```swift
+AppDelegate.reachfive()
+  .loginWithPassword(username: email, password: password)
+  .onSuccess { authToken in
+    // Handle success
+  }
+  .onFailure { error in
+    // Handle error
+  }
+```
+
+instead of
+
+```swift
+AppDelegate.reachfive()
+  .loginWithPassword(
+    username: email,
+    password: password,
+    callback: { response in
+        switch response {
+          case .success(let authToken):
+            // Handle success
+          case .failure(let error):
+            // handle error
+          }
+    }
+)
+```
+
+
 ## v4.0.0-beta.15
 Use SFSafariViewController instead of WKWebView
 
