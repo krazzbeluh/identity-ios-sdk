@@ -5,8 +5,6 @@ public enum UpdatePasswordParams {
     case AccessTokenParams(authToken: AuthToken, password: String, oldPassword: String)
     case EmailParams(email: String, verificationCode: String, password: String)
     case SmsParams(phoneNumber: String, verificationCode: String, password: String)
-    case EmailWithClientIdParams(clientId: String, email: String, verificationCode: String, password: String)
-    case SmsWithClientIdParams(clientId: String, phoneNumber: String, verificationCode: String, password: String)
     
     public func getAuthToken() -> AuthToken? {
         switch self {
@@ -44,20 +42,16 @@ public class UpdatePasswordRequest: Codable, DictionaryEncodable {
         self.verificationCode = verificationCode
     }
     
-    public convenience init(updatePasswordParams: UpdatePasswordParams) {
+    public convenience init(updatePasswordParams: UpdatePasswordParams, sdkConfig: SdkConfig) {
         switch updatePasswordParams {
         case .FreshAccessTokenParams(_, let password):
             self.init(password: password)
         case .AccessTokenParams(_, let password, let oldPassword):
             self.init(password: password, oldPassword: oldPassword)
         case .EmailParams(let email, let verificationCode, let password):
-            self.init(password: password, email: email, verificationCode: verificationCode)
+            self.init(clientId: sdkConfig.clientId, password: password, email: email, verificationCode: verificationCode)
         case .SmsParams(let phoneNumber, let verificationCode, let password):
-            self.init(password: password, phoneNumber: phoneNumber, verificationCode: verificationCode)
-        case .EmailWithClientIdParams(let clientId, let email, let verificationCode, let password):
-            self.init(clientId: clientId, password: verificationCode, oldPassword: password, email: email)
-        case .SmsWithClientIdParams(let clientId, let phoneNumber, let verificationCode, let password):
-            self.init(clientId: clientId, password: verificationCode, oldPassword: password, phoneNumber: phoneNumber)
+            self.init(clientId: sdkConfig.clientId, password: password, phoneNumber: phoneNumber, verificationCode: verificationCode)
         }
     }
 }
