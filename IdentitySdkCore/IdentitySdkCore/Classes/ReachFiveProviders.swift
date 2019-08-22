@@ -30,7 +30,7 @@ public extension ReachFive {
     
     private func createProviders(providersConfigsResult: ProvidersConfigsResult, clientConfigResponse: ClientConfigResponse) -> [Provider] {
         let webViewProvider = providersCreators.first(where: { $0.name == "webview" })
-        return providersConfigsResult.items.map({ config in
+        return providersConfigsResult.items.filter { $0.clientId != nil }.map({ config in
             let nativeProvider = providersCreators.first(where: { $0.name == config.provider })
             if (nativeProvider != nil) {
                 return nativeProvider?.create(
