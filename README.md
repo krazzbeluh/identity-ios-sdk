@@ -1,4 +1,11 @@
-# Identity iOS SDK
+<p align="center">
+ <img src="https://www.reachfive.com/hs-fs/hubfs/Reachfive_April2019/Images/site-logo.png?width=700&height=192&name=site-logo.png"/>
+</p>
+
+[![CircleCI](https://circleci.com/gh/ReachFive/identity-ios-sdk/tree/master.svg?style=svg)](https://circleci.com/gh/ReachFive/identity-ios-sdk/tree/master)
+[![Download](https://img.shields.io/cocoapods/v/IdentitySdkCore.svg?style=flat) ](https://cocoapods.org/pods/IdentitySdkCore)
+
+# ReachFive Identity iOS SDK
 
 ## Cocoapods pods
 
@@ -11,9 +18,11 @@
 
 Refer to the [public documentation](https://developer.reach5.co/guides/installation/ios) to install the SDKs and to initialize your ReachFive client.
 
-## Start developing
+## Demo application
 
-Install [Cocoapods](https://cocoapods.org)
+In addition to the libraries, we provide in the `Sandbox` directory a simple iOS application which integrates the ReachFive SDKs.
+
+Install [Cocoapods](https://cocoapods.org).
 
 ```sh
 sudo gem install cocoapods
@@ -24,6 +33,10 @@ pod install
 open Sandbox.xcworkspace
 ```
 
+## Documentation
+
+You'll find the documentation of the methods exposed on https://developer.reach5.co/api/identity-ios.
+
 ## Changelog
 
 Please refer to [changelog](CHANGELOG.md) to see the descriptions of each release.
@@ -31,4 +44,3 @@ Please refer to [changelog](CHANGELOG.md) to see the descriptions of each releas
 ## License
 
 MIT © [ReachFive](https://reachfive.co/)
-
