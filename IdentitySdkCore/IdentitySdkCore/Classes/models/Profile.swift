@@ -2,7 +2,6 @@ import Foundation
 
 public class Profile: Codable, DictionaryEncodable {
     public let uid: String?
-    public let signedUid: String?
     public let givenName: String?
     public let middleName: String?
     public let familyName: String?
@@ -34,7 +33,6 @@ public class Profile: Codable, DictionaryEncodable {
 
     public required init(
         uid: String? = nil,
-        signedUid: String? = nil,
         givenName: String? = nil,
         middleName: String? = nil,
         familyName: String? = nil,
@@ -65,7 +63,6 @@ public class Profile: Codable, DictionaryEncodable {
         liteOnly: Bool? = nil
     ) {
         self.uid = uid
-        self.signedUid = signedUid
         self.givenName = givenName
         self.middleName = middleName
         self.familyName = familyName
