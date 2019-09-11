@@ -53,6 +53,7 @@ public extension ReachFive {
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        interceptPasswordless(url)
         for provider in providers {
             let _ = provider.application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
         }
@@ -60,6 +61,7 @@ public extension ReachFive {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+        interceptPasswordless(url)
         for provider in providers {
             let _ = provider.application(app, open: url, options: options)
         }

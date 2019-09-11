@@ -12,7 +12,7 @@ public class AuthCodeRequest: Codable, DictionaryEncodable {
             clientId: clientId,
             code: code,
             grantType: "authorization_code",
-            redirectUri: "reachfive://callback",
+            redirectUri: ReachFive.REDIRECT_URI,
             codeVerifier: pkce.codeVerifier
         )
     }

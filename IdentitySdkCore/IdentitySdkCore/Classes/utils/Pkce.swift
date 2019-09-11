@@ -1,7 +1,7 @@
 import Foundation
 import CryptoSwift
 
-public class Pkce: NSObject {
+public class Pkce: NSObject, Codable {
     public let codeVerifier: String
     public let codeChallenge: String
     public let codeChallengeMethod: String

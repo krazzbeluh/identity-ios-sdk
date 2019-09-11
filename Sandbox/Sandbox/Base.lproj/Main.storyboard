@@ -136,26 +136,54 @@
                                     <action selector="loginWithPhoneNumber:" destination="2x8-ac-8fG" eventType="touchUpInside" id="fhP-yr-q1K"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verification code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J5H-q1-E8p">
+                                <rect key="frame" x="20" y="298" width="129" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3c1-HW-jLt" userLabel="Verification code input">
+                                <rect key="frame" x="20" y="327" width="374" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Th6-Md-aQW">
+                                <rect key="frame" x="23" y="365" width="40" height="30"/>
+                                <state key="normal" title="Verify"/>
+                                <connections>
+                                    <action selector="verifyCode:" destination="2x8-ac-8fG" eventType="touchUpInside" id="UaL-mx-6SN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="rhI-pT-6LZ" firstAttribute="top" secondItem="dXD-Kc-6mi" secondAttribute="bottom" constant="8" symbolic="YES" id="4Of-dl-3gK"/>
                             <constraint firstItem="AeC-Up-EXa" firstAttribute="top" secondItem="eoo-7E-NMJ" secondAttribute="bottom" constant="8" symbolic="YES" id="61a-ml-QYh"/>
+                            <constraint firstItem="GPv-qX-wVK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="J5H-q1-E8p" secondAttribute="trailing" symbolic="YES" id="65M-lh-pb7"/>
+                            <constraint firstItem="GPv-qX-wVK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Th6-Md-aQW" secondAttribute="trailing" symbolic="YES" id="Bj4-0R-vrx"/>
                             <constraint firstItem="AeC-Up-EXa" firstAttribute="leading" secondItem="SYd-MM-Wb6" secondAttribute="leadingMargin" id="F4i-IW-cLz"/>
                             <constraint firstItem="Qjm-Sq-t5n" firstAttribute="top" secondItem="GPv-qX-wVK" secondAttribute="top" id="Ghs-ZO-88S"/>
+                            <constraint firstItem="3c1-HW-jLt" firstAttribute="leading" secondItem="rhI-pT-6LZ" secondAttribute="leading" id="I7y-IH-x54"/>
                             <constraint firstItem="AeC-Up-EXa" firstAttribute="leading" secondItem="w53-Iq-oaM" secondAttribute="leading" id="I9h-ct-GgA"/>
                             <constraint firstItem="AeC-Up-EXa" firstAttribute="top" secondItem="SYd-MM-Wb6" secondAttribute="top" constant="155" id="LFC-SX-j7c"/>
                             <constraint firstItem="AeC-Up-EXa" firstAttribute="leading" secondItem="rhI-pT-6LZ" secondAttribute="leading" id="LdE-Pf-c9b"/>
                             <constraint firstItem="GPv-qX-wVK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rhI-pT-6LZ" secondAttribute="trailing" symbolic="YES" id="QyD-gL-uTw"/>
+                            <constraint firstItem="3c1-HW-jLt" firstAttribute="top" secondItem="SYd-MM-Wb6" secondAttribute="top" constant="327" id="T8g-yu-BQl"/>
                             <constraint firstItem="dXD-Kc-6mi" firstAttribute="trailing" secondItem="SYd-MM-Wb6" secondAttribute="trailingMargin" id="UYQ-DC-lfj"/>
                             <constraint firstItem="AeC-Up-EXa" firstAttribute="leading" secondItem="dXD-Kc-6mi" secondAttribute="leading" id="V6K-rM-WJH"/>
                             <constraint firstItem="GPv-qX-wVK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="w53-Iq-oaM" secondAttribute="trailing" symbolic="YES" id="daE-Xs-sFv"/>
+                            <constraint firstItem="3c1-HW-jLt" firstAttribute="trailing" secondItem="dXD-Kc-6mi" secondAttribute="trailing" id="dpp-kT-6BV"/>
                             <constraint firstItem="dXD-Kc-6mi" firstAttribute="top" secondItem="w53-Iq-oaM" secondAttribute="bottom" constant="8" symbolic="YES" id="feT-IB-PbN"/>
                             <constraint firstItem="AeC-Up-EXa" firstAttribute="leading" secondItem="eoo-7E-NMJ" secondAttribute="leading" id="idH-se-Aj0"/>
                             <constraint firstItem="w53-Iq-oaM" firstAttribute="top" secondItem="AeC-Up-EXa" secondAttribute="bottom" constant="8" symbolic="YES" id="jXy-0L-AYr"/>
                             <constraint firstItem="GPv-qX-wVK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AeC-Up-EXa" secondAttribute="trailing" symbolic="YES" id="jbp-Vi-FIe"/>
                             <constraint firstItem="GPv-qX-wVK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Qjm-Sq-t5n" secondAttribute="trailing" symbolic="YES" id="oNS-1K-37a"/>
+                            <constraint firstItem="3c1-HW-jLt" firstAttribute="leading" secondItem="J5H-q1-E8p" secondAttribute="leading" id="rqJ-S8-t2Q"/>
+                            <constraint firstItem="Th6-Md-aQW" firstAttribute="leading" secondItem="GPv-qX-wVK" secondAttribute="leading" constant="23" id="shG-rm-ovK"/>
                             <constraint firstItem="dXD-Kc-6mi" firstAttribute="trailing" secondItem="eoo-7E-NMJ" secondAttribute="trailing" id="uFH-mC-7ta"/>
+                            <constraint firstItem="3c1-HW-jLt" firstAttribute="top" secondItem="J5H-q1-E8p" secondAttribute="bottom" constant="8" symbolic="YES" id="vRe-Td-Fle"/>
+                            <constraint firstItem="Th6-Md-aQW" firstAttribute="top" secondItem="3c1-HW-jLt" secondAttribute="bottom" constant="8" id="y2I-uJ-ncJ"/>
                             <constraint firstItem="AeC-Up-EXa" firstAttribute="leading" secondItem="Qjm-Sq-t5n" secondAttribute="leading" id="z99-kT-RuU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GPv-qX-wVK"/>
@@ -163,11 +191,12 @@
                     <connections>
                         <outlet property="emailInput" destination="eoo-7E-NMJ" id="a01-mH-9QJ"/>
                         <outlet property="phoneNumberInput" destination="dXD-Kc-6mi" id="LLX-d8-j1g"/>
+                        <outlet property="verificationCodeInput" destination="3c1-HW-jLt" id="Ibo-A8-cak"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AiK-8u-EgN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1181" y="865"/>
+            <point key="canvasLocation" x="-1181.1594202898552" y="864.50892857142856"/>
         </scene>
         <!--Login with providers-->
         <scene sceneID="tne-QT-ifu">

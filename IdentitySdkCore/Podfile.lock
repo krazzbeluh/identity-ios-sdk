@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.8.2)
-  - AlamofireNetworkLogger (0.0.2):
+  - AlamofireNetworkLogger (0.1.0):
     - Alamofire (~> 4.0)
   - BrightFutures (8.0.0)
   - CryptoSwift (1.0.0)
@@ -20,7 +20,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  AlamofireNetworkLogger: a035a0146fec0bcc5b0c392dd71fd06817a29b4f
+  AlamofireNetworkLogger: 46481fa95498e8e035ea6b391b0b5870e356c532
   BrightFutures: f8427b46feabaf73c5e71ace7d86d65dfbb47696
   CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
 

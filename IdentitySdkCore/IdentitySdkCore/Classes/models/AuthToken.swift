@@ -68,23 +68,3 @@ public class AuthToken: Codable {
         }
     }
 }
-
-public class AuthTokenStorage {
-    static let key = "AUTH_TOKEN"
-    public static func save(_ authToken: AuthToken) {
-        let data = try? JSONEncoder().encode(authToken)
-        UserDefaults.standard.set(data, forKey: key)
-    }
-    
-    public static func get() -> AuthToken? {
-        if let data = UserDefaults.standard.value(forKey: key) as? Data {
-            return try? JSONDecoder().decode(AuthToken.self, from: data)
-        } else {
-            return nil
-        }
-    }
-    
-    public static func clear() {
-        UserDefaults.standard.removeObject(forKey: key)
-    }
-}
