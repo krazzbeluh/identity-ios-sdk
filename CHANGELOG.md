@@ -1,5 +1,9 @@
 # Changelog
 
+## v5.1.0
+- Passwordless code verifification
+- Passwordless intercept magic link
+
 ## v5.0.0
 
 - Use [Futures](https://github.com/Thomvis/BrightFutures) instead of callbacks, we use the [BrightFutures](https://github.com/Thomvis/BrightFutures) library
