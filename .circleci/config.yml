@@ -2,27 +2,66 @@
 #
 # Check https://circleci.com/docs/2.0/ios-migrating-from-1-2/ for more details
 #
-version: 2
+version: 2.1
 jobs:
   build:
-    # Specify the Xcode version to use
     macos:
-      xcode: "8.3.3"
+      xcode: "10.3.0"
     steps:
       - checkout
-      # Install CocoaPods
       - run:
           name: Install CocoaPods
-          command: pod install
-      # Build the app and run tests
+          command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      - run: pod --version
+      - run: pod spec lint IdentitySdkCore.podspec
+      - run: pod spec lint IdentitySdkFacebook.podspec
+      - run: pod spec lint IdentitySdkGoogle.podspec
+      - run: pod spec lint IdentitySdkWebView.podspec
+  publish:
+    macos:
+      xcode: "10.3.0"
+    steps:
+      - checkout
       - run:
-          name: Build and run tests
-          command: echo "TODO build"
-          environment:
-            SCAN_DEVICE: iPhone 6
-            SCAN_SCHEME: WebTests
+          name: Install CocoaPods
+          command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      - run: pod --version
+      - run: pod trunk push IdentitySdkCore.podspec
+      - run: pod trunk push IdentitySdkFacebook.podspec
+      - run: pod trunk push IdentitySdkGoogle.podspec
+      - run: pod trunk push IdentitySdkWebView.podspec
+  build-sandbox:
+    macos:
+      xcode: "10.3.0"
+    working_directory: ~/repo/Sandbox
+    steps:
+      - checkout:
+          path: ~/repo
+      - run:
+          name: Install CocoaPods
+          command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      - run: pod install
+      - run: fastlane scan
+
+default_workflows_filters: &default_workflows_filters
+  filters:
+    tags:
+      only: /.*/
+    branches:
+      ignore: /.*/
+
+default_workflows_tags: &default_workflows_tags
+  filters:
+    tags:
+      only: /.*/
+
 workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - build
+      - build:
+          <<: *default_workflows_tags
+      - publish:
+          requires:
+            - build
+          <<: *default_workflows_filters
