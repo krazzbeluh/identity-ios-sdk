@@ -396,8 +396,9 @@
 			baseConfigurationReference = 81035E8DEC67D32DB84E55AA /* Pods-Sandbox.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6X8RPJDRWS;
+				DEVELOPMENT_TEAM = 2SHU255SWF;
 				INFOPLIST_FILE = Sandbox/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -406,6 +407,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.reach5.Sandbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -416,8 +418,9 @@
 			baseConfigurationReference = 75AC65C0735D780B9A6F4181 /* Pods-Sandbox.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6X8RPJDRWS;
+				DEVELOPMENT_TEAM = 2SHU255SWF;
 				INFOPLIST_FILE = Sandbox/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -426,6 +429,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.reach5.Sandbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
