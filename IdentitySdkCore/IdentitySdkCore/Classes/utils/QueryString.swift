@@ -1,6 +1,6 @@
 import Foundation
 
-public class QueriesStrings {
+public class QueryString {
     public static func parseQueriesStrings(query: String) -> Dictionary<String, String?> {
         return query.split(separator: "&").reduce(Dictionary<String, String?>(), { ( acc, param) in
             var mutAcc = acc

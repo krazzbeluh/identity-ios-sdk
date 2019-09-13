@@ -77,7 +77,7 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
         let url = notification.object as? URL
         
         if let query = url?.query {
-            let params = QueriesStrings.parseQueriesStrings(query: query)
+            let params = QueryString.parseQueriesStrings(query: query)
             let code = params["code"]
             if code != nil {
                 self.handleAuthCode(code!!)

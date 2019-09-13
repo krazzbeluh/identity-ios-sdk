@@ -62,7 +62,7 @@ public extension ReachFive {
     }
     
     internal func interceptPasswordless(_ url: URL) {
-        let params = QueriesStrings.parseQueriesStrings(query: url.query ?? "")
+        let params = QueryString.parseQueriesStrings(query: url.query ?? "")
         let pkce: Pkce? = self.storage.take(key: "PASSWORDLESS_PKCE")
         if (pkce != nil) {
             if let state = params["state"] {
