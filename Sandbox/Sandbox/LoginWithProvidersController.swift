@@ -64,7 +64,7 @@ class LoginWithProvidersController: UIViewController, UITableViewDataSource, UIT
         
         let selectedProvider = providers[indexPath.row]
         
-        let scope = ["openid", "email", "profile", "phone", "full_write"]
+        let scope = ["openid", "email", "profile", "phone", "full_write", "offline_access"]
         
         AppDelegate.reachfive()
             .getProvider(name: selectedProvider.name)?

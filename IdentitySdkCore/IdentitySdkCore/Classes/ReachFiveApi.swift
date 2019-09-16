@@ -76,6 +76,19 @@ public class ReachFiveApi {
             .responseJson(type: AccessTokenResponse.self, decoder: self.decoder)
     }
     
+    public func refreshAccessToken(_ refreshRequest: RefreshRequest) -> Future<AccessTokenResponse, ReachFiveError> {
+        return Alamofire
+            .request(
+                createUrl(path: "/oauth/token?device=\(deviceInfo)"),
+                method: .post,
+                parameters: refreshRequest.dictionary(),
+                encoding: JSONEncoding.default
+            )
+            .validate(statusCode: 200..<300)
+            .validate(contentType: ["application/json"])
+            .responseJson(type: AccessTokenResponse.self, decoder: self.decoder)
+    }
+    
     public func getProfile(authToken: AuthToken) -> Future<Profile, ReachFiveError> {
         return Alamofire
             .request(

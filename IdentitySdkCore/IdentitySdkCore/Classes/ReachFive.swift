@@ -35,6 +35,17 @@ public class ReachFive: NSObject {
             .flatMap { _ in self.reachFiveApi.logout() }
     }
     
+    public func refreshAccessToken(authToken: AuthToken) -> Future<AuthToken, ReachFiveError> {
+        let refreshRequest = RefreshRequest(
+            clientId: sdkConfig.clientId,
+            refreshToken: authToken.refreshToken ?? "",
+            redirectUri: ReachFive.REDIRECT_URI
+        )
+        return reachFiveApi
+            .refreshAccessToken(refreshRequest)
+            .flatMap({ AuthToken.fromOpenIdTokenResponseFuture($0) })
+    }
+    
     public override var description: String {
         return """
         Config: domain=\(sdkConfig.domain), clientId=\(sdkConfig.clientId)

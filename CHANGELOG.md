@@ -1,6 +1,7 @@
 # Changelog
 
 ## v5.1.0
+- Support of refreshToken
 - Passwordless code verifification
 - Passwordless intercept magic link
 
