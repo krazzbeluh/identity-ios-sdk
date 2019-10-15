@@ -26,11 +26,14 @@ class ProfileController: UIViewController {
             }
             .onFailure { error in print("updateProfile error = \(error)") }
         
-        AppDelegate.reachfive()
-            .refreshAccessToken(refreshToken: self.authToken?.refreshToken ?? "")
-            .onComplete { result in
-                print("refreshAccessToken result = \(result)")
-            }
+        if self.authToken != nil {
+            AppDelegate.reachfive()
+                .refreshAccessToken(authToken: self.authToken!)
+                .onComplete { result in
+                    print("refreshAccessToken result = \(result)")
+                }
+        }
+
     }
 
     @IBAction func logoutAction(_ sender: Any) {

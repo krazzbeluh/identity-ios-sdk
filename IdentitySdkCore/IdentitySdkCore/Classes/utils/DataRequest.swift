@@ -17,7 +17,7 @@ extension DataRequest {
         let promise = BrightFutures.Promise<(), ReachFiveError>()
         self.responseString { responseData in
             let status = responseData.response?.statusCode
-            if (status != nil && status! == 400) {
+            if (status != nil && status == 400) {
                 if let data = responseData.data {
                     switch self.parseJson(json: data, type: RequestErrors.self, decoder: decoder) {
                     case .success(let requestErrors):
@@ -28,8 +28,12 @@ extension DataRequest {
                 } else {
                     promise.failure(ReachFiveError.TechnicalError(reason: "No response data"))
                 }
-            } else {
+            } else if (status != nil && status! >= 200 && status! < 300) {
                 promise.success(())
+            } else {
+                promise.failure(
+                    ReachFiveError.TechnicalError(reason: responseData.error?.localizedDescription ?? "Technical error")
+                )
             }
         }
         return promise.future

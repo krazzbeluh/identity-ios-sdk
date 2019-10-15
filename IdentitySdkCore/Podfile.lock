@@ -12,7 +12,7 @@ DEPENDENCIES:
   - CryptoSwift (~> 1.0.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Alamofire
     - AlamofireNetworkLogger
     - BrightFutures
@@ -26,4 +26,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 9a81d75ed142b81f4e4d1ff5cf624668adba89d4
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.3

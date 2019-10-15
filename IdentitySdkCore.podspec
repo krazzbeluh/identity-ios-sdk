@@ -19,5 +19,5 @@ Pod::Spec.new do |spec|
 
   spec.dependency 'Alamofire', '~> 4.9'
   spec.dependency 'BrightFutures', '~> 8.0'
-  spec.dependency 'CryptoSwift', '~> 1.0'
+  spec.dependency 'CryptoSwift', '~> 1.1'
 end
