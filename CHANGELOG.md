@@ -1,5 +1,8 @@
 # Changelog
 
+## v5.1.1
+- Fix http errors handling
+
 ## v5.1.0
 - Support of refreshToken
 - Passwordless code verifification
