@@ -5,6 +5,47 @@ public class ReachFiveApi {
     let decoder = JSONDecoder()
     let sdkConfig: SdkConfig
     
+    private let profile_fields = [
+        "addresses",
+        "auth_types",
+        "consents",
+        "created_at",
+        "custom_fields",
+        "devices",
+        "email",
+        "emails",
+        "email_verified",
+        "family_name",
+        "first_login",
+        "first_name",
+        "full_name",
+        "gender",
+        "given_name",
+        "has_managed_profile",
+        "has_password",
+        "id",
+        "identities",
+        "last_login",
+        "last_login_provider",
+        "last_login_type",
+        "last_name",
+        "likes_friends_ratio",
+        "lite_only",
+        "local_friends_count",
+        "login_summary",
+        "logins_count",
+        "name",
+        "origins",
+        "phone_number",
+        "phone_number_verified",
+        "provider_details",
+        "providers",
+        "social_identities",
+        "sub",
+        "uid",
+        "updated_at"
+    ]
+    
     let deviceInfo: String = "\(UIDevice.current.modelName) \(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"
         .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
     
@@ -92,7 +133,9 @@ public class ReachFiveApi {
     public func getProfile(authToken: AuthToken) -> Future<Profile, ReachFiveError> {
         return Alamofire
             .request(
-                createUrl(path: "/identity/v1/me?device=\(deviceInfo)"),
+                createUrl(
+                    path: "/identity/v1/me?device=\(deviceInfo)&fields=\(profile_fields.joined(separator: ","))"
+                ),
                 method: .get,
                 headers: tokenHeader(authToken)
             )

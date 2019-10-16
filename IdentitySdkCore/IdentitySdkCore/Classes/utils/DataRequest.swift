@@ -55,6 +55,10 @@ extension DataRequest {
                     case .failure(let error):
                         promise.failure(ReachFiveError.TechnicalError(reason: error.localizedDescription))
                     }
+                } else {
+                    promise.failure(
+                        ReachFiveError.TechnicalError(reason: responseData.error?.localizedDescription ?? "Technical error")
+                    )
                 }
             } else {
                 promise.failure(ReachFiveError.TechnicalError(reason: "No response data"))
