@@ -1,5 +1,9 @@
 # Changelog
 
+## v5.1.2
+- Fix get profile without custom fields
+- fix http errors handling
+
 ## v5.1.1
 - Fix http errors handling
 
