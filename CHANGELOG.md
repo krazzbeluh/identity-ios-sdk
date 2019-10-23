@@ -1,5 +1,14 @@
 # Changelog
 
+## v5.2.0
+- Fix unauthorized errors
+- Refactor http errors handling
+- Add api errors to `ReachFiveError.AuthFailure` error
+
+### Breaking changes
+- `RequestErrors` is renamed to `ApiError`
+- `ReachFiveError.AuthFailure` contain an optional parameter of type `ApiError`
+
 ## v5.1.2
 - Fix get profile without custom fields
 - fix http errors handling

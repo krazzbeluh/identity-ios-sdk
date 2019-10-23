@@ -1,13 +1,13 @@
 import Foundation
 
 public enum ReachFiveError: Error {
-    case RequestError(requestErrors: RequestErrors)
-    case AuthFailure(reason: String)
+    case RequestError(apiError: ApiError)
+    case AuthFailure(reason: String, apiError: ApiError? = nil)
     case AuthCanceled
-    case TechnicalError(reason: String)
+    case TechnicalError(reason: String, apiError: ApiError? = nil)
 }
 
-public class RequestErrors: Codable {
+public class ApiError: Codable {
     public let error: String?
     public let errorId: String?
     public let errorUserMsg: String?

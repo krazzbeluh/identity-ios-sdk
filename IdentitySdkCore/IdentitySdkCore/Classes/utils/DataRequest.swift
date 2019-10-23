@@ -4,6 +4,10 @@ import BrightFutures
 
 extension DataRequest {
     
+    private func isSuccess(_ status: Int?) -> Bool {
+        return status != nil && status! >= 200 && status! < 300
+    }
+    
     private func parseJson<T: Decodable>(json: Data, type: T.Type, decoder: JSONDecoder) -> Swift.Result<T, ReachFiveError> {
         do {
             let value = try decoder.decode(type, from: json)
@@ -13,27 +17,38 @@ extension DataRequest {
         }
     }
     
+    private func handleResponseStatus<T>(status: Int?, apiError: ApiError?, promise: BrightFutures.Promise<T, ReachFiveError>) {
+        if (status != nil && status == 400 && apiError != nil) {
+            promise.failure(ReachFiveError.RequestError(apiError: apiError!))
+        } else if (status != nil && status == 400) {
+            promise.failure(ReachFiveError.TechnicalError(reason: "Bad Request"))
+        } else if (status != nil && status! == 401) {
+            promise.failure(ReachFiveError.AuthFailure(reason: "Unauthorized", apiError: apiError))
+        } else {
+            promise.failure(ReachFiveError.TechnicalError(
+                reason: "Technical error: Request with \(String(describing: status)) error code",
+                apiError: apiError
+            ))
+        }
+    }
+    
     func responseJson(decoder: JSONDecoder) -> Future<(), ReachFiveError> {
         let promise = BrightFutures.Promise<(), ReachFiveError>()
         self.responseString { responseData in
             let status = responseData.response?.statusCode
-            if (status != nil && status == 400) {
+            if (self.isSuccess(status)) {
+                promise.success(())
+            } else {
                 if let data = responseData.data {
-                    switch self.parseJson(json: data, type: RequestErrors.self, decoder: decoder) {
-                    case .success(let requestErrors):
-                        promise.failure(ReachFiveError.RequestError(requestErrors: requestErrors))
+                    switch self.parseJson(json: data, type: ApiError.self, decoder: decoder) {
+                    case .success(let apiError):
+                        self.handleResponseStatus(status: status, apiError: apiError, promise: promise)
                     case .failure(let error):
                         promise.failure(ReachFiveError.TechnicalError(reason: error.localizedDescription))
                     }
                 } else {
-                    promise.failure(ReachFiveError.TechnicalError(reason: "No response data"))
+                    self.handleResponseStatus(status: status, apiError: nil, promise: promise)
                 }
-            } else if (status != nil && status! >= 200 && status! < 300) {
-                promise.success(())
-            } else {
-                promise.failure(
-                    ReachFiveError.TechnicalError(reason: responseData.error?.localizedDescription ?? "Technical error")
-                )
             }
         }
         return promise.future
@@ -44,24 +59,28 @@ extension DataRequest {
         
         self.responseString { responseData in
             let status = responseData.response?.statusCode
-            if let data = responseData.data {
-                if (status != nil && status! >= 200 && status! < 300) {
-                    let value = self.parseJson(json: data, type: type, decoder: decoder)
-                    promise.complete(value)
-                } else if (status != nil && status! == 400) {
-                    switch self.parseJson(json: data, type: RequestErrors.self, decoder: decoder) {
-                    case .success(let requestErrors):
-                        promise.failure(ReachFiveError.RequestError(requestErrors: requestErrors))
+            if (self.isSuccess(status)) {
+                if let data = responseData.data {
+                    switch self.parseJson(json: data, type: T.self, decoder: decoder) {
+                    case .success(let value):
+                        promise.success(value)
                     case .failure(let error):
                         promise.failure(ReachFiveError.TechnicalError(reason: error.localizedDescription))
                     }
                 } else {
-                    promise.failure(
-                        ReachFiveError.TechnicalError(reason: responseData.error?.localizedDescription ?? "Technical error")
-                    )
+                    promise.failure(ReachFiveError.TechnicalError(reason: "No data from server"))
                 }
             } else {
-                promise.failure(ReachFiveError.TechnicalError(reason: "No response data"))
+                if let data = responseData.data {
+                    switch self.parseJson(json: data, type: ApiError.self, decoder: decoder) {
+                    case .success(let apiError):
+                        self.handleResponseStatus(status: status, apiError: apiError, promise: promise)
+                    case .failure(let error):
+                        promise.failure(ReachFiveError.TechnicalError(reason: error.localizedDescription))
+                    }
+                } else {
+                    self.handleResponseStatus(status: status, apiError: nil, promise: promise)
+                }
             }
         }
         
