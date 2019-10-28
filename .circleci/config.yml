@@ -6,19 +6,43 @@ version: 2.1
 jobs:
   build:
     macos:
-      xcode: "10.3.0"
+      xcode: "11.1.0"
     steps:
       - checkout
       - run:
           name: Install CocoaPods
           command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
-      - run: pod spec lint IdentitySdkCore.podspec
-      - run: pod spec lint IdentitySdkFacebook.podspec
-      - run: pod spec lint IdentitySdkGoogle.podspec
-      - run: pod spec lint IdentitySdkWebView.podspec
+      - run:
+          name: Check IdentitySdkCore
+          command: |
+            cd IdentitySdkCore
+            pod install
+            cd ../
+            pod spec lint IdentitySdkCore.podspec
+      - run:
+          name: Check IdentitySdkFacebook
+          command: |
+            cd IdentitySdkFacebook
+            pod install
+            cd ../
+            pod spec lint IdentitySdkFacebook.podspec
+      - run:
+          name: Check IdentitySdkGoogle
+          command: |
+            cd IdentitySdkGoogle
+            pod install
+            cd ../
+            pod spec lint IdentitySdkGoogle.podspec
+      - run:
+          name: Check IdentitySdkWebView
+          command: |
+            cd IdentitySdkWebView
+            pod install
+            cd ../
+            pod spec lint IdentitySdkWebView.podspec
   publish:
     macos:
-      xcode: "10.3.0"
+      xcode: "11.1.0"
     steps:
       - checkout
       - run:
@@ -30,7 +54,7 @@ jobs:
       - run: pod trunk push IdentitySdkWebView.podspec
   build-sandbox:
     macos:
-      xcode: "10.3.0"
+      xcode: "11.1.0"
     working_directory: ~/repo/Sandbox
     steps:
       - checkout:
