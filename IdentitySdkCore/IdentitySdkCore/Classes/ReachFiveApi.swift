@@ -6,15 +6,20 @@ public class ReachFiveApi {
     let sdkConfig: SdkConfig
     
     private let profile_fields = [
+        "birthdate",
+        "bio",
+        "middle_name",
         "addresses",
         "auth_types",
         "consents",
         "created_at",
         "custom_fields",
         "devices",
+        "company",
         "email",
         "emails",
         "email_verified",
+        "external_id",
         "family_name",
         "first_login",
         "first_name",
@@ -31,11 +36,14 @@ public class ReachFiveApi {
         "last_name",
         "likes_friends_ratio",
         "lite_only",
+        "locale",
         "local_friends_count",
         "login_summary",
         "logins_count",
         "name",
+        "nickname",
         "origins",
+        "picture",
         "phone_number",
         "phone_number_verified",
         "provider_details",
@@ -43,7 +51,8 @@ public class ReachFiveApi {
         "social_identities",
         "sub",
         "uid",
-        "updated_at"
+        "updated_at",
+        "tos_accepted_at"
     ]
     
     let deviceInfo: String = "\(UIDevice.current.modelName) \(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"
