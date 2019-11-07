@@ -7,12 +7,17 @@ class LoginWithPasswordController: UIViewController {
     @IBOutlet weak var passwordInput: UITextField!
     @IBOutlet weak var error: UILabel!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        AppDelegate.reachfive().initialize().onComplete { _ in }
+    }
+    
     @IBAction func login(_ sender: Any) {
         let email = usernameInput.text ?? ""
         let password = passwordInput.text ?? ""
         AppDelegate.reachfive()
             .loginWithPassword(username: email, password: password)
-            .onSuccess(callback: goToProfile)
+            .onSuccess(callback: self.goToProfile)
             .onFailure(callback: { error in
                 switch error {
                 case .RequestError(let requestErrors):

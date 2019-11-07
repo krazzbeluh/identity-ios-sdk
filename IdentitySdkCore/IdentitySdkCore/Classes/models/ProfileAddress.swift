@@ -15,6 +15,22 @@ public class ProfileAddress: Codable, DictionaryEncodable {
     public let company: String?
     public let phoneNumber: String?
     
+    private enum CodingKeys: String, CodingKey {
+        case title
+        case isDefault = "default"
+        case addressType
+        case streetAddress
+        case locality
+        case region
+        case postalCode
+        case country
+        case raw
+        case deliveryNote
+        case recipient
+        case company
+        case phoneNumber
+    }
+    
     public init(
         title: String?,
         isDefault: Bool?,
