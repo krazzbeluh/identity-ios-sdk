@@ -1,5 +1,9 @@
 # Changelog
 
+## v5.2.1
+- Fix the `isDefault` field in address profiles
+- Fix `birthdate`, `bio`, `company`, `external_id`, `locale`, `middle_name`, `nickname`, `picture` and `tos_accepted_at` field in profile
+
 ## v5.2.0
 - Fix unauthorized errors
 - Refactor http errors handling
