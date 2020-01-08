@@ -31,6 +31,8 @@ cd Sandbox
 pod install
 
 open Sandbox.xcworkspace
+
+pod update
 ```
 
 ## Documentation
