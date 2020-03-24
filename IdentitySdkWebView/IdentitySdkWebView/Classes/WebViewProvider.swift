@@ -52,10 +52,11 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
         origin: String,
         viewController: UIViewController?
     ) -> Future<AuthToken, ReachFiveError> {
-        self.promise?.failure(.AuthCanceled)
+        self.promise?.tryFailure(.AuthCanceled)
         let promise = Promise<AuthToken, ReachFiveError>()
         self.promise = promise
         self.pkce = Pkce.generate()
+        UserDefaultsStorage().save(key: "PASSWORDLESS_PKCE", value: pkce)
         let url = self.buildUrl(
             sdkConfig: sdkConfig,
             providerConfig: providerConfig,
