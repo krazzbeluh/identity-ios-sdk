@@ -3,13 +3,15 @@ import UIKit
 import IdentitySdkCore
 
 class PasswordlessController: UIViewController {
+    private let REDIRECT_URI: String = "reachfive://callback"
+
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var phoneNumberInput: UITextField!
     @IBOutlet weak var verificationCodeInput: UITextField!
     
     @IBAction func loginWithEmail(_ sender: Any) {
         AppDelegate.reachfive()
-            .startPasswordless(.Email(email: emailInput.text ?? ""))
+            .startPasswordless(.Email(email: emailInput.text ?? "", redirectUri: REDIRECT_URI))
             .onComplete { result in
                 print("startPasswordless email \(result)")
             }
@@ -17,7 +19,7 @@ class PasswordlessController: UIViewController {
     
     @IBAction func loginWithPhoneNumber(_ sender: Any) {
         AppDelegate.reachfive()
-            .startPasswordless(.PhoneNumber(phoneNumber: phoneNumberInput.text ?? ""))
+            .startPasswordless(.PhoneNumber(phoneNumber: phoneNumberInput.text ?? "", redirectUri: REDIRECT_URI))
             .onComplete { result in
                 print("startPasswordless phone number \(result)")
             }

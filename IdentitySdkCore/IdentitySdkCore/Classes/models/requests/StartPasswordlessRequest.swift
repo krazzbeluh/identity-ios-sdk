@@ -21,6 +21,7 @@ public class StartPasswordlessRequest: Codable, DictionaryEncodable {
         email: String? = nil,
         phoneNumber: String? = nil,
         authType: PasswordLessAuthType,
+        redirectUri: String,
         codeChallenge: String,
         codeChallengeMethod: String
     ) {
@@ -30,7 +31,7 @@ public class StartPasswordlessRequest: Codable, DictionaryEncodable {
             phoneNumber: phoneNumber,
             responseType: "code",
             authType: authType,
-            redirectUri: ReachFive.REDIRECT_URI,
+            redirectUri: redirectUri,
             state: "passwordless",
             codeChallenge: codeChallenge,
             codeChallengeMethod: codeChallengeMethod

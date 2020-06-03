@@ -2,8 +2,8 @@ import Foundation
 import BrightFutures
 
 public enum PasswordLessRequest {
-    case Email(email: String)
-    case PhoneNumber(phoneNumber: String)
+    case Email(email: String, redirectUri: String)
+    case PhoneNumber(phoneNumber: String, redirectUri: String)
 }
 
 public extension ReachFive {
@@ -16,20 +16,22 @@ public extension ReachFive {
         let pkce = Pkce.generate()
         self.storage.save(key: "PASSWORDLESS_PKCE", value: pkce)
         switch request {
-        case .Email(let email):
+        case let .Email(email, redirectUri):
             let startPasswordlessRequest = StartPasswordlessRequest(
                 clientId: sdkConfig.clientId,
                 email: email,
                 authType: .MagicLink,
+                redirectUri: redirectUri,
                 codeChallenge: pkce.codeChallenge,
                 codeChallengeMethod: pkce.codeChallengeMethod
             )
             return reachFiveApi.startPasswordless(startPasswordlessRequest)
-        case .PhoneNumber(let phoneNumber):
+        case let .PhoneNumber(phoneNumber, redirectUri):
             let startPasswordlessRequest = StartPasswordlessRequest(
                 clientId: sdkConfig.clientId,
                 phoneNumber: phoneNumber,
                 authType: .SMS,
+                redirectUri: redirectUri,
                 codeChallenge: pkce.codeChallenge,
                 codeChallengeMethod: pkce.codeChallengeMethod
             )
