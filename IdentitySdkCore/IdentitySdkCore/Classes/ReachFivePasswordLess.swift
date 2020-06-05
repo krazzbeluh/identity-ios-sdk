@@ -45,11 +45,9 @@ public extension ReachFive {
             .verifyAuthCode(verifyAuthCodeRequest: verifyAuthCodeRequest)
             .flatMap { _ -> Future<AuthToken, ReachFiveError> in
                 let verifyPasswordlessRequest = VerifyPasswordlessRequest(
-                    email: verifyAuthCodeRequest.email,
                     phoneNumber: verifyAuthCodeRequest.phoneNumber,
                     verificationCode: verifyAuthCodeRequest.verificationCode,
                     state: "passwordless",
-                    redirectUri: ReachFive.REDIRECT_URI,
                     clientId: self.sdkConfig.clientId,
                     responseType: "code"
                 )
