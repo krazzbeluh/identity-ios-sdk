@@ -26,7 +26,6 @@ public class WebViewProvider: ProviderCreator {
 }
 
 class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDelegate {
-    private let REDIRECT_URI: String = "reachfive://callback"
     private let notificationName = Notification.Name("AuthCallbackNotification")
     private var safariViewController: SFSafariViewController? = nil
     private var pkce: Pkce = Pkce.generate()
@@ -39,7 +38,12 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
     let reachFiveApi: ReachFiveApi
     let clientConfigResponse: ClientConfigResponse
     
-    public init(sdkConfig: SdkConfig, providerConfig: ProviderConfig, reachFiveApi: ReachFiveApi, clientConfigResponse: ClientConfigResponse) {
+    public init(
+        sdkConfig: SdkConfig,
+        providerConfig: ProviderConfig,
+        reachFiveApi: ReachFiveApi,
+        clientConfigResponse: ClientConfigResponse
+    ) {
         self.sdkConfig = sdkConfig
         self.providerConfig = providerConfig
         self.reachFiveApi = reachFiveApi
@@ -93,7 +97,12 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
     }
     
     private func handleAuthCode(_ code: String) {
-        let authCodeRequest = AuthCodeRequest(clientId: self.sdkConfig.clientId, code: code, pkce: self.pkce)
+        let authCodeRequest = AuthCodeRequest(
+            clientId: self.sdkConfig.clientId,
+            code: code,
+            redirectUri: sdkConfig.redirectUri,
+            pkce: self.pkce
+        )
         self.reachFiveApi.authWithCode(authCodeRequest: authCodeRequest)
             .flatMap({ AuthToken.fromOpenIdTokenResponseFuture($0) })
             .onSuccess { authToken in
@@ -137,7 +146,7 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
             "provider": providerConfig.provider,
             "client_id": sdkConfig.clientId,
             "response_type": "code",
-            "redirect_uri": REDIRECT_URI,
+            "redirect_uri": sdkConfig.redirectUri,
             "scope": scope,
             "platform": "ios",
             "code_challenge": pkce.codeChallenge,

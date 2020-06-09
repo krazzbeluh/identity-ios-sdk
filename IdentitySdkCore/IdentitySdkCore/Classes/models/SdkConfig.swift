@@ -3,9 +3,11 @@ import Foundation
 public class SdkConfig {
     public let domain: String
     public let clientId: String
+    public let redirectUri: String
     
-    public init(domain: String, clientId: String) {
+    public init(domain: String, clientId: String, redirectUri: String) {
         self.domain = domain
         self.clientId = clientId
+        self.redirectUri = redirectUri
     }
 }

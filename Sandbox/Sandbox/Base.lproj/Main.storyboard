@@ -148,7 +148,7 @@
                                     <action selector="verifyCode:" destination="2x8-ac-8fG" eventType="touchUpInside" id="UaL-mx-6SN"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="reachfive://callback" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="90g-VM-9ps">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="90g-VM-9ps">
                                 <rect key="frame" x="20" y="149" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -159,8 +159,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This field is mandatory for login and verify actions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PrC-uY-vr2">
-                                <rect key="frame" x="20" y="127" width="302" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For login action, default value: reachfive-$clientId://callback" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PrC-uY-vr2">
+                                <rect key="frame" x="21" y="127" width="363" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -181,17 +181,17 @@
                             <constraint firstItem="eoo-7E-NMJ" firstAttribute="trailing" secondItem="dXD-Kc-6mi" secondAttribute="trailing" id="JKu-AR-nWZ"/>
                             <constraint firstItem="90g-VM-9ps" firstAttribute="trailing" secondItem="eoo-7E-NMJ" secondAttribute="trailing" id="JeL-P3-uHO"/>
                             <constraint firstItem="AeC-Up-EXa" firstAttribute="leading" secondItem="w53-Iq-oaM" secondAttribute="leading" id="KtB-IF-QME"/>
-                            <constraint firstItem="yXF-2L-fNb" firstAttribute="leading" secondItem="PrC-uY-vr2" secondAttribute="leading" id="PDX-iZ-eTP"/>
+                            <constraint firstItem="yXF-2L-fNb" firstAttribute="leading" secondItem="PrC-uY-vr2" secondAttribute="leading" constant="-1" id="PDX-iZ-eTP"/>
                             <constraint firstItem="J5H-q1-E8p" firstAttribute="top" secondItem="rhI-pT-6LZ" secondAttribute="bottom" constant="6" id="Shy-Wy-WDW"/>
-                            <constraint firstItem="GPv-qX-wVK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rhI-pT-6LZ" secondAttribute="trailing" constant="20" symbolic="YES" id="Tvx-gq-yC9"/>
+                            <constraint firstItem="GPv-qX-wVK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rhI-pT-6LZ" secondAttribute="trailing" symbolic="YES" id="Tvx-gq-yC9"/>
                             <constraint firstItem="yXF-2L-fNb" firstAttribute="top" secondItem="GPv-qX-wVK" secondAttribute="top" constant="14" id="ayT-o0-Nq8"/>
                             <constraint firstItem="Th6-Md-aQW" firstAttribute="leading" secondItem="GPv-qX-wVK" secondAttribute="leading" constant="23" id="b8x-Xm-NfS"/>
                             <constraint firstItem="AeC-Up-EXa" firstAttribute="top" secondItem="eoo-7E-NMJ" secondAttribute="bottom" constant="8" id="c2s-Ct-4LY"/>
-                            <constraint firstItem="GPv-qX-wVK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PrC-uY-vr2" secondAttribute="trailing" constant="92" id="dE8-Pg-UfL"/>
-                            <constraint firstItem="PrC-uY-vr2" firstAttribute="leading" secondItem="90g-VM-9ps" secondAttribute="leading" id="e0v-NF-IqH"/>
+                            <constraint firstItem="PrC-uY-vr2" firstAttribute="leading" secondItem="90g-VM-9ps" secondAttribute="leading" constant="1" id="e0v-NF-IqH"/>
                             <constraint firstItem="rhI-pT-6LZ" firstAttribute="leading" secondItem="J5H-q1-E8p" secondAttribute="leading" id="g4Z-ca-sfa"/>
                             <constraint firstItem="dXD-Kc-6mi" firstAttribute="trailing" secondItem="3c1-HW-jLt" secondAttribute="trailing" id="gA0-95-7vX"/>
                             <constraint firstItem="eoo-7E-NMJ" firstAttribute="top" secondItem="Qjm-Sq-t5n" secondAttribute="bottom" constant="8" id="hYC-O9-ktB"/>
+                            <constraint firstItem="GPv-qX-wVK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PrC-uY-vr2" secondAttribute="trailing" constant="30" id="iQh-WG-gOc"/>
                             <constraint firstItem="90g-VM-9ps" firstAttribute="top" secondItem="PrC-uY-vr2" secondAttribute="bottom" constant="6" id="iSL-XV-7ho"/>
                             <constraint firstItem="GPv-qX-wVK" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="J5H-q1-E8p" secondAttribute="trailing" constant="265" id="jST-qg-ndB"/>
                             <constraint firstItem="90g-VM-9ps" firstAttribute="trailing" secondItem="SYd-MM-Wb6" secondAttribute="trailingMargin" id="l12-2e-bHd"/>

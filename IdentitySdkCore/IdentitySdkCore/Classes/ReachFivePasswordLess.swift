@@ -2,8 +2,8 @@ import Foundation
 import BrightFutures
 
 public enum PasswordLessRequest {
-    case Email(email: String, redirectUri: String)
-    case PhoneNumber(phoneNumber: String, redirectUri: String)
+    case Email(email: String, redirectUri: String?)
+    case PhoneNumber(phoneNumber: String, redirectUri: String?)
 }
 
 public extension ReachFive {
@@ -21,7 +21,7 @@ public extension ReachFive {
                 clientId: sdkConfig.clientId,
                 email: email,
                 authType: .MagicLink,
-                redirectUri: redirectUri,
+                redirectUri: redirectUri ?? sdkConfig.redirectUri,
                 codeChallenge: pkce.codeChallenge,
                 codeChallengeMethod: pkce.codeChallengeMethod
             )
@@ -31,7 +31,7 @@ public extension ReachFive {
                 clientId: sdkConfig.clientId,
                 phoneNumber: phoneNumber,
                 authType: .SMS,
-                redirectUri: redirectUri,
+                redirectUri: redirectUri ?? sdkConfig.redirectUri,
                 codeChallenge: pkce.codeChallenge,
                 codeChallengeMethod: pkce.codeChallengeMethod
             )
@@ -54,7 +54,12 @@ public extension ReachFive {
                 return self.reachFiveApi
                     .verifyPasswordless(verifyPasswordlessRequest: verifyPasswordlessRequest)
                     .flatMap { response -> Future<AuthToken, ReachFiveError> in
-                        let authCodeRequest = AuthCodeRequest(clientId: self.sdkConfig.clientId, code: response.code ?? "", pkce: pkce!)
+                        let authCodeRequest = AuthCodeRequest(
+                            clientId: self.sdkConfig.clientId,
+                            code: response.code ?? "",
+                            redirectUri: self.sdkConfig.redirectUri,
+                            pkce: pkce!
+                        )
                         return self.reachFiveApi.authWithCode(authCodeRequest: authCodeRequest)
                             .flatMap({ AuthToken.fromOpenIdTokenResponseFuture($0) })
                     }
@@ -68,7 +73,12 @@ public extension ReachFive {
             if let state = params["state"] {
                 if state == "passwordless" {
                     if let code = params["code"] {
-                        let authCodeRequest = AuthCodeRequest(clientId: self.sdkConfig.clientId, code: code ?? "", pkce: pkce!)
+                        let authCodeRequest = AuthCodeRequest(
+                            clientId: self.sdkConfig.clientId,
+                            code: code ?? "",
+                            redirectUri: self.sdkConfig.redirectUri,
+                            pkce: pkce!
+                        )
                         
                         self.reachFiveApi.authWithCode(authCodeRequest: authCodeRequest)
                             .flatMap({ AuthToken.fromOpenIdTokenResponseFuture($0) })

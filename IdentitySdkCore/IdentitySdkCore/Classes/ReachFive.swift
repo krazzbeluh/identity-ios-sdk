@@ -2,18 +2,17 @@ import Foundation
 import BrightFutures
 
 enum State {
-    case NotInitialazed
-    case Initialazed
+    case NotInitialized
+    case Initialized
 }
 
 public typealias PasswordlessCallback = (_ result: Result<AuthToken, ReachFiveError>) -> Void
 
 /// ReachFive identity SDK
 public class ReachFive: NSObject {
-    public static let REDIRECT_URI: String = "reachfive://callback"
     let notificationPasswordlessName = Notification.Name("PasswordlessNotification")
     var passwordlessCallback: PasswordlessCallback? = nil
-    var state: State = .NotInitialazed
+    var state: State = .NotInitialized
     let sdkConfig: SdkConfig
     let providersCreators: Array<ProviderCreator>
     let reachFiveApi: ReachFiveApi
@@ -39,7 +38,7 @@ public class ReachFive: NSObject {
         let refreshRequest = RefreshRequest(
             clientId: sdkConfig.clientId,
             refreshToken: authToken.refreshToken ?? "",
-            redirectUri: ReachFive.REDIRECT_URI
+            redirectUri: sdkConfig.redirectUri
         )
         return reachFiveApi
             .refreshAccessToken(refreshRequest)
@@ -48,9 +47,9 @@ public class ReachFive: NSObject {
     
     public override var description: String {
         return """
-        Config: domain=\(sdkConfig.domain), clientId=\(sdkConfig.clientId)
-        Providers: \(providers)
-        Scope: \(scope.joined(separator: ""))
+            Config: domain=\(sdkConfig.domain), clientId=\(sdkConfig.clientId)
+            Providers: \(providers)
+            Scope: \(scope.joined(separator: ""))
         """
     }
 }

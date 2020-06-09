@@ -35,6 +35,18 @@ open Sandbox.xcworkspace
 pod update
 ```
 
+You also need to set the ReachFive client configuration within the SDK as below:
+
+```
+SdkConfig(
+  domain: "my-reachfive-url",
+  clientId: "my-reachfive-client-id",
+  redirectUri: "my-reachfive-url-scheme"
+),
+```
+
+The URL scheme must follow this pattern: `reachfive-${clientId}://callback`.
+
 ## Documentation
 
 You'll find the documentation of the methods exposed on https://developer.reach5.co/api/identity-ios.
