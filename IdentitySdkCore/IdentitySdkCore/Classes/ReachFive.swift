@@ -38,7 +38,7 @@ public class ReachFive: NSObject {
         let refreshRequest = RefreshRequest(
             clientId: sdkConfig.clientId,
             refreshToken: authToken.refreshToken ?? "",
-            redirectUri: sdkConfig.redirectUri
+            redirectUri: sdkConfig.scheme
         )
         return reachFiveApi
             .refreshAccessToken(refreshRequest)

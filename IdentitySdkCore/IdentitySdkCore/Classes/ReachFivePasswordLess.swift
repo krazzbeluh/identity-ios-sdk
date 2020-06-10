@@ -21,7 +21,7 @@ public extension ReachFive {
                 clientId: sdkConfig.clientId,
                 email: email,
                 authType: .MagicLink,
-                redirectUri: redirectUri ?? sdkConfig.redirectUri,
+                redirectUri: redirectUri ?? sdkConfig.scheme,
                 codeChallenge: pkce.codeChallenge,
                 codeChallengeMethod: pkce.codeChallengeMethod
             )
@@ -31,7 +31,7 @@ public extension ReachFive {
                 clientId: sdkConfig.clientId,
                 phoneNumber: phoneNumber,
                 authType: .SMS,
-                redirectUri: redirectUri ?? sdkConfig.redirectUri,
+                redirectUri: redirectUri ?? sdkConfig.scheme,
                 codeChallenge: pkce.codeChallenge,
                 codeChallengeMethod: pkce.codeChallengeMethod
             )
@@ -57,7 +57,7 @@ public extension ReachFive {
                         let authCodeRequest = AuthCodeRequest(
                             clientId: self.sdkConfig.clientId,
                             code: response.code ?? "",
-                            redirectUri: self.sdkConfig.redirectUri,
+                            redirectUri: self.sdkConfig.scheme,
                             pkce: pkce!
                         )
                         return self.reachFiveApi.authWithCode(authCodeRequest: authCodeRequest)
@@ -76,7 +76,7 @@ public extension ReachFive {
                         let authCodeRequest = AuthCodeRequest(
                             clientId: self.sdkConfig.clientId,
                             code: code ?? "",
-                            redirectUri: self.sdkConfig.redirectUri,
+                            redirectUri: self.sdkConfig.scheme,
                             pkce: pkce!
                         )
                         
