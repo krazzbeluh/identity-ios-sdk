@@ -1,5 +1,8 @@
 # Changelog
 
+## v5.3.1
+- Upgrade IdentitySdkCore dependency in IdentitySdkWebview
+
 ## v5.3.0
 - App-specific scheme handling (pattern reachfive-${clientId}://callback). This custom scheme has to be specified in info.plist application and passed during SDK configuration in `SdkConfig` object:
 ```swift
