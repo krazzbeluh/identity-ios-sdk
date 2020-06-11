@@ -100,7 +100,7 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
         let authCodeRequest = AuthCodeRequest(
             clientId: self.sdkConfig.clientId,
             code: code,
-            redirectUri: sdkConfig.scheme,
+            redirectUri: "reachfive://callback",
             pkce: self.pkce
         )
         self.reachFiveApi.authWithCode(authCodeRequest: authCodeRequest)
@@ -146,7 +146,7 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
             "provider": providerConfig.provider,
             "client_id": sdkConfig.clientId,
             "response_type": "code",
-            "redirect_uri": sdkConfig.scheme,
+            "redirect_uri": "reachfive://callback",
             "scope": scope,
             "platform": "ios",
             "code_challenge": pkce.codeChallenge,
