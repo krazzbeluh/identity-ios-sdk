@@ -100,7 +100,6 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
         let authCodeRequest = AuthCodeRequest(
             clientId: self.sdkConfig.clientId,
             code: code,
-            redirectUri: "reachfive://callback",
             pkce: self.pkce
         )
         self.reachFiveApi.authWithCode(authCodeRequest: authCodeRequest)
