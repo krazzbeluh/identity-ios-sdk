@@ -1,5 +1,16 @@
 # Changelog
 
+## v5.3.0
+- App-specific scheme handling (pattern reachfive-${clientId}://callback). This custom scheme has to be specified in info.plist application and passed during SDK configuration in `SdkConfig` object:
+```swift
+SdkConfig(
+  domain: "my-reachfive-url",
+  clientId: "my-reachfive-client-id",
+  scheme: "my-reachfive-scheme"
+)
+```
+- This custom scheme will be used as a redirect URL by default in payload of Start Passwordless call.
+
 ## v5.2.2
 - Fix login with web provider issue (assert() raising a fatal error)
 - Fix a PKCE code storage issue
