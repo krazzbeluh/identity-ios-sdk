@@ -49,7 +49,7 @@ The URL scheme must follow this pattern: `reachfive-${clientId}://callback`.
 
 ## Documentation
 
-You'll find the documentation of the methods exposed on https://developer.reach5.co/api/identity-ios.
+You'll find the documentation of the methods exposed on https://developer.reachfive.com/sdk-ios/index.html.
 
 ## Changelog
 
