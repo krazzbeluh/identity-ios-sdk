@@ -57,3 +57,48 @@ public class OpenIdUser: Codable {
         self.address = address
     }
 }
+
+extension OpenIdUser {
+    struct CodingData: Codable {
+       var sub: String?
+       var name: String?
+       var preferredUsername: String?
+       var givenName: String?
+       var familyName: String?
+       var middleName: String?
+       var nickname: String?
+       var picture: String?
+       var website: String?
+       var email: String?
+       var emailVerified: Bool?
+       var gender: String?
+       var zoneinfo: String?
+       var locale: String?
+       var phoneNumber: String?
+       var phoneNumberVerified: Bool?
+       var address: ProfileAddress?
+    }
+}
+extension OpenIdUser.CodingData {
+    var openIdUser: OpenIdUser {
+        return OpenIdUser.init(
+            id: sub,
+            name: name,
+            preferredUsername: preferredUsername,
+            givenName: givenName,
+            familyName: familyName,
+            middleName: middleName,
+            nickname: nickname,
+            picture: picture,
+            website: website,
+            email: email,
+            emailVerified: emailVerified,
+            gender: gender,
+            zoneinfo: zoneinfo,
+            locale: locale,
+            phoneNumber: phoneNumber,
+            phoneNumberVerified: phoneNumberVerified,
+            address: address
+        )
+    }
+}

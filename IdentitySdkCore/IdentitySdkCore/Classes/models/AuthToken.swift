@@ -62,7 +62,7 @@ public class AuthToken: Codable {
         if parts.count == 3 {
             let data = Base64.base64UrlSafeDecode(parts[1])
             let user = Result.init(catching: {
-                return try decoder.decode(OpenIdUser.self, from: data!)
+                return try decoder.decode(OpenIdUser.CodingData.self, from: data!).openIdUser
             })
             return user.mapError({ error in
                 return .TechnicalError(reason: error.localizedDescription)
