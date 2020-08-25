@@ -11,6 +11,7 @@ public class ApiError: Codable {
     public let error: String?
     public let errorId: String?
     public let errorUserMsg: String?
+    public let errorMessageKey: String?
     public let errorDescription: String?
     public let errorDetails: [FieldError]?
 }
