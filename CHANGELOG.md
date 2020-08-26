@@ -1,5 +1,10 @@
 # Changelog
 
+## v5.3.3
+- The `sub` claim of an ID token is now correctly deserialized in the
+  `id` field of the `OpenIdUser` model
+- `ApiError` now has an additional property `errorMessageKey`
+
 ## v5.3.2
 - Fix `SdkConfig` description in README
 
