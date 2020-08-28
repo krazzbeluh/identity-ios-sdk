@@ -17,7 +17,7 @@ Pod::Spec.new do |spec|
   spec.platform              = :ios
   spec.ios.deployment_target = $IOS_DEPLOYMENT_TARGET
 
-  spec.dependency 'Alamofire', '~> 4.9'
-  spec.dependency 'BrightFutures', '~> 8.0'
-  spec.dependency 'CryptoSwift', '~> 1.1'
+  spec.dependency 'Alamofire', '~> 5.2.2'
+  spec.dependency 'BrightFutures', '~> 8.0.0'
+  spec.dependency 'CryptoSwift', '~> 1.3.1'
 end

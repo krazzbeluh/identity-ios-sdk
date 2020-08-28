@@ -18,6 +18,42 @@ jobs:
             cd IdentitySdkCore
             pod install
             cd ../
+            pod lib lint IdentitySdkCore.podspec
+      - run:
+          name: Check IdentitySdkFacebook
+          command: |
+            cd IdentitySdkFacebook
+            pod install
+            cd ../
+            pod lib lint IdentitySdkFacebook.podspec
+      - run:
+          name: Check IdentitySdkGoogle
+          command: |
+            cd IdentitySdkGoogle
+            pod install
+            cd ../
+            pod lib lint IdentitySdkGoogle.podspec
+      - run:
+          name: Check IdentitySdkWebView
+          command: |
+            cd IdentitySdkWebView
+            pod install
+            cd ../
+            pod lib lint IdentitySdkWebView.podspec
+  build-for-release:
+    macos:
+      xcode: "11.2.0"
+    steps:
+      - checkout
+      - run:
+          name: Install CocoaPods
+          command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      - run:
+          name: Check IdentitySdkCore
+          command: |
+            cd IdentitySdkCore
+            pod install
+            cd ../
             pod spec lint IdentitySdkCore.podspec
       - run:
           name: Check IdentitySdkFacebook
@@ -40,6 +76,7 @@ jobs:
             pod install
             cd ../
             pod spec lint IdentitySdkWebView.podspec
+
   publish:
     macos:
       xcode: "11.2.0"
@@ -83,8 +120,9 @@ workflows:
     jobs:
       - build:
           <<: *default_workflows_tags
+      - build-for-release:
+          <<: *default_workflows_filters
       - publish:
           requires:
-            - build
+            - build-for-release
           <<: *default_workflows_filters
-

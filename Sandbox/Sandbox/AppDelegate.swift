@@ -3,7 +3,6 @@ import IdentitySdkCore
 import IdentitySdkFacebook
 import IdentitySdkWebView
 import IdentitySdkGoogle
-import AlamofireNetworkLogger
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -45,9 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        AlamofireNetworkLogger.shared.startLogging()
-        AlamofireNetworkLogger.shared.level = .debug
-        
         reachfive.addPasswordlessCallback { result in
             print("addPasswordlessCallback \(result)")
         }

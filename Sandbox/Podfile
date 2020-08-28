@@ -13,6 +13,4 @@ target 'Sandbox' do
   pod 'IdentitySdkWebView', :path => '../IdentitySdkWebView.podspec'
   pod 'IdentitySdkGoogle', :path => '../IdentitySdkGoogle.podspec'
   pod 'IdentitySdkFacebook', :path => '../IdentitySdkFacebook.podspec'
-
-  pod 'AlamofireNetworkLogger'
 end
