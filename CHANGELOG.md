@@ -1,5 +1,9 @@
 # Changelog
 
+## v5.4.0
+- Update `Alamofire` to version 5.x
+- Update `Cryptoswift` to latest version
+
 ## v5.3.3
 - The `sub` claim of an ID token is now correctly deserialized in the
   `id` field of the `OpenIdUser` model
