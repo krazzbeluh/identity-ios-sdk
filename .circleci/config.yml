@@ -11,7 +11,7 @@ jobs:
       - checkout
       - run:
           name: Install CocoaPods
-          command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+          command: gem install cocoapods --user-install
       - run:
           name: Check IdentitySdkCore
           command: |
@@ -47,7 +47,7 @@ jobs:
       - checkout
       - run:
           name: Install CocoaPods
-          command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+          command: gem install cocoapods --user-install
       - run:
           name: Check IdentitySdkCore
           command: |
@@ -84,7 +84,7 @@ jobs:
       - checkout
       - run:
           name: Install CocoaPods
-          command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+          command: gem install cocoapods --user-install
       - run: pod trunk push IdentitySdkCore.podspec
       - run: pod trunk push IdentitySdkFacebook.podspec
       - run: pod trunk push IdentitySdkGoogle.podspec
@@ -98,7 +98,7 @@ jobs:
           path: ~/repo
       - run:
           name: Install CocoaPods
-          command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+          command: gem install cocoapods --user-install
       - run: pod install
       - run: fastlane scan
 
