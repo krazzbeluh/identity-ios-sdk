@@ -25,7 +25,6 @@ public class Profile: Codable, DictionaryEncodable {
     public let bio: String?
     public let customFields: [String: CustomField]?
     public let consents: [String: Consent]?
-    public let tosAcceptedAt: String?
     public let createdAt: String?
     public let updatedAt: String?
     public let company: String?
@@ -56,7 +55,6 @@ public class Profile: Codable, DictionaryEncodable {
         bio: String? = nil,
         customFields: [String: CustomField]? = nil,
         consents: [String: Consent]? = nil,
-        tosAcceptedAt: String? = nil,
         createdAt: String? = nil,
         updatedAt: String? = nil,
         company: String? = nil,
@@ -86,7 +84,6 @@ public class Profile: Codable, DictionaryEncodable {
         self.bio = bio
         self.customFields = customFields
         self.consents = consents
-        self.tosAcceptedAt = tosAcceptedAt
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.company = company

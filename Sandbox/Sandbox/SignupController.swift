@@ -5,7 +5,8 @@ class SignupController: UIViewController {
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
     @IBOutlet weak var nameInput: UITextField!
-
+    @IBOutlet weak var redirectUrlInput: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         AppDelegate.reachfive().initialize().onComplete { _ in }
@@ -15,6 +16,7 @@ class SignupController: UIViewController {
         let email = emailInput.text ?? ""
         let password = passwordInput.text ?? ""
         let name = nameInput.text ?? ""
+        let redirectUrl = redirectUrlInput.text ?? ""
 
         let customFields: [String: CustomField] = [
             "test_string": .string("some random string"),
@@ -27,7 +29,7 @@ class SignupController: UIViewController {
             name: name,
             customFields: customFields
         )
-        AppDelegate.reachfive().signup(profile: profile).onSuccess(callback: goToProfile)
+        AppDelegate.reachfive().signup(profile: profile,redirectUrl: redirectUrl).onSuccess(callback: goToProfile)
     }
     
     func goToProfile(_ authToken: AuthToken) {

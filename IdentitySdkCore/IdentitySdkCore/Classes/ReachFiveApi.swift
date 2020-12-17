@@ -51,8 +51,7 @@ public class ReachFiveApi {
         "social_identities",
         "sub",
         "uid",
-        "updated_at",
-        "tos_accepted_at"
+        "updated_at"
     ]
     
     let deviceInfo: String = "\(UIDevice.current.modelName) \(UIDevice.current.systemName) \(UIDevice.current.systemVersion)"
