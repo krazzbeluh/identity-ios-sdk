@@ -18,7 +18,7 @@
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" restorationIdentifier="password" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ljB-cQ-dto" userLabel="Username">
                                 <rect key="frame" x="20" y="131" width="374" height="34"/>
-                                <accessibility key="accessibilityConfiguration" label="email"/>
+                                <accessibility key="accessibilityConfiguration" identifier="login"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -36,11 +36,13 @@
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M7e-ga-cOo" userLabel="Password">
                                 <rect key="frame" x="20" y="203" width="374" height="34"/>
+                                <accessibility key="accessibilityConfiguration" identifier="password"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lGr-9v-pCt">
                                 <rect key="frame" x="20" y="245" width="38" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="login"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="login:" destination="Asd-ln-b7V" eventType="touchUpInside" id="0bz-XX-9z9"/>
@@ -337,6 +339,7 @@
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ISz-2N-3VB" userLabel="EmailInput">
                                 <rect key="frame" x="20" y="128" width="374" height="34"/>
+                                <accessibility key="accessibilityConfiguration" identifier="email"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -348,6 +351,7 @@
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mSo-wZ-GWD" userLabel="PasswordInput">
                                 <rect key="frame" x="20" y="199" width="374" height="34"/>
+                                <accessibility key="accessibilityConfiguration" identifier="password"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -375,6 +379,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Zm-rg-VoC">
                                 <rect key="frame" x="20" y="399" width="48" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="signup"/>
                                 <state key="normal" title="Signup"/>
                                 <connections>
                                     <action selector="signup:" destination="kCV-U2-VG8" eventType="touchUpInside" id="U9g-Ad-2nA"/>
@@ -455,6 +460,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z5D-tp-H9J">
                                 <rect key="frame" x="20" y="174" width="91" height="30"/>
+                                <accessibility key="accessibilityConfiguration" identifier="email"/>
                                 <state key="normal" title="Update Email"/>
                             </button>
                         </subviews>

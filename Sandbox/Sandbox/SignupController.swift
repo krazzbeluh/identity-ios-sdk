@@ -16,8 +16,13 @@ class SignupController: UIViewController {
         let email = emailInput.text ?? ""
         let password = passwordInput.text ?? ""
         let name = nameInput.text ?? ""
-        let redirectUrl = redirectUrlInput.text ?? ""
-
+        var redirectUrl: String? = nil
+            
+        if (!redirectUrlInput.text!.isEmpty)
+        {
+            redirectUrl = redirectUrlInput.text!
+        }
+        
         let customFields: [String: CustomField] = [
             "test_string": .string("some random string"),
             "test_integer": .int(1)
