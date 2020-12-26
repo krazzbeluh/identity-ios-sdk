@@ -21,7 +21,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb2326266780745811</string>
+				<string>fb1634029666893228</string>
 			</array>
 		</dict>
 		<dict>
@@ -52,7 +52,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FacebookAppID</key>
-	<string>2326266780745811</string>
+	<string>1634029666893228</string>
 	<key>FacebookDisplayName</key>
 	<string>Reach5 SDK Mobile</string>
 	<key>LSApplicationQueriesSchemes</key>

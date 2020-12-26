@@ -19,7 +19,6 @@ public class ProfileSignupRequest: Codable, DictionaryEncodable {
     public let bio: String?
     public let customFields: [String: CustomField]?
     public let consents: [String: Consent]?
-    public let tosAcceptedAt: String?
     public let company: String?
     public let liteOnly: Bool?
     
@@ -42,7 +41,6 @@ public class ProfileSignupRequest: Codable, DictionaryEncodable {
         bio: String? = nil,
         customFields: [String: CustomField]? = nil,
         consents: [String: Consent]? = nil,
-        tosAcceptedAt: String? = nil,
         company: String? = nil,
         liteOnly: Bool? = nil
     ) {
@@ -64,7 +62,6 @@ public class ProfileSignupRequest: Codable, DictionaryEncodable {
         self.bio = bio
         self.customFields = customFields
         self.consents = consents
-        self.tosAcceptedAt = tosAcceptedAt
         self.company = company
         self.liteOnly = liteOnly
     }

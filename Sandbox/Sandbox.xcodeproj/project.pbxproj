@@ -18,9 +18,23 @@
 		3417FF7022FB11CD0009EC84 /* LoginWithPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3417FF6F22FB11CD0009EC84 /* LoginWithPasswordController.swift */; };
 		34797ABD22A9607D00ED093C /* SignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34797ABC22A9607D00ED093C /* SignupController.swift */; };
 		349E16EC230BEBBF002EA06B /* UpdatePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E16EB230BEBBF002EA06B /* UpdatePasswordController.swift */; };
+		843DB0CA258C340800591BD7 /* SignupWithEmailSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DB0C9258C340800591BD7 /* SignupWithEmailSuccess.swift */; };
+		8450A93D258CD062002ED710 /* LoginWithFaceBookSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450A93C258CD062002ED710 /* LoginWithFaceBookSuccess.swift */; };
+		84E6969A258AE152003AF19B /* LoginWithEmailSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E69699258AE152003AF19B /* LoginWithEmailSuccess.swift */; };
+		84E696A2258BF70D003AF19B /* LoginWithPhoneSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E696A1258BF70D003AF19B /* LoginWithPhoneSuccess.swift */; };
 		ADC8995361C4AB125E775CCE /* Pods_Sandbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 514A43AA721312D19BFBD529 /* Pods_Sandbox.framework */; };
 		EA91ACDEBA85D43349D63550 /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA91A294C5DD405D6A38ADCC /* SecureStorage.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		84E6969C258AE152003AF19B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 341731F2229D6B6400681CFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 341731F9229D6B6400681CFD;
+			remoteInfo = Sandbox;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3414A7CC22DDD39C00CF393A /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
@@ -39,6 +53,16 @@
 		514A43AA721312D19BFBD529 /* Pods_Sandbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sandbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75AC65C0735D780B9A6F4181 /* Pods-Sandbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sandbox.release.xcconfig"; path = "Target Support Files/Pods-Sandbox/Pods-Sandbox.release.xcconfig"; sourceTree = "<group>"; };
 		81035E8DEC67D32DB84E55AA /* Pods-Sandbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sandbox.debug.xcconfig"; path = "Target Support Files/Pods-Sandbox/Pods-Sandbox.debug.xcconfig"; sourceTree = "<group>"; };
+		842A9EB52590AAF1004A58E5 /* IdentitySdkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IdentitySdkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		843DB0C9258C340800591BD7 /* SignupWithEmailSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupWithEmailSuccess.swift; sourceTree = "<group>"; };
+		8450A93C258CD062002ED710 /* LoginWithFaceBookSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithFaceBookSuccess.swift; sourceTree = "<group>"; };
+		84E69687258A53AD003AF19B /* IdentitySdkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IdentitySdkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84E6968B258A5534003AF19B /* IdentitySdkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IdentitySdkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84E6968F258A5661003AF19B /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		84E69697258AE152003AF19B /* SandboxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SandboxUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		84E69699258AE152003AF19B /* LoginWithEmailSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithEmailSuccess.swift; sourceTree = "<group>"; };
+		84E6969B258AE152003AF19B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84E696A1258BF70D003AF19B /* LoginWithPhoneSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithPhoneSuccess.swift; sourceTree = "<group>"; };
 		EA91A294C5DD405D6A38ADCC /* SecureStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -51,6 +75,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		84E69694258AE152003AF19B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -58,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				341731FC229D6B6400681CFD /* Sandbox */,
+				84E69698258AE152003AF19B /* SandboxUITests */,
 				341731FB229D6B6400681CFD /* Products */,
 				8CD874808BCF122A3F9EDA83 /* Pods */,
 				A19C0883C2C3964994A2A248 /* Frameworks */,
@@ -68,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				341731FA229D6B6400681CFD /* Sandbox.app */,
+				84E69697258AE152003AF19B /* SandboxUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -92,6 +125,18 @@
 			path = Sandbox;
 			sourceTree = "<group>";
 		};
+		84E69698258AE152003AF19B /* SandboxUITests */ = {
+			isa = PBXGroup;
+			children = (
+				84E69699258AE152003AF19B /* LoginWithEmailSuccess.swift */,
+				84E6969B258AE152003AF19B /* Info.plist */,
+				84E696A1258BF70D003AF19B /* LoginWithPhoneSuccess.swift */,
+				843DB0C9258C340800591BD7 /* SignupWithEmailSuccess.swift */,
+				8450A93C258CD062002ED710 /* LoginWithFaceBookSuccess.swift */,
+			);
+			path = SandboxUITests;
+			sourceTree = "<group>";
+		};
 		8CD874808BCF122A3F9EDA83 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +149,10 @@
 		A19C0883C2C3964994A2A248 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				842A9EB52590AAF1004A58E5 /* IdentitySdkCore.framework */,
+				84E6968F258A5661003AF19B /* AddressBook.framework */,
+				84E6968B258A5534003AF19B /* IdentitySdkCore.framework */,
+				84E69687258A53AD003AF19B /* IdentitySdkCore.framework */,
 				514A43AA721312D19BFBD529 /* Pods_Sandbox.framework */,
 			);
 			name = Frameworks;
@@ -132,6 +181,24 @@
 			productReference = 341731FA229D6B6400681CFD /* Sandbox.app */;
 			productType = "com.apple.product-type.application";
 		};
+		84E69696258AE152003AF19B /* SandboxUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 84E696A0258AE152003AF19B /* Build configuration list for PBXNativeTarget "SandboxUITests" */;
+			buildPhases = (
+				84E69693258AE152003AF19B /* Sources */,
+				84E69694258AE152003AF19B /* Frameworks */,
+				84E69695258AE152003AF19B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				84E6969D258AE152003AF19B /* PBXTargetDependency */,
+			);
+			name = SandboxUITests;
+			productName = SandboxUITests;
+			productReference = 84E69697258AE152003AF19B /* SandboxUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -141,12 +208,16 @@
 				KnownAssetTags = (
 					password,
 				);
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1170;
 				LastUpgradeCheck = 1210;
 				ORGANIZATIONNAME = Reachfive;
 				TargetAttributes = {
 					341731F9229D6B6400681CFD = {
 						CreatedOnToolsVersion = 10.2.1;
+					};
+					84E69696258AE152003AF19B = {
+						CreatedOnToolsVersion = 11.7;
+						TestTargetID = 341731F9229D6B6400681CFD;
 					};
 				};
 			};
@@ -164,6 +235,7 @@
 			projectRoot = "";
 			targets = (
 				341731F9229D6B6400681CFD /* Sandbox */,
+				84E69696258AE152003AF19B /* SandboxUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -176,6 +248,13 @@
 				34173208229D6B6400681CFD /* LaunchScreen.storyboard in Resources */,
 				34173205229D6B6400681CFD /* Assets.xcassets in Resources */,
 				34173203229D6B6400681CFD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84E69695258AE152003AF19B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,7 +336,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		84E69693258AE152003AF19B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				843DB0CA258C340800591BD7 /* SignupWithEmailSuccess.swift in Sources */,
+				8450A93D258CD062002ED710 /* LoginWithFaceBookSuccess.swift in Sources */,
+				84E696A2258BF70D003AF19B /* LoginWithPhoneSuccess.swift in Sources */,
+				84E6969A258AE152003AF19B /* LoginWithEmailSuccess.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		84E6969D258AE152003AF19B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 341731F9229D6B6400681CFD /* Sandbox */;
+			targetProxy = 84E6969C258AE152003AF19B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		34173201229D6B6400681CFD /* Main.storyboard */ = {
@@ -441,6 +539,44 @@
 			};
 			name = Release;
 		};
+		84E6969E258AE152003AF19B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SandboxUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = reachfive.SandboxUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Sandbox;
+			};
+			name = Debug;
+		};
+		84E6969F258AE152003AF19B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SandboxUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = reachfive.SandboxUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Sandbox;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -458,6 +594,15 @@
 			buildConfigurations = (
 				3417320D229D6B6400681CFD /* Debug */,
 				3417320E229D6B6400681CFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		84E696A0258AE152003AF19B /* Build configuration list for PBXNativeTarget "SandboxUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				84E6969E258AE152003AF19B /* Debug */,
+				84E6969F258AE152003AF19B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
