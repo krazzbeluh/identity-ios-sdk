@@ -1,5 +1,11 @@
 # Changelog
 
+## v5.5.0
+- Update `FBSDKCoreKit` and `FBSDKLoginKit` to version 9.x
+- Add the redirectURL parameter in the signup method
+- Upgrade dependencies `CryptoSwift` to version 1.3.2
+- Implement keychain access & refresh token on startup
+
 ## v5.4.0
 - Update `Alamofire` to version 5.x
 - Update `Cryptoswift` to latest version
