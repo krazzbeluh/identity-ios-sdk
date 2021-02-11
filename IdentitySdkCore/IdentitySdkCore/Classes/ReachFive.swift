@@ -13,12 +13,13 @@ public class ReachFive: NSObject {
     let notificationPasswordlessName = Notification.Name("PasswordlessNotification")
     var passwordlessCallback: PasswordlessCallback? = nil
     var state: State = .NotInitialized
-    let sdkConfig: SdkConfig
+   public let sdkConfig: SdkConfig
     let providersCreators: Array<ProviderCreator>
-    let reachFiveApi: ReachFiveApi
+  public  let reachFiveApi: ReachFiveApi
     var providers: [Provider] = []
     internal var scope: [String] = []
     internal let storage: Storage
+    let codeResponseType = "code"
     
     public init(sdkConfig: SdkConfig, providersCreators: Array<ProviderCreator>, storage: Storage?) {
         self.sdkConfig = sdkConfig
@@ -51,5 +52,36 @@ public class ReachFive: NSObject {
             Providers: \(providers)
             Scope: \(scope.joined(separator: ""))
         """
+    }
+    
+    public func loginCallback(tkn: String, scopes: [String]?)  -> String {
+    
+          let pkce = Pkce.generate()
+          self.storage.save(key: "PASSWORDLESS_PKCE", value: pkce)
+        
+          let scope = [String](scopes!).joined(separator: " ")
+          let options: [String:String] = [
+          "client_id": sdkConfig.clientId,
+          "tkn": tkn,
+          "response_type": codeResponseType,
+          "redirect_uri": sdkConfig.scheme,
+          "scope": scope,
+          "code_challenge": pkce.codeChallenge,
+          "code_challenge_method": pkce.codeChallengeMethod
+          ]
+             return  self.reachFiveApi
+                        .authorize(options: options)            
+         }
+    
+    public func authWithCode(code: String,pkce :Pkce) -> Future<AuthToken, ReachFiveError> {
+        let authCodeRequest = AuthCodeRequest(
+            clientId:self.sdkConfig.clientId ,
+            code: code,
+            redirectUri: self.sdkConfig.scheme,
+            pkce: pkce
+        )
+        return self.reachFiveApi
+            .authWithCode(authCodeRequest: authCodeRequest)
+            .flatMap({ AuthToken.fromOpenIdTokenResponseFuture($0) })
     }
 }

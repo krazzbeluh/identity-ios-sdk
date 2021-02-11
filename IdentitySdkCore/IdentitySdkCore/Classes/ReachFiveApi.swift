@@ -301,4 +301,19 @@ public class ReachFiveApi {
     func createUrl(path: String) -> String {
         return "https://\(sdkConfig.domain)\(path)"
     }
+    
+    public func authorize(options: [String:String]) -> String {
+    
+        let request: URLRequest?
+        var redirectUri = String()
+          do {
+            request = try URLRequest(url: createUrl(path: "/oauth/authorize?"), method: .get, headers: nil)
+            let encodedURLRequest = try URLEncoding.queryString.encode(request!, with: options )
+            redirectUri = "\(encodedURLRequest)"
+          
+           } catch {
+               return "failed to build url"
+           }
+       return redirectUri
+    }
 }
