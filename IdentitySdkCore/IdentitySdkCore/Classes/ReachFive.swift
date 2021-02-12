@@ -13,9 +13,9 @@ public class ReachFive: NSObject {
     let notificationPasswordlessName = Notification.Name("PasswordlessNotification")
     var passwordlessCallback: PasswordlessCallback? = nil
     var state: State = .NotInitialized
-   public let sdkConfig: SdkConfig
+    let sdkConfig: SdkConfig
     let providersCreators: Array<ProviderCreator>
-  public  let reachFiveApi: ReachFiveApi
+    let reachFiveApi: ReachFiveApi
     var providers: [Provider] = []
     internal var scope: [String] = []
     internal let storage: Storage
