@@ -57,7 +57,7 @@ public class ReachFive: NSObject {
     public func loginCallback(tkn: String, scopes: [String]?)  -> String {
     
           let pkce = Pkce.generate()
-          self.storage.save(key: "PASSWORDLESS_PKCE", value: pkce)
+          self.storage.save(key: "CODE_VERIFIER", value: pkce)
         
           let scope = [String](scopes!).joined(separator: " ")
           let options: [String:String] = [
@@ -73,9 +73,9 @@ public class ReachFive: NSObject {
                         .authorize(options: options)            
          }
     
-    public func authWithCode(code: String,pkce :Pkce) -> Future<AuthToken, ReachFiveError> {
+    public func authWithCode(code: String, pkce :Pkce) -> Future<AuthToken, ReachFiveError> {
         let authCodeRequest = AuthCodeRequest(
-            clientId:self.sdkConfig.clientId ,
+            clientId: self.sdkConfig.clientId ,
             code: code,
             redirectUri: self.sdkConfig.scheme,
             pkce: pkce

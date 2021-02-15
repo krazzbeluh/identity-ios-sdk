@@ -13,7 +13,7 @@ import BrightFutures
 
 class RedirectionViewController: UIViewController, SFSafariViewControllerDelegate
  {
-       let pkce: Pkce? = UserDefaultsStorage().take(key: "PASSWORDLESS_PKCE")
+       let pkce: Pkce? = UserDefaultsStorage().take(key: "CODE_VERIFIER")
        var url = String()
        private let notificationName = Notification.Name("AuthCallbackNotification")
        private var safariViewController: SFSafariViewController? = nil
@@ -64,9 +64,7 @@ class RedirectionViewController: UIViewController, SFSafariViewControllerDelegat
        }
     
     private func handleAuthCode(_ code: String) {
-         
-           
-        AppDelegate.reachfive().authWithCode(code: code,pkce: self.pkce!)
+        AppDelegate.reachfive().authWithCode(code: code, pkce: self.pkce!)
                .onSuccess { authToken in
                    self.promise?.success(authToken)
                }
