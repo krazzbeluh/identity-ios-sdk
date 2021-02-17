@@ -1,7 +1,3 @@
-//
-//  RedirectionSafari.swift
-//  Pods
-//
 //  Created by admin on 16/02/2021.
 //
 
@@ -28,7 +24,6 @@ class RedirectionSafari: NSObject, SFSafariViewControllerDelegate
            self.promise = promise
            
            NotificationCenter.default.addObserver(self, selector: #selector(handleLogin(_:)), name: self.notificationName, object: nil)
-           
            self.safariViewController = SFSafariViewController.init(url: URL(string: url)!)
            self.safariViewController?.delegate = self
            UIApplication.shared.keyWindow?.rootViewController?.present(safariViewController!, animated: true)
