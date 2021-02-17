@@ -79,7 +79,7 @@ public class ReachFive: NSObject {
            let code =  redirectionSafari.handleResult(result: result)
            resultAuthToken = self.authWithCode(code: code, pkce: pkce)
            // return authToken with completion
-           completion(resultAuthToken)
+           _ = completion(resultAuthToken)
         }
     }
    
