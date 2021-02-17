@@ -19,6 +19,7 @@ public class ReachFive: NSObject {
     var providers: [Provider] = []
     internal var scope: [String] = []
     internal let storage: Storage
+    let codeResponseType = "code"
     
     public init(sdkConfig: SdkConfig, providersCreators: Array<ProviderCreator>, storage: Storage?) {
         self.sdkConfig = sdkConfig
@@ -51,5 +52,46 @@ public class ReachFive: NSObject {
             Providers: \(providers)
             Scope: \(scope.joined(separator: ""))
         """
+    }
+    
+      private func loginCallback(tkn: String, scopes: [String]?, completion: @escaping ((Future<AuthToken, ReachFiveError>) -> Any)) {
+         
+          var resultAuthToken = Future<AuthToken, ReachFiveError>()
+          let pkce = Pkce.generate()
+          self.storage.save(key: "CODE_VERIFIER", value: pkce)
+          let scope = [String](scopes!).joined(separator: " ")
+          let options: [String:String] = [
+          "client_id": sdkConfig.clientId,
+          "tkn": tkn,
+          "response_type": codeResponseType,
+          "redirect_uri": sdkConfig.scheme,
+          "scope": scope,
+          "code_challenge": pkce.codeChallenge,
+          "code_challenge_method": pkce.codeChallengeMethod
+          ]
+          // Build redirectUri
+          let redirectUri = self.reachFiveApi
+                        .authorize(options: options)
+          // Pass the redirectUri to Safari to get code
+         let redirectionSafari = RedirectionSafari(url: redirectUri)
+         redirectionSafari.login().onComplete { result in
+            
+           let code =  redirectionSafari.handleResult(result: result)
+           resultAuthToken = self.authWithCode(code: code, pkce: pkce)
+           // return authToken with completion
+           _ = completion(resultAuthToken)
+        }
+    }
+   
+    public func authWithCode(code: String, pkce :Pkce) -> Future<AuthToken, ReachFiveError> {
+        let authCodeRequest = AuthCodeRequest(
+            clientId: self.sdkConfig.clientId ,
+            code: code,
+            redirectUri: self.sdkConfig.scheme,
+            pkce: pkce
+        )
+        return self.reachFiveApi
+            .authWithCode(authCodeRequest: authCodeRequest)
+            .flatMap({ AuthToken.fromOpenIdTokenResponseFuture($0) })
     }
 }
