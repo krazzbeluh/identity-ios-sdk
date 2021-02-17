@@ -54,11 +54,11 @@ public class ReachFive: NSObject {
         """
     }
     
-    public func loginCallback(tkn: String, scopes: [String]?)  -> String {
-    
+      private func loginCallback(tkn: String, scopes: [String]?, completion: @escaping ((Future<AuthToken, ReachFiveError>) -> Any)) {
+         
+          var resultAuthToken = Future<AuthToken, ReachFiveError>()
           let pkce = Pkce.generate()
           self.storage.save(key: "CODE_VERIFIER", value: pkce)
-        
           let scope = [String](scopes!).joined(separator: " ")
           let options: [String:String] = [
           "client_id": sdkConfig.clientId,
@@ -69,10 +69,20 @@ public class ReachFive: NSObject {
           "code_challenge": pkce.codeChallenge,
           "code_challenge_method": pkce.codeChallengeMethod
           ]
-             return  self.reachFiveApi
-                        .authorize(options: options)            
-         }
-    
+          // Build redirectUri
+          let redirectUri = self.reachFiveApi
+                        .authorize(options: options)
+          // Pass the redirectUri to Safari to get code
+         let redirectionSafari = RedirectionSafari(url: redirectUri)
+         redirectionSafari.login().onComplete { result in
+            
+           let code =  redirectionSafari.handleResult(result: result)
+           resultAuthToken = self.authWithCode(code: code, pkce: pkce)
+           // return authToken with completion
+           completion(resultAuthToken)
+        }
+    }
+   
     public func authWithCode(code: String, pkce :Pkce) -> Future<AuthToken, ReachFiveError> {
         let authCodeRequest = AuthCodeRequest(
             clientId: self.sdkConfig.clientId ,
