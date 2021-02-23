@@ -101,7 +101,7 @@ public class KeychainCredentialStore : CredentialStore {
 
         if let bytes = cred.toCBOR() {
             do {
-                try keychain.set(Data(bytes: bytes), key: handle)
+                try keychain.set(Data(_: bytes), key: handle)
                 return true
             } catch let error {
                 WAKLogger.debug("<KeychainStore> failed to save credential-source: \(error)")

@@ -174,7 +174,7 @@ class ReachFiveFidoClient: NSObject
                 print("==========================================")
 
                            let user: [UInt8] = assertion.response.userHandle ?? []
-                           let userName = String(data: Data(bytes: user), encoding: .utf8) ?? ""
+                           let userName = String(data: Data(_: user), encoding: .utf8) ?? ""
                            let rawId = assertion.rawId.toHexString()
                            let credId = assertion.id
                            let credType = assertion.type.rawValue

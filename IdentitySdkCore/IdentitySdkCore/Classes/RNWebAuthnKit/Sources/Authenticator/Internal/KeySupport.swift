@@ -65,7 +65,7 @@ public class ECDSAKeySupport : KeySupport {
     public func sign(data: [UInt8], label: String) -> Optional<[UInt8]> {
         do {
             let pair = self.createPair(label: label)
-            let signature = try pair.sign(Data(bytes: data), hash: .sha256)
+            let signature = try pair.sign(Data(_: data), hash: .sha256)
             return signature.bytes
         } catch let error {
             WAKLogger.debug("<ECDSAKeySupport> failed to sign: \(error)")
