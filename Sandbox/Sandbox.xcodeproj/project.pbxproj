@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1CBFF6C55D8F565FADB2A5E4 /* Pods_Sandbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80A725A7D6F0F0D3184281E0 /* Pods_Sandbox.framework */; };
 		3414A7CD22DDD39C00CF393A /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3414A7CC22DDD39C00CF393A /* ProfileController.swift */; };
 		341731FE229D6B6400681CFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341731FD229D6B6400681CFD /* AppDelegate.swift */; };
 		34173200229D6B6400681CFD /* LoginWithProvidersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 341731FF229D6B6400681CFD /* LoginWithProvidersController.swift */; };
@@ -20,13 +21,21 @@
 		349E16EC230BEBBF002EA06B /* UpdatePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E16EB230BEBBF002EA06B /* UpdatePasswordController.swift */; };
 		843DB0CA258C340800591BD7 /* SignupWithEmailSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843DB0C9258C340800591BD7 /* SignupWithEmailSuccess.swift */; };
 		8450A93D258CD062002ED710 /* LoginWithFaceBookSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8450A93C258CD062002ED710 /* LoginWithFaceBookSuccess.swift */; };
+		8496EB4825DEB764005098DD /* LoginWithFidoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB4625DEB764005098DD /* LoginWithFidoViewController.swift */; };
+		8496EB4925DEB764005098DD /* SignUpFidoControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB4725DEB764005098DD /* SignUpFidoControllerViewController.swift */; };
 		84E6969A258AE152003AF19B /* LoginWithEmailSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E69699258AE152003AF19B /* LoginWithEmailSuccess.swift */; };
 		84E696A2258BF70D003AF19B /* LoginWithPhoneSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E696A1258BF70D003AF19B /* LoginWithPhoneSuccess.swift */; };
-		ADC8995361C4AB125E775CCE /* Pods_Sandbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 514A43AA721312D19BFBD529 /* Pods_Sandbox.framework */; };
 		EA91ACDEBA85D43349D63550 /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA91A294C5DD405D6A38ADCC /* SecureStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8496EB9A25DEC1DB005098DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 341731F2229D6B6400681CFD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 341731F9229D6B6400681CFD;
+			remoteInfo = Sandbox;
+		};
 		84E6969C258AE152003AF19B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 341731F2229D6B6400681CFD /* Project object */;
@@ -36,7 +45,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		8496EBA525DEC1DB005098DD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		01BDCBDDF536F18177B969AB /* Pods-Sandbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sandbox.release.xcconfig"; path = "Target Support Files/Pods-Sandbox/Pods-Sandbox.release.xcconfig"; sourceTree = "<group>"; };
 		3414A7CC22DDD39C00CF393A /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		341731FA229D6B6400681CFD /* Sandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		341731FD229D6B6400681CFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,12 +73,14 @@
 		3417FF6F22FB11CD0009EC84 /* LoginWithPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithPasswordController.swift; sourceTree = "<group>"; };
 		34797ABC22A9607D00ED093C /* SignupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupController.swift; sourceTree = "<group>"; };
 		349E16EB230BEBBF002EA06B /* UpdatePasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordController.swift; sourceTree = "<group>"; };
-		514A43AA721312D19BFBD529 /* Pods_Sandbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sandbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		75AC65C0735D780B9A6F4181 /* Pods-Sandbox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sandbox.release.xcconfig"; path = "Target Support Files/Pods-Sandbox/Pods-Sandbox.release.xcconfig"; sourceTree = "<group>"; };
-		81035E8DEC67D32DB84E55AA /* Pods-Sandbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sandbox.debug.xcconfig"; path = "Target Support Files/Pods-Sandbox/Pods-Sandbox.debug.xcconfig"; sourceTree = "<group>"; };
+		599E4AA754038D29E0738EAC /* Pods-Sandbox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sandbox.debug.xcconfig"; path = "Target Support Files/Pods-Sandbox/Pods-Sandbox.debug.xcconfig"; sourceTree = "<group>"; };
+		80A725A7D6F0F0D3184281E0 /* Pods_Sandbox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sandbox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		842A9EB52590AAF1004A58E5 /* IdentitySdkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IdentitySdkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		843DB0C9258C340800591BD7 /* SignupWithEmailSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupWithEmailSuccess.swift; sourceTree = "<group>"; };
 		8450A93C258CD062002ED710 /* LoginWithFaceBookSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithFaceBookSuccess.swift; sourceTree = "<group>"; };
+		8496EB4625DEB764005098DD /* LoginWithFidoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWithFidoViewController.swift; sourceTree = "<group>"; };
+		8496EB4725DEB764005098DD /* SignUpFidoControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpFidoControllerViewController.swift; sourceTree = "<group>"; };
+		8496EB9625DEC1DB005098DD /* RNWebAuthnKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RNWebAuthnKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E69687258A53AD003AF19B /* IdentitySdkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IdentitySdkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E6968B258A5534003AF19B /* IdentitySdkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IdentitySdkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E6968F258A5661003AF19B /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -71,7 +96,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ADC8995361C4AB125E775CCE /* Pods_Sandbox.framework in Frameworks */,
+				1CBFF6C55D8F565FADB2A5E4 /* Pods_Sandbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8496EB9325DEC1DB005098DD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +133,7 @@
 			children = (
 				341731FA229D6B6400681CFD /* Sandbox.app */,
 				84E69697258AE152003AF19B /* SandboxUITests.xctest */,
+				8496EB9625DEC1DB005098DD /* RNWebAuthnKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,6 +141,8 @@
 		341731FC229D6B6400681CFD /* Sandbox */ = {
 			isa = PBXGroup;
 			children = (
+				8496EB4625DEB764005098DD /* LoginWithFidoViewController.swift */,
+				8496EB4725DEB764005098DD /* SignUpFidoControllerViewController.swift */,
 				341731FD229D6B6400681CFD /* AppDelegate.swift */,
 				341731FF229D6B6400681CFD /* LoginWithProvidersController.swift */,
 				3414A7CC22DDD39C00CF393A /* ProfileController.swift */,
@@ -140,8 +175,8 @@
 		8CD874808BCF122A3F9EDA83 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				81035E8DEC67D32DB84E55AA /* Pods-Sandbox.debug.xcconfig */,
-				75AC65C0735D780B9A6F4181 /* Pods-Sandbox.release.xcconfig */,
+				599E4AA754038D29E0738EAC /* Pods-Sandbox.debug.xcconfig */,
+				01BDCBDDF536F18177B969AB /* Pods-Sandbox.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -153,7 +188,7 @@
 				84E6968F258A5661003AF19B /* AddressBook.framework */,
 				84E6968B258A5534003AF19B /* IdentitySdkCore.framework */,
 				84E69687258A53AD003AF19B /* IdentitySdkCore.framework */,
-				514A43AA721312D19BFBD529 /* Pods_Sandbox.framework */,
+				80A725A7D6F0F0D3184281E0 /* Pods_Sandbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -165,12 +200,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3417320C229D6B6400681CFD /* Build configuration list for PBXNativeTarget "Sandbox" */;
 			buildPhases = (
-				FDD2E9DEC1BF5CB9300AA469 /* [CP] Check Pods Manifest.lock */,
+				BBBAC9DFE3AFBDEA6D4A8020 /* [CP] Check Pods Manifest.lock */,
 				341731F6229D6B6400681CFD /* Sources */,
 				341731F7229D6B6400681CFD /* Frameworks */,
 				341731F8229D6B6400681CFD /* Resources */,
-				D749846787C43CE94EBEEB6E /* [CP] Embed Pods Frameworks */,
-				84AC4B92D0B0EFDD64E12CAA /* [CP] Copy Pods Resources */,
+				8496EBA525DEC1DB005098DD /* Embed Frameworks */,
+				76357B2B1FEFE72A3B130AAE /* [CP] Embed Pods Frameworks */,
+				FE33D02D0EBDA1AC124711ED /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -180,6 +216,24 @@
 			productName = Sandbox;
 			productReference = 341731FA229D6B6400681CFD /* Sandbox.app */;
 			productType = "com.apple.product-type.application";
+		};
+		8496EB9525DEC1DB005098DD /* RNWebAuthnKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8496EBAB25DEC1DB005098DD /* Build configuration list for PBXNativeTarget "RNWebAuthnKitTests" */;
+			buildPhases = (
+				8496EB9225DEC1DB005098DD /* Sources */,
+				8496EB9325DEC1DB005098DD /* Frameworks */,
+				8496EB9425DEC1DB005098DD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8496EB9B25DEC1DB005098DD /* PBXTargetDependency */,
+			);
+			name = RNWebAuthnKitTests;
+			productName = RNWebAuthnKitTests;
+			productReference = 8496EB9625DEC1DB005098DD /* RNWebAuthnKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		84E69696258AE152003AF19B /* SandboxUITests */ = {
 			isa = PBXNativeTarget;
@@ -215,6 +269,10 @@
 					341731F9229D6B6400681CFD = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
+					8496EB9525DEC1DB005098DD = {
+						CreatedOnToolsVersion = 11.7;
+						TestTargetID = 341731F9229D6B6400681CFD;
+					};
 					84E69696258AE152003AF19B = {
 						CreatedOnToolsVersion = 11.7;
 						TestTargetID = 341731F9229D6B6400681CFD;
@@ -236,6 +294,7 @@
 			targets = (
 				341731F9229D6B6400681CFD /* Sandbox */,
 				84E69696258AE152003AF19B /* SandboxUITests */,
+				8496EB9525DEC1DB005098DD /* RNWebAuthnKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -251,6 +310,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8496EB9425DEC1DB005098DD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		84E69695258AE152003AF19B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -261,24 +327,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		84AC4B92D0B0EFDD64E12CAA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Sandbox/Pods-Sandbox-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Sandbox/Pods-Sandbox-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sandbox/Pods-Sandbox-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D749846787C43CE94EBEEB6E /* [CP] Embed Pods Frameworks */ = {
+		76357B2B1FEFE72A3B130AAE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -295,7 +344,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sandbox/Pods-Sandbox-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FDD2E9DEC1BF5CB9300AA469 /* [CP] Check Pods Manifest.lock */ = {
+		BBBAC9DFE3AFBDEA6D4A8020 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -317,6 +366,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FE33D02D0EBDA1AC124711ED /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sandbox/Pods-Sandbox-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Sandbox/Pods-Sandbox-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Sandbox/Pods-Sandbox-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -328,11 +394,20 @@
 				3417FF7022FB11CD0009EC84 /* LoginWithPasswordController.swift in Sources */,
 				34173200229D6B6400681CFD /* LoginWithProvidersController.swift in Sources */,
 				349E16EC230BEBBF002EA06B /* UpdatePasswordController.swift in Sources */,
+				8496EB4825DEB764005098DD /* LoginWithFidoViewController.swift in Sources */,
 				341731FE229D6B6400681CFD /* AppDelegate.swift in Sources */,
 				3417FF6822F846610009EC84 /* UpdatePhoneNumberController.swift in Sources */,
+				8496EB4925DEB764005098DD /* SignUpFidoControllerViewController.swift in Sources */,
 				3414A7CD22DDD39C00CF393A /* ProfileController.swift in Sources */,
 				3417FF6E22FB06E50009EC84 /* PasswordlessController.swift in Sources */,
 				EA91ACDEBA85D43349D63550 /* SecureStorage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8496EB9225DEC1DB005098DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +425,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8496EB9B25DEC1DB005098DD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 341731F9229D6B6400681CFD /* Sandbox */;
+			targetProxy = 8496EB9A25DEC1DB005098DD /* PBXContainerItemProxy */;
+		};
 		84E6969D258AE152003AF19B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 341731F9229D6B6400681CFD /* Sandbox */;
@@ -497,19 +577,36 @@
 		};
 		3417320D229D6B6400681CFD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 81035E8DEC67D32DB84E55AA /* Pods-Sandbox.debug.xcconfig */;
+			baseConfigurationReference = 599E4AA754038D29E0738EAC /* Pods-Sandbox.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6KDQ68PRPG;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/BrightFutures\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/CryptoSwift\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBSDKCoreKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBSDKLoginKit\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FacebookCore\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/FacebookLogin\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GTMSessionFetcher\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/GoogleToolboxForMac\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/IdentitySdkCore\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/IdentitySdkFacebook\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/IdentitySdkGoogle\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/IdentitySdkWebView\"",
+					"\"${PODS_ROOT}/GoogleSignIn/Frameworks\"",
+				);
 				INFOPLIST_FILE = Sandbox/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.reach5.Sandbox;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reach5.Sandbox2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -519,7 +616,7 @@
 		};
 		3417320E229D6B6400681CFD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 75AC65C0735D780B9A6F4181 /* Pods-Sandbox.release.xcconfig */;
+			baseConfigurationReference = 01BDCBDDF536F18177B969AB /* Pods-Sandbox.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -531,11 +628,53 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.reach5.Sandbox;
+				PRODUCT_BUNDLE_IDENTIFIER = com.reach5.Sandbox2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8496EBA825DEC1DB005098DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6KDQ68PRPG;
+				INFOPLIST_FILE = RNWebAuthnKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = reachfive.RNWebAuthnKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sandbox.app/Sandbox";
+			};
+			name = Debug;
+		};
+		8496EBA925DEC1DB005098DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6KDQ68PRPG;
+				INFOPLIST_FILE = RNWebAuthnKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = reachfive.RNWebAuthnKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sandbox.app/Sandbox";
 			};
 			name = Release;
 		};
@@ -594,6 +733,15 @@
 			buildConfigurations = (
 				3417320D229D6B6400681CFD /* Debug */,
 				3417320E229D6B6400681CFD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8496EBAB25DEC1DB005098DD /* Build configuration list for PBXNativeTarget "RNWebAuthnKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8496EBA825DEC1DB005098DD /* Debug */,
+				8496EBA925DEC1DB005098DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

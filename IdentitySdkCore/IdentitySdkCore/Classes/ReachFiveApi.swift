@@ -316,4 +316,55 @@ public class ReachFiveApi {
            }
        return redirectUri
     }
+    
+    public func createWebAuthnSignupOptions(webAuthnRegistrationRequest: WebAuthnRegistrationRequest) -> Future<RegistrationOptions, ReachFiveError> {
+         return AF
+             .request(
+                 createUrl(path: "/identity/v1/webauthn/signup-options?device=\(deviceInfo)"),
+                 method: .post,
+                 parameters: webAuthnRegistrationRequest.dictionary(),
+                 encoding: JSONEncoding.default
+             )
+             .validate(contentType: ["application/json"])
+             .responseJson(type: RegistrationOptions.self, decoder: self.decoder)
+     }
+     public func signupWithWebAuthn(webauthnSignupCredential: WebauthnSignupCredential) -> Future<AuthenticationToken, ReachFiveError> {
+         return AF
+             .request(
+                 createUrl(path: "/identity/v1/webauthn/signup?device=\(deviceInfo)"),
+                 method: .post,
+                 parameters: webauthnSignupCredential.dictionary(),
+                 encoding: JSONEncoding.default
+             )
+             .validate(contentType: ["application/json"])
+             .responseJson(type: AuthenticationToken.self, decoder: self.decoder)
+     }
+     
+     public func createWebAuthnAuthenticationOptions(webAuthnLoginRequest: WebAuthnLoginRequest) -> Future<AuthenticationOptions, ReachFiveError> {
+         
+         print("url",createUrl(path: "/identity/v1/webauthn/authentication-options?device=\(deviceInfo)"))
+
+            return AF
+                .request(
+                    createUrl(path: "/identity/v1/webauthn/authentication-options?device=\(deviceInfo)"),
+                    method: .post,
+                    parameters: webAuthnLoginRequest.dictionary(),
+                    encoding: JSONEncoding.default
+                )
+                .validate(contentType: ["application/json"])
+                .responseJson(type: AuthenticationOptions.self, decoder: self.decoder)
+        }
+     
+     public func authenticateWithWebAuthn(authenticationPublicKeyCredential: AuthenticationPublicKeyCredential) -> Future<AuthenticationToken, ReachFiveError> {
+         print("url",createUrl(path: "/identity/v1/webauthn/authentication?device=\(deviceInfo)"))
+            return AF
+                .request(
+                    createUrl(path: "/identity/v1/webauthn/authentication?device=\(deviceInfo)"),
+                    method: .post,
+                    parameters: authenticationPublicKeyCredential.dictionary(),
+                    encoding: JSONEncoding.default
+             )
+                .validate(contentType: ["application/json"])
+                .responseJson(type: AuthenticationToken.self, decoder: self.decoder)
+        }
 }

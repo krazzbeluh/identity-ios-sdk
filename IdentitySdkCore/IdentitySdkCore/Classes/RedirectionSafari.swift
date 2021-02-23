@@ -49,9 +49,28 @@ class RedirectionSafari: NSObject, SFSafariViewControllerDelegate
        }
     
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
-          NotificationCenter.default.removeObserver(self, name: self.notificationName, object: nil)
-          controller.dismiss(animated: true, completion: nil)
-      }
+           NotificationCenter.default.removeObserver(self, name: self.notificationName, object: nil)
+           controller.dismiss(animated: true, completion: nil)
+       }
+       
+       public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+           if let sourceApplication = options[.sourceApplication] {
+               if (String(describing: sourceApplication) == "com.apple.SafariViewService") {
+                   NotificationCenter.default.post(name: self.notificationName, object: url)
+                   return true
+               }
+           }
+           
+           return false
+       }
+       
+       func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+           return true
+       }
+       
+       public func applicationDidBecomeActive(_ application: UIApplication) {
+           
+       }
       
     func logout() -> Future<(), ReachFiveError> {
           return Future.init(value: ())
@@ -62,6 +81,7 @@ class RedirectionSafari: NSObject, SFSafariViewControllerDelegate
        switch result {
        case .success(let code):
         resultcode = code
+        print("code : ",code)
        case .failure(let error):
            print(error)
        }

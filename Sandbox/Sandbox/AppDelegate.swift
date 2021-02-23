@@ -10,6 +10,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     public static let storage = SecureStorage()
     public static let authKey = "AUTH_TOKEN"
+    public static let origin = "https://dev-sandbox-268508.web.app"
+
 
     let reachfive: ReachFive = ReachFive(
             sdkConfig: SdkConfig(
