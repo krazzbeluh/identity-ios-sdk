@@ -35,10 +35,11 @@ PODS:
   - IdentitySdkCore (5.5.0):
     - Alamofire (~> 5.2.2)
     - BrightFutures (~> 8.0.0)
-    - CryptoSwift (~> 1.3.2)
+    - CryptoSwift (~> 1.3.8)
     - EllipticCurveKeyPair (~> 2.0-beta1)
-    - KeychainAccess (~> 3.1.2)
-    - PromiseKit (~> 6.3.5)
+    - KeychainAccess (~> 4.2.1)
+    - PromiseKit (~> 6.13.1)
+    - WebAuthnKit (~> 0.9.5)
   - IdentitySdkFacebook (5.5.0):
     - FacebookCore
     - FacebookLogin
@@ -48,16 +49,21 @@ PODS:
     - IdentitySdkCore (~> 5)
   - IdentitySdkWebView (5.5.0):
     - IdentitySdkCore (~> 5)
-  - KeychainAccess (3.1.2)
-  - PromiseKit (6.3.5):
-    - PromiseKit/CorePromise (= 6.3.5)
-    - PromiseKit/Foundation (= 6.3.5)
-    - PromiseKit/UIKit (= 6.3.5)
-  - PromiseKit/CorePromise (6.3.5)
-  - PromiseKit/Foundation (6.3.5):
+  - KeychainAccess (4.2.1)
+  - PromiseKit (6.13.1):
+    - PromiseKit/CorePromise (= 6.13.1)
+    - PromiseKit/Foundation (= 6.13.1)
+    - PromiseKit/UIKit (= 6.13.1)
+  - PromiseKit/CorePromise (6.13.1)
+  - PromiseKit/Foundation (6.13.1):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (6.3.5):
+  - PromiseKit/UIKit (6.13.1):
     - PromiseKit/CorePromise
+  - WebAuthnKit (0.9.5):
+    - CryptoSwift (~> 1.3.8)
+    - EllipticCurveKeyPair (~> 2.0)
+    - KeychainAccess (~> 4.2.1)
+    - PromiseKit (~> 6.13.1)
 
 DEPENDENCIES:
   - IdentitySdkCore (from `../IdentitySdkCore.podspec`)
@@ -80,6 +86,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - KeychainAccess
     - PromiseKit
+    - WebAuthnKit
 
 EXTERNAL SOURCES:
   IdentitySdkCore:
@@ -103,12 +110,13 @@ SPEC CHECKSUMS:
   GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
   GoogleToolboxForMac: 471e0c05d39506e50e6398f46fa9a12ae0efeff9
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
-  IdentitySdkCore: b759213dd6df26fdcfbc3553f5866be6490a9137
+  IdentitySdkCore: 05fe227b6f3bf5a4e21671de5647e916b5df9b83
   IdentitySdkFacebook: 9f209dda98213504b65a1f174d07c446f2ef79e3
   IdentitySdkGoogle: 96d47684f8cd75a313d6ae67873954746930cb8c
   IdentitySdkWebView: 007896443a06bce510bd78ebb14230d2db579c4b
-  KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
-  PromiseKit: 32c36425387e9cfc7f1206f27bfd906d0b53c0d6
+  KeychainAccess: 9b07f665298d13c3a85881bd3171f6f49b8151c1
+  PromiseKit: 28fda91c973cc377875d8c0ea4f973013c05b6db
+  WebAuthnKit: 921cdc78466db607caefe2feb617ac11eae81197
 
 PODFILE CHECKSUM: df5646bc517f22e8e98863ab8a2bdb1e3e4b11c2
 

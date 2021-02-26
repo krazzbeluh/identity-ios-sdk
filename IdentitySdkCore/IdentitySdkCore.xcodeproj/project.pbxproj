@@ -70,31 +70,6 @@
 		8496EB4325DEB141005098DD /* AuthenticationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB3925DEB141005098DD /* AuthenticationToken.swift */; };
 		8496EB4425DEB141005098DD /* R5PublicKeyCredentialRpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB3A25DEB141005098DD /* R5PublicKeyCredentialRpEntity.swift */; };
 		8496EB4525DEB141005098DD /* R5PublicKeyCredentialUserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB3B25DEB141005098DD /* R5PublicKeyCredentialUserEntity.swift */; };
-		84DB8B8425E4573800238991 /* COSE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B6425E4573700238991 /* COSE.swift */; };
-		84DB8B8525E4573800238991 /* CBOR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B6525E4573700238991 /* CBOR.swift */; };
-		84DB8B8625E4573800238991 /* UUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B6625E4573700238991 /* UUID.swift */; };
-		84DB8B8725E4573800238991 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B6725E4573700238991 /* JSON.swift */; };
-		84DB8B8925E4573800238991 /* Bytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B6925E4573700238991 /* Bytes.swift */; };
-		84DB8B8A25E4573800238991 /* WAKLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B6A25E4573700238991 /* WAKLogger.swift */; };
-		84DB8B8B25E4573800238991 /* UserConsentUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B6E25E4573700238991 /* UserConsentUI.swift */; };
-		84DB8B8C25E4573800238991 /* UserConsentUIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B6F25E4573700238991 /* UserConsentUIConfig.swift */; };
-		84DB8B8D25E4573800238991 /* KeySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B7025E4573700238991 /* KeySelectionViewController.swift */; };
-		84DB8B8E25E4573800238991 /* KeyRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B7125E4573700238991 /* KeyRegistrationViewController.swift */; };
-		84DB8B8F25E4573800238991 /* KeySupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B7225E4573700238991 /* KeySupport.swift */; };
-		84DB8B9025E4573800238991 /* InternalAuthenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B7325E4573700238991 /* InternalAuthenticator.swift */; };
-		84DB8B9125E4573800238991 /* CredentialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B7425E4573700238991 /* CredentialStore.swift */; };
-		84DB8B9225E4573800238991 /* CredentialSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B7525E4573700238991 /* CredentialSource.swift */; };
-		84DB8B9325E4573800238991 /* SelfAttestation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B7625E4573800238991 /* SelfAttestation.swift */; };
-		84DB8B9425E4573800238991 /* InternalAuthenticatorMakeCredentialSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B7825E4573800238991 /* InternalAuthenticatorMakeCredentialSession.swift */; };
-		84DB8B9525E4573800238991 /* InternalAuthenticatorGetAssertionSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B7925E4573800238991 /* InternalAuthenticatorGetAssertionSession.swift */; };
-		84DB8B9625E4573800238991 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B7A25E4573800238991 /* Authenticator.swift */; };
-		84DB8B9725E4573800238991 /* Attestation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B7B25E4573800238991 /* Attestation.swift */; };
-		84DB8B9825E4573800238991 /* AuthenticatorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B7C25E4573800238991 /* AuthenticatorData.swift */; };
-		84DB8B9925E4573800238991 /* ClientCreateOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B7F25E4573800238991 /* ClientCreateOperation.swift */; };
-		84DB8B9A25E4573800238991 /* ClientGetOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B8025E4573800238991 /* ClientGetOperation.swift */; };
-		84DB8B9B25E4573800238991 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B8125E4573800238991 /* Client.swift */; };
-		84DB8B9C25E4573800238991 /* RNWebAuthnKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 84DB8B8225E4573800238991 /* RNWebAuthnKit.h */; };
-		84DB8B9D25E4573800238991 /* WAKTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B8325E4573800238991 /* WAKTypes.swift */; };
 		84DB8B9F25E45B8900238991 /* ReachFiveFidoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B9E25E45B8900238991 /* ReachFiveFidoClient.swift */; };
 		E30A102DDA50B9B0CAC3AFC1 /* Pods_IdentitySdkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF8624708D184BE16F33403 /* Pods_IdentitySdkCore.framework */; };
 /* End PBXBuildFile section */
@@ -167,31 +142,6 @@
 		8496EB3A25DEB141005098DD /* R5PublicKeyCredentialRpEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R5PublicKeyCredentialRpEntity.swift; sourceTree = "<group>"; };
 		8496EB3B25DEB141005098DD /* R5PublicKeyCredentialUserEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R5PublicKeyCredentialUserEntity.swift; sourceTree = "<group>"; };
 		84C353CD25E47238006978E5 /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		84DB8B6425E4573700238991 /* COSE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = COSE.swift; sourceTree = "<group>"; };
-		84DB8B6525E4573700238991 /* CBOR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBOR.swift; sourceTree = "<group>"; };
-		84DB8B6625E4573700238991 /* UUID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UUID.swift; sourceTree = "<group>"; };
-		84DB8B6725E4573700238991 /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
-		84DB8B6925E4573700238991 /* Bytes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bytes.swift; sourceTree = "<group>"; };
-		84DB8B6A25E4573700238991 /* WAKLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WAKLogger.swift; sourceTree = "<group>"; };
-		84DB8B6E25E4573700238991 /* UserConsentUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserConsentUI.swift; sourceTree = "<group>"; };
-		84DB8B6F25E4573700238991 /* UserConsentUIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserConsentUIConfig.swift; sourceTree = "<group>"; };
-		84DB8B7025E4573700238991 /* KeySelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeySelectionViewController.swift; sourceTree = "<group>"; };
-		84DB8B7125E4573700238991 /* KeyRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyRegistrationViewController.swift; sourceTree = "<group>"; };
-		84DB8B7225E4573700238991 /* KeySupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeySupport.swift; sourceTree = "<group>"; };
-		84DB8B7325E4573700238991 /* InternalAuthenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalAuthenticator.swift; sourceTree = "<group>"; };
-		84DB8B7425E4573700238991 /* CredentialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialStore.swift; sourceTree = "<group>"; };
-		84DB8B7525E4573700238991 /* CredentialSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialSource.swift; sourceTree = "<group>"; };
-		84DB8B7625E4573800238991 /* SelfAttestation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfAttestation.swift; sourceTree = "<group>"; };
-		84DB8B7825E4573800238991 /* InternalAuthenticatorMakeCredentialSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalAuthenticatorMakeCredentialSession.swift; sourceTree = "<group>"; };
-		84DB8B7925E4573800238991 /* InternalAuthenticatorGetAssertionSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalAuthenticatorGetAssertionSession.swift; sourceTree = "<group>"; };
-		84DB8B7A25E4573800238991 /* Authenticator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
-		84DB8B7B25E4573800238991 /* Attestation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attestation.swift; sourceTree = "<group>"; };
-		84DB8B7C25E4573800238991 /* AuthenticatorData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatorData.swift; sourceTree = "<group>"; };
-		84DB8B7F25E4573800238991 /* ClientCreateOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientCreateOperation.swift; sourceTree = "<group>"; };
-		84DB8B8025E4573800238991 /* ClientGetOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientGetOperation.swift; sourceTree = "<group>"; };
-		84DB8B8125E4573800238991 /* Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
-		84DB8B8225E4573800238991 /* RNWebAuthnKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNWebAuthnKit.h; sourceTree = "<group>"; };
-		84DB8B8325E4573800238991 /* WAKTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WAKTypes.swift; sourceTree = "<group>"; };
 		84DB8B9E25E45B8900238991 /* ReachFiveFidoClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachFiveFidoClient.swift; sourceTree = "<group>"; };
 		BBC988A8EB1F35392B8DF946 /* Pods-IdentitySdkCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentitySdkCore.release.xcconfig"; path = "Target Support Files/Pods-IdentitySdkCore/Pods-IdentitySdkCore.release.xcconfig"; sourceTree = "<group>"; };
 		FDF8624708D184BE16F33403 /* Pods_IdentitySdkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IdentitySdkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,7 +162,6 @@
 		34173218229D801500681CFD /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				84DB8B6125E4573700238991 /* RNWebAuthnKit */,
 				34E18B8D22A6C13100952EBD /* models */,
 				347FDB53229BE8F800660687 /* Provider.swift */,
 				347FDB66229C02FE00660687 /* ReachFive.swift */,
@@ -365,102 +314,6 @@
 			path = webAuthn;
 			sourceTree = "<group>";
 		};
-		84DB8B6125E4573700238991 /* RNWebAuthnKit */ = {
-			isa = PBXGroup;
-			children = (
-				84DB8B6225E4573700238991 /* Sources */,
-			);
-			path = RNWebAuthnKit;
-			sourceTree = "<group>";
-		};
-		84DB8B6225E4573700238991 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				84DB8B6325E4573700238991 /* Format */,
-				84DB8B6A25E4573700238991 /* WAKLogger.swift */,
-				84DB8B6B25E4573700238991 /* Authenticator */,
-				84DB8B7D25E4573800238991 /* Client */,
-				84DB8B8225E4573800238991 /* RNWebAuthnKit.h */,
-				84DB8B8325E4573800238991 /* WAKTypes.swift */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		84DB8B6325E4573700238991 /* Format */ = {
-			isa = PBXGroup;
-			children = (
-				84DB8B6425E4573700238991 /* COSE.swift */,
-				84DB8B6525E4573700238991 /* CBOR.swift */,
-				84DB8B6625E4573700238991 /* UUID.swift */,
-				84DB8B6725E4573700238991 /* JSON.swift */,
-				84DB8B6925E4573700238991 /* Bytes.swift */,
-			);
-			path = Format;
-			sourceTree = "<group>";
-		};
-		84DB8B6B25E4573700238991 /* Authenticator */ = {
-			isa = PBXGroup;
-			children = (
-				84DB8B6C25E4573700238991 /* Internal */,
-				84DB8B7A25E4573800238991 /* Authenticator.swift */,
-				84DB8B7B25E4573800238991 /* Attestation.swift */,
-				84DB8B7C25E4573800238991 /* AuthenticatorData.swift */,
-			);
-			path = Authenticator;
-			sourceTree = "<group>";
-		};
-		84DB8B6C25E4573700238991 /* Internal */ = {
-			isa = PBXGroup;
-			children = (
-				84DB8B6D25E4573700238991 /* UI */,
-				84DB8B7225E4573700238991 /* KeySupport.swift */,
-				84DB8B7325E4573700238991 /* InternalAuthenticator.swift */,
-				84DB8B7425E4573700238991 /* CredentialStore.swift */,
-				84DB8B7525E4573700238991 /* CredentialSource.swift */,
-				84DB8B7625E4573800238991 /* SelfAttestation.swift */,
-				84DB8B7725E4573800238991 /* Session */,
-			);
-			path = Internal;
-			sourceTree = "<group>";
-		};
-		84DB8B6D25E4573700238991 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				84DB8B6E25E4573700238991 /* UserConsentUI.swift */,
-				84DB8B6F25E4573700238991 /* UserConsentUIConfig.swift */,
-				84DB8B7025E4573700238991 /* KeySelectionViewController.swift */,
-				84DB8B7125E4573700238991 /* KeyRegistrationViewController.swift */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
-		84DB8B7725E4573800238991 /* Session */ = {
-			isa = PBXGroup;
-			children = (
-				84DB8B7825E4573800238991 /* InternalAuthenticatorMakeCredentialSession.swift */,
-				84DB8B7925E4573800238991 /* InternalAuthenticatorGetAssertionSession.swift */,
-			);
-			path = Session;
-			sourceTree = "<group>";
-		};
-		84DB8B7D25E4573800238991 /* Client */ = {
-			isa = PBXGroup;
-			children = (
-				84DB8B7E25E4573800238991 /* Operation */,
-				84DB8B8125E4573800238991 /* Client.swift */,
-			);
-			path = Client;
-			sourceTree = "<group>";
-		};
-		84DB8B7E25E4573800238991 /* Operation */ = {
-			isa = PBXGroup;
-			children = (
-				84DB8B7F25E4573800238991 /* ClientCreateOperation.swift */,
-				84DB8B8025E4573800238991 /* ClientGetOperation.swift */,
-			);
-			path = Operation;
-			sourceTree = "<group>";
-		};
 		927803C28AA84ED9FC3390CF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -478,7 +331,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				347FDB47229BE84500660687 /* IdentitySdkCore.h in Headers */,
-				84DB8B9C25E4573800238991 /* RNWebAuthnKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,28 +429,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				8496EB4125DEB141005098DD /* AuthenticationOptions.swift in Sources */,
-				84DB8B8F25E4573800238991 /* KeySupport.swift in Sources */,
 				34BDDA3822E5BE8C00D16DAE /* LoginSummary.swift in Sources */,
-				84DB8B9425E4573800238991 /* InternalAuthenticatorMakeCredentialSession.swift in Sources */,
 				340AF1F7232A9A2B00AA114D /* QueryString.swift in Sources */,
-				84DB8B8425E4573800238991 /* COSE.swift in Sources */,
 				8496EB2725DEAFCF005098DD /* EmailWebAuthnLoginRequest.swift in Sources */,
 				347FDB69229C04C200660687 /* ProviderConfig.swift in Sources */,
-				84DB8B9625E4573800238991 /* Authenticator.swift in Sources */,
 				8496EB2925DEAFCF005098DD /* R5AuthenticatorAttestationResponse.swift in Sources */,
 				3417FF6C22FAD6CB0009EC84 /* StartPasswordlessRequest.swift in Sources */,
-				84DB8B9225E4573800238991 /* CredentialSource.swift in Sources */,
 				349E16F0230C49E0002EA06B /* Storage.swift in Sources */,
 				8496EB4225DEB141005098DD /* CredentialCreationOptions.swift in Sources */,
 				347FDB54229BE8F800660687 /* Provider.swift in Sources */,
-				84DB8B8525E4573800238991 /* CBOR.swift in Sources */,
-				84DB8B8C25E4573800238991 /* UserConsentUIConfig.swift in Sources */,
 				34E18B8C22A6BEC900952EBD /* AccessTokenResponse.swift in Sources */,
 				34689AA122CE5D08002970F9 /* UpdateEmailRequest.swift in Sources */,
 				8496EB4525DEB141005098DD /* R5PublicKeyCredentialUserEntity.swift in Sources */,
 				34689A9122CDFAE4002970F9 /* Profile.swift in Sources */,
 				8496EB2E25DEB009005098DD /* ProfileWebAuthnSignupRequest.swift in Sources */,
-				84DB8B9725E4573800238991 /* Attestation.swift in Sources */,
 				3442C21E230EC48A009F8874 /* VerifyAuthCodeRequest.swift in Sources */,
 				34BDDA4222E5D87E00D16DAE /* ReachFivePassword.swift in Sources */,
 				8496EB4425DEB141005098DD /* R5PublicKeyCredentialRpEntity.swift in Sources */,
@@ -608,42 +452,28 @@
 				34689A9C22CE3E57002970F9 /* Base64.swift in Sources */,
 				34BDDA3622E5BE6000D16DAE /* ProfileAddress.swift in Sources */,
 				8496EB2825DEAFCF005098DD /* R5PublicKeyCredentialRequestOptions.swift in Sources */,
-				84DB8B8B25E4573800238991 /* UserConsentUI.swift in Sources */,
 				3474D28B22D32F3A005112C1 /* RequestPasswordResetRequest.swift in Sources */,
 				8496EB4025DEB141005098DD /* R5PublicKeyCredentialCreationOptions.swift in Sources */,
-				84DB8B9925E4573800238991 /* ClientCreateOperation.swift in Sources */,
-				84DB8B9325E4573800238991 /* SelfAttestation.swift in Sources */,
 				34E18B8A22A6985C00952EBD /* SignupRequest.swift in Sources */,
 				3417FF6622F8435F0009EC84 /* UpdatePhoneNumberRequest.swift in Sources */,
 				347FDB65229C02A800660687 /* SdkConfig.swift in Sources */,
-				84DB8B9A25E4573800238991 /* ClientGetOperation.swift in Sources */,
 				34F7D3E422A54AA2003A7BC0 /* ReachFiveApi.swift in Sources */,
-				84DB8B8625E4573800238991 /* UUID.swift in Sources */,
 				8496EB2625DEAFCF005098DD /* RegistrationPublicKeyCredential.swift in Sources */,
 				8496EB2C25DEAFCF005098DD /* WebauthnSignupCredential.swift in Sources */,
 				34F7D3E622A54ADE003A7BC0 /* ProvidersConfigsResult.swift in Sources */,
-				84DB8B9B25E4573800238991 /* Client.swift in Sources */,
 				34E508B222F19F7700BF9BAF /* DataRequest.swift in Sources */,
 				340AF1F9232AA32F00AA114D /* UpdatePasswordRequest.swift in Sources */,
 				8496EB3D25DEB141005098DD /* R5AuthenticatorSelectionCriteria.swift in Sources */,
 				72DDB78E22EF354300048262 /* ClientConfigResponse.swift in Sources */,
 				3417FF6A22FAD1810009EC84 /* ReachFivePasswordLess.swift in Sources */,
-				84DB8B8925E4573800238991 /* Bytes.swift in Sources */,
 				34689A9722CDFB5F002970F9 /* AuthToken.swift in Sources */,
 				8496EB2525DEAFCF005098DD /* AuthenticationPublicKeyCredential.swift in Sources */,
 				34DD31FF22F3286400279E54 /* CustomField.swift in Sources */,
 				34BDDA3A22E5BF1C00D16DAE /* Consent.swift in Sources */,
-				84DB8B9825E4573800238991 /* AuthenticatorData.swift in Sources */,
-				84DB8B8E25E4573800238991 /* KeyRegistrationViewController.swift in Sources */,
 				34689A9522CDFB39002970F9 /* OpenIdUser.swift in Sources */,
-				84DB8B8725E4573800238991 /* JSON.swift in Sources */,
-				84DB8B8D25E4573800238991 /* KeySelectionViewController.swift in Sources */,
 				8496EB2B25DEAFCF005098DD /* WebAuthnLoginRequest.swift in Sources */,
 				340DA24822CF4CB200864149 /* UIDevice.swift in Sources */,
 				8496EB3C25DEB141005098DD /* R5PublicKeyCredentialParameter.swift in Sources */,
-				84DB8B9125E4573800238991 /* CredentialStore.swift in Sources */,
-				84DB8B9025E4573800238991 /* InternalAuthenticator.swift in Sources */,
-				84DB8B9525E4573800238991 /* InternalAuthenticatorGetAssertionSession.swift in Sources */,
 				34689A9E22CE4666002970F9 /* VerifyPhoneNumberRequest.swift in Sources */,
 				3404A40C22CBA6DD002FFEDB /* AuthCodeRequest.swift in Sources */,
 				8496EB2425DEAFCF005098DD /* R5AuthenticatorAssertionResponse.swift in Sources */,
@@ -657,12 +487,10 @@
 				848D86C825DD4968003F1D80 /* RedirectionSafari.swift in Sources */,
 				347FDB67229C02FE00660687 /* ReachFive.swift in Sources */,
 				8496EB3F25DEB141005098DD /* RegistrationOptions.swift in Sources */,
-				84DB8B9D25E4573800238991 /* WAKTypes.swift in Sources */,
 				34E18B8F22A6C32500952EBD /* LoginRequest.swift in Sources */,
 				34689A9922CDFC24002970F9 /* LoginProviderRequest.swift in Sources */,
 				3404A40822CB9B7E002FFEDB /* ReachFiveError.swift in Sources */,
 				34B5295A22D376FF00B7B6AA /* Pkce.swift in Sources */,
-				84DB8B8A25E4573800238991 /* WAKLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

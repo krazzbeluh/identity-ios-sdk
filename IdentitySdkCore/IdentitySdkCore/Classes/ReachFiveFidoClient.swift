@@ -8,7 +8,7 @@
 
 import Foundation
 import PromiseKit
-
+import WebAuthnKit
 
 extension Data {
     struct HexEncodingOptions: OptionSet {
@@ -43,6 +43,8 @@ class ReachFiveFidoClient: NSObject
             WAKLogger.available = true
        
              self.userConsentUI = UserConsentUI(viewController: self.viewController)
+             self.userConsentUI.config.showRPInformation = false
+             self.userConsentUI.config.fieldTextLightColor = UIColor.black
              let authenticator = InternalAuthenticator(ui: self.userConsentUI)
              self.webAuthnClient = WebAuthnClient(
                  origin:        self.origin,
