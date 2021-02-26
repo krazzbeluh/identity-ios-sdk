@@ -116,6 +116,19 @@ public class ReachFive: NSObject {
                        _ = completion(authToken)
                    }
                                         }
+        }.onFailure { error in
+            var messageAlert = ""
+            switch error {
+                                case .RequestError(let requestErrors):
+                                messageAlert = requestErrors.errorUserMsg!
+                                case .TechnicalError(let technicalError):
+                                    messageAlert = (technicalError.apiError?.errorUserMsg)! as String
+                               default:
+                                   messageAlert = error.localizedDescription
+                               }
+            let alert = UIAlertController(title: "Error", message:messageAlert, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
+            viewController.present(alert, animated: true, completion: nil)
         }
        }
     
@@ -153,6 +166,19 @@ public class ReachFive: NSObject {
                            _ = completion(authToken)
                        }
                                             }
+         }.onFailure { error in
+             var messageAlert = ""
+             switch error {
+                                 case .RequestError(let requestErrors):
+                                 messageAlert = requestErrors.errorUserMsg!
+                                 case .TechnicalError(let technicalError):
+                                     messageAlert = (technicalError.apiError?.errorUserMsg)! as String
+                                default:
+                                    messageAlert = error.localizedDescription
+                                }
+             let alert = UIAlertController(title: "Error", message:messageAlert, preferredStyle: UIAlertController.Style.alert)
+             alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
+             viewController.present(alert, animated: true, completion: nil)
          }
     }
     

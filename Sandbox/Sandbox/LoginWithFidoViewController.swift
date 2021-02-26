@@ -18,20 +18,7 @@ class LoginWithFidoViewController: UIViewController{
         
         AppDelegate.reachfive().loginWithWebAuthn(email: self.emailText.text!,origin: AppDelegate.origin,scopes: scopes,viewController: self)
         { (authToken) -> Any in
-            authToken.onSuccess(callback: self.goToProfile).onFailure { error in
-                var messageAlert = ""
-                switch error {
-                                    case .RequestError(let requestErrors):
-                                    messageAlert = requestErrors.errorUserMsg!
-                                    case .TechnicalError(let technicalError):
-                                        messageAlert = (technicalError.apiError?.errorUserMsg)! as String
-                                   default:
-                                       messageAlert = error.localizedDescription
-                                   }
-                let alert = UIAlertController(title: "Error", message:messageAlert, preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
+            authToken.onSuccess(callback: self.goToProfile)
         }
     }
     
