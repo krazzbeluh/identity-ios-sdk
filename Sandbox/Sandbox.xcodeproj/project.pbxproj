@@ -29,13 +29,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		8496EB9A25DEC1DB005098DD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 341731F2229D6B6400681CFD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 341731F9229D6B6400681CFD;
-			remoteInfo = Sandbox;
-		};
 		84E6969C258AE152003AF19B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 341731F2229D6B6400681CFD /* Project object */;
@@ -80,7 +73,6 @@
 		8450A93C258CD062002ED710 /* LoginWithFaceBookSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWithFaceBookSuccess.swift; sourceTree = "<group>"; };
 		8496EB4625DEB764005098DD /* LoginWithFidoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginWithFidoViewController.swift; sourceTree = "<group>"; };
 		8496EB4725DEB764005098DD /* SignUpFidoControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpFidoControllerViewController.swift; sourceTree = "<group>"; };
-		8496EB9625DEC1DB005098DD /* RNWebAuthnKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RNWebAuthnKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E69687258A53AD003AF19B /* IdentitySdkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IdentitySdkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E6968B258A5534003AF19B /* IdentitySdkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = IdentitySdkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84E6968F258A5661003AF19B /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -97,13 +89,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CBFF6C55D8F565FADB2A5E4 /* Pods_Sandbox.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8496EB9325DEC1DB005098DD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,7 +118,6 @@
 			children = (
 				341731FA229D6B6400681CFD /* Sandbox.app */,
 				84E69697258AE152003AF19B /* SandboxUITests.xctest */,
-				8496EB9625DEC1DB005098DD /* RNWebAuthnKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -217,24 +201,6 @@
 			productReference = 341731FA229D6B6400681CFD /* Sandbox.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8496EB9525DEC1DB005098DD /* RNWebAuthnKitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8496EBAB25DEC1DB005098DD /* Build configuration list for PBXNativeTarget "RNWebAuthnKitTests" */;
-			buildPhases = (
-				8496EB9225DEC1DB005098DD /* Sources */,
-				8496EB9325DEC1DB005098DD /* Frameworks */,
-				8496EB9425DEC1DB005098DD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8496EB9B25DEC1DB005098DD /* PBXTargetDependency */,
-			);
-			name = RNWebAuthnKitTests;
-			productName = RNWebAuthnKitTests;
-			productReference = 8496EB9625DEC1DB005098DD /* RNWebAuthnKitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		84E69696258AE152003AF19B /* SandboxUITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 84E696A0258AE152003AF19B /* Build configuration list for PBXNativeTarget "SandboxUITests" */;
@@ -269,10 +235,6 @@
 					341731F9229D6B6400681CFD = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
-					8496EB9525DEC1DB005098DD = {
-						CreatedOnToolsVersion = 11.7;
-						TestTargetID = 341731F9229D6B6400681CFD;
-					};
 					84E69696258AE152003AF19B = {
 						CreatedOnToolsVersion = 11.7;
 						TestTargetID = 341731F9229D6B6400681CFD;
@@ -294,7 +256,6 @@
 			targets = (
 				341731F9229D6B6400681CFD /* Sandbox */,
 				84E69696258AE152003AF19B /* SandboxUITests */,
-				8496EB9525DEC1DB005098DD /* RNWebAuthnKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -307,13 +268,6 @@
 				34173208229D6B6400681CFD /* LaunchScreen.storyboard in Resources */,
 				34173205229D6B6400681CFD /* Assets.xcassets in Resources */,
 				34173203229D6B6400681CFD /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8496EB9425DEC1DB005098DD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,13 +358,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8496EB9225DEC1DB005098DD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		84E69693258AE152003AF19B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -425,11 +372,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		8496EB9B25DEC1DB005098DD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 341731F9229D6B6400681CFD /* Sandbox */;
-			targetProxy = 8496EB9A25DEC1DB005098DD /* PBXContainerItemProxy */;
-		};
 		84E6969D258AE152003AF19B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 341731F9229D6B6400681CFD /* Sandbox */;
@@ -636,48 +578,6 @@
 			};
 			name = Release;
 		};
-		8496EBA825DEC1DB005098DD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6KDQ68PRPG;
-				INFOPLIST_FILE = RNWebAuthnKitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = reachfive.RNWebAuthnKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sandbox.app/Sandbox";
-			};
-			name = Debug;
-		};
-		8496EBA925DEC1DB005098DD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6KDQ68PRPG;
-				INFOPLIST_FILE = RNWebAuthnKitTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = reachfive.RNWebAuthnKitTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sandbox.app/Sandbox";
-			};
-			name = Release;
-		};
 		84E6969E258AE152003AF19B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -733,15 +633,6 @@
 			buildConfigurations = (
 				3417320D229D6B6400681CFD /* Debug */,
 				3417320E229D6B6400681CFD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8496EBAB25DEC1DB005098DD /* Build configuration list for PBXNativeTarget "RNWebAuthnKitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8496EBA825DEC1DB005098DD /* Debug */,
-				8496EBA925DEC1DB005098DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
