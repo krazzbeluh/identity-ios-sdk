@@ -25,7 +25,7 @@ jobs:
             cd IdentitySdkFacebook
             pod install
             cd ../
-            pod lib lint IdentitySdkFacebook.podspec
+            pod lib lint IdentitySdkFacebook.podspec --allow-warnings
       - run:
           name: Check IdentitySdkGoogle
           command: |
