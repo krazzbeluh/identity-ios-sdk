@@ -4,19 +4,23 @@ import IdentitySdkCore
 class ProfileController: UIViewController {
     var authToken: AuthToken? = AppDelegate.storage.get(key: AppDelegate.authKey)
 
+    @IBOutlet weak var familyNameLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-
+    @IBOutlet weak var emailLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.nameLabel?.text = self.authToken?.user?.name
-
         AppDelegate.reachfive()
             .getProfile(authToken: self.authToken!)
-            .onSuccess { profile in print("Profile = \(profile)") }
+            .onSuccess { profile in print("Profile = \(profile)")
+                self.nameLabel?.text = "Given name: " + profile.givenName!
+                self.familyNameLabel?.text = "Family name: " + profile.familyName!
+                self.emailLabel?.text = "Email: " + profile.email!
+        }
             .onFailure { error in print("getProfile error = \(error)") }
 
-        AppDelegate.reachfive()
+       /* AppDelegate.reachfive()
             .updateProfile(
                 authToken: self.authToken!,
                 profile: Profile(nickname: "Updated nickname")
@@ -25,7 +29,9 @@ class ProfileController: UIViewController {
                 self.nameLabel?.text = profile.nickname
             }
             .onFailure { error in print("updateProfile error = \(error)") }
+ */
     }
+ 
 
     @IBAction func logoutAction(_ sender: Any) {
         AppDelegate.reachfive().logout()
