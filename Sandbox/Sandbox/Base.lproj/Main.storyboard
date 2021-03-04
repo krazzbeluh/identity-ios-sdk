@@ -622,9 +622,46 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UZO-IR-sDD">
+                                <rect key="frame" x="20" y="258" width="374" height="584"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="deviceFidoCell" rowHeight="69" id="c5m-V1-dSm" customClass="DevicesFidoCell" customModule="Sandbox" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="69"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c5m-V1-dSm" id="SxA-jr-EN8">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83c-p7-9GB">
+                                                    <rect key="frame" x="40" y="24" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iy8-8d-hDJ">
+                                                    <rect key="frame" x="279" y="19.666666666666671" width="55" height="30"/>
+                                                    <state key="normal" title="Remove"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Iy8-8d-hDJ" firstAttribute="centerY" secondItem="SxA-jr-EN8" secondAttribute="centerY" id="EXo-EO-3jN"/>
+                                                <constraint firstItem="83c-p7-9GB" firstAttribute="centerY" secondItem="SxA-jr-EN8" secondAttribute="centerY" id="SXB-3N-Wdt"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Iy8-8d-hDJ" secondAttribute="trailing" constant="20" id="Wty-Fh-BLK"/>
+                                                <constraint firstItem="83c-p7-9GB" firstAttribute="leading" secondItem="SxA-jr-EN8" secondAttribute="leadingMargin" constant="20" id="k5u-6A-Ya3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="friendlyNameText" destination="83c-p7-9GB" id="GHJ-P2-65A"/>
+                                            <outlet property="removeDeviceButton" destination="Iy8-8d-hDJ" id="3ql-1n-fth"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="UZO-IR-sDD" firstAttribute="top" secondItem="Z5D-tp-H9J" secondAttribute="bottom" constant="20" id="4rw-Fa-Uhy"/>
                             <constraint firstItem="ss7-L2-u8Z" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ORh-Wp-axD" secondAttribute="trailing" symbolic="YES" id="FJC-Nv-zaF"/>
                             <constraint firstItem="MVX-4K-5B3" firstAttribute="leading" secondItem="ORh-Wp-axD" secondAttribute="leading" id="G5B-Zj-oF3"/>
                             <constraint firstItem="Z5D-tp-H9J" firstAttribute="top" secondItem="MVX-4K-5B3" secondAttribute="bottom" constant="8" symbolic="YES" id="II5-ep-KUl"/>
@@ -636,8 +673,11 @@
                             <constraint firstItem="ss7-L2-u8Z" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MVX-4K-5B3" secondAttribute="trailing" symbolic="YES" id="aHO-KV-hXw"/>
                             <constraint firstItem="ORh-Wp-axD" firstAttribute="top" secondItem="ss7-L2-u8Z" secondAttribute="top" constant="20" id="eLZ-2D-WhK"/>
                             <constraint firstItem="ss7-L2-u8Z" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Z5D-tp-H9J" secondAttribute="trailing" symbolic="YES" id="ijg-IW-EZM"/>
+                            <constraint firstItem="UZO-IR-sDD" firstAttribute="leading" secondItem="ss7-L2-u8Z" secondAttribute="leading" constant="20" id="mnT-kz-prH"/>
+                            <constraint firstItem="ss7-L2-u8Z" firstAttribute="trailing" secondItem="UZO-IR-sDD" secondAttribute="trailing" constant="20" id="oWu-KJ-hmF"/>
                             <constraint firstItem="cKh-Fu-uJa" firstAttribute="top" secondItem="ORh-Wp-axD" secondAttribute="bottom" constant="10" id="pQ8-vP-0dW"/>
                             <constraint firstItem="oRf-sb-5b0" firstAttribute="top" secondItem="ss7-L2-u8Z" secondAttribute="top" constant="20" id="x5Y-Mb-itG"/>
+                            <constraint firstItem="ss7-L2-u8Z" firstAttribute="bottom" secondItem="UZO-IR-sDD" secondAttribute="bottom" constant="20" id="zMI-A0-GnT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ss7-L2-u8Z"/>
                     </view>
@@ -649,6 +689,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="deviceFidoTableview" destination="UZO-IR-sDD" id="ttk-17-cwq"/>
                         <outlet property="emailLabel" destination="cKh-Fu-uJa" id="tTU-kh-tUJ"/>
                         <outlet property="familyNameLabel" destination="oRf-sb-5b0" id="7BG-TP-XDo"/>
                         <outlet property="nameLabel" destination="ORh-Wp-axD" id="8eM-Rf-FN8"/>
@@ -656,7 +697,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7u3-k8-15u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="715.94202898550725" y="112.5"/>
+            <point key="canvasLocation" x="714.49275362318849" y="112.5"/>
         </scene>
         <!--Update Phone Number-->
         <scene sceneID="sAD-UW-UkI">

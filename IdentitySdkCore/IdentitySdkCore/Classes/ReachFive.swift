@@ -192,4 +192,11 @@ public class ReachFive: NSObject {
                 }
         }
     }
+    
+    public func listWebAuthnDevices(authToken: AuthToken) -> Future<[DeviceCredential], ReachFiveError> {
+         
+           return self.reachFiveApi
+            .getWebAuthnRegistrations(authorization: authToken.tokenType! + " " + authToken.accessToken)
+                .map { $0 }
+       }
 }
