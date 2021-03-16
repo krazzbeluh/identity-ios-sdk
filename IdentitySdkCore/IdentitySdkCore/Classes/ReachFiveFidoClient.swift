@@ -76,21 +76,10 @@ class ReachFiveFidoClient: NSObject
                requireResidentKey: requireResidentKey,
                userVerification: UserVerificationRequirement.required
            )
-           print("==========================================")
-           print("rp.id: " + (options.rp.id ?? "nil"))
-           print("user.id: " + Base64.encodeBase64URL(options.user.id))
-           print("challenge: " + Base64.encodeBase64URL(options.challenge))
-           print("==========================================")
 
            firstly {
                self.webAuthnClient.create(options)
            }.done { credential in
-               print("==========================================")
-               print("credentialId: " + credential.id)
-               print("rawId: " + Base64.encodeBase64URL(credential.rawId))
-               print("attestationObject: " + Base64.encodeBase64URL(credential.response.attestationObject))
-               print("clientDataJSON: " + Base64.encodeBase64URL(credential.response.clientDataJSON.data(using: .utf8)!))
-               print("==========================================")
                
                let rawId = credential.rawId.toHexString()
                let credId = credential.id
@@ -166,15 +155,7 @@ class ReachFiveFidoClient: NSObject
             firstly {
                 self.webAuthnClient.get(options)
             }.done { assertion in
-                print("==========================================")
-                print("credentialId: " + assertion.id)
-                print("rawId: " + Base64.encodeBase64URL(assertion.rawId))
-                print("authenticatorData: " + Base64.encodeBase64URL(assertion.response.authenticatorData))
-                print("signature: " + Base64.encodeBase64URL(assertion.response.signature))
-                print("userHandle: " + Base64.encodeBase64URL(assertion.response.userHandle!))
-                print("clientDataJSON: " + Base64.encodeBase64URL(assertion.response.clientDataJSON.data(using: .utf8)!))
-                print("==========================================")
-
+             
                            let user: [UInt8] = assertion.response.userHandle ?? []
                            let userName = String(data: Data(_: user), encoding: .utf8) ?? ""
                            let rawId = assertion.rawId.toHexString()

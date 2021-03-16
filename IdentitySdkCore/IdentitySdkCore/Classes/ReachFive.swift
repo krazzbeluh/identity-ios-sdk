@@ -105,7 +105,7 @@ public class ReachFive: NSObject {
         // get registrationOptions
          self.reachFiveApi
         .createWebAuthnSignupOptions(webAuthnRegistrationRequest: webAuthnRegistrationRequest)
-        .map { $0 }.onSuccess{registrationOptions in
+        .onSuccess{registrationOptions in
        // prepare and setup the reachFiveClientFido
        let reachFiveClientFido = ReachFiveFidoClient (viewController: viewController, origin: origin)
        reachFiveClientFido.setupWebAuthnClient()
@@ -136,7 +136,7 @@ public class ReachFive: NSObject {
         
         self.reachFiveApi
             .signupWithWebAuthn(webauthnSignupCredential: webauthnSignupCredential)
-             .map { $0 }.onSuccess{authenticationToken in
+             .onSuccess{authenticationToken in
                      // exchange the tkn with an access token
                      self.loginCallback(tkn: authenticationToken.tkn,scopes:scopes){ (authToken) -> Any in
                      _ = completion(authToken)
@@ -155,7 +155,7 @@ public class ReachFive: NSObject {
         
          self.reachFiveApi
          .createWebAuthnAuthenticationOptions(webAuthnLoginRequest: webAuthnLoginRequest)
-         .map { $0 }.onSuccess { authenticationOptions in
+         .onSuccess { authenticationOptions in
             
             let reachFiveClientFido = ReachFiveFidoClient (viewController: viewController, origin: origin)
             reachFiveClientFido.setupWebAuthnClient()
@@ -185,7 +185,7 @@ public class ReachFive: NSObject {
     private func onLoginWithWebAuthnResult(authenticationPublicKeyCredential: AuthenticationPublicKeyCredential, scopes: [String]?, completion: @escaping ((Future<AuthToken, ReachFiveError>) -> Any)) {
          self.reachFiveApi
         .authenticateWithWebAuthn(authenticationPublicKeyCredential: authenticationPublicKeyCredential)
-            .map { $0 }.onSuccess{authenticationToken in
+            .onSuccess{authenticationToken in
                                 
                 self.loginCallback(tkn: authenticationToken.tkn,scopes:scopes){ (authToken) -> Any in
                 _ = completion(authToken)

@@ -81,7 +81,6 @@ class RedirectionSafari: NSObject, SFSafariViewControllerDelegate
        switch result {
        case .success(let code):
         resultcode = code
-        print("code : ",code)
        case .failure(let error):
            print(error)
        }
