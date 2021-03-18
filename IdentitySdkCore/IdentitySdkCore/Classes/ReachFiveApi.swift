@@ -341,9 +341,6 @@ public class ReachFiveApi {
      }
      
      public func createWebAuthnAuthenticationOptions(webAuthnLoginRequest: WebAuthnLoginRequest) -> Future<AuthenticationOptions, ReachFiveError> {
-         
-         print("url",createUrl(path: "/identity/v1/webauthn/authentication-options?device=\(deviceInfo)"))
-
             return AF
                 .request(
                     createUrl(path: "/identity/v1/webauthn/authentication-options?device=\(deviceInfo)"),
@@ -356,7 +353,6 @@ public class ReachFiveApi {
         }
      
      public func authenticateWithWebAuthn(authenticationPublicKeyCredential: AuthenticationPublicKeyCredential) -> Future<AuthenticationToken, ReachFiveError> {
-         print("url",createUrl(path: "/identity/v1/webauthn/authentication?device=\(deviceInfo)"))
             return AF
                 .request(
                     createUrl(path: "/identity/v1/webauthn/authentication?device=\(deviceInfo)"),

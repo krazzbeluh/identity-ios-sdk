@@ -1,7 +1,3 @@
-//  Created by admin on 16/02/2021.
-//
-
-
 import UIKit
 import SafariServices
 import BrightFutures
@@ -69,7 +65,6 @@ class RedirectionSafari: NSObject, SFSafariViewControllerDelegate
        }
        
        public func applicationDidBecomeActive(_ application: UIApplication) {
-           
        }
       
     func logout() -> Future<(), ReachFiveError> {
@@ -81,8 +76,7 @@ class RedirectionSafari: NSObject, SFSafariViewControllerDelegate
        switch result {
        case .success(let code):
         resultcode = code
-       case .failure(let error):
-           print(error)
+       case .failure: break
        }
     return resultcode
    }

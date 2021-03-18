@@ -3,7 +3,6 @@ source 'https://cdn.cocoapods.org/'
 # Comment the next line to not define a global platform for your project
 platform :ios, '12'
 
-inhibit_all_warnings!
 
 target 'IdentitySdkCore' do
   # Comment the next line if you do not want to use dynamic frameworks

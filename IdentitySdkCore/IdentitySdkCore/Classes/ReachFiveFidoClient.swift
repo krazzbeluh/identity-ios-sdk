@@ -1,11 +1,3 @@
-//
-//  ReachFiveFidoClient.swift
-//  IdentitySdkCore
-//
-//  Created by admin on 22/02/2021.
-//  Copyright © 2021 Reachfive. All rights reserved.
-//
-
 import Foundation
 import PromiseKit
 import WebAuthnKit
@@ -125,12 +117,10 @@ class ReachFiveFidoClient: NSObject
        func startAuthentication(authenticationOptions: AuthenticationOptions, completion: @escaping ((AuthenticationPublicKeyCredential) -> Any)) {
             var challenge = authenticationOptions.publicKey.challenge
             if challenge.isEmpty {
-                print(FormError.empty("challenge"))
                 return
             }
             let rpId = authenticationOptions.publicKey.rpId
             if rpId.isEmpty {
-                print(FormError.empty("rpId"))
                 return
             }
             // Decode challenge from Base64Url to HexString
@@ -150,8 +140,7 @@ class ReachFiveFidoClient: NSObject
                                   transports:   [.internal_]
                               )
                           }
-            }
-            
+            } 
             firstly {
                 self.webAuthnClient.get(options)
             }.done { assertion in
