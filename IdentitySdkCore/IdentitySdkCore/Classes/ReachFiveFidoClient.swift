@@ -7,7 +7,7 @@ extension Data {
         let rawValue: Int
         static let upperCase = HexEncodingOptions(rawValue: 1 << 0)
     }
-
+    
     func hexEncodedString(options: HexEncodingOptions = []) -> String {
         let format = options.contains(.upperCase) ? "%02hhX" : "%02hhx"
         return map { String(format: format, $0) }.joined()
@@ -15,9 +15,9 @@ extension Data {
 }
 
 public enum FormError : Error {
-      case missing(String)
-      case empty(String)
-  }
+    case missing(String)
+    case empty(String)
+}
 
 class ReachFiveFidoClient: NSObject
 {
@@ -32,137 +32,137 @@ class ReachFiveFidoClient: NSObject
     }
     
     func setupWebAuthnClient() {
-            WAKLogger.available = true
-       
-             self.userConsentUI = UserConsentUI(viewController: self.viewController)
-             self.userConsentUI.config.showRPInformation = false
-             self.userConsentUI.config.fieldTextLightColor = UIColor.black
-             let authenticator = InternalAuthenticator(ui: self.userConsentUI)
-             self.webAuthnClient = WebAuthnClient(
-                 origin:        self.origin,
-                 authenticator: authenticator
-             )
-         }
+        WAKLogger.available = true
+        
+        self.userConsentUI = UserConsentUI(viewController: self.viewController)
+        self.userConsentUI.config.showRPInformation = false
+        self.userConsentUI.config.fieldTextLightColor = UIColor.black
+        let authenticator = InternalAuthenticator(ui: self.userConsentUI)
+        self.webAuthnClient = WebAuthnClient(
+            origin:        self.origin,
+            authenticator: authenticator
+        )
+    }
     func startRegistration(registrationOption: RegistrationOptions, completion: @escaping ((WebauthnSignupCredential) -> Any)) {
-         
-           var challenge = registrationOption.options.publicKey.challenge
-           let userId = registrationOption.options.publicKey.user.id
-           let userName = registrationOption.options.publicKey.user.name
-           let displayName = registrationOption.options.publicKey.user.displayName
-           let rpId = registrationOption.options.publicKey.rp.id
-          
-           let requireResidentKey = true
-           var options = PublicKeyCredentialCreationOptions()
-           challenge = base64urlToHexString(base64url: challenge)
-          
-           options.challenge = Bytes.fromHex(challenge)
-           options.user.id = Bytes.fromString(userId)
-           options.user.name = userName
-           options.user.displayName = displayName
-           options.rp.id = rpId
-           options.rp.name = rpId
-          
-           options.attestation = .direct
-           options.addPubKeyCredParam(alg: .es256)
-           options.authenticatorSelection = AuthenticatorSelectionCriteria(
-               requireResidentKey: requireResidentKey,
-               userVerification: UserVerificationRequirement.required
-           )
-
-           firstly {
-               self.webAuthnClient.create(options)
-           }.done { credential in
-               
-               let rawId = credential.rawId.toHexString()
-               let credId = credential.id
-               let credType = credential.type.rawValue
-               let clientDataJSON = self.encodeClientDataJsonToBase64(clientDataJson: credential.response.clientDataJSON)
-               let attestationObject = Base64.encodeBase64URL(credential.response.attestationObject)
-
-               let r5AuthenticatorAttestationResponse = R5AuthenticatorAttestationResponse(attestationObject: attestationObject,clientDataJSON: clientDataJSON)
-               
-               let registrationPublicKeyCredential = RegistrationPublicKeyCredential(id: credId,rawId: rawId,type: credType,response: r5AuthenticatorAttestationResponse)
-               
-               let webauthnSignupCredential = WebauthnSignupCredential (webauthnId: userId,publicKeyCredential: registrationPublicKeyCredential)
-               _ = completion(webauthnSignupCredential)
-
-           }.catch { error in
-               print("error : ",error.localizedDescription)
-           }
-       }
-       
-        func base64urlToHexString(base64url: String) -> String {
-              var hexString = base64url
-                  .replacingOccurrences(of: "-", with: "+")
-                  .replacingOccurrences(of: "_", with: "/")
-              if hexString.count % 4 != 0 {
-                  hexString.append(String(repeating: "=", count: 4 - hexString.count % 4))
-              }
-              if let data = Data(base64Encoded: hexString) {
-                  hexString = data.hexEncodedString()
-                            }
-              return hexString
-          }
-    
-       func encodeClientDataJsonToBase64(clientDataJson: String) -> String {
-           
-           let utf8str = clientDataJson.data(using: .utf8)
-                      var encodeClientDataJSON = ""
-                      if let base64Encoded = utf8str?.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0)) {
-                          encodeClientDataJSON = base64Encoded
-                      }
-           return encodeClientDataJSON
-       }
-    
-       func startAuthentication(authenticationOptions: AuthenticationOptions, completion: @escaping ((AuthenticationPublicKeyCredential) -> Any)) {
-            var challenge = authenticationOptions.publicKey.challenge
-            if challenge.isEmpty {
-                return
-            }
-            let rpId = authenticationOptions.publicKey.rpId
-            if rpId.isEmpty {
-                return
-            }
-            // Decode challenge from Base64Url to HexString
-            challenge = base64urlToHexString(base64url: challenge)
-            // prepare PublicKeyCredentialRequestOptions
-            var options = PublicKeyCredentialRequestOptions()
-            options.challenge = Bytes.fromHex(challenge)
-            options.rpId = rpId
-            options.userVerification = UserVerificationRequirement.required
+        
+        var challenge = registrationOption.options.publicKey.challenge
+        let userId = registrationOption.options.publicKey.user.id
+        let userName = registrationOption.options.publicKey.user.name
+        let displayName = registrationOption.options.publicKey.user.displayName
+        let rpId = registrationOption.options.publicKey.rp.id
+        
+        let requireResidentKey = true
+        var options = PublicKeyCredentialCreationOptions()
+        challenge = base64urlToHexString(base64url: challenge)
+        
+        options.challenge = Bytes.fromHex(challenge)
+        options.user.id = Bytes.fromString(userId)
+        options.user.name = userName
+        options.user.displayName = displayName
+        options.rp.id = rpId
+        options.rp.name = rpId
+        
+        options.attestation = .direct
+        options.addPubKeyCredParam(alg: .es256)
+        options.authenticatorSelection = AuthenticatorSelectionCriteria(
+            requireResidentKey: requireResidentKey,
+            userVerification: UserVerificationRequirement.required
+        )
+        
+        firstly {
+            self.webAuthnClient.create(options)
+        }.done { credential in
             
-            for allowCredentials in authenticationOptions.publicKey.allowCredentials! {
-                // Decode credentialId from Base64Url to HexString
-                allowCredentials.id = base64urlToHexString(base64url: allowCredentials.id)
-                          if !allowCredentials.id.isEmpty {
-                              options.addAllowCredential(
-                                  credentialId: Bytes.fromHex(allowCredentials.id),
-                                  transports:   [.internal_]
-                              )
-                          }
-            } 
-            firstly {
-                self.webAuthnClient.get(options)
-            }.done { assertion in
-             
-                           let user: [UInt8] = assertion.response.userHandle ?? []
-                           let userName = String(data: Data(_: user), encoding: .utf8) ?? ""
-                           let rawId = assertion.rawId.toHexString()
-                           let credId = assertion.id
-                           let credType = assertion.type.rawValue
-                           let clientDataJSON = self.encodeClientDataJsonToBase64(clientDataJson: assertion.response.clientDataJSON)
-                           let authenticatorData = Base64.encodeBase64URL(assertion.response.authenticatorData)
-                           let signature = Base64.encodeBase64URL(assertion.response.signature)
-                           let userHandle = userName
-                               
-                           let r5AuthenticatorAssertionResponse = R5AuthenticatorAssertionResponse (authenticatorData: authenticatorData, clientDataJSON: clientDataJSON, signature: signature, userHandle: userHandle)
-                
-                           let authenticationPublicKeyCredential = AuthenticationPublicKeyCredential (id: credId, rawId: rawId, type: credType, response: r5AuthenticatorAssertionResponse)
-                
-                          _ = completion(authenticationPublicKeyCredential)
-            }.catch { error in
-                print(error)
-            }
+            let rawId = credential.rawId.toHexString()
+            let credId = credential.id
+            let credType = credential.type.rawValue
+            let clientDataJSON = self.encodeClientDataJsonToBase64(clientDataJson: credential.response.clientDataJSON)
+            let attestationObject = Base64.encodeBase64URL(credential.response.attestationObject)
+            
+            let r5AuthenticatorAttestationResponse = R5AuthenticatorAttestationResponse(attestationObject: attestationObject,clientDataJSON: clientDataJSON)
+            
+            let registrationPublicKeyCredential = RegistrationPublicKeyCredential(id: credId,rawId: rawId,type: credType,response: r5AuthenticatorAttestationResponse)
+            
+            let webauthnSignupCredential = WebauthnSignupCredential (webauthnId: userId,publicKeyCredential: registrationPublicKeyCredential)
+            _ = completion(webauthnSignupCredential)
+            
+        }.catch { error in
+            print("error : ",error.localizedDescription)
         }
+    }
+    
+    func base64urlToHexString(base64url: String) -> String {
+        var hexString = base64url
+            .replacingOccurrences(of: "-", with: "+")
+            .replacingOccurrences(of: "_", with: "/")
+        if hexString.count % 4 != 0 {
+            hexString.append(String(repeating: "=", count: 4 - hexString.count % 4))
+        }
+        if let data = Data(base64Encoded: hexString) {
+            hexString = data.hexEncodedString()
+        }
+        return hexString
+    }
+    
+    func encodeClientDataJsonToBase64(clientDataJson: String) -> String {
+        
+        let utf8str = clientDataJson.data(using: .utf8)
+        var encodeClientDataJSON = ""
+        if let base64Encoded = utf8str?.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: 0)) {
+            encodeClientDataJSON = base64Encoded
+        }
+        return encodeClientDataJSON
+    }
+    
+    func startAuthentication(authenticationOptions: AuthenticationOptions, completion: @escaping ((AuthenticationPublicKeyCredential) -> Any)) {
+        var challenge = authenticationOptions.publicKey.challenge
+        if challenge.isEmpty {
+            return
+        }
+        let rpId = authenticationOptions.publicKey.rpId
+        if rpId.isEmpty {
+            return
+        }
+        // Decode challenge from Base64Url to HexString
+        challenge = base64urlToHexString(base64url: challenge)
+        // prepare PublicKeyCredentialRequestOptions
+        var options = PublicKeyCredentialRequestOptions()
+        options.challenge = Bytes.fromHex(challenge)
+        options.rpId = rpId
+        options.userVerification = UserVerificationRequirement.required
+        
+        for allowCredentials in authenticationOptions.publicKey.allowCredentials! {
+            // Decode credentialId from Base64Url to HexString
+            allowCredentials.id = base64urlToHexString(base64url: allowCredentials.id)
+            if !allowCredentials.id.isEmpty {
+                options.addAllowCredential(
+                    credentialId: Bytes.fromHex(allowCredentials.id),
+                    transports:   [.internal_]
+                )
+            }
+        } 
+        firstly {
+            self.webAuthnClient.get(options)
+        }.done { assertion in
+            
+            let user: [UInt8] = assertion.response.userHandle ?? []
+            let userName = String(data: Data(_: user), encoding: .utf8) ?? ""
+            let rawId = assertion.rawId.toHexString()
+            let credId = assertion.id
+            let credType = assertion.type.rawValue
+            let clientDataJSON = self.encodeClientDataJsonToBase64(clientDataJson: assertion.response.clientDataJSON)
+            let authenticatorData = Base64.encodeBase64URL(assertion.response.authenticatorData)
+            let signature = Base64.encodeBase64URL(assertion.response.signature)
+            let userHandle = userName
+            
+            let r5AuthenticatorAssertionResponse = R5AuthenticatorAssertionResponse (authenticatorData: authenticatorData, clientDataJSON: clientDataJSON, signature: signature, userHandle: userHandle)
+            
+            let authenticationPublicKeyCredential = AuthenticationPublicKeyCredential (id: credId, rawId: rawId, type: credType, response: r5AuthenticatorAssertionResponse)
+            
+            _ = completion(authenticationPublicKeyCredential)
+        }.catch { error in
+            print(error)
+        }
+    }
 }
 

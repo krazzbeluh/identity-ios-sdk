@@ -1,10 +1,3 @@
-//
-//  EmailWebAuthnLoginRequest.swift
-//  IdentitySdkCore
-//
-//  Created by admin on 03/02/2021.
-//
-
 import Foundation
 
 public class EmailWebAuthnLoginRequest: Codable, DictionaryEncodable {

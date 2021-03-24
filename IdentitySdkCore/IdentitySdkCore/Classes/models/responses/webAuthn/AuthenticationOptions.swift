@@ -1,11 +1,3 @@
-//
-//  File.swift
-//  IdentitySdkCore
-//
-//  Created by admin on 02/02/2021.
-//
-
-
 import Foundation
 
 public class AuthenticationOptions: Codable, DictionaryEncodable {

@@ -4,15 +4,15 @@ import PromiseKit
 import CryptoSwift
 
 class LoginWithFidoViewController: UIViewController{
- 
+    
     @IBOutlet weak var emailText: UITextField!
     let scopes = ["openid", "email", "profile", "phone", "full_write", "offline_access"]
-
+    
     override func viewDidLoad() {
-           super.viewDidLoad()
-          
+        super.viewDidLoad()
+        
         AppDelegate.reachfive().initialize().onComplete { _ in }
-       }
+    }
     
     @IBAction func loginButton(_ sender: Any) {
         
@@ -27,7 +27,7 @@ class LoginWithFidoViewController: UIViewController{
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let profileController = storyBoard.instantiateViewController(
             withIdentifier: "ProfileScene"
-        ) as! ProfileController
+            ) as! ProfileController
         profileController.authToken = authToken
         self.self.navigationController?.pushViewController(profileController, animated: true)
     }
