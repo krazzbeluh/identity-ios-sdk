@@ -12,8 +12,7 @@ class SignUpFidoControllerViewController: UIViewController {
     let scopes = ["openid", "email", "profile", "phone", "full_write", "offline_access"]
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
+        super.viewDidLoad()        
         AppDelegate.reachfive().initialize().onComplete { _ in }
         deviceNameText.text = UIDevice.current.name
     }
