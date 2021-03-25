@@ -109,7 +109,7 @@ public class ReachFive: NSObject {
                 // prepare and setup the reachFiveClientFido
                 let reachFiveClientFido = ReachFiveFidoClient (viewController: viewController, origin: origin)
                 reachFiveClientFido.setupWebAuthnClient()
-                reachFiveClientFido.startRegistration(registrationOption: registrationOptions) { (webauthnSignupCredential) -> Any in
+                reachFiveClientFido.startRegistration(registrationOption: registrationOptions).onSuccess{ webauthnSignupCredential in
                     // start the onSignupWithWebAuthnResult func to get firstly the authenticationToken and then exchange the tkn with an access token
                     self.onSignupWithWebAuthnResult(webauthnSignupCredential: webauthnSignupCredential,scopes: scopes)
                     { (authToken) -> Any in
@@ -159,7 +159,7 @@ public class ReachFive: NSObject {
                 
                 let reachFiveClientFido = ReachFiveFidoClient (viewController: viewController, origin: origin)
                 reachFiveClientFido.setupWebAuthnClient()
-                reachFiveClientFido.startAuthentication(authenticationOptions: authenticationOptions){ (authenticationPublicKeyCredential) -> Any in
+                reachFiveClientFido.startAuthentication(authenticationOptions: authenticationOptions).onSuccess{ authenticationPublicKeyCredential in
                     
                     self.onLoginWithWebAuthnResult(authenticationPublicKeyCredential: authenticationPublicKeyCredential,scopes: scopes)
                     { (authToken) -> Any in

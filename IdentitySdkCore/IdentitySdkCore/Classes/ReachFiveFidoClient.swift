@@ -1,6 +1,7 @@
 import Foundation
 import PromiseKit
 import WebAuthnKit
+import BrightFutures
 
 extension Data {
     struct HexEncodingOptions: OptionSet {
@@ -43,7 +44,7 @@ class ReachFiveFidoClient: NSObject
             authenticator: authenticator
         )
     }
-    func startRegistration(registrationOption: RegistrationOptions, completion: @escaping ((WebauthnSignupCredential) -> Any)) {
+    func startRegistration(registrationOption: RegistrationOptions) -> Future<WebauthnSignupCredential, Error> {
         
         var challenge = registrationOption.options.publicKey.challenge
         let userId = registrationOption.options.publicKey.user.id
@@ -69,6 +70,7 @@ class ReachFiveFidoClient: NSObject
             userVerification: UserVerificationRequirement.required
         )
         
+        let thePromise = BrightFutures.Promise<WebauthnSignupCredential, Error>()
         firstly {
             self.webAuthnClient.create(options)
         }.done { credential in
@@ -84,11 +86,14 @@ class ReachFiveFidoClient: NSObject
             let registrationPublicKeyCredential = RegistrationPublicKeyCredential(id: credId,rawId: rawId,type: credType,response: r5AuthenticatorAttestationResponse)
             
             let webauthnSignupCredential = WebauthnSignupCredential (webauthnId: userId,publicKeyCredential: registrationPublicKeyCredential)
-            _ = completion(webauthnSignupCredential)
+            let result: Swift.Result<WebauthnSignupCredential, Error> = Swift.Result.success(webauthnSignupCredential)
+            thePromise.complete(result)
             
         }.catch { error in
-            print("error : ",error.localizedDescription)
+            thePromise.failure(error)
         }
+        
+        return thePromise.future
     }
     
     func base64urlToHexString(base64url: String) -> String {
@@ -114,15 +119,10 @@ class ReachFiveFidoClient: NSObject
         return encodeClientDataJSON
     }
     
-    func startAuthentication(authenticationOptions: AuthenticationOptions, completion: @escaping ((AuthenticationPublicKeyCredential) -> Any)) {
+    func startAuthentication(authenticationOptions: AuthenticationOptions) -> Future<AuthenticationPublicKeyCredential, Error> {
         var challenge = authenticationOptions.publicKey.challenge
-        if challenge.isEmpty {
-            return
-        }
         let rpId = authenticationOptions.publicKey.rpId
-        if rpId.isEmpty {
-            return
-        }
+        
         // Decode challenge from Base64Url to HexString
         challenge = base64urlToHexString(base64url: challenge)
         // prepare PublicKeyCredentialRequestOptions
@@ -140,7 +140,8 @@ class ReachFiveFidoClient: NSObject
                     transports:   [.internal_]
                 )
             }
-        } 
+        }
+        let thePromise = BrightFutures.Promise<AuthenticationPublicKeyCredential, Error>()
         firstly {
             self.webAuthnClient.get(options)
         }.done { assertion in
@@ -159,10 +160,14 @@ class ReachFiveFidoClient: NSObject
             
             let authenticationPublicKeyCredential = AuthenticationPublicKeyCredential (id: credId, rawId: rawId, type: credType, response: r5AuthenticatorAssertionResponse)
             
-            _ = completion(authenticationPublicKeyCredential)
+            let result: Swift.Result<AuthenticationPublicKeyCredential, Error> = Swift.Result.success(authenticationPublicKeyCredential)
+            thePromise.complete(result)
+            
         }.catch { error in
-            print(error)
+            thePromise.failure(error)
         }
+        
+        return thePromise.future
     }
 }
 
