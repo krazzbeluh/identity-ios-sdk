@@ -10,7 +10,7 @@ class ProfileController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         AppDelegate.reachfive()
             .getProfile(authToken: self.authToken!)
             .onSuccess { profile in print("Profile = \(profile)")
@@ -18,21 +18,9 @@ class ProfileController: UIViewController {
                 self.familyNameLabel?.text = "Family name: " + profile.familyName!
                 self.emailLabel?.text = "Email: " + profile.email!
         }
-            .onFailure { error in print("getProfile error = \(error)") }
-
-       /* AppDelegate.reachfive()
-            .updateProfile(
-                authToken: self.authToken!,
-                profile: Profile(nickname: "Updated nickname")
-            )
-            .onSuccess { profile in
-                self.nameLabel?.text = profile.nickname
-            }
-            .onFailure { error in print("updateProfile error = \(error)") }
- */
+        .onFailure { error in print("getProfile error = \(error)") }
     }
- 
-
+        
     @IBAction func logoutAction(_ sender: Any) {
         AppDelegate.reachfive().logout()
             .onComplete { result in
@@ -40,7 +28,6 @@ class ProfileController: UIViewController {
                 AppDelegate.storage.clear(key: AppDelegate.authKey)
                 self.authToken = nil
                 self.navigationController?.popViewController(animated: true)
-            }
+        }
     }
-
 }
