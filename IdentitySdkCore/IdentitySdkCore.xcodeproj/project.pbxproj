@@ -77,6 +77,7 @@
 
 /* Begin PBXFileReference section */
 		2B722D997B32FEE8753D77AB /* Pods_IdentitySdkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IdentitySdkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CA6D9263DC2541C548301E9 /* Pods-IdentitySdkCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentitySdkCore.release.xcconfig"; path = "Target Support Files/Pods-IdentitySdkCore/Pods-IdentitySdkCore.release.xcconfig"; sourceTree = "<group>"; };
 		3404A40722CB9B7E002FFEDB /* ReachFiveError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachFiveError.swift; sourceTree = "<group>"; };
 		3404A40B22CBA6DD002FFEDB /* AuthCodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCodeRequest.swift; sourceTree = "<group>"; };
 		340AF1F6232A9A2B00AA114D /* QueryString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryString.swift; sourceTree = "<group>"; };
@@ -121,12 +122,7 @@
 		34F7D3E322A54AA2003A7BC0 /* ReachFiveApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachFiveApi.swift; sourceTree = "<group>"; };
 		34F7D3E522A54ADE003A7BC0 /* ProvidersConfigsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidersConfigsResult.swift; sourceTree = "<group>"; };
 		72DDB78D22EF354300048262 /* ClientConfigResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientConfigResponse.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		7663146C1B83ADED872450CC /* Pods-IdentitySdkCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentitySdkCore.debug.xcconfig"; path = "Target Support Files/Pods-IdentitySdkCore/Pods-IdentitySdkCore.debug.xcconfig"; sourceTree = "<group>"; };
 		8433EA3925F1229F00329358 /* DeviceCredential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCredential.swift; sourceTree = "<group>"; };
-=======
-		7776E343CD5523933C3FC18A /* Pods-IdentitySdkCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentitySdkCore.release.xcconfig"; path = "Target Support Files/Pods-IdentitySdkCore/Pods-IdentitySdkCore.release.xcconfig"; sourceTree = "<group>"; };
->>>>>>> master
 		848D86C725DD4968003F1D80 /* RedirectionSafari.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectionSafari.swift; sourceTree = "<group>"; };
 		8496EB1B25DEAFCF005098DD /* R5AuthenticatorAssertionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R5AuthenticatorAssertionResponse.swift; sourceTree = "<group>"; };
 		8496EB1C25DEAFCF005098DD /* AuthenticationPublicKeyCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationPublicKeyCredential.swift; sourceTree = "<group>"; };
@@ -325,7 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				92974ED6A8B2D1CEADE0BFF5 /* Pods-IdentitySdkCore.debug.xcconfig */,
-				7776E343CD5523933C3FC18A /* Pods-IdentitySdkCore.release.xcconfig */,
+				2CA6D9263DC2541C548301E9 /* Pods-IdentitySdkCore.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -670,7 +666,7 @@
 		};
 		347FDB4C229BE84500660687 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7776E343CD5523933C3FC18A /* Pods-IdentitySdkCore.release.xcconfig */;
+			baseConfigurationReference = 2CA6D9263DC2541C548301E9 /* Pods-IdentitySdkCore.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
