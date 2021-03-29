@@ -23,17 +23,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
                 self.emailLabel?.text = "Email: " + profile.email!
         }
             .onFailure { error in print("getProfile error = \(error)") }
-
-       /* AppDelegate.reachfive()
-            .updateProfile(
-                authToken: self.authToken!,
-                profile: Profile(nickname: "Updated nickname")
-            )
-            .onSuccess { profile in
-                self.nameLabel?.text = profile.nickname
-            }
-            .onFailure { error in print("updateProfile error = \(error)") }
- */
+        
         AppDelegate.reachfive().listWebAuthnDevices(authToken: self.authToken!).onSuccess { listDevice in
             self.devices.append(contentsOf: listDevice)
             
@@ -59,14 +49,12 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
               
               // method to run when table view cell is tapped
               func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-                  print("You tapped cell number \(indexPath.row).")
               }
  
 
     @IBAction func logoutAction(_ sender: Any) {
         AppDelegate.reachfive().logout()
             .onComplete { result in
-                print("Logout ended \(result)")
                 AppDelegate.storage.clear(key: AppDelegate.authKey)
                 self.authToken = nil
                 self.navigationController?.popViewController(animated: true)

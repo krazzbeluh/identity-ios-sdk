@@ -1,10 +1,3 @@
-//
-//  R5AuthenticatorAttestationResponse.swift
-//  IdentitySdkCore
-//
-//  Created by admin on 01/02/2021.
-//
-
 import Foundation
 
 public class R5AuthenticatorAttestationResponse: Codable, DictionaryEncodable {

@@ -3,7 +3,6 @@ source 'https://cdn.cocoapods.org/'
 # Comment the next line to not define a global platform for your project
 platform :ios, '12'
 
-inhibit_all_warnings!
 
 target 'IdentitySdkCore' do
   # Comment the next line if you do not want to use dynamic frameworks
@@ -12,7 +11,7 @@ target 'IdentitySdkCore' do
   # Pods for IdentitySdkCore
   pod 'Alamofire', '~> 5.2.2'
   pod 'BrightFutures', '~> 8.0.0'
-  pod 'EllipticCurveKeyPair', '~> 2.0-beta1'
+  pod 'EllipticCurveKeyPair', '~> 2.0'
   pod 'KeychainAccess', '~> 4.2.1'
   pod 'PromiseKit', '~> 6.13.1'
   pod 'WebAuthnKit', '~> 0.9.5'

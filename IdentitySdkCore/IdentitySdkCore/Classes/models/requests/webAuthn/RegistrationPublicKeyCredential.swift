@@ -1,10 +1,3 @@
-//
-//  RegistrationPublicKeyCredential.swift
-//  IdentitySdkCore
-//
-//  Created by admin on 01/02/2021.
-//
-
 import Foundation
 
 public class RegistrationPublicKeyCredential: Codable, DictionaryEncodable {
