@@ -196,7 +196,10 @@ public class ReachFive: NSObject {
     public func listWebAuthnDevices(authToken: AuthToken) -> Future<[DeviceCredential], ReachFiveError> {
          
            return self.reachFiveApi
-            .getWebAuthnRegistrations(authorization: authToken.tokenType! + " " + authToken.accessToken)
-                
+            .getWebAuthnRegistrations(authorization: buildAuthorization(authToken: authToken))
        }
+    
+    private func buildAuthorization (authToken: AuthToken) -> String {
+        return authToken.tokenType! + " " + authToken.accessToken
+    }
 }
