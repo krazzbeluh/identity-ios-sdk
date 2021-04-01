@@ -18,11 +18,17 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         AppDelegate.reachfive()
             .getProfile(authToken: self.authToken!)
             .onSuccess { profile in print("Profile = \(profile)")
-                self.nameLabel?.text = "Given name: " + profile.givenName!
-                self.familyNameLabel?.text = "Family name: " + profile.familyName!
-                self.emailLabel?.text = "Email: " + profile.email!
+                if profile.givenName != nil {
+                    self.nameLabel?.text = "Given name: " + profile.givenName!
+                }
+                if profile.familyName != nil {
+                    self.familyNameLabel?.text = "Family name: " + profile.familyName!
+                }
+                if profile.email != nil {
+                    self.emailLabel?.text = "Email: " + profile.email!
+                }
         }
-            .onFailure { error in print("getProfile error = \(error)") }
+        .onFailure { error in print("getProfile error = \(error)") }
         
         AppDelegate.reachfive().listWebAuthnDevices(authToken: self.authToken!).onSuccess { listDevice in
             self.devices.append(contentsOf: listDevice)
@@ -30,34 +36,34 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
             DispatchQueue.main.async{
                 self.deviceFidoTableview.reloadData()
             }
-
+            
         }
-         .onFailure { error in
+        .onFailure { error in
             print("getDevices error = \(error)") }
-
+        
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.devices.count
-       }
-       
-       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-           let cell:DevicesFidoCell = self.deviceFidoTableview.dequeueReusableCell(withIdentifier: "deviceFidoCell") as! DevicesFidoCell
-           cell.friendlyNameText.text = self.devices[indexPath.row].friendlyName
-                  return cell
-              }
-              
-              // method to run when table view cell is tapped
-              func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-              }
- 
-
+        let cell:DevicesFidoCell = self.deviceFidoTableview.dequeueReusableCell(withIdentifier: "deviceFidoCell") as! DevicesFidoCell
+        cell.friendlyNameText.text = self.devices[indexPath.row].friendlyName
+        return cell
+    }
+    
+    // method to run when table view cell is tapped
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    }
+    
+    
     @IBAction func logoutAction(_ sender: Any) {
         AppDelegate.reachfive().logout()
             .onComplete { result in
                 AppDelegate.storage.clear(key: AppDelegate.authKey)
                 self.authToken = nil
                 self.navigationController?.popViewController(animated: true)
-            }
+        }
     }
 }
