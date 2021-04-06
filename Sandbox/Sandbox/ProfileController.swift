@@ -12,6 +12,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         deviceFidoTableview.delegate = self
         deviceFidoTableview.dataSource = self
         
@@ -29,6 +30,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
                 }
         }
         .onFailure { error in print("getProfile error = \(error)") }
+        
         
         AppDelegate.reachfive().listWebAuthnDevices(authToken: self.authToken!).onSuccess { listDevice in
             self.devices.append(contentsOf: listDevice)
@@ -56,7 +58,6 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
-    
     
     @IBAction func logoutAction(_ sender: Any) {
         AppDelegate.reachfive().logout()
