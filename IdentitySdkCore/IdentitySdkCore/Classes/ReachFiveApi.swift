@@ -363,4 +363,18 @@ public class ReachFiveApi {
             .validate(contentType: ["application/json"])
             .responseJson(type: AuthenticationToken.self, decoder: self.decoder)
     }
+    
+    public func getWebAuthnRegistrations(authorization: String) -> Future<[DeviceCredential], ReachFiveError> {
+        
+        let headers : HTTPHeaders = [ "Authorization" : authorization ]
+        return AF
+            .request(
+                createUrl(path: "/identity/v1/webauthn/registration?device=\(deviceInfo)"),
+                method: .get,
+                encoding: JSONEncoding.default,
+                headers: headers
+        )
+            .validate(contentType: ["application/json"])
+            .responseJson(type: [DeviceCredential].self, decoder: self.decoder)
+    }
 }
