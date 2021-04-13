@@ -3,7 +3,7 @@ import IdentitySdkCore
 import PromiseKit
 import CryptoSwift
 
-class SignUpFidoControllerViewController: UIViewController {
+class SignUpFidoControllerViewController: UIViewController{
     
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var givenNameText: UITextField!
@@ -14,7 +14,7 @@ class SignUpFidoControllerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()        
         AppDelegate.reachfive().initialize().onComplete { _ in }
-        deviceNameText.text = UIDevice.current.name
+        deviceNameText.text = UIDevice.current.name        
     }
     
     @IBAction func SignupButton(_ sender: Any) {
@@ -26,6 +26,20 @@ class SignUpFidoControllerViewController: UIViewController {
         AppDelegate.reachfive().signupWithWebAuthn(profile: profile,origin: AppDelegate.origin,friendlyName: deviceNameText.text,viewController: self,scopes: self.scopes)
         { (authToken) -> Any in
             authToken.onSuccess(callback: self.goToProfile)
+                .onFailure { error in
+                    var messageAlert = ""
+                    switch error {
+                    case .RequestError(let requestErrors):
+                        messageAlert = requestErrors.errorDescription!
+                    case .TechnicalError(_, let apiError):
+                        messageAlert = (apiError?.errorDescription)! as String
+                    default:
+                        messageAlert = error.localizedDescription
+                    }
+                    let alert = UIAlertController(title: "Error", message:messageAlert, preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
         }
     }
     
@@ -34,8 +48,13 @@ class SignUpFidoControllerViewController: UIViewController {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let profileController = storyBoard.instantiateViewController(
             withIdentifier: "ProfileScene"
-            ) as! ProfileController
+        ) as! ProfileController
         profileController.authToken = authToken
         self.self.navigationController?.pushViewController(profileController, animated: true)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
     }
 }
