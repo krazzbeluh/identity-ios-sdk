@@ -116,20 +116,11 @@ public class ReachFive: NSObject {
                         _ = completion(authToken)
                     }
                 }
-        }.onFailure { error in
-            var messageAlert = ""
-            switch error {
-            case .RequestError(let requestErrors):
-                messageAlert = requestErrors.errorUserMsg!
-            case .TechnicalError(let technicalError):
-                messageAlert = (technicalError.apiError?.errorUserMsg)! as String
-            default:
-                messageAlert = error.localizedDescription
+            }.onFailure { error in
+                let thePromise = BrightFutures.Promise<AuthToken, ReachFiveError>()
+                thePromise.failure(error)
+                _ = completion(thePromise.future)
             }
-            let alert = UIAlertController(title: "Error", message:messageAlert, preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
-            viewController.present(alert, animated: true, completion: nil)
-        }
     }
     
     private func onSignupWithWebAuthnResult(webauthnSignupCredential: WebauthnSignupCredential,scopes: [String]?, completion: @escaping ((Future<AuthToken, ReachFiveError>) -> Any)) {
@@ -141,7 +132,12 @@ public class ReachFive: NSObject {
                 self.loginCallback(tkn: authenticationToken.tkn,scopes:scopes){ (authToken) -> Any in
                     _ = completion(authToken)
                 }
-        }
+            }
+            .onFailure { error in
+                let thePromise = BrightFutures.Promise<AuthToken, ReachFiveError>()
+                thePromise.failure(error)
+                _ = completion(thePromise.future)
+            }
     }
     
     public func loginWithWebAuthn(email: String, origin: String, scopes: [String]?,viewController: UIViewController, completion: @escaping ((Future<AuthToken, ReachFiveError>) -> Any)) {
@@ -166,20 +162,11 @@ public class ReachFive: NSObject {
                         _ = completion(authToken)
                     }
                 }
-        }.onFailure { error in
-            var messageAlert = ""
-            switch error {
-            case .RequestError(let requestErrors):
-                messageAlert = requestErrors.errorUserMsg!
-            case .TechnicalError(let technicalError):
-                messageAlert = (technicalError.apiError?.errorUserMsg)! as String
-            default:
-                messageAlert = error.localizedDescription
+            }.onFailure { error in
+                let thePromise = BrightFutures.Promise<AuthToken, ReachFiveError>()
+                thePromise.failure(error)
+                _ = completion(thePromise.future)
             }
-            let alert = UIAlertController(title: "Error", message:messageAlert, preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
-            viewController.present(alert, animated: true, completion: nil)
-        }
     }
     
     private func onLoginWithWebAuthnResult(authenticationPublicKeyCredential: AuthenticationPublicKeyCredential, scopes: [String]?, completion: @escaping ((Future<AuthToken, ReachFiveError>) -> Any)) {
@@ -190,14 +177,19 @@ public class ReachFive: NSObject {
                 self.loginCallback(tkn: authenticationToken.tkn,scopes:scopes){ (authToken) -> Any in
                     _ = completion(authToken)
                 }
-        }
+            }
+            .onFailure { error in
+                let thePromise = BrightFutures.Promise<AuthToken, ReachFiveError>()
+                thePromise.failure(error)
+                _ = completion(thePromise.future)
+            }
     }
     
     public func listWebAuthnDevices(authToken: AuthToken) -> Future<[DeviceCredential], ReachFiveError> {
-         
-           return self.reachFiveApi
+        
+        return self.reachFiveApi
             .getWebAuthnRegistrations(authorization: buildAuthorization(authToken: authToken))
-       }
+    }
     
     private func buildAuthorization (authToken: AuthToken) -> String {
         return authToken.tokenType! + " " + authToken.accessToken
