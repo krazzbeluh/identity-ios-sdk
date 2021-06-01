@@ -2,7 +2,7 @@ import UIKit
 import IdentitySdkCore
 import GoogleSignIn
 
-class LoginWithProvidersController: UIViewController, UITableViewDataSource, UITableViewDelegate, GIDSignInUIDelegate {
+class LoginWithProvidersController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var providers: [Provider] = []
     
     @IBOutlet weak var providersTableView: UITableView!

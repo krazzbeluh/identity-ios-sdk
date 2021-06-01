@@ -20,5 +20,5 @@ Pod::Spec.new do |spec|
   spec.static_framework = true
 
   spec.dependency 'IdentitySdkCore', '~> 5'
-  spec.dependency 'GoogleSignIn', '~> 4.4'
+  spec.dependency 'GoogleSignIn', '~> 5'
 end
