@@ -1,5 +1,8 @@
 # Changelog
 
+## v5.5.1
+- Upgrade dependency `GoogleSignIn` to version 5.0.2
+
 ## v5.5.0
 - Update `FBSDKCoreKit` and `FBSDKLoginKit` to version 9.x
 - Add the redirectURL parameter in the signup method
