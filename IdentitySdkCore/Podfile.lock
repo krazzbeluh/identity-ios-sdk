@@ -26,7 +26,7 @@ DEPENDENCIES:
   - EllipticCurveKeyPair (~> 2.0)
   - KeychainAccess (~> 4.2.1)
   - PromiseKit (~> 6.13.1)
-  - WebAuthnKit (~> 0.9.5)
+  - WebAuthnKit (~> 0.9.6)
 
 SPEC REPOS:
   trunk:
@@ -47,6 +47,6 @@ SPEC CHECKSUMS:
   PromiseKit: 28fda91c973cc377875d8c0ea4f973013c05b6db
   WebAuthnKit: b778fee9d900b6b2697fbcac1e95b4609356801d
 
-PODFILE CHECKSUM: 639942484d9850d09eef969a236a310d2411eb4a
+PODFILE CHECKSUM: 6b85935b68564269a21160390d2ec21280a34515
 
 COCOAPODS: 1.11.3
