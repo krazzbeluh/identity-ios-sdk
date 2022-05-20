@@ -1,5 +1,10 @@
 # Changelog
 
+## v5.6.0
+- Replace deprecated endpoint `/identity/v1/me` by `/identity/v1/userinfo`
+- Update `Alamofire` to version 5.6.1
+- Update `BrightFutures` to version 8.1.0
+
 ## v5.5.1
 - Upgrade dependency `GoogleSignIn` to version 5.0.2
 
