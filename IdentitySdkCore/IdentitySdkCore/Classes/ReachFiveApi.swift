@@ -301,8 +301,8 @@ public class ReachFiveApi {
     func createUrl(path: String) -> String {
         return "https://\(sdkConfig.domain)\(path)"
     }
-    
-    public func authorize(options: [String:String]) -> String {
+
+    internal func authorize(options: [String:String]) -> String {
         
         let request: URLRequest?
         var redirectUri = String()
@@ -317,8 +317,8 @@ public class ReachFiveApi {
         }
         return redirectUri
     }
-    
-    public func createWebAuthnSignupOptions(webAuthnRegistrationRequest: WebAuthnRegistrationRequest) -> Future<RegistrationOptions, ReachFiveError> {
+
+    internal func createWebAuthnSignupOptions(webAuthnRegistrationRequest: WebAuthnRegistrationRequest) -> Future<RegistrationOptions, ReachFiveError> {
         return AF
             .request(
                 createUrl(path: "/identity/v1/webauthn/signup-options?platform=ios&device=\(deviceInfo)"),
@@ -330,7 +330,7 @@ public class ReachFiveApi {
             .responseJson(type: RegistrationOptions.self, decoder: self.decoder)
     }
 
-    public func signupWithWebAuthn(webauthnSignupCredential: WebauthnSignupCredential) -> Future<AuthenticationToken, ReachFiveError> {
+    internal func signupWithWebAuthn(webauthnSignupCredential: WebauthnSignupCredential) -> Future<AuthenticationToken, ReachFiveError> {
         return AF
             .request(
                 createUrl(path: "/identity/v1/webauthn/signup?platform=ios&device=\(deviceInfo)"),
@@ -341,8 +341,8 @@ public class ReachFiveApi {
             .validate(contentType: ["application/json"])
             .responseJson(type: AuthenticationToken.self, decoder: self.decoder)
     }
-    
-    public func createWebAuthnAuthenticationOptions(webAuthnLoginRequest: WebAuthnLoginRequest) -> Future<AuthenticationOptions, ReachFiveError> {
+
+    internal func createWebAuthnAuthenticationOptions(webAuthnLoginRequest: WebAuthnLoginRequest) -> Future<AuthenticationOptions, ReachFiveError> {
         return AF
             .request(
                 createUrl(path: "/identity/v1/webauthn/authentication-options?platform=ios&device=\(deviceInfo)"),
@@ -353,8 +353,8 @@ public class ReachFiveApi {
             .validate(contentType: ["application/json"])
             .responseJson(type: AuthenticationOptions.self, decoder: self.decoder)
     }
-    
-    public func authenticateWithWebAuthn(authenticationPublicKeyCredential: AuthenticationPublicKeyCredential) -> Future<AuthenticationToken, ReachFiveError> {
+
+    internal func authenticateWithWebAuthn(authenticationPublicKeyCredential: AuthenticationPublicKeyCredential) -> Future<AuthenticationToken, ReachFiveError> {
         return AF
             .request(
                 createUrl(path: "/identity/v1/webauthn/authentication?platform=ios&device=\(deviceInfo)"),
@@ -365,8 +365,8 @@ public class ReachFiveApi {
             .validate(contentType: ["application/json"])
             .responseJson(type: AuthenticationToken.self, decoder: self.decoder)
     }
-    
-    public func getWebAuthnRegistrations(authorization: String) -> Future<[DeviceCredential], ReachFiveError> {
+
+    internal func getWebAuthnRegistrations(authorization: String) -> Future<[DeviceCredential], ReachFiveError> {
         
         let headers : HTTPHeaders = [ "Authorization" : authorization ]
         return AF
