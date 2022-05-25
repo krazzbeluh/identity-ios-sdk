@@ -1,5 +1,8 @@
 # Changelog
 
+## v5.6.1
+- Update `WebAuthnKit` to 0.9.6
+
 ## v5.6.0
 - Replace deprecated endpoint `/identity/v1/me` by `/identity/v1/userinfo`
 - Update `Alamofire` to version 5.6.1

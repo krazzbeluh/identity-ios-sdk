@@ -40,7 +40,7 @@ PODS:
     - EllipticCurveKeyPair (~> 2.0)
     - KeychainAccess (~> 4.2.1)
     - PromiseKit (~> 6.13.1)
-    - WebAuthnKit (~> 0.9.5)
+    - WebAuthnKit (~> 0.9.6)
   - IdentitySdkFacebook (5.6.0):
     - FacebookCore
     - FacebookLogin
@@ -113,7 +113,7 @@ SPEC CHECKSUMS:
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GTMAppAuth: 4d8f864896f3646f0c33baf38a28362f4c601e15
   GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
-  IdentitySdkCore: fedd1d5c47ebb9d5a43896de5bf850b1e47490c2
+  IdentitySdkCore: b9b8f0381b82af504bbf7c4d630472521b2cd611
   IdentitySdkFacebook: 480d25569ce047338dea16d8393218b163e02199
   IdentitySdkGoogle: da172c696f9041fd57c9e26f6ed4e3c7cd3ad019
   IdentitySdkWebView: 22d9da7fcf54ab7c8b02415f555d69db6847ecd4
