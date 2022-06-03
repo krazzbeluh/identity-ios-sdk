@@ -7,11 +7,13 @@
 $VERSION = 'x.x.x'
 ```
 
-3. Update the `CHANGELOG.md` file
+3. Run `./update.sh` to update the dependencies
 
-4. Submit and merge the pull request
+4. Update the `CHANGELOG.md` file
 
-5. Add git tag `x.x.x` to the merge commit
+5. Submit and merge the pull request
+
+6. Add git tag `x.x.x` to the merge commit
 ```sh
 git tag x.x.x
 ```
