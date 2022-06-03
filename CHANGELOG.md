@@ -1,5 +1,8 @@
 # Changelog
 
+## v5.6.2
+- Remove `WebAuthnKit`
+
 ## v5.6.1
 - Update `WebAuthnKit` to 0.9.6
 
