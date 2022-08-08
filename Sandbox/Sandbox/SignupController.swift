@@ -11,15 +11,14 @@ class SignupController: UIViewController {
         super.viewDidLoad()
         AppDelegate.reachfive().initialize().onComplete { _ in }
     }
-
+    
     @IBAction func signup(_ sender: Any) {
         let email = emailInput.text ?? ""
         let password = passwordInput.text ?? ""
         let name = nameInput.text ?? ""
         var redirectUrl: String? = nil
-            
-        if (!redirectUrlInput.text!.isEmpty)
-        {
+        
+        if (!redirectUrlInput.text!.isEmpty) {
             redirectUrl = redirectUrlInput.text!
         }
         
@@ -34,7 +33,7 @@ class SignupController: UIViewController {
             name: name,
             customFields: customFields
         )
-        AppDelegate.reachfive().signup(profile: profile,redirectUrl: redirectUrl).onSuccess(callback: goToProfile)
+        AppDelegate.reachfive().signup(profile: profile, redirectUrl: redirectUrl).onSuccess(callback: goToProfile)
     }
     
     func goToProfile(_ authToken: AuthToken) {
@@ -44,6 +43,6 @@ class SignupController: UIViewController {
             withIdentifier: "ProfileScene"
         ) as! ProfileController
         profileController.authToken = authToken
-        self.self.navigationController?.pushViewController(profileController, animated: true)
+        navigationController?.pushViewController(profileController, animated: true)
     }
 }
