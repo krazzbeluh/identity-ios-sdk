@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("addPasswordlessCallback \(result)")
         }
         
-        return true
+        return reachfive.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
