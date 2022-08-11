@@ -15,12 +15,14 @@ public extension ReachFive {
     }
     
     func loginWithPassword(
-        username: String,
+        email: String? = nil,
+        phoneNumber: String? = nil,
         password: String,
         scope: [String]? = nil
     ) -> Future<AuthToken, ReachFiveError> {
         let loginRequest = LoginRequest(
-            username: username,
+            email: email,
+            phoneNumber: phoneNumber,
             password: password,
             grantType: "password",
             clientId: sdkConfig.clientId,
@@ -28,6 +30,6 @@ public extension ReachFive {
         )
         return reachFiveApi
             .loginWithPassword(loginRequest: loginRequest)
-            .flatMap({ AuthToken.fromOpenIdTokenResponseFuture($0) })
+            .flatMap({ self.loginCallback(tkn: $0.tkn, scopes: scope) })
     }
 }

@@ -54,30 +54,12 @@ public class ReachFive: NSObject {
         """
     }
     
-    private func loginCallback(tkn: String, scopes: [String]?, completion: @escaping (Future<AuthToken, ReachFiveError>) -> Any) {
-        var resultAuthToken = Future<AuthToken, ReachFiveError>()
+    public func loginCallback(tkn: String, scopes: [String]?) -> Future<AuthToken, ReachFiveError> {
         let pkce = Pkce.generate()
-        storage.save(key: "CODE_VERIFIER", value: pkce)
-        let scope = [String](scopes!).joined(separator: " ")
-        let options: [String: String] = [
-            "client_id": sdkConfig.clientId,
-            "tkn": tkn,
-            "response_type": codeResponseType,
-            "redirect_uri": sdkConfig.scheme,
-            "scope": scope,
-            "code_challenge": pkce.codeChallenge,
-            "code_challenge_method": pkce.codeChallengeMethod
-        ]
-        // Build redirectUri
-        let redirectUri = reachFiveApi.buildAuthorizeURL(options: options)
-        // Pass the redirectUri to Safari to get code
-        let redirectionSafari = RedirectionSafari(url: redirectUri!)
-        redirectionSafari.login().onComplete { result in
-            let code = redirectionSafari.handleResult(result: result)
-            resultAuthToken = self.authWithCode(code: code, pkce: pkce)
-            // return authToken with completion
-            _ = completion(resultAuthToken)
-        }
+        let scope = (scopes ?? scope).joined(separator: " ")
+        
+        return reachFiveApi.loginCallback(loginCallback: LoginCallback(sdkConfig: sdkConfig, scope: scope, pkce: pkce, tkn: tkn))
+            .flatMap({ self.authWithCode(code: $0, pkce: pkce) })
     }
     
     internal func authWithCode(code: String, pkce: Pkce) -> Future<AuthToken, ReachFiveError> {
@@ -92,35 +74,16 @@ public class ReachFive: NSObject {
             .flatMap({ AuthToken.fromOpenIdTokenResponseFuture($0) })
     }
     
-    private func onSignupWithWebAuthnResult(webauthnSignupCredential: WebauthnSignupCredential, scopes: [String]?, completion: @escaping (Future<AuthToken, ReachFiveError>) -> Any) {
+    private func onSignupWithWebAuthnResult(webauthnSignupCredential: WebauthnSignupCredential, scopes: [String]?) -> Future<AuthToken, ReachFiveError> {
         reachFiveApi
             .signupWithWebAuthn(webauthnSignupCredential: webauthnSignupCredential)
-            .onSuccess { authenticationToken in
-                // exchange the tkn with an access token
-                self.loginCallback(tkn: authenticationToken.tkn, scopes: scopes) { (authToken) -> Any in
-                    _ = completion(authToken)
-                }
-            }
-            .onFailure { error in
-                let thePromise = BrightFutures.Promise<AuthToken, ReachFiveError>()
-                thePromise.failure(error)
-                _ = completion(thePromise.future)
-            }
+            .flatMap({ self.loginCallback(tkn: $0.tkn, scopes: scopes) })
     }
     
-    private func onLoginWithWebAuthnResult(authenticationPublicKeyCredential: AuthenticationPublicKeyCredential, scopes: [String]?, completion: @escaping (Future<AuthToken, ReachFiveError>) -> Any) {
+    private func onLoginWithWebAuthnResult(authenticationPublicKeyCredential: AuthenticationPublicKeyCredential, scopes: [String]?) -> Future<AuthToken, ReachFiveError> {
         reachFiveApi
             .authenticateWithWebAuthn(authenticationPublicKeyCredential: authenticationPublicKeyCredential)
-            .onSuccess { authenticationToken in
-                self.loginCallback(tkn: authenticationToken.tkn, scopes: scopes) { (authToken) -> Any in
-                    _ = completion(authToken)
-                }
-            }
-            .onFailure { error in
-                let thePromise = BrightFutures.Promise<AuthToken, ReachFiveError>()
-                thePromise.failure(error)
-                _ = completion(thePromise.future)
-            }
+            .flatMap({ self.loginCallback(tkn: $0.tkn, scopes: scopes) })
     }
     
     internal func listWebAuthnDevices(authToken: AuthToken) -> Future<[DeviceCredential], ReachFiveError> {
