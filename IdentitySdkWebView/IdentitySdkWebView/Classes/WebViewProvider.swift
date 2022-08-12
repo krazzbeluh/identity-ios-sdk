@@ -26,7 +26,7 @@ public class WebViewProvider: ProviderCreator {
     }
 }
 
-class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDelegate {
+class ConfiguredWebViewProvider: NSObject, Provider {
     var name: String = WebViewProvider.NAME
     
     let sdkConfig: SdkConfig
@@ -53,6 +53,12 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
         viewController: UIViewController?
     ) -> Future<AuthToken, ReachFiveError> {
         let promise = Promise<AuthToken, ReachFiveError>()
+        
+        guard let viewController = viewController else {
+            promise.failure(.TechnicalError(reason: "No presenting viewController"))
+            return promise.future
+        }
+        
         let pkce = Pkce.generate()
         let url = buildUrl(
             sdkConfig: sdkConfig,
@@ -96,7 +102,7 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
         }
         
         // Set an appropriate context provider instance that determines the window that acts as a presentation anchor for the session
-        session.presentationContextProvider = (viewController! as! ASWebAuthenticationPresentationContextProviding)
+        session.presentationContextProvider = (viewController as! ASWebAuthenticationPresentationContextProviding)
         
         // Start the Authentication Flow
         session.start()

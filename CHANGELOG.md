@@ -1,5 +1,33 @@
 # Changelog
 
+## v5.7.0
+
+Warning: There are Breaking Changes
+
+### Breaking changes
+- The SDK mandates a minimum version of iOS 13
+- `loginWithPassword` takes either an `email` or a `phoneNumber` instead of a `username`
+- New method `Provider.application(_:didFinishLaunchingWithOptions:)` to call at startup to initialize the social providers
+- New required key `FacebookClientToken` to configure Facebook Login
+- Parameter `viewController` in `Provider.login(scope:origin:viewController:)` is now mandatory
+- Parameter `viewController` in `Provider.login(scope:origin:viewController:)` must also conform to the protocol `ASWebAuthenticationPresentationContextProviding` when using `WebViewProvider`
+- Some error messages may have changed
+
+### New features
+- Login using a webview: `AppDelegate.reachfive().webviewLogin`
+- `WebViewProvider` now uses `ASWebAuthenticationSession` instead of `SFSafariViewController` for better security. The associated webview UI is different.
+- Don't ask again to confirm app access for Facebook Login when a user still has a valid Access Token
+
+### Other changes
+- `loginWithPassword` calls `/identity/v1/password/login` instead of `/oauth/token`
+- Update dependency `Alamofire` from 5.6.1 to 5.6.2
+- Update dependency `BrightFutures` from 8.1.0 to 8.2.0
+- Update dependency `CryptoSwift` from 1.3.8 to 1.5.1
+- Update dependency `FBSDKCoreKit` from 9.0.0 to 14.1.0
+- Update dependency `FBSDKLoginKit` from 9.0.0 to 14.1.0
+- Update dependency `GoogleSignIn` from 5.0.2 to 6.2.2
+- Remove dependencies `EllipticCurveKeyPair`, `KeychainAccess`, `PromiseKit`, `FacebookCore`, `FacebookLogin`
+
 ## v5.6.2
 - Remove `WebAuthnKit`
 
