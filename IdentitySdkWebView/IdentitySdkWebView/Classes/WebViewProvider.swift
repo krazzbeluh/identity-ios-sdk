@@ -2,6 +2,7 @@ import Foundation
 import SafariServices
 import IdentitySdkCore
 import BrightFutures
+import AuthenticationServices
 
 public class WebViewProvider: ProviderCreator {
     public static let NAME = "webview"
@@ -16,7 +17,7 @@ public class WebViewProvider: ProviderCreator {
         reachFiveApi: ReachFiveApi,
         clientConfigResponse: ClientConfigResponse
     ) -> Provider {
-        return ConfiguredWebViewProvider(
+        ConfiguredWebViewProvider(
             sdkConfig: sdkConfig,
             providerConfig: providerConfig,
             reachFiveApi: reachFiveApi,
@@ -25,12 +26,7 @@ public class WebViewProvider: ProviderCreator {
     }
 }
 
-class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDelegate {
-    private let notificationName = Notification.Name("AuthCallbackNotification")
-    private var safariViewController: SFSafariViewController? = nil
-    private var pkce: Pkce = Pkce.generate()
-    private var promise: Promise<AuthToken, ReachFiveError>?
-
+class ConfiguredWebViewProvider: NSObject, Provider {
     var name: String = WebViewProvider.NAME
     
     let sdkConfig: SdkConfig
@@ -56,89 +52,91 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
         origin: String,
         viewController: UIViewController?
     ) -> Future<AuthToken, ReachFiveError> {
-        self.promise?.tryFailure(.AuthCanceled)
         let promise = Promise<AuthToken, ReachFiveError>()
-        self.promise = promise
-        self.pkce = Pkce.generate()
-        UserDefaultsStorage().save(key: "PASSWORDLESS_PKCE", value: pkce)
-        let url = self.buildUrl(
+        
+        guard let viewController = viewController else {
+            promise.failure(.TechnicalError(reason: "No presenting viewController"))
+            return promise.future
+        }
+        
+        let pkce = Pkce.generate()
+        let url = buildUrl(
             sdkConfig: sdkConfig,
             providerConfig: providerConfig,
-            scope: scope != nil ? scope!.joined(separator: " ") : self.clientConfigResponse.scope,
+            scope: scope != nil ? scope!.joined(separator: " ") : clientConfigResponse.scope,
             pkce: pkce
         )
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleLogin(_:)), name: self.notificationName, object: nil)
+        guard let authURL = URL(string: url) else {
+            promise.failure(.TechnicalError(reason: "Cannot build authorize URL"))
+            return promise.future
+        }
         
-        self.safariViewController = SFSafariViewController.init(url: URL(string: url)!)
+        let session = ASWebAuthenticationSession(url: authURL, callbackURLScheme: "reachfive-\(sdkConfig.clientId)") { callbackURL, error in
+            guard error == nil else {
+                let r5Error: ReachFiveError
+                switch error!._code {
+                case 1: r5Error = .AuthCanceled
+                case 2: r5Error = .TechnicalError(reason: "Presentation Context Not Provided")
+                case 3: r5Error = .TechnicalError(reason: "Presentation Context Invalid")
+                default:
+                    r5Error = .TechnicalError(reason: "Unknown Error")
+                }
+                promise.failure(r5Error)
+                return
+            }
+            
+            guard let callbackURL = callbackURL else {
+                promise.failure(.TechnicalError(reason: "No callback URL"))
+                return
+            }
+            
+            let queryItems = URLComponents(string: callbackURL.absoluteString)?.queryItems
+            let code = queryItems?.first(where: { $0.name == "code" })?.value
+            guard let code = code else {
+                promise.failure(.TechnicalError(reason: "No authorization code"))
+                return
+            }
+            
+            promise.completeWith(self.handleAuthCode(code: code, pkce: pkce))
+        }
         
-        viewController?.present(safariViewController!, animated: true)
+        // Set an appropriate context provider instance that determines the window that acts as a presentation anchor for the session
+        session.presentationContextProvider = (viewController as! ASWebAuthenticationPresentationContextProviding)
+        
+        // Start the Authentication Flow
+        session.start()
         return promise.future
     }
     
-    @objc func handleLogin(_ notification : Notification) {
-        NotificationCenter.default.removeObserver(self, name: self.notificationName, object: nil)
-        
-        let url = notification.object as? URL
-        
-        if let query = url?.query {
-            let params = QueryString.parseQueriesStrings(query: query)
-            let code = params["code"]
-            if code != nil {
-                self.handleAuthCode(code!!)
-            } else {
-                self.promise?.failure(.TechnicalError(reason: "No authorization code"))
-            }
-        } else {
-            self.promise?.failure(.TechnicalError(reason: "No authorization code"))
-        }
-        
-        self.safariViewController?.dismiss(animated: true, completion: nil)
-    }
-    
-    private func handleAuthCode(_ code: String) {
+    private func handleAuthCode(code: String, pkce: Pkce) -> Future<AuthToken, ReachFiveError> {
         let authCodeRequest = AuthCodeRequest(
-            clientId: self.sdkConfig.clientId,
+            clientId: sdkConfig.clientId,
             code: code,
             redirectUri: sdkConfig.scheme,
-            pkce: self.pkce
+            pkce: pkce
         )
-        self.reachFiveApi.authWithCode(authCodeRequest: authCodeRequest)
+        return reachFiveApi.authWithCode(authCodeRequest: authCodeRequest)
             .flatMap({ AuthToken.fromOpenIdTokenResponseFuture($0) })
-            .onSuccess { authToken in
-                self.promise?.success(authToken)
-            }
-            .onFailure { error in
-                self.promise?.failure(error)
-            }
     }
     
-    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
-        NotificationCenter.default.removeObserver(self, name: self.notificationName, object: nil)
-        controller.dismiss(animated: true, completion: nil)
-    }
-    
-    public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-        if let sourceApplication = options[.sourceApplication] {
-            if (String(describing: sourceApplication) == "com.apple.SafariViewService") {
-                NotificationCenter.default.post(name: self.notificationName, object: url)
-                return true
-            }
-        }
-        
-        return false
+    public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any]) -> Bool {
+        true
     }
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return true
+        true
+    }
+    
+    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        true
     }
     
     public func applicationDidBecomeActive(_ application: UIApplication) {
-        
     }
     
     public func logout() -> Future<(), ReachFiveError> {
-        return Future.init(value: ())
+        Future(value: ())
     }
     
     func buildUrl(sdkConfig: SdkConfig, providerConfig: ProviderConfig, scope: String, pkce: Pkce) -> String {
@@ -162,6 +160,6 @@ class ConfiguredWebViewProvider: NSObject, Provider, SFSafariViewControllerDeleg
     }
     
     override var description: String {
-        return "Provider: \(self.name)"
+        "Provider: \(name)"
     }
 }

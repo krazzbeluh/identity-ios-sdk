@@ -5,7 +5,7 @@ import BrightFutures
 extension DataRequest {
     
     private func isSuccess(_ status: Int?) -> Bool {
-        return status != nil && status! >= 200 && status! < 300
+        status != nil && status! >= 200 && status! < 300
     }
     
     private func parseJson<T: Decodable>(json: Data, type: T.Type, decoder: JSONDecoder) -> Swift.Result<T, ReachFiveError> {
@@ -34,7 +34,7 @@ extension DataRequest {
     
     func responseJson(decoder: JSONDecoder) -> Future<(), ReachFiveError> {
         let promise = BrightFutures.Promise<(), ReachFiveError>()
-        self.responseString { responseData in
+        responseString { responseData in
             let status = responseData.response?.statusCode
             if (self.isSuccess(status)) {
                 promise.success(())
@@ -44,7 +44,7 @@ extension DataRequest {
                     case .success(let apiError):
                         self.handleResponseStatus(status: status, apiError: apiError, promise: promise)
                     case .failure(let error):
-                        promise.failure(ReachFiveError.TechnicalError(reason: error.localizedDescription))
+                        promise.failure(ReachFiveError.TechnicalError(reason: error.message()))
                     }
                 } else {
                     self.handleResponseStatus(status: status, apiError: nil, promise: promise)
@@ -57,7 +57,7 @@ extension DataRequest {
     func responseJson<T: Decodable>(type: T.Type, decoder: JSONDecoder) -> Future<T, ReachFiveError> {
         let promise = BrightFutures.Promise<T, ReachFiveError>()
         
-        self.responseString { responseData in
+        responseString { responseData in
             let status = responseData.response?.statusCode
             if (self.isSuccess(status)) {
                 if let data = responseData.data {
@@ -65,7 +65,7 @@ extension DataRequest {
                     case .success(let value):
                         promise.success(value)
                     case .failure(let error):
-                        promise.failure(ReachFiveError.TechnicalError(reason: error.localizedDescription))
+                        promise.failure(ReachFiveError.TechnicalError(reason: error.message()))
                     }
                 } else {
                     promise.failure(ReachFiveError.TechnicalError(reason: "No data from server"))
@@ -76,7 +76,7 @@ extension DataRequest {
                     case .success(let apiError):
                         self.handleResponseStatus(status: status, apiError: apiError, promise: promise)
                     case .failure(let error):
-                        promise.failure(ReachFiveError.TechnicalError(reason: error.localizedDescription))
+                        promise.failure(ReachFiveError.TechnicalError(reason: error.message()))
                     }
                 } else {
                     self.handleResponseStatus(status: status, apiError: nil, promise: promise)

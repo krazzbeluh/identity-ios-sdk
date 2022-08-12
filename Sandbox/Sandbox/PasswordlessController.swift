@@ -3,7 +3,7 @@ import UIKit
 import IdentitySdkCore
 
 class PasswordlessController: UIViewController {
-
+    
     @IBOutlet weak var redirectUriInput: UITextField!
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var phoneNumberInput: UITextField!
@@ -22,7 +22,7 @@ class PasswordlessController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
             .onFailure { error in
-                let alert = AppDelegate.createAlert(title: "Login with email", message: "Error: \(error.localizedDescription)")
+                let alert = AppDelegate.createAlert(title: "Login with email", message: "Error: \(error.message())")
                 self.present(alert, animated: true, completion: nil)
             }
             .onComplete { result in
@@ -43,7 +43,7 @@ class PasswordlessController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
             .onFailure { error in
-                let alert = AppDelegate.createAlert(title: "Login with phone number", message: "Error: \(error.localizedDescription)")
+                let alert = AppDelegate.createAlert(title: "Login with phone number", message: "Error: \(error.message())")
                 self.present(alert, animated: true, completion: nil)
             }
             .onComplete { result in
@@ -53,8 +53,8 @@ class PasswordlessController: UIViewController {
     
     @IBAction func verifyCode(_ sender: Any) {
         let verifyAuthCodeRequest = VerifyAuthCodeRequest(
-            phoneNumber: phoneNumberInput.text ?? "",
-            email: emailInput.text ?? "",
+            phoneNumber: phoneNumberInput.text,
+            email: emailInput.text,
             verificationCode: verificationCodeInput.text ?? ""
         )
         AppDelegate.reachfive()
@@ -64,7 +64,7 @@ class PasswordlessController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
             .onFailure { error in
-                let alert = AppDelegate.createAlert(title: "Verify code", message: "Error: \(error.localizedDescription)")
+                let alert = AppDelegate.createAlert(title: "Verify code", message: "Error: \(error.message())")
                 self.present(alert, animated: true, completion: nil)
             }
             .onComplete { result in

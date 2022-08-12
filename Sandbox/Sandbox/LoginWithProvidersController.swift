@@ -1,8 +1,9 @@
 import UIKit
 import IdentitySdkCore
 import GoogleSignIn
+import AuthenticationServices
 
-class LoginWithProvidersController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class LoginWithProvidersController: UIViewController, UITableViewDataSource, UITableViewDelegate, ASWebAuthenticationPresentationContextProviding {
     var providers: [Provider] = []
     
     @IBOutlet weak var providersTableView: UITableView!
@@ -24,11 +25,11 @@ class LoginWithProvidersController: UIViewController, UITableViewDataSource, UIT
     
     public func reloadProvidersData(providers: [Provider]) {
         self.providers = providers
-        self.providersTableView.reloadData()
+        providersTableView.reloadData()
     }
-        
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return providers.count
+        providers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -50,13 +51,13 @@ class LoginWithProvidersController: UIViewController, UITableViewDataSource, UIT
             print(error)
         }
     }
-        
+    
     func goToProfile(_ authToken: AuthToken) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let profileController = storyBoard.instantiateViewController(
             withIdentifier: "ProfileScene"
         ) as! ProfileController
-        self.self.navigationController?.pushViewController(profileController, animated: true)
+        navigationController?.pushViewController(profileController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -79,6 +80,10 @@ class LoginWithProvidersController: UIViewController, UITableViewDataSource, UIT
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        1
+    }
+    
+    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        view.window!
     }
 }
