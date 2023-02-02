@@ -6,11 +6,6 @@ class SignupController: UIViewController {
     @IBOutlet weak var passwordInput: UITextField!
     @IBOutlet weak var nameInput: UITextField!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        AppDelegate.reachfive().initialize().onComplete { _ in }
-    }
-    
     @IBAction func signup(_ sender: Any) {
         let email = emailInput.text ?? ""
         let password = passwordInput.text ?? ""
@@ -27,7 +22,12 @@ class SignupController: UIViewController {
             name: name,
             customFields: customFields
         )
-        AppDelegate.reachfive().signup(profile: profile).onSuccess(callback: goToProfile)
+        AppDelegate.reachfive().signup(profile: profile)
+            .onSuccess(callback: goToProfile)
+            .onFailure { error in
+                let alert = AppDelegate.createAlert(title: "Signup", message: "Error: \(error.message())")
+                self.present(alert, animated: true, completion: nil)
+            }
     }
     
     func goToProfile(_ authToken: AuthToken) {
