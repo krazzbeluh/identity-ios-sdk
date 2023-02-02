@@ -13,7 +13,7 @@ public extension ReachFive {
         let options = [
             "client_id": sdkConfig.clientId,
             "redirect_uri": sdkConfig.scheme,
-            "response_type": codeResponseType,
+            "response_type": "code",
             "scope": scope,
             "code_challenge": pkce.codeChallenge,
             "code_challenge_method": pkce.codeChallengeMethod
@@ -54,7 +54,9 @@ public extension ReachFive {
         session.presentationContextProvider = request.presentationContextProvider
         
         // Start the Authentication Flow
-        session.start()
+        if !session.start() {
+            promise.failure(.TechnicalError(reason: "Failed to start ASWebAuthenticationSession"))
+        }
         return promise.future
     }
 }
