@@ -4,14 +4,18 @@ import IdentitySdkFacebook
 import IdentitySdkWebView
 import IdentitySdkGoogle
 
+//TODO
+// Mettre une quatrième tabs:
+// - Paramétrage : scopes, origin, utilisation du refresh au démarage ?
+// Voir pour utiliser les scènes : 1 par que c'est plus moderne, deux par qu'il faut peut-être adapter certaines interface pour les app clients qui utilisent les scènes
+// cf. wireframe de JC pour d'autres idées : https://miro.com/app/board/uXjVOMB0pG4=/
+// faire le ménage de toutes les anciennes choses (genre FIDO) qui ne sont pas/plus utilisées
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     public static let storage = SecureStorage()
-    public static let authKey = "AUTH_TOKEN"
     public static let origin = ProcessInfo.processInfo.environment["ORIGIN"]!
-    
     
     let reachfive: ReachFive = ReachFive(
         sdkConfig: SdkConfig(
@@ -74,20 +78,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         print("applicationWillEnterForeground")
-        guard let token: AuthToken = AppDelegate.storage.get(key: AppDelegate.authKey) else {
-            // re-authenticate the user
-            return
-        }
-        AppDelegate.reachfive()
-            .refreshAccessToken(authToken: token)
-            .onSuccess { refreshedAuthToken in
-                print("refresh successful")
-                AppDelegate.storage.save(key: AppDelegate.authKey, value: refreshedAuthToken)
-            }
-            .onFailure { error in
-                print("refresh error \(error)")
-                AppDelegate.storage.clear(key: AppDelegate.authKey)
-            }
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -113,3 +103,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("applicationProtectedDataDidBecomeAvailable")
     }
 }
+
+extension UIViewController {
+    
+    func goToProfile(_ authToken: AuthToken) {
+        AppDelegate.storage.save(key: SecureStorage.authKey, value: authToken)
+        
+        if let tabBarController = storyboard?.instantiateViewController(withIdentifier: "Tabs") as? UITabBarController {
+            tabBarController.selectedIndex = 2 // profile is third from left
+            navigationController?.pushViewController(tabBarController, animated: true)
+        }
+    }
+}
+
