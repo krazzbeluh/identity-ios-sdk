@@ -1,6 +1,5 @@
 import UIKit
 import IdentitySdkCore
-import IdentitySdkFacebook
 import IdentitySdkWebView
 import IdentitySdkGoogle
 
@@ -9,13 +8,10 @@ import IdentitySdkGoogle
 // - Paramétrage : scopes, origin, utilisation du refresh au démarage ?
 // Voir pour utiliser les scènes : 1 par que c'est plus moderne, deux par qu'il faut peut-être adapter certaines interface pour les app clients qui utilisent les scènes
 // cf. wireframe de JC pour d'autres idées : https://miro.com/app/board/uXjVOMB0pG4=/
-// Tester le MFA avec "Securing Logins with iCloud Keychain Verification Codes" https://developer.apple.com/documentation/authenticationservices/securing_logins_with_icloud_keychain_verification_codes
-// Apparemment les custom scheme sont dépréciés et il faudrait utiliser les "Universal Links" : https://developer.apple.com/ios/universal-links/
-// Apparemment il faut faire du dev pour partager des credentials entre Safari et une app (app-site association ne suffit pas) : https://developer.apple.com/documentation/security/shared_web_credentials
 // Essayer de mettre tous les config du SDK dans le code et en choisir une avec Xcode Custom Environment Variables : https://derrickho328.medium.com/xcode-custom-environment-variables-681b5b8674ec
+// Essayer d'améliorer la navigation pour qu'il n'y ait pas tous ces retours en arrière inutiles quand on navigue les onglets à la main
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
     
     public static let storage = SecureStorage()
     
@@ -36,20 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static func reachfive() -> ReachFive {
         let app = UIApplication.shared.delegate as! AppDelegate
         return app.reachfive
-    }
-    
-    static func shared() -> AppDelegate {
-        UIApplication.shared.delegate as! AppDelegate
-    }
-    
-    static func createAlert(title: String, message: String) -> UIAlertController {
-        let alert = UIAlertController(
-            title: title,
-            message: message,
-            preferredStyle: UIAlertController.Style.alert
-        )
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        return alert
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -103,6 +85,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationProtectedDataDidBecomeAvailable(_ application: UIApplication) {
         print("applicationProtectedDataDidBecomeAvailable")
+    }
+}
+
+extension AppDelegate {
+    static func createAlert(title: String, message: String) -> UIAlertController {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: UIAlertController.Style.alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default))
+        return alert
     }
 }
 

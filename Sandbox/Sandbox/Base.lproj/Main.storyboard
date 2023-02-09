@@ -114,7 +114,7 @@
                             <constraint firstItem="Y3Y-Pg-QHq" firstAttribute="trailing" secondItem="M7e-ga-cOo" secondAttribute="trailing" id="wiR-fS-wM4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="96u-bb-pgH"/>
+                    <navigationItem key="navigationItem" title="Login with Password" id="96u-bb-pgH"/>
                     <connections>
                         <outlet property="customIdentifierInput" destination="nqk-1U-HPb" id="5en-zK-SFR"/>
                         <outlet property="emailInput" destination="ljB-cQ-dto" id="Bdh-Qo-d8B"/>
@@ -240,7 +240,7 @@
                             <constraint firstItem="dXD-Kc-6mi" firstAttribute="top" secondItem="w53-Iq-oaM" secondAttribute="bottom" constant="8" id="yG4-PD-qmi"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="LDP-wV-XJT"/>
+                    <navigationItem key="navigationItem" title="Passwordless" id="LDP-wV-XJT"/>
                     <connections>
                         <outlet property="emailInput" destination="eoo-7E-NMJ" id="a01-mH-9QJ"/>
                         <outlet property="phoneNumberInput" destination="dXD-Kc-6mi" id="LLX-d8-j1g"/>
@@ -261,15 +261,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="85m-7Z-vSr">
-                                <rect key="frame" x="0" y="0" width="429" height="930"/>
+                                <rect key="frame" x="-2" y="0.0" width="431" height="930"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="providerCell" id="HyK-Am-JUA">
-                                        <rect key="frame" x="0.0" y="50" width="429" height="43"/>
+                                        <rect key="frame" x="0.0" y="50" width="431" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HyK-Am-JUA" id="VRc-NK-UUF">
-                                            <rect key="frame" x="0.0" y="0.0" width="429" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="431" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -282,7 +282,6 @@
                     <navigationItem key="navigationItem" title="Login with providers" id="pxk-0X-m9H"/>
                     <connections>
                         <outlet property="providersTableView" destination="85m-7Z-vSr" id="gG2-Gy-2rU"/>
-                        <segue destination="85A-IF-9ED" kind="show" identifier="LoginTransition" id="793-jg-Aas"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -347,7 +346,7 @@
                             <constraint firstItem="row-j4-8AG" firstAttribute="top" secondItem="W3K-8i-RYY" secondAttribute="top" id="oSl-pp-FCx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="5fh-NY-PHH"/>
+                    <navigationItem key="navigationItem" title="Update password" id="5fh-NY-PHH"/>
                     <connections>
                         <outlet property="newPassword" destination="mTK-qf-v8M" id="jyA-Gj-arc"/>
                         <outlet property="oldPassword" destination="Nqs-3R-NMv" id="qlY-we-oSd"/>
@@ -443,7 +442,7 @@
                             <constraint firstItem="ISz-2N-3VB" firstAttribute="leading" secondItem="aQ1-Vf-wGZ" secondAttribute="leading" id="tTD-nr-6H1"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="vmR-MT-LEI"/>
+                    <navigationItem key="navigationItem" title="Signup with Password" id="vmR-MT-LEI"/>
                     <connections>
                         <outlet property="emailInput" destination="ISz-2N-3VB" id="gwp-Lk-Lje"/>
                         <outlet property="nameInput" destination="8vr-zU-Z2f" id="EAJ-lj-rbk"/>
@@ -564,15 +563,15 @@
                                 <rect key="frame" x="20" y="575.33333333333337" width="390" height="280.66666666666663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="credentialCell" textLabel="iG3-MN-bS0" rowHeight="69" style="IBUITableViewCellStyleDefault" id="c5m-V1-dSm" customClass="DevicesFidoCell" customModule="Sandbox" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="390" height="69"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="credentialCell" textLabel="iG3-MN-bS0" style="IBUITableViewCellStyleDefault" id="c5m-V1-dSm">
+                                        <rect key="frame" x="0.0" y="50" width="390" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c5m-V1-dSm" id="SxA-jr-EN8">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="69"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iG3-MN-bS0">
-                                                    <rect key="frame" x="20" y="0.0" width="350" height="69"/>
+                                                    <rect key="frame" x="20" y="0.0" width="350" height="43.666667938232422"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -744,7 +743,7 @@
                             <constraint firstItem="9e8-Az-d4M" firstAttribute="top" secondItem="2zV-kh-fDP" secondAttribute="top" id="ebv-0X-18u"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="KHs-Mp-cEo"/>
+                    <navigationItem key="navigationItem" title="Update phone number" id="KHs-Mp-cEo"/>
                     <connections>
                         <outlet property="phoneNumberInput" destination="CkE-m1-sya" id="4GH-4d-8TN"/>
                     </connections>
@@ -1520,9 +1519,6 @@
             <point key="canvasLocation" x="-1182" y="-1306"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="793-jg-Aas"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="Reach5" width="821.427978515625" height="321.42800903320312"/>
         <image name="faceid" catalog="system" width="128" height="115"/>
