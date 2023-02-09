@@ -12,6 +12,7 @@ import IdentitySdkGoogle
 // Essayer d'améliorer la navigation pour qu'il n'y ait pas tous ces retours en arrière inutiles quand on navigue les onglets à la main
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
     
     public static let storage = SecureStorage()
     
