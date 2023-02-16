@@ -59,7 +59,7 @@ public class CredentialManager: NSObject {
                     return .failure(.TechnicalError(reason: "unreadable userID from public key: \(options.options.publicKey.user.id)"))
                 }
                 
-                let publicKeyCredentialProvider = ASAuthorizationPlatformPublicKeyCredentialProvider(relyingPartyIdentifier: self.reachFiveApi.sdkConfig.domain)
+                let publicKeyCredentialProvider = ASAuthorizationPlatformPublicKeyCredentialProvider(relyingPartyIdentifier: options.options.publicKey.rp.id)
                 return .success(publicKeyCredentialProvider.createCredentialRegistrationRequest(challenge: challenge, name: request.friendlyName, userID: userID))
             }
             .onSuccess { registrationRequest in
@@ -97,7 +97,7 @@ public class CredentialManager: NSObject {
                     return .failure(.TechnicalError(reason: "unreadable userID from public key: \(options.options.publicKey.user.id)"))
                 }
                 
-                let publicKeyCredentialProvider = ASAuthorizationPlatformPublicKeyCredentialProvider(relyingPartyIdentifier: self.reachFiveApi.sdkConfig.domain)
+                let publicKeyCredentialProvider = ASAuthorizationPlatformPublicKeyCredentialProvider(relyingPartyIdentifier: options.options.publicKey.rp.id)
                 return .success(publicKeyCredentialProvider.createCredentialRegistrationRequest(challenge: challenge, name: request.friendlyName, userID: userID))
             }
             .onSuccess { registrationRequest in
@@ -358,10 +358,8 @@ extension CredentialManager: ASAuthorizationControllerDelegate {
             }
         } else {
             // Another ASAuthorization error.
-            // Note: The userInfo dictionary contains useful information.
-            let userInfo = (error as NSError).userInfo
-            promise.tryFailure(.TechnicalError(reason: "\(userInfo)"))
-            registrationPromise.tryFailure(.TechnicalError(reason: "\(userInfo)"))
+            promise.tryFailure(.TechnicalError(reason: "\(error)"))
+            registrationPromise.tryFailure(.TechnicalError(reason: "\(error)"))
         }
     }
 }
@@ -374,8 +372,7 @@ extension CredentialManager {
             return .failure(.TechnicalError(reason: "unreadable challenge: \(assertionRequestOptions.publicKey.challenge)"))
         }
         
-        //TODO: utiliser domain ou origin (sans le https) tel que passée en param ?
-        let publicKeyCredentialProvider = ASAuthorizationPlatformPublicKeyCredentialProvider(relyingPartyIdentifier: reachFiveApi.sdkConfig.domain)
+        let publicKeyCredentialProvider = ASAuthorizationPlatformPublicKeyCredentialProvider(relyingPartyIdentifier: assertionRequestOptions.publicKey.rpId)
         return .success(publicKeyCredentialProvider.createCredentialAssertionRequest(challenge: challenge))
     }
     
