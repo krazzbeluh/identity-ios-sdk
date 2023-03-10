@@ -30,8 +30,6 @@ public extension ReachFive {
         return credentialManager.signUp(withRequest: signupOptions, anchor: request.anchor)
     }
     
-    // https://developer.apple.com/forums/thread/714608
-    // il y a un bug quand on touche la clé pour afficher les diverses clés d'identification présentes
     /// Starts an auto-fill assisted passkey login request.
     /// The passkey will be shown in the QuickType bar when selecting a field of content type Username.
     /// Start the request automatically early in the view lifecycle (e.g. in viewDidAppear), alone or in reaction to a modal request .IfImmediatelyAvailableCredentials that resulted in an .AuthCanceled.

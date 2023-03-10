@@ -62,6 +62,13 @@ class ActionController: UITableViewController {
             present(alert, animated: true, completion: nil)
             return nil
         }
+        #if targetEnvironment(macCatalyst)
+            if indexPath.section == 2, indexPath.row == 3 {
+            let alert = AppDelegate.createAlert(title: "Login", message: "AutoFill not available on macOS")
+            present(alert, animated: true, completion: nil)
+            return nil
+        }
+        #endif
         return indexPath
     }
     
