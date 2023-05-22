@@ -11,33 +11,34 @@ class ActionController: UITableViewController {
         
         let loginRequest = NativeLoginRequest(anchor: window)
         
-        // Section Password
-        if indexPath.section == 0 {
+        // Section Passkey
+        if #available(iOS 16.0, *), indexPath.section == 2 {
+            // Login with passkey: modal persistent
+            if indexPath.row == 1 {
+                AppDelegate.reachfive()
+                    .login(withRequest: loginRequest, usingModalAuthorizationFor: [.Passkey], display: .Always)
+                    .onSuccess(callback: goToProfile)
+            } else
+            // Login with passkey: modal non-persistent
             if indexPath.row == 2 {
+                AppDelegate.reachfive()
+                    .login(withRequest: loginRequest, usingModalAuthorizationFor: [.Passkey], display: .IfImmediatelyAvailableCredentials)
+                    .onSuccess(callback: goToProfile)
+            }
+        }
+        
+        // Section Webview
+        if indexPath.section == 3 {
+            // standard webview
+            if indexPath.row == 0 {
                 AppDelegate.reachfive()
                     .webviewLogin(WebviewLoginRequest(state: "state", nonce: "nonce", scope: ["email", "profile"], presentationContextProvider: self))
                     .onComplete { self.handleResult(result: $0) }
             }
         }
         
-        // Section Passkey
-        if #available(iOS 16.0, *), indexPath.section == 2 {
-            // Login with passkey: modal non-persistent
-            if indexPath.row == 1 {
-                AppDelegate.reachfive()
-                    .login(withRequest: loginRequest, usingModalAuthorizationFor: [.Passkey], display: .IfImmediatelyAvailableCredentials)
-                    .onSuccess(callback: goToProfile)
-            } else
-            // Login with passkey: modal persistent
-            if indexPath.row == 2 {
-                AppDelegate.reachfive()
-                    .login(withRequest: loginRequest, usingModalAuthorizationFor: [.Passkey], display: .Always)
-                    .onSuccess(callback: goToProfile)
-            }
-        }
-        
         // Section Others
-        if indexPath.section == 3 {
+        if indexPath.section == 4 {
             // Login with refresh
             if indexPath.row == 2 {
                 guard let token: AuthToken = AppDelegate.storage.get(key: SecureStorage.authKey) else {

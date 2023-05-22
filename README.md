@@ -1,5 +1,5 @@
 <p align="center">
- <img src="https://www.reachfive.com/hs-fs/hubfs/Reachfive_April2019/Images/site-logo.png?width=700&height=192&name=site-logo.png"/>
+ <img src="https://www.reachfive.com/hubfs/5399904/Logo-ReachFive.svg" alt="Reach5 Logo" width="700" height="192"/>
 </p>
 
 [![CircleCI](https://circleci.com/gh/ReachFive/identity-ios-sdk/tree/master.svg?style=svg)](https://circleci.com/gh/ReachFive/identity-ios-sdk/tree/master)
@@ -16,7 +16,7 @@
 
 ## Installation
 
-Refer to the [public documentation](https://developer.reach5.co/guides/installation/ios) to install the SDKs and to initialize your ReachFive client.
+Refer to the [public documentation](https://developer.reachfive.com/sdk-ios/index.html) to install the SDKs and to initialize your ReachFive client.
 
 ## Demo application
 
@@ -64,21 +64,21 @@ You also need to set the ReachFive client configuration within the SDK as below:
 ```
 SdkConfig(
   domain: "my-reachfive-url",
-  clientId: "my-reachfive-client-id",
-  scheme: "my-reachfive-url-scheme"
+  clientId: "my-reachfive-client-id"
 )
 ```
 
-The URL scheme must follow this pattern: `reachfive-${clientId}://callback`.
 
 For example:
 ```
 SdkConfig(
     domain: "integ-sandbox-squad2.reach5.dev",
-    clientId: "zhU43aRKZtzps551nvOM",
-    scheme: "reachfive-zhU43aRKZtzps551nvOM://callback"
+    clientId: "zhU43aRKZtzps551nvOM"
 )
 ```
+
+By default, the URL scheme follows this pattern: `reachfive-${clientId}://callback`.
+You can also specify it manually.
 
 #### Configure your backend
 

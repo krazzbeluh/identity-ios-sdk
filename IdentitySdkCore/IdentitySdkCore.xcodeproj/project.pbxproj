@@ -23,7 +23,6 @@
 		2AE18CDB29FC1DAF00258D2B /* LoginWKWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE18CDA29FC1DAF00258D2B /* LoginWKWebview.swift */; };
 		3404A40822CB9B7E002FFEDB /* ReachFiveError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404A40722CB9B7E002FFEDB /* ReachFiveError.swift */; };
 		3404A40C22CBA6DD002FFEDB /* AuthCodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404A40B22CBA6DD002FFEDB /* AuthCodeRequest.swift */; };
-		340AF1F7232A9A2B00AA114D /* QueryString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340AF1F6232A9A2B00AA114D /* QueryString.swift */; };
 		340AF1F9232AA32F00AA114D /* UpdatePasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340AF1F8232AA32F00AA114D /* UpdatePasswordRequest.swift */; };
 		340DA24822CF4CB200864149 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340DA24722CF4CB200864149 /* UIDevice.swift */; };
 		3417FF6622F8435F0009EC84 /* UpdatePhoneNumberRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3417FF6522F8435F0009EC84 /* UpdatePhoneNumberRequest.swift */; };
@@ -103,7 +102,6 @@
 		2CA6D9263DC2541C548301E9 /* Pods-IdentitySdkCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentitySdkCore.release.xcconfig"; path = "Target Support Files/Pods-IdentitySdkCore/Pods-IdentitySdkCore.release.xcconfig"; sourceTree = "<group>"; };
 		3404A40722CB9B7E002FFEDB /* ReachFiveError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachFiveError.swift; sourceTree = "<group>"; };
 		3404A40B22CBA6DD002FFEDB /* AuthCodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCodeRequest.swift; sourceTree = "<group>"; };
-		340AF1F6232A9A2B00AA114D /* QueryString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryString.swift; sourceTree = "<group>"; };
 		340AF1F8232AA32F00AA114D /* UpdatePasswordRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePasswordRequest.swift; sourceTree = "<group>"; };
 		340DA24722CF4CB200864149 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		3417FF6522F8435F0009EC84 /* UpdatePhoneNumberRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePhoneNumberRequest.swift; sourceTree = "<group>"; };
@@ -211,7 +209,6 @@
 				3455FCEB22F1B57400892794 /* DictionaryEncodable.swift */,
 				34DD31FE22F3286400279E54 /* CustomField.swift */,
 				349E16EF230C49E0002EA06B /* Storage.swift */,
-				340AF1F6232A9A2B00AA114D /* QueryString.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -458,7 +455,6 @@
 			files = (
 				8496EB4125DEB141005098DD /* AuthenticationOptions.swift in Sources */,
 				34BDDA3822E5BE8C00D16DAE /* LoginSummary.swift in Sources */,
-				340AF1F7232A9A2B00AA114D /* QueryString.swift in Sources */,
 				347FDB69229C04C200660687 /* ProviderConfig.swift in Sources */,
 				2AE5331E2994638000EF97E0 /* ProfilePasskeySignupRequest.swift in Sources */,
 				2AE5330E299462DD00EF97E0 /* ReachFiveNative.swift in Sources */,

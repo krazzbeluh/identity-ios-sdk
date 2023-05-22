@@ -29,7 +29,28 @@ extension ReachFive {
             .flatMap({ self.authWithCode(code: $0, pkce: pkce) })
     }
     
-    internal func authWithCode(code: String, pkce: Pkce) -> Future<AuthToken, ReachFiveError> {
+    public func buildAuthorizeURL(pkce: Pkce, state: String? = nil, nonce: String? = nil, scope: [String]? = nil) -> URL {
+        let scope = (scope ?? self.scope).joined(separator: " ")
+        var options = [
+            "client_id": sdkConfig.clientId,
+            "redirect_uri": sdkConfig.redirectUri,
+            "response_type": "code",
+            "scope": scope,
+            "code_challenge": pkce.codeChallenge,
+            "code_challenge_method": pkce.codeChallengeMethod
+        ]
+        
+        if let state {
+            options["state"] = state
+        }
+        if let nonce {
+            options["nonce"] = nonce
+        }
+        
+        return reachFiveApi.buildAuthorizeURL(queryParams: options)
+    }
+    
+    public func authWithCode(code: String, pkce: Pkce) -> Future<AuthToken, ReachFiveError> {
         let authCodeRequest = AuthCodeRequest(
             clientId: sdkConfig.clientId,
             code: code,

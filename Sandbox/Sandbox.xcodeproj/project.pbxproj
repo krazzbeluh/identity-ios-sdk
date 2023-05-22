@@ -28,6 +28,8 @@
 		EA91A0276CEFFE580E9C24DD /* SignupPasskeyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA91A17236291622417196AE /* SignupPasskeyController.swift */; };
 		EA91A44398415C17C88BD067 /* LoginPasskeyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA91AFCB7679A47D752EA6B3 /* LoginPasskeyController.swift */; };
 		EA91ACDEBA85D43349D63550 /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA91A294C5DD405D6A38ADCC /* SecureStorage.swift */; };
+		2A33F30B2A016B1D00D05EB1 /* LoginWKWebviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33F30A2A016B1D00D05EB1 /* LoginWKWebviewController.swift */; };
+		2A33F30D2A01740600D05EB1 /* LoginCustomWebviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33F30C2A01740600D05EB1 /* LoginCustomWebviewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,8 @@
 		EA91A17236291622417196AE /* SignupPasskeyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupPasskeyController.swift; sourceTree = "<group>"; };
 		EA91A294C5DD405D6A38ADCC /* SecureStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureStorage.swift; sourceTree = "<group>"; };
 		EA91AFCB7679A47D752EA6B3 /* LoginPasskeyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPasskeyController.swift; sourceTree = "<group>"; };
+		2A33F30A2A016B1D00D05EB1 /* LoginWKWebviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWKWebviewController.swift; sourceTree = "<group>"; };
+		2A33F30C2A01740600D05EB1 /* LoginCustomWebviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCustomWebviewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,8 @@
 				2AFF7DE8296F1EB900514B47 /* ActionController.swift */,
 				2A1079E829721DAC00431655 /* NativePasswordController.swift */,
 				2AA4B58F2975B3920001747C /* DemoController.swift */,
+				2A33F30A2A016B1D00D05EB1 /* LoginWKWebviewController.swift */,
+				2A33F30C2A01740600D05EB1 /* LoginCustomWebviewController.swift */,
 			);
 			path = Sandbox;
 			sourceTree = "<group>";
@@ -278,6 +284,8 @@
 				EA91A0276CEFFE580E9C24DD /* SignupPasskeyController.swift in Sources */,
 				2AA4B5902975B3920001747C /* DemoController.swift in Sources */,
 				EA91A44398415C17C88BD067 /* LoginPasskeyController.swift in Sources */,
+				2A33F30B2A016B1D00D05EB1 /* LoginWKWebviewController.swift in Sources */,
+				2A33F30D2A01740600D05EB1 /* LoginCustomWebviewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

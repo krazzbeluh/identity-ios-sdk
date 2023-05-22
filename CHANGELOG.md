@@ -1,5 +1,29 @@
 # Changelog
 
+## v5.8.0
+### New features
+
+- Support for Passkey in iOS 16 and up:
+  - Signup and login are supported in various UI modes
+  - Registering a new passkey on an exiting profile (with or without preexisting passkeys)
+  - List all passkeys associated to a profile
+  - Delete a passkey
+- Support for native modal UI to automatically present password credentials
+
+### Demo App
+Vastly improved demo app:
+- Features a new tab bar navigation UI for easy access to the main demo, profile page and individual functions
+- Demo tab that features login and signup using password or passkey
+- Profile tab with more profile info, list of passkeys, and buttons to register passkey, change phone number or password
+- Access every passkey UI mode individually
+- Introducing Mac Catalyst support to easily launch the app outside a simulator on a real Mac device
+- Better iPad support
+- Support for Dark Mode
+
+### Other changes
+- Improved error messages when using the `message()` function or when printing to the console
+- Update the Readme with instructions on configuring and running the demo app
+
 ## v5.7.2
 - Allow login with webview using a WKWebview.
 - Add new address complement field in the `ProfileAddress` model

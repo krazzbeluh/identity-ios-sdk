@@ -18,9 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let reachfive: ReachFive = ReachFive(
         sdkConfig: SdkConfig(
-            domain: "integ-sandbox-squad2.reach5.dev",
-            clientId: "zhU43aRKZtzps551nvOM",
-            scheme: "reachfive-zhU43aRKZtzps551nvOM://callback"
+            domain: "integ-qa-fonctionnelle-pr3421.reach5.dev",
+            clientId: "EGYEKPe5RFpaweVzKmNv"
         ),
         providersCreators: [
             // we can add back Facebook when we migrate to Swift Package Manager, or try this crazy fix : https://betterprogramming.pub/macos-catalyst-debugging-problems-using-catalyst-and-cocoapods-579679150fa9

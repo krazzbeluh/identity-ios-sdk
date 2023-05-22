@@ -72,7 +72,7 @@ class ConfiguredWebViewProvider: NSObject, Provider {
             return promise.future
         }
         
-        let session = ASWebAuthenticationSession(url: authURL, callbackURLScheme: "reachfive-\(sdkConfig.clientId)") { callbackURL, error in
+        let session = ASWebAuthenticationSession(url: authURL, callbackURLScheme: sdkConfig.baseScheme) { callbackURL, error in
             guard error == nil else {
                 let r5Error: ReachFiveError
                 switch error!._code {

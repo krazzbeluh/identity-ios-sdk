@@ -8,7 +8,7 @@
 	</array>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>webcredentials:integ-sandbox-squad2.reach5.dev</string>
+		<string>webcredentials:integ-qa-fonctionnelle-pr3421.reach5.dev</string>
 	</array>
 	<key>com.apple.security.app-sandbox</key>
 	<true/>
