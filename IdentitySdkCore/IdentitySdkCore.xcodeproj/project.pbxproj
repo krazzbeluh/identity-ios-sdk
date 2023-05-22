@@ -20,6 +20,7 @@
 		2AE533202994638100EF97E0 /* RegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5331A2994638000EF97E0 /* RegistrationRequest.swift */; };
 		2AE533212994638100EF97E0 /* NewPasskeyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5331B2994638000EF97E0 /* NewPasskeyRequest.swift */; };
 		2AE533222994638100EF97E0 /* PasskeySignupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5331C2994638000EF97E0 /* PasskeySignupRequest.swift */; };
+		2AE18CDB29FC1DAF00258D2B /* LoginWKWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE18CDA29FC1DAF00258D2B /* LoginWKWebview.swift */; };
 		3404A40822CB9B7E002FFEDB /* ReachFiveError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404A40722CB9B7E002FFEDB /* ReachFiveError.swift */; };
 		3404A40C22CBA6DD002FFEDB /* AuthCodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404A40B22CBA6DD002FFEDB /* AuthCodeRequest.swift */; };
 		340AF1F7232A9A2B00AA114D /* QueryString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340AF1F6232A9A2B00AA114D /* QueryString.swift */; };
@@ -97,6 +98,7 @@
 		2AE5331A2994638000EF97E0 /* RegistrationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationRequest.swift; sourceTree = "<group>"; };
 		2AE5331B2994638000EF97E0 /* NewPasskeyRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPasskeyRequest.swift; sourceTree = "<group>"; };
 		2AE5331C2994638000EF97E0 /* PasskeySignupRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasskeySignupRequest.swift; sourceTree = "<group>"; };
+		2AE18CDA29FC1DAF00258D2B /* LoginWKWebview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWKWebview.swift; sourceTree = "<group>"; };
 		2B722D997B32FEE8753D77AB /* Pods_IdentitySdkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IdentitySdkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA6D9263DC2541C548301E9 /* Pods-IdentitySdkCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentitySdkCore.release.xcconfig"; path = "Target Support Files/Pods-IdentitySdkCore/Pods-IdentitySdkCore.release.xcconfig"; sourceTree = "<group>"; };
 		3404A40722CB9B7E002FFEDB /* ReachFiveError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachFiveError.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				34BDDA4322E5D95B00D16DAE /* ReachFiveProfile.swift */,
 				34BDDA3F22E5D73900D16DAE /* ReachFiveProviders.swift */,
 				34689A9A22CE3E34002970F9 /* utils */,
+				2AE18CDA29FC1DAF00258D2B /* LoginWKWebview.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				34251C0B232FC13800B0C271 /* RefreshRequest.swift in Sources */,
 				8496EB4325DEB141005098DD /* AuthenticationToken.swift in Sources */,
 				34BDDA4422E5D95B00D16DAE /* ReachFiveProfile.swift in Sources */,
+				2AE18CDB29FC1DAF00258D2B /* LoginWKWebview.swift in Sources */,
 				34BDDA4022E5D73900D16DAE /* ReachFiveProviders.swift in Sources */,
 				347FDB67229C02FE00660687 /* ReachFive.swift in Sources */,
 				2AE5330C299462DD00EF97E0 /* ReachFiveLogin.swift in Sources */,

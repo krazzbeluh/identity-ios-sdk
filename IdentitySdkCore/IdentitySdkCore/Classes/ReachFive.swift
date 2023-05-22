@@ -16,12 +16,12 @@ public typealias PasswordlessCallback = (_ result: Result<AuthToken, ReachFiveEr
 public class ReachFive: NSObject {
     var passwordlessCallback: PasswordlessCallback? = nil
     var state: State = .NotInitialized
-    let sdkConfig: SdkConfig
+    public let sdkConfig: SdkConfig
     let providersCreators: Array<ProviderCreator>
     let reachFiveApi: ReachFiveApi
     var providers: [Provider] = []
     internal var scope: [String] = []
-    internal let storage: Storage
+    public let storage: Storage
     let credentialManager: CredentialManager
     
     public init(sdkConfig: SdkConfig, providersCreators: Array<ProviderCreator>, storage: Storage?) {
