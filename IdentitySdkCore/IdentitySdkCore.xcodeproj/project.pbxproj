@@ -7,10 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2AE533062994629400EF97E0 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE533052994629400EF97E0 /* StringUtils.swift */; };
+		2AE5330B299462DD00EF97E0 /* ReachFiveWebviewLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE53307299462DD00EF97E0 /* ReachFiveWebviewLogin.swift */; };
+		2AE5330C299462DD00EF97E0 /* ReachFiveLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE53308299462DD00EF97E0 /* ReachFiveLogin.swift */; };
+		2AE5330D299462DD00EF97E0 /* CredentialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE53309299462DD00EF97E0 /* CredentialManager.swift */; };
+		2AE5330E299462DD00EF97E0 /* ReachFiveNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5330A299462DD00EF97E0 /* ReachFiveNative.swift */; };
+		2AE533152994632F00EF97E0 /* WebviewLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE533132994632F00EF97E0 /* WebviewLoginRequest.swift */; };
+		2AE533162994632F00EF97E0 /* LoginCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE533142994632F00EF97E0 /* LoginCallback.swift */; };
+		2AE5331D2994638000EF97E0 /* NativeLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE533172994638000EF97E0 /* NativeLoginRequest.swift */; };
+		2AE5331E2994638000EF97E0 /* ProfilePasskeySignupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE533182994638000EF97E0 /* ProfilePasskeySignupRequest.swift */; };
+		2AE5331F2994638100EF97E0 /* SignupOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE533192994638000EF97E0 /* SignupOptions.swift */; };
+		2AE533202994638100EF97E0 /* RegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5331A2994638000EF97E0 /* RegistrationRequest.swift */; };
+		2AE533212994638100EF97E0 /* NewPasskeyRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5331B2994638000EF97E0 /* NewPasskeyRequest.swift */; };
+		2AE533222994638100EF97E0 /* PasskeySignupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5331C2994638000EF97E0 /* PasskeySignupRequest.swift */; };
 		2AE18CDB29FC1DAF00258D2B /* LoginWKWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE18CDA29FC1DAF00258D2B /* LoginWKWebview.swift */; };
 		3404A40822CB9B7E002FFEDB /* ReachFiveError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404A40722CB9B7E002FFEDB /* ReachFiveError.swift */; };
 		3404A40C22CBA6DD002FFEDB /* AuthCodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3404A40B22CBA6DD002FFEDB /* AuthCodeRequest.swift */; };
-		340AF1F7232A9A2B00AA114D /* QueryString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340AF1F6232A9A2B00AA114D /* QueryString.swift */; };
 		340AF1F9232AA32F00AA114D /* UpdatePasswordRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340AF1F8232AA32F00AA114D /* UpdatePasswordRequest.swift */; };
 		340DA24822CF4CB200864149 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340DA24722CF4CB200864149 /* UIDevice.swift */; };
 		3417FF6622F8435F0009EC84 /* UpdatePhoneNumberRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3417FF6522F8435F0009EC84 /* UpdatePhoneNumberRequest.swift */; };
@@ -52,17 +64,13 @@
 		63B485A8E4E7A8A3D94D4C18 /* Pods_IdentitySdkCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B722D997B32FEE8753D77AB /* Pods_IdentitySdkCore.framework */; };
 		72DDB78E22EF354300048262 /* ClientConfigResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72DDB78D22EF354300048262 /* ClientConfigResponse.swift */; };
 		8433EA3A25F1229F00329358 /* DeviceCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8433EA3925F1229F00329358 /* DeviceCredential.swift */; };
-		848D86C825DD4968003F1D80 /* RedirectionSafari.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848D86C725DD4968003F1D80 /* RedirectionSafari.swift */; };
 		8496EB2425DEAFCF005098DD /* R5AuthenticatorAssertionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB1B25DEAFCF005098DD /* R5AuthenticatorAssertionResponse.swift */; };
 		8496EB2525DEAFCF005098DD /* AuthenticationPublicKeyCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB1C25DEAFCF005098DD /* AuthenticationPublicKeyCredential.swift */; };
 		8496EB2625DEAFCF005098DD /* RegistrationPublicKeyCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB1D25DEAFCF005098DD /* RegistrationPublicKeyCredential.swift */; };
-		8496EB2725DEAFCF005098DD /* EmailWebAuthnLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB1E25DEAFCF005098DD /* EmailWebAuthnLoginRequest.swift */; };
 		8496EB2825DEAFCF005098DD /* R5PublicKeyCredentialRequestOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB1F25DEAFCF005098DD /* R5PublicKeyCredentialRequestOptions.swift */; };
 		8496EB2925DEAFCF005098DD /* R5AuthenticatorAttestationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB2025DEAFCF005098DD /* R5AuthenticatorAttestationResponse.swift */; };
-		8496EB2A25DEAFCF005098DD /* WebAuthnRegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB2125DEAFCF005098DD /* WebAuthnRegistrationRequest.swift */; };
 		8496EB2B25DEAFCF005098DD /* WebAuthnLoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB2225DEAFCF005098DD /* WebAuthnLoginRequest.swift */; };
 		8496EB2C25DEAFCF005098DD /* WebauthnSignupCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB2325DEAFCF005098DD /* WebauthnSignupCredential.swift */; };
-		8496EB2E25DEB009005098DD /* ProfileWebAuthnSignupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB2D25DEB009005098DD /* ProfileWebAuthnSignupRequest.swift */; };
 		8496EB3C25DEB141005098DD /* R5PublicKeyCredentialParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB3225DEB140005098DD /* R5PublicKeyCredentialParameter.swift */; };
 		8496EB3D25DEB141005098DD /* R5AuthenticatorSelectionCriteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB3325DEB141005098DD /* R5AuthenticatorSelectionCriteria.swift */; };
 		8496EB3E25DEB141005098DD /* R5PublicKeyCredentialDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB3425DEB141005098DD /* R5PublicKeyCredentialDescriptor.swift */; };
@@ -73,16 +81,27 @@
 		8496EB4325DEB141005098DD /* AuthenticationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB3925DEB141005098DD /* AuthenticationToken.swift */; };
 		8496EB4425DEB141005098DD /* R5PublicKeyCredentialRpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB3A25DEB141005098DD /* R5PublicKeyCredentialRpEntity.swift */; };
 		8496EB4525DEB141005098DD /* R5PublicKeyCredentialUserEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8496EB3B25DEB141005098DD /* R5PublicKeyCredentialUserEntity.swift */; };
-		84DB8B9F25E45B8900238991 /* ReachFiveFidoClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DB8B9E25E45B8900238991 /* ReachFiveFidoClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2AE533052994629400EF97E0 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		2AE53307299462DD00EF97E0 /* ReachFiveWebviewLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachFiveWebviewLogin.swift; sourceTree = "<group>"; };
+		2AE53308299462DD00EF97E0 /* ReachFiveLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachFiveLogin.swift; sourceTree = "<group>"; };
+		2AE53309299462DD00EF97E0 /* CredentialManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialManager.swift; sourceTree = "<group>"; };
+		2AE5330A299462DD00EF97E0 /* ReachFiveNative.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachFiveNative.swift; sourceTree = "<group>"; };
+		2AE533132994632F00EF97E0 /* WebviewLoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebviewLoginRequest.swift; sourceTree = "<group>"; };
+		2AE533142994632F00EF97E0 /* LoginCallback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCallback.swift; sourceTree = "<group>"; };
+		2AE533172994638000EF97E0 /* NativeLoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeLoginRequest.swift; sourceTree = "<group>"; };
+		2AE533182994638000EF97E0 /* ProfilePasskeySignupRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePasskeySignupRequest.swift; sourceTree = "<group>"; };
+		2AE533192994638000EF97E0 /* SignupOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupOptions.swift; sourceTree = "<group>"; };
+		2AE5331A2994638000EF97E0 /* RegistrationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationRequest.swift; sourceTree = "<group>"; };
+		2AE5331B2994638000EF97E0 /* NewPasskeyRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPasskeyRequest.swift; sourceTree = "<group>"; };
+		2AE5331C2994638000EF97E0 /* PasskeySignupRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasskeySignupRequest.swift; sourceTree = "<group>"; };
 		2AE18CDA29FC1DAF00258D2B /* LoginWKWebview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWKWebview.swift; sourceTree = "<group>"; };
 		2B722D997B32FEE8753D77AB /* Pods_IdentitySdkCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IdentitySdkCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CA6D9263DC2541C548301E9 /* Pods-IdentitySdkCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentitySdkCore.release.xcconfig"; path = "Target Support Files/Pods-IdentitySdkCore/Pods-IdentitySdkCore.release.xcconfig"; sourceTree = "<group>"; };
 		3404A40722CB9B7E002FFEDB /* ReachFiveError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachFiveError.swift; sourceTree = "<group>"; };
 		3404A40B22CBA6DD002FFEDB /* AuthCodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCodeRequest.swift; sourceTree = "<group>"; };
-		340AF1F6232A9A2B00AA114D /* QueryString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryString.swift; sourceTree = "<group>"; };
 		340AF1F8232AA32F00AA114D /* UpdatePasswordRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatePasswordRequest.swift; sourceTree = "<group>"; };
 		340DA24722CF4CB200864149 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		3417FF6522F8435F0009EC84 /* UpdatePhoneNumberRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePhoneNumberRequest.swift; sourceTree = "<group>"; };
@@ -125,17 +144,13 @@
 		34F7D3E522A54ADE003A7BC0 /* ProvidersConfigsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvidersConfigsResult.swift; sourceTree = "<group>"; };
 		72DDB78D22EF354300048262 /* ClientConfigResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientConfigResponse.swift; sourceTree = "<group>"; };
 		8433EA3925F1229F00329358 /* DeviceCredential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCredential.swift; sourceTree = "<group>"; };
-		848D86C725DD4968003F1D80 /* RedirectionSafari.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedirectionSafari.swift; sourceTree = "<group>"; };
 		8496EB1B25DEAFCF005098DD /* R5AuthenticatorAssertionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R5AuthenticatorAssertionResponse.swift; sourceTree = "<group>"; };
 		8496EB1C25DEAFCF005098DD /* AuthenticationPublicKeyCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationPublicKeyCredential.swift; sourceTree = "<group>"; };
 		8496EB1D25DEAFCF005098DD /* RegistrationPublicKeyCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationPublicKeyCredential.swift; sourceTree = "<group>"; };
-		8496EB1E25DEAFCF005098DD /* EmailWebAuthnLoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailWebAuthnLoginRequest.swift; sourceTree = "<group>"; };
 		8496EB1F25DEAFCF005098DD /* R5PublicKeyCredentialRequestOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R5PublicKeyCredentialRequestOptions.swift; sourceTree = "<group>"; };
 		8496EB2025DEAFCF005098DD /* R5AuthenticatorAttestationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R5AuthenticatorAttestationResponse.swift; sourceTree = "<group>"; };
-		8496EB2125DEAFCF005098DD /* WebAuthnRegistrationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAuthnRegistrationRequest.swift; sourceTree = "<group>"; };
 		8496EB2225DEAFCF005098DD /* WebAuthnLoginRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebAuthnLoginRequest.swift; sourceTree = "<group>"; };
 		8496EB2325DEAFCF005098DD /* WebauthnSignupCredential.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebauthnSignupCredential.swift; sourceTree = "<group>"; };
-		8496EB2D25DEB009005098DD /* ProfileWebAuthnSignupRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileWebAuthnSignupRequest.swift; sourceTree = "<group>"; };
 		8496EB3225DEB140005098DD /* R5PublicKeyCredentialParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R5PublicKeyCredentialParameter.swift; sourceTree = "<group>"; };
 		8496EB3325DEB141005098DD /* R5AuthenticatorSelectionCriteria.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R5AuthenticatorSelectionCriteria.swift; sourceTree = "<group>"; };
 		8496EB3425DEB141005098DD /* R5PublicKeyCredentialDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R5PublicKeyCredentialDescriptor.swift; sourceTree = "<group>"; };
@@ -146,8 +161,6 @@
 		8496EB3925DEB141005098DD /* AuthenticationToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationToken.swift; sourceTree = "<group>"; };
 		8496EB3A25DEB141005098DD /* R5PublicKeyCredentialRpEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R5PublicKeyCredentialRpEntity.swift; sourceTree = "<group>"; };
 		8496EB3B25DEB141005098DD /* R5PublicKeyCredentialUserEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R5PublicKeyCredentialUserEntity.swift; sourceTree = "<group>"; };
-		84C353CD25E47238006978E5 /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		84DB8B9E25E45B8900238991 /* ReachFiveFidoClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachFiveFidoClient.swift; sourceTree = "<group>"; };
 		92974ED6A8B2D1CEADE0BFF5 /* Pods-IdentitySdkCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IdentitySdkCore.debug.xcconfig"; path = "Target Support Files/Pods-IdentitySdkCore/Pods-IdentitySdkCore.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,15 +182,17 @@
 				34E18B8D22A6C13100952EBD /* models */,
 				347FDB53229BE8F800660687 /* Provider.swift */,
 				347FDB66229C02FE00660687 /* ReachFive.swift */,
+				2AE53309299462DD00EF97E0 /* CredentialManager.swift */,
+				2AE53308299462DD00EF97E0 /* ReachFiveLogin.swift */,
+				2AE5330A299462DD00EF97E0 /* ReachFiveNative.swift */,
+				2AE53307299462DD00EF97E0 /* ReachFiveWebviewLogin.swift */,
 				34F7D3E322A54AA2003A7BC0 /* ReachFiveApi.swift */,
 				3404A40722CB9B7E002FFEDB /* ReachFiveError.swift */,
 				34BDDA4122E5D87E00D16DAE /* ReachFivePassword.swift */,
 				3417FF6922FAD1810009EC84 /* ReachFivePasswordLess.swift */,
 				34BDDA4322E5D95B00D16DAE /* ReachFiveProfile.swift */,
 				34BDDA3F22E5D73900D16DAE /* ReachFiveProviders.swift */,
-				848D86C725DD4968003F1D80 /* RedirectionSafari.swift */,
 				34689A9A22CE3E34002970F9 /* utils */,
-				84DB8B9E25E45B8900238991 /* ReachFiveFidoClient.swift */,
 				2AE18CDA29FC1DAF00258D2B /* LoginWKWebview.swift */,
 			);
 			path = Classes;
@@ -186,6 +201,7 @@
 		34689A9A22CE3E34002970F9 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				2AE533052994629400EF97E0 /* StringUtils.swift */,
 				34689A9B22CE3E57002970F9 /* Base64.swift */,
 				340DA24722CF4CB200864149 /* UIDevice.swift */,
 				34B5295922D376FF00B7B6AA /* Pkce.swift */,
@@ -193,7 +209,6 @@
 				3455FCEB22F1B57400892794 /* DictionaryEncodable.swift */,
 				34DD31FE22F3286400279E54 /* CustomField.swift */,
 				349E16EF230C49E0002EA06B /* Storage.swift */,
-				340AF1F6232A9A2B00AA114D /* QueryString.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -201,6 +216,8 @@
 		34689A9F22CE5CF9002970F9 /* requests */ = {
 			isa = PBXGroup;
 			children = (
+				2AE533142994632F00EF97E0 /* LoginCallback.swift */,
+				2AE533132994632F00EF97E0 /* WebviewLoginRequest.swift */,
 				3404A40B22CBA6DD002FFEDB /* AuthCodeRequest.swift */,
 				34689A9822CDFC24002970F9 /* LoginProviderRequest.swift */,
 				34E18B8E22A6C32500952EBD /* LoginRequest.swift */,
@@ -271,7 +288,6 @@
 		74FB8B4B94CB262BEC297380 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				84C353CD25E47238006978E5 /* PromiseKit.framework */,
 				2B722D997B32FEE8753D77AB /* Pods_IdentitySdkCore.framework */,
 			);
 			name = Frameworks;
@@ -280,15 +296,18 @@
 		8496EB0725DEAE10005098DD /* webAuthn */ = {
 			isa = PBXGroup;
 			children = (
-				8496EB2D25DEB009005098DD /* ProfileWebAuthnSignupRequest.swift */,
 				8496EB1C25DEAFCF005098DD /* AuthenticationPublicKeyCredential.swift */,
-				8496EB1E25DEAFCF005098DD /* EmailWebAuthnLoginRequest.swift */,
 				8496EB1B25DEAFCF005098DD /* R5AuthenticatorAssertionResponse.swift */,
+				2AE533172994638000EF97E0 /* NativeLoginRequest.swift */,
+				2AE5331B2994638000EF97E0 /* NewPasskeyRequest.swift */,
+				2AE5331C2994638000EF97E0 /* PasskeySignupRequest.swift */,
+				2AE533182994638000EF97E0 /* ProfilePasskeySignupRequest.swift */,
+				2AE5331A2994638000EF97E0 /* RegistrationRequest.swift */,
+				2AE533192994638000EF97E0 /* SignupOptions.swift */,
 				8496EB2025DEAFCF005098DD /* R5AuthenticatorAttestationResponse.swift */,
 				8496EB1F25DEAFCF005098DD /* R5PublicKeyCredentialRequestOptions.swift */,
 				8496EB1D25DEAFCF005098DD /* RegistrationPublicKeyCredential.swift */,
 				8496EB2225DEAFCF005098DD /* WebAuthnLoginRequest.swift */,
-				8496EB2125DEAFCF005098DD /* WebAuthnRegistrationRequest.swift */,
 				8496EB2325DEAFCF005098DD /* WebauthnSignupCredential.swift */,
 			);
 			path = webAuthn;
@@ -436,29 +455,32 @@
 			files = (
 				8496EB4125DEB141005098DD /* AuthenticationOptions.swift in Sources */,
 				34BDDA3822E5BE8C00D16DAE /* LoginSummary.swift in Sources */,
-				340AF1F7232A9A2B00AA114D /* QueryString.swift in Sources */,
-				8496EB2725DEAFCF005098DD /* EmailWebAuthnLoginRequest.swift in Sources */,
 				347FDB69229C04C200660687 /* ProviderConfig.swift in Sources */,
+				2AE5331E2994638000EF97E0 /* ProfilePasskeySignupRequest.swift in Sources */,
+				2AE5330E299462DD00EF97E0 /* ReachFiveNative.swift in Sources */,
 				8496EB2925DEAFCF005098DD /* R5AuthenticatorAttestationResponse.swift in Sources */,
 				3417FF6C22FAD6CB0009EC84 /* StartPasswordlessRequest.swift in Sources */,
 				349E16F0230C49E0002EA06B /* Storage.swift in Sources */,
 				8496EB4225DEB141005098DD /* CredentialCreationOptions.swift in Sources */,
 				347FDB54229BE8F800660687 /* Provider.swift in Sources */,
 				34E18B8C22A6BEC900952EBD /* AccessTokenResponse.swift in Sources */,
+				2AE533202994638100EF97E0 /* RegistrationRequest.swift in Sources */,
 				34689AA122CE5D08002970F9 /* UpdateEmailRequest.swift in Sources */,
+				2AE533162994632F00EF97E0 /* LoginCallback.swift in Sources */,
 				8496EB4525DEB141005098DD /* R5PublicKeyCredentialUserEntity.swift in Sources */,
 				34689A9122CDFAE4002970F9 /* Profile.swift in Sources */,
-				8496EB2E25DEB009005098DD /* ProfileWebAuthnSignupRequest.swift in Sources */,
 				3442C21E230EC48A009F8874 /* VerifyAuthCodeRequest.swift in Sources */,
 				34BDDA4222E5D87E00D16DAE /* ReachFivePassword.swift in Sources */,
+				2AE533152994632F00EF97E0 /* WebviewLoginRequest.swift in Sources */,
 				8496EB4425DEB141005098DD /* R5PublicKeyCredentialRpEntity.swift in Sources */,
-				84DB8B9F25E45B8900238991 /* ReachFiveFidoClient.swift in Sources */,
 				34BDDA3C22E5BF3600D16DAE /* Emails.swift in Sources */,
 				8496EB3E25DEB141005098DD /* R5PublicKeyCredentialDescriptor.swift in Sources */,
 				34689A9C22CE3E57002970F9 /* Base64.swift in Sources */,
 				34BDDA3622E5BE6000D16DAE /* ProfileAddress.swift in Sources */,
 				8496EB2825DEAFCF005098DD /* R5PublicKeyCredentialRequestOptions.swift in Sources */,
 				3474D28B22D32F3A005112C1 /* RequestPasswordResetRequest.swift in Sources */,
+				2AE5330B299462DD00EF97E0 /* ReachFiveWebviewLogin.swift in Sources */,
+				2AE5330D299462DD00EF97E0 /* CredentialManager.swift in Sources */,
 				8496EB4025DEB141005098DD /* R5PublicKeyCredentialCreationOptions.swift in Sources */,
 				34E18B8A22A6985C00952EBD /* SignupRequest.swift in Sources */,
 				3417FF6622F8435F0009EC84 /* UpdatePhoneNumberRequest.swift in Sources */,
@@ -473,13 +495,17 @@
 				72DDB78E22EF354300048262 /* ClientConfigResponse.swift in Sources */,
 				3417FF6A22FAD1810009EC84 /* ReachFivePasswordLess.swift in Sources */,
 				34689A9722CDFB5F002970F9 /* AuthToken.swift in Sources */,
+				2AE533062994629400EF97E0 /* StringUtils.swift in Sources */,
 				8496EB2525DEAFCF005098DD /* AuthenticationPublicKeyCredential.swift in Sources */,
 				34DD31FF22F3286400279E54 /* CustomField.swift in Sources */,
 				34BDDA3A22E5BF1C00D16DAE /* Consent.swift in Sources */,
 				34689A9522CDFB39002970F9 /* OpenIdUser.swift in Sources */,
 				8496EB2B25DEAFCF005098DD /* WebAuthnLoginRequest.swift in Sources */,
 				340DA24822CF4CB200864149 /* UIDevice.swift in Sources */,
+				2AE5331D2994638000EF97E0 /* NativeLoginRequest.swift in Sources */,
 				8496EB3C25DEB141005098DD /* R5PublicKeyCredentialParameter.swift in Sources */,
+				2AE533222994638100EF97E0 /* PasskeySignupRequest.swift in Sources */,
+				2AE5331F2994638100EF97E0 /* SignupOptions.swift in Sources */,
 				34689A9E22CE4666002970F9 /* VerifyPhoneNumberRequest.swift in Sources */,
 				3404A40C22CBA6DD002FFEDB /* AuthCodeRequest.swift in Sources */,
 				8496EB2425DEAFCF005098DD /* R5AuthenticatorAssertionResponse.swift in Sources */,
@@ -489,14 +515,14 @@
 				8496EB4325DEB141005098DD /* AuthenticationToken.swift in Sources */,
 				34BDDA4422E5D95B00D16DAE /* ReachFiveProfile.swift in Sources */,
 				2AE18CDB29FC1DAF00258D2B /* LoginWKWebview.swift in Sources */,
-				8496EB2A25DEAFCF005098DD /* WebAuthnRegistrationRequest.swift in Sources */,
 				34BDDA4022E5D73900D16DAE /* ReachFiveProviders.swift in Sources */,
-				848D86C825DD4968003F1D80 /* RedirectionSafari.swift in Sources */,
 				347FDB67229C02FE00660687 /* ReachFive.swift in Sources */,
+				2AE5330C299462DD00EF97E0 /* ReachFiveLogin.swift in Sources */,
 				8496EB3F25DEB141005098DD /* RegistrationOptions.swift in Sources */,
 				34E18B8F22A6C32500952EBD /* LoginRequest.swift in Sources */,
 				8433EA3A25F1229F00329358 /* DeviceCredential.swift in Sources */,
 				34689A9922CDFC24002970F9 /* LoginProviderRequest.swift in Sources */,
+				2AE533212994638100EF97E0 /* NewPasskeyRequest.swift in Sources */,
 				3404A40822CB9B7E002FFEDB /* ReachFiveError.swift in Sources */,
 				34B5295A22D376FF00B7B6AA /* Pkce.swift in Sources */,
 			);
@@ -558,7 +584,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -617,7 +643,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -647,12 +673,10 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/BrightFutures\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/CryptoSwift\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/EllipticCurveKeyPair\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/KeychainAccess\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/PromiseKit\"",
 				);
 				INFOPLIST_FILE = IdentitySdkCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -685,6 +709,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = IdentitySdkCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

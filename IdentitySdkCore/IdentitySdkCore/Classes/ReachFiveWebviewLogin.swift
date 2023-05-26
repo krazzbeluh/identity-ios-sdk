@@ -13,9 +13,9 @@ public extension ReachFive {
         
         // Initialize the session.
         let session = ASWebAuthenticationSession(url: authURL, callbackURLScheme: reachFiveApi.sdkConfig.baseScheme) { callbackURL, error in
-            guard error == nil else {
+            if let error {
                 let r5Error: ReachFiveError
-                switch error!._code {
+                switch error._code {
                 case 1: r5Error = .AuthCanceled
                 case 2: r5Error = .TechnicalError(reason: "Presentation Context Not Provided")
                 case 3: r5Error = .TechnicalError(reason: "Presentation Context Invalid")
@@ -26,14 +26,14 @@ public extension ReachFive {
                 return
             }
             
-            guard let callbackURL = callbackURL else {
+            guard let callbackURL else {
                 promise.failure(.TechnicalError(reason: "No callback URL"))
                 return
             }
             
             let queryItems = URLComponents(url: callbackURL, resolvingAgainstBaseURL: true)?.queryItems
             let code = queryItems?.first(where: { $0.name == "code" })?.value
-            guard let code = code else {
+            guard let code else {
                 promise.failure(.TechnicalError(reason: "No authorization code"))
                 return
             }
@@ -45,7 +45,9 @@ public extension ReachFive {
         session.presentationContextProvider = request.presentationContextProvider
         
         // Start the Authentication Flow
-        session.start()
+        if !session.start() {
+            promise.failure(.TechnicalError(reason: "Failed to start ASWebAuthenticationSession"))
+        }
         return promise.future
     }
 }

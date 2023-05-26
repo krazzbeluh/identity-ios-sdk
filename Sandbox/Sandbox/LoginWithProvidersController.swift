@@ -1,6 +1,5 @@
 import UIKit
 import IdentitySdkCore
-import GoogleSignIn
 import AuthenticationServices
 
 class LoginWithProvidersController: UIViewController, UITableViewDataSource, UITableViewDelegate, ASWebAuthenticationPresentationContextProviding {
@@ -13,14 +12,10 @@ class LoginWithProvidersController: UIViewController, UITableViewDataSource, UIT
         
         providersTableView.dataSource = self
         providersTableView.delegate = self
+
+        providers.append(contentsOf: AppDelegate.reachfive().getProviders())
+        providersTableView.reloadData()
         
-        AppDelegate.reachfive()
-            .initialize()
-            .onSuccess { providers in
-                self.providers.append(contentsOf: providers)
-                self.providersTableView.reloadData()
-            }
-            .onFailure { print("initialize error \($0)") }
     }
     
     public func reloadProvidersData(providers: [Provider]) {
@@ -45,19 +40,11 @@ class LoginWithProvidersController: UIViewController, UITableViewDataSource, UIT
     func handleResult(result: Result<AuthToken, ReachFiveError>) {
         switch result {
         case .success(let authToken):
-            AppDelegate.storage.save(key: AppDelegate.authKey, value: authToken)
+            AppDelegate.storage.save(key: SecureStorage.authKey, value: authToken)
             goToProfile(authToken)
         case .failure(let error):
             print(error)
         }
-    }
-    
-    func goToProfile(_ authToken: AuthToken) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let profileController = storyBoard.instantiateViewController(
-            withIdentifier: "ProfileScene"
-        ) as! ProfileController
-        navigationController?.pushViewController(profileController, animated: true)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

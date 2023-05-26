@@ -20,7 +20,7 @@ public class LoginWKWebview: UIView {
         self.promise = promise
         self.pkce = pkce
         
-        let rect = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: frame.width, height: frame.height))
+        let rect = CGRect(origin: .zero, size: frame.size)
         let webView = WKWebView(frame: rect, configuration: WKWebViewConfiguration())
         self.webView = webView
         webView.navigationDelegate = self

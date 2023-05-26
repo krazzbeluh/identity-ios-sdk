@@ -54,7 +54,7 @@ class ConfiguredWebViewProvider: NSObject, Provider {
     ) -> Future<AuthToken, ReachFiveError> {
         let promise = Promise<AuthToken, ReachFiveError>()
         
-        guard let viewController = viewController else {
+        guard let viewController else {
             promise.failure(.TechnicalError(reason: "No presenting viewController"))
             return promise.future
         }
@@ -72,7 +72,7 @@ class ConfiguredWebViewProvider: NSObject, Provider {
             return promise.future
         }
         
-        let session = ASWebAuthenticationSession(url: authURL, callbackURLScheme: "reachfive-\(sdkConfig.clientId)") { callbackURL, error in
+        let session = ASWebAuthenticationSession(url: authURL, callbackURLScheme: sdkConfig.baseScheme) { callbackURL, error in
             guard error == nil else {
                 let r5Error: ReachFiveError
                 switch error!._code {
@@ -86,14 +86,14 @@ class ConfiguredWebViewProvider: NSObject, Provider {
                 return
             }
             
-            guard let callbackURL = callbackURL else {
+            guard let callbackURL else {
                 promise.failure(.TechnicalError(reason: "No callback URL"))
                 return
             }
             
             let queryItems = URLComponents(string: callbackURL.absoluteString)?.queryItems
             let code = queryItems?.first(where: { $0.name == "code" })?.value
-            guard let code = code else {
+            guard let code else {
                 promise.failure(.TechnicalError(reason: "No authorization code"))
                 return
             }
@@ -102,10 +102,12 @@ class ConfiguredWebViewProvider: NSObject, Provider {
         }
         
         // Set an appropriate context provider instance that determines the window that acts as a presentation anchor for the session
-        session.presentationContextProvider = (viewController as! ASWebAuthenticationPresentationContextProviding)
-        
+        session.presentationContextProvider = viewController as? ASWebAuthenticationPresentationContextProviding
+    
         // Start the Authentication Flow
-        session.start()
+        if !session.start() {
+            promise.failure(.TechnicalError(reason: "Failed to start ASWebAuthenticationSession"))
+        }
         return promise.future
     }
     
@@ -152,9 +154,7 @@ class ConfiguredWebViewProvider: NSObject, Provider {
         ]
         let queryStrings = params
             .map { "\($0)=\($1)" }
-            .map { $0.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) }
-            .filter { $0 != nil }
-            .map { $0! }
+            .compactMap { $0.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) }
             .joined(separator: "&")
         return "https://\(sdkConfig.domain)/oauth/authorize?\(queryStrings)"
     }

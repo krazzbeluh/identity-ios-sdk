@@ -1,6 +1,8 @@
 import IdentitySdkCore
 
 public class SecureStorage: Storage {
+    public static let authKey = "AUTH_TOKEN"
+    
     private let serviceName: String
     
     public init() {
@@ -20,13 +22,17 @@ public class SecureStorage: Storage {
         
         let status = SecItemAdd(query as CFDictionary, nil)
         guard status == errSecSuccess else {
-            if (status == errSecDuplicateItem) { // duplicate detected (code -25299). User did not log out before logging again
+            if status == errSecDuplicateItem { // duplicate detected (code -25299). User did not log out before logging again
                 print("duplicate detected, updating data instead")
                 return update(key: key, value: value)
             } else {
                 print(KeychainError.unhandledError(status: status))
                 return
             }
+        }
+        if key == SecureStorage.authKey {
+            print("send SecureStorage.save.DidSetAuthToken")
+            NotificationCenter.default.post(name: .DidSetAuthToken, object: nil)
         }
         print("SecureStorage.save success")
     }
@@ -55,9 +61,15 @@ public class SecureStorage: Storage {
             return
         }
         
+        if key == SecureStorage.authKey {
+            print("send SecureStorage.update.DidSetAuthToken")
+            //TODO: passer le token dans la notif pour pouvior le récupérer directement
+            NotificationCenter.default.post(name: .DidSetAuthToken, object: nil)
+        }
         print("SecureStorage.update success")
     }
     
+    //TODO: implémenter un fonction spécifique pour AuthToken pour ne pas à avoir le problème de type et pour y mettre les notifs
     public func get<D: Codable>(key: String) -> D? {
         let query: [String: Any] = [kSecClass as String: kSecClassGenericPassword,
                                     kSecAttrAccount as String: key,
@@ -109,6 +121,9 @@ public class SecureStorage: Storage {
             print(KeychainError.unhandledError(status: status))
             return
         }
+        if key == SecureStorage.authKey {
+            NotificationCenter.default.post(name: .DidClearAuthToken, object: nil)
+        }
         print("SecureStorage.clear success")
     }
 }
@@ -119,4 +134,9 @@ enum KeychainError: Error {
     case jsonSerializationError
     case jsonDeserializationError(error: Error)
     case unhandledError(status: OSStatus)
+}
+
+extension NSNotification.Name {
+    static let DidSetAuthToken = Notification.Name("DidSetAuthToken")
+    static let DidClearAuthToken = Notification.Name("DidClearAuthToken")
 }
