@@ -59,7 +59,7 @@ public class ReachFiveApi {
         .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
     
     //TODO read from the version.rb. Either directly or indirectly from IdentitySdkCore.h, Info.plist...
-    let sdk = "5.8.0"
+    let sdk = "5.9.0"
     
     public init(sdkConfig: SdkConfig) {
         self.sdkConfig = sdkConfig
