@@ -81,19 +81,22 @@ public extension ReachFive {
             passwordlessCallback?(.failure(.TechnicalError(reason: "Pkce not found")))
             return
         }
-        if let params, let code = params.first(where: { $0.name == "code" })?.value {
-            let authCodeRequest = AuthCodeRequest(
-                clientId: sdkConfig.clientId,
-                code: code,
-                redirectUri: sdkConfig.scheme,
-                pkce: pkce
-            )
-            
-            reachFiveApi.authWithCode(authCodeRequest: authCodeRequest)
-                .flatMap({ AuthToken.fromOpenIdTokenResponseFuture($0) })
-                .onComplete { result in
-                    self.passwordlessCallback?(result)
-                }
+        guard let params, let code = params.first(where: { $0.name == "code" })?.value else {
+            passwordlessCallback?(.failure(.TechnicalError(reason: "No authorization code", apiError: ApiError(fromQueryParams: params))))
+            return
         }
+        
+        let authCodeRequest = AuthCodeRequest(
+            clientId: sdkConfig.clientId,
+            code: code,
+            redirectUri: sdkConfig.scheme,
+            pkce: pkce
+        )
+        
+        reachFiveApi.authWithCode(authCodeRequest: authCodeRequest)
+            .flatMap({ AuthToken.fromOpenIdTokenResponseFuture($0) })
+            .onComplete { result in
+                self.passwordlessCallback?(result)
+            }
     }
 }
