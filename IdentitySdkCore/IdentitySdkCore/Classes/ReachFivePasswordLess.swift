@@ -2,8 +2,8 @@ import Foundation
 import BrightFutures
 
 public enum PasswordLessRequest {
-    case Email(email: String, redirectUri: String?)
-    case PhoneNumber(phoneNumber: String, redirectUri: String?)
+    case Email(email: String, redirectUri: String?, origin: String? = nil)
+    case PhoneNumber(phoneNumber: String, redirectUri: String?, origin: String? = nil)
 }
 
 public extension ReachFive {
@@ -16,24 +16,26 @@ public extension ReachFive {
         let pkce = Pkce.generate()
         storage.save(key: pkceKey, value: pkce)
         switch request {
-        case let .Email(email, redirectUri):
+        case let .Email(email, redirectUri, origin):
             let startPasswordlessRequest = StartPasswordlessRequest(
                 clientId: sdkConfig.clientId,
                 email: email,
                 authType: .MagicLink,
                 redirectUri: redirectUri ?? sdkConfig.scheme,
                 codeChallenge: pkce.codeChallenge,
-                codeChallengeMethod: pkce.codeChallengeMethod
+                codeChallengeMethod: pkce.codeChallengeMethod,
+                origin: origin
             )
             return reachFiveApi.startPasswordless(startPasswordlessRequest)
-        case let .PhoneNumber(phoneNumber, redirectUri):
+        case let .PhoneNumber(phoneNumber, redirectUri, origin):
             let startPasswordlessRequest = StartPasswordlessRequest(
                 clientId: sdkConfig.clientId,
                 phoneNumber: phoneNumber,
                 authType: .SMS,
                 redirectUri: redirectUri ?? sdkConfig.scheme,
                 codeChallenge: pkce.codeChallenge,
-                codeChallengeMethod: pkce.codeChallengeMethod
+                codeChallengeMethod: pkce.codeChallengeMethod,
+                origin: origin
             )
             return reachFiveApi.startPasswordless(startPasswordlessRequest)
         }
@@ -53,7 +55,8 @@ public extension ReachFive {
                     verificationCode: verifyAuthCodeRequest.verificationCode,
                     state: "passwordless",
                     clientId: self.sdkConfig.clientId,
-                    responseType: "code"
+                    responseType: "code",
+                    origin: verifyAuthCodeRequest.origin
                 )
                 return self.reachFiveApi
                     .verifyPasswordless(verifyPasswordlessRequest: verifyPasswordlessRequest)

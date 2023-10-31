@@ -21,15 +21,15 @@ extension ReachFive {
             .flatMap({ AuthToken.fromOpenIdTokenResponseFuture($0) })
     }
     
-    public func loginCallback(tkn: String, scopes: [String]?) -> Future<AuthToken, ReachFiveError> {
+    public func loginCallback(tkn: String, scopes: [String]?, origin: String? = nil) -> Future<AuthToken, ReachFiveError> {
         let pkce = Pkce.generate()
         let scope = (scopes ?? scope).joined(separator: " ")
         
-        return reachFiveApi.loginCallback(loginCallback: LoginCallback(sdkConfig: sdkConfig, scope: scope, pkce: pkce, tkn: tkn))
+        return reachFiveApi.loginCallback(loginCallback: LoginCallback(sdkConfig: sdkConfig, scope: scope, pkce: pkce, tkn: tkn, origin: origin))
             .flatMap({ self.authWithCode(code: $0, pkce: pkce) })
     }
     
-    public func buildAuthorizeURL(pkce: Pkce, state: String? = nil, nonce: String? = nil, scope: [String]? = nil) -> URL {
+    public func buildAuthorizeURL(pkce: Pkce, state: String? = nil, nonce: String? = nil, scope: [String]? = nil, origin: String? = nil) -> URL {
         let scope = (scope ?? self.scope).joined(separator: " ")
         var options = [
             "client_id": sdkConfig.clientId,
@@ -46,6 +46,9 @@ extension ReachFive {
         if let nonce {
             options["nonce"] = nonce
         }
+        if let origin {
+            options["origin"] = origin
+        }
         
         return reachFiveApi.buildAuthorizeURL(queryParams: options)
     }
@@ -55,8 +58,7 @@ extension ReachFive {
             clientId: sdkConfig.clientId,
             code: code,
             redirectUri: sdkConfig.scheme,
-            pkce: pkce
-        )
+            pkce: pkce)
         return reachFiveApi
             .authWithCode(authCodeRequest: authCodeRequest)
             .flatMap({ AuthToken.fromOpenIdTokenResponseFuture($0) })

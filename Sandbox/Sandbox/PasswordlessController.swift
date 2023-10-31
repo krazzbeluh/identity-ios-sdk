@@ -14,7 +14,8 @@ class PasswordlessController: UIViewController {
             .startPasswordless(
                 .Email(
                     email: emailInput.text ?? "",
-                    redirectUri: redirectUriInput.text != "" ? redirectUriInput.text : nil
+                    redirectUri: redirectUriInput.text != "" ? redirectUriInput.text : nil,
+                    origin: "PasswordlessController.loginWithEmail"
                 )
             )
             .onSuccess {
@@ -35,7 +36,8 @@ class PasswordlessController: UIViewController {
             .startPasswordless(
                 .PhoneNumber(
                     phoneNumber: phoneNumberInput.text ?? "",
-                    redirectUri: redirectUriInput.text != "" ? redirectUriInput.text : nil
+                    redirectUri: redirectUriInput.text != "" ? redirectUriInput.text : nil,
+                    origin: "PasswordlessController.loginWithPhoneNumber"
                 )
             )
             .onSuccess {
@@ -55,7 +57,8 @@ class PasswordlessController: UIViewController {
         let verifyAuthCodeRequest = VerifyAuthCodeRequest(
             phoneNumber: phoneNumberInput.text,
             email: emailInput.text,
-            verificationCode: verificationCodeInput.text ?? ""
+            verificationCode: verificationCodeInput.text ?? "",
+            origin: "PasswordlessController.verifyCode"
         )
         AppDelegate.reachfive()
             .verifyPasswordlessCode(verifyAuthCodeRequest: verifyAuthCodeRequest)
