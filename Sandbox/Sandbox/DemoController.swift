@@ -50,7 +50,7 @@ class DemoController: UIViewController {
         } else {
             mode = .Always
         }
-        AppDelegate.reachfive().login(withRequest: NativeLoginRequest(anchor: window), usingModalAuthorizationFor: types, display: mode)
+        AppDelegate.reachfive().login(withRequest: NativeLoginRequest(anchor: window, origin: "DemoController.viewDidAppear"), usingModalAuthorizationFor: types, display: mode)
             .onSuccess(callback: goToProfile)
             .onFailure { error in
                 
@@ -68,7 +68,7 @@ class DemoController: UIViewController {
                         return
                     #else
                         if #available(iOS 16.0, *) {
-                            AppDelegate.reachfive().beginAutoFillAssistedPasskeyLogin(withRequest: NativeLoginRequest(anchor: window))
+                            AppDelegate.reachfive().beginAutoFillAssistedPasskeyLogin(withRequest: NativeLoginRequest(anchor: window, origin: "DemoController.viewDidAppear.AuthCanceled"))
                                 .onSuccess(callback: self.goToProfile)
                                 .onFailure { error in
                                     print("error: \(error) \(error.message())")
@@ -100,7 +100,7 @@ class DemoController: UIViewController {
                 profile = ProfilePasskeySignupRequest(phoneNumber: username)
             }
             
-            AppDelegate.reachfive().signup(withRequest: PasskeySignupRequest(passkeyPofile: profile, friendlyName: username, anchor: window))
+            AppDelegate.reachfive().signup(withRequest: PasskeySignupRequest(passkeyPofile: profile, friendlyName: username, anchor: window, origin: "DemoController.createAccount"))
                 .onSuccess(callback: goToProfile)
                 .onFailure { error in
                     switch error {
@@ -130,7 +130,7 @@ class DemoController: UIViewController {
         }
         
         if #available(iOS 16.0, *) {
-            let request = NativeLoginRequest(anchor: window)
+            let request = NativeLoginRequest(anchor: window, origin: "DemoController.login")
             
             (username.isEmpty ?
                 // this is optional, but a good way to present a modal with a fallback to QR code for loging using a nearby device
@@ -144,7 +144,7 @@ class DemoController: UIViewController {
                         #if targetEnvironment(macCatalyst)
                             return
                         #else
-                            AppDelegate.reachfive().beginAutoFillAssistedPasskeyLogin(withRequest: request)
+                            AppDelegate.reachfive().beginAutoFillAssistedPasskeyLogin(withRequest: NativeLoginRequest(anchor: window, origin: "DemoController.login.AuthCanceled"))
                                 .onSuccess(callback: self.goToProfile)
                                 .onFailure { error in
                                     print("error: \(error) \(error.message())")
@@ -160,12 +160,13 @@ class DemoController: UIViewController {
     
     func loginWithPassword() {
         guard let pass = passwordField.text, !pass.isEmpty, let user = usernameField.text, !user.isEmpty else { return }
+        let origin = "DemoController.loginWithPassword"
         
         let fut: Future<AuthToken, ReachFiveError>
         if (user.contains("@")) {
-            fut = AppDelegate.reachfive().loginWithPassword(email: user, password: pass)
+            fut = AppDelegate.reachfive().loginWithPassword(email: user, password: pass, origin: origin)
         } else {
-            fut = AppDelegate.reachfive().loginWithPassword(phoneNumber: user, password: pass)
+            fut = AppDelegate.reachfive().loginWithPassword(phoneNumber: user, password: pass, origin: origin)
         }
         fut.onSuccess(callback: goToProfile)
             .onFailure { error in
