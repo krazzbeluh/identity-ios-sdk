@@ -1,33 +1,74 @@
 import UIKit
 import IdentitySdkCore
-import IdentitySdkWebView
 import IdentitySdkGoogle
 
+#if targetEnvironment(macCatalyst)
+// we don't add WeChat and Facebook by default in order to be able to launch the app on mac Catalyst in order to test on local (more easily than with a simulator)
+// we can add back Facebook when we migrate to Swift Package Manager, or try this crazy fix: https://betterprogramming.pub/macos-catalyst-debugging-problems-using-catalyst-and-cocoapods-579679150fa9
+// WeChat appears to just not be able to run on Catalyst at all
+#else
+// Peut-être qu'un jour je serai capable de modifier les dépendance cocoapods par plateforme
+// https://betterprogramming.pub/why-dont-my-pods-compile-with-mac-catalyst-and-how-can-i-solve-it-ffc3fbec824e
+// Ce lien suggère une solution mais je ne vois pas les même choses dans Build Phases, je ne vois pas les dépendances Facebook et WeChat
+//import IdentitySdkFacebook
+//import IdentitySdkWeChat
+#endif
+
+
 //TODO
-// Mettre une quatrième tabs:
+// Mettre une nouvelle page dans une quatrième tabs ou dans l'app réglages:
 // - Paramétrage : scopes, origin, utilisation du refresh au démarage ?
 // Voir pour utiliser les scènes : 1 par que c'est plus moderne, deux par qu'il faut peut-être adapter certaines interface pour les app clients qui utilisent les scènes
 // cf. wireframe de JC pour d'autres idées : https://miro.com/app/board/uXjVOMB0pG4=/
-// Essayer de mettre tous les config du SDK dans le code et en choisir une avec Xcode Custom Environment Variables : https://derrickho328.medium.com/xcode-custom-environment-variables-681b5b8674ec
+// Pouvoir sélectionner entre plusieurs confs ReachFive
+// - d'abord en dur ici et dans les entitlements. Sélectionner la bonne dans le let reachfive: ReachFive =
+// - ensuite en choisir une avec Xcode Custom Environment Variables : https://derrickho328.medium.com/xcode-custom-environment-variables-681b5b8674ec
+// - voir à la volée directement dans l'app ou dans une section de l'app réglages
+// - Indiquer sur quel environnement on est connecté en l'affichant en titre de la page des fonctions
 // Essayer d'améliorer la navigation pour qu'il n'y ait pas tous ces retours en arrière inutiles quand on navigue les onglets à la main
+// Mettre la version des SDK en tant que version de la Sandbox (vérif : User Agent Alamofire des user events)
+// Mettre un bouton recharger conf (lancer initialize) pour si la conf backend a changé
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     public static let storage = SecureStorage()
     
-    let reachfive: ReachFive = ReachFive(
-        sdkConfig: SdkConfig(
-            domain: "integ-qa-fonctionnelle-pr3421.reach5.dev",
-            clientId: "EGYEKPe5RFpaweVzKmNv"
-        ),
-        providersCreators: [
-            // we can add back Facebook when we migrate to Swift Package Manager, or try this crazy fix : https://betterprogramming.pub/macos-catalyst-debugging-problems-using-catalyst-and-cocoapods-579679150fa9
-            GoogleProvider(),
-            WebViewProvider()
-        ],
-        storage: storage
+    /// La reco pour la redirectURI de [https://datatracker.ietf.org/doc/html/rfc8252#section-7.1](RFC 8252) est:
+    /// - apps MUST use a URI scheme based on a domain name under their control, expressed in reverse order, as recommended by Section 3.8 of [RFC7595] for private-use URI schemes
+    /// - Following the requirements of Section 3.2 of [RFC3986], as there is no naming authority for private-use URI scheme redirects, only a single slash ("/") appears after the scheme component.
+    ///
+    /// A complete example of a redirect URI utilizing a private-use URI scheme is:
+    ///
+    ///     com.example.app:/oauth2redirect/example-provider
+    static let sdkLocal = SdkConfig(
+        domain: "local-sandbox.og4.me",
+        clientId: "9DKRdQyDLpaJqQQQAR9K"
     )
+    
+    static let sdkRemote = SdkConfig(
+        domain: "integ-qa-fonctionnelle-pr3970.reach5.dev",
+        clientId: "9DKRdQyDLpaJqQQQAR9K"
+    )
+    
+    #if targetEnvironment(macCatalyst)
+    static let macProviders: [ProviderCreator] = [GoogleProvider()]
+    static let macLocal: ReachFive = ReachFive(sdkConfig: sdkLocal, providersCreators: macProviders, storage: storage)
+    // app-site-association does not seem to work
+    static let macRemote: ReachFive = ReachFive(sdkConfig: sdkRemote, providersCreators: macProviders, storage: storage)
+    let reachfive = macLocal
+    #else
+//    static let providers: [ProviderCreator] = [GoogleProvider(), FacebookProvider(), WeChatProvider()]
+    static let providers: [ProviderCreator] = [GoogleProvider()]
+    static let local: ReachFive = ReachFive(sdkConfig: sdkLocal, providersCreators: providers, storage: storage)
+    static let remote: ReachFive = ReachFive(sdkConfig: sdkRemote, providersCreators: providers, storage: storage)
+    #if targetEnvironment(simulator)
+    let reachfive = local
+    #else
+    let reachfive = remote
+    #endif
+    #endif
+    
     
     static func reachfive() -> ReachFive {
         let app = UIApplication.shared.delegate as! AppDelegate
@@ -35,13 +76,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        print("application:didFinishLaunchingWithOptions")
+        print("application:didFinishLaunchingWithOptions:\(launchOptions ?? [:])")
         reachfive.addPasswordlessCallback { result in
             print("addPasswordlessCallback \(result)")
             NotificationCenter.default.post(name: .DidReceiveLoginCallback, object: nil, userInfo: ["result": result])
         }
         
         return reachfive.application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+        reachfive.application(application, continue: userActivity, restorationHandler: restorationHandler)
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {

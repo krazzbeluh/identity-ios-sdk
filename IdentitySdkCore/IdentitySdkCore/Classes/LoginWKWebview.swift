@@ -13,10 +13,10 @@ public class LoginWKWebview: UIView {
         super.init(coder: coder)
     }
     
-    public func loadLoginWebview(reachfive: ReachFive, promise: Promise<AuthToken, ReachFiveError>, state: String? = nil, nonce: String? = nil, scope: [String]? = nil) {
+    public func loadLoginWebview(reachfive: ReachFive, state: String? = nil, nonce: String? = nil, scope: [String]? = nil, origin: String? = nil) -> Future<AuthToken, ReachFiveError> {
         let pkce = Pkce.generate()
-        
         self.reachfive = reachfive
+        let promise = Promise<AuthToken, ReachFiveError>()
         self.promise = promise
         self.pkce = pkce
         
@@ -25,7 +25,8 @@ public class LoginWKWebview: UIView {
         self.webView = webView
         webView.navigationDelegate = self
         addSubview(webView)
-        webView.load(URLRequest(url: reachfive.buildAuthorizeURL(pkce: pkce, state: state, nonce: nonce, scope: scope)))
+        webView.load(URLRequest(url: reachfive.buildAuthorizeURL(pkce: pkce, state: state, nonce: nonce, scope: scope, origin: origin)))
+        return promise.future
     }
 }
 
@@ -44,7 +45,7 @@ extension LoginWKWebview: WKNavigationDelegate {
         decisionHandler(.cancel)
         let params = URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems
         guard let params, let code = params.first(where: { $0.name == "code" })?.value else {
-            promise.failure(.TechnicalError(reason: "No authorization code"))
+            promise.failure(.TechnicalError(reason: "No authorization code", apiError: ApiError(fromQueryParams: params)))
             return
         }
         

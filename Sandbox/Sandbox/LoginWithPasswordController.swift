@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 import IdentitySdkCore
 
+//TODO faire que la complétion soit sur email et pas custom identifier par défaut
 class LoginWithPasswordController: UIViewController {
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var phoneNumberInput: UITextField!
@@ -16,7 +17,7 @@ class LoginWithPasswordController: UIViewController {
         let password = passwordInput.text ?? ""
         
         AppDelegate.reachfive()
-            .loginWithPassword(email: email, phoneNumber: phoneNumber, customIdentifier: customIdentifier, password: password)
+            .loginWithPassword(email: email, phoneNumber: phoneNumber, customIdentifier: customIdentifier, password: password, origin: "LoginWithPasswordController.loginWithPassword")
             .onSuccess { token in
                 self.error.text = nil
                 self.goToProfile(token)

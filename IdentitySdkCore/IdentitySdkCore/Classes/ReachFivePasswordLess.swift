@@ -2,8 +2,8 @@ import Foundation
 import BrightFutures
 
 public enum PasswordLessRequest {
-    case Email(email: String, redirectUri: String?)
-    case PhoneNumber(phoneNumber: String, redirectUri: String?)
+    case Email(email: String, redirectUri: String?, origin: String? = nil)
+    case PhoneNumber(phoneNumber: String, redirectUri: String?, origin: String? = nil)
 }
 
 public extension ReachFive {
@@ -16,24 +16,26 @@ public extension ReachFive {
         let pkce = Pkce.generate()
         storage.save(key: pkceKey, value: pkce)
         switch request {
-        case let .Email(email, redirectUri):
+        case let .Email(email, redirectUri, origin):
             let startPasswordlessRequest = StartPasswordlessRequest(
                 clientId: sdkConfig.clientId,
                 email: email,
                 authType: .MagicLink,
                 redirectUri: redirectUri ?? sdkConfig.scheme,
                 codeChallenge: pkce.codeChallenge,
-                codeChallengeMethod: pkce.codeChallengeMethod
+                codeChallengeMethod: pkce.codeChallengeMethod,
+                origin: origin
             )
             return reachFiveApi.startPasswordless(startPasswordlessRequest)
-        case let .PhoneNumber(phoneNumber, redirectUri):
+        case let .PhoneNumber(phoneNumber, redirectUri, origin):
             let startPasswordlessRequest = StartPasswordlessRequest(
                 clientId: sdkConfig.clientId,
                 phoneNumber: phoneNumber,
                 authType: .SMS,
                 redirectUri: redirectUri ?? sdkConfig.scheme,
                 codeChallenge: pkce.codeChallenge,
-                codeChallengeMethod: pkce.codeChallengeMethod
+                codeChallengeMethod: pkce.codeChallengeMethod,
+                origin: origin
             )
             return reachFiveApi.startPasswordless(startPasswordlessRequest)
         }
@@ -41,27 +43,30 @@ public extension ReachFive {
     
     func verifyPasswordlessCode(verifyAuthCodeRequest: VerifyAuthCodeRequest) -> Future<AuthToken, ReachFiveError> {
         let pkce: Pkce? = storage.take(key: pkceKey)
+        guard let pkce else {
+            return Future(error: .TechnicalError(reason: "Pkce not found"))
+        }
         return reachFiveApi
             .verifyAuthCode(verifyAuthCodeRequest: verifyAuthCodeRequest)
-            .flatMap { _ -> Future<AuthToken, ReachFiveError> in
+            .flatMap { _ in
                 let verifyPasswordlessRequest = VerifyPasswordlessRequest(
+                    email: verifyAuthCodeRequest.email,
                     phoneNumber: verifyAuthCodeRequest.phoneNumber,
                     verificationCode: verifyAuthCodeRequest.verificationCode,
                     state: "passwordless",
                     clientId: self.sdkConfig.clientId,
-                    responseType: "code"
+                    responseType: "code",
+                    origin: verifyAuthCodeRequest.origin
                 )
                 return self.reachFiveApi
                     .verifyPasswordless(verifyPasswordlessRequest: verifyPasswordlessRequest)
-                    .flatMap { response -> Future<AuthToken, ReachFiveError> in
-                        let authCodeRequest = AuthCodeRequest(
-                            clientId: self.sdkConfig.clientId,
-                            code: response.code ?? "",
-                            redirectUri: self.sdkConfig.scheme,
-                            pkce: pkce!
-                        )
-                        return self.reachFiveApi.authWithCode(authCodeRequest: authCodeRequest)
-                            .flatMap({ AuthToken.fromOpenIdTokenResponseFuture($0) })
+                    .flatMap { response in
+                        
+                        guard let code = response.code else {
+                            return Future(error: .TechnicalError(reason: "No authorization code"))
+                        }
+                        
+                        return self.authWithCode(code: code, pkce: pkce)
                     }
             }
     }
@@ -74,19 +79,14 @@ public extension ReachFive {
             passwordlessCallback?(.failure(.TechnicalError(reason: "Pkce not found")))
             return
         }
-        if let params, let code = params.first(where: { $0.name == "code" })?.value {
-            let authCodeRequest = AuthCodeRequest(
-                clientId: sdkConfig.clientId,
-                code: code,
-                redirectUri: sdkConfig.scheme,
-                pkce: pkce
-            )
-            
-            reachFiveApi.authWithCode(authCodeRequest: authCodeRequest)
-                .flatMap({ AuthToken.fromOpenIdTokenResponseFuture($0) })
-                .onComplete { result in
-                    self.passwordlessCallback?(result)
-                }
+        guard let params, let code = params.first(where: { $0.name == "code" })?.value else {
+            passwordlessCallback?(.failure(.TechnicalError(reason: "No authorization code", apiError: ApiError(fromQueryParams: params))))
+            return
         }
+        
+        authWithCode(code: code, pkce: pkce)
+            .onComplete { result in
+                self.passwordlessCallback?(result)
+            }
     }
 }

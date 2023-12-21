@@ -40,10 +40,11 @@ class LoginWithProvidersController: UIViewController, UITableViewDataSource, UIT
     func handleResult(result: Result<AuthToken, ReachFiveError>) {
         switch result {
         case .success(let authToken):
-            AppDelegate.storage.save(key: SecureStorage.authKey, value: authToken)
             goToProfile(authToken)
         case .failure(let error):
             print(error)
+            let alert = AppDelegate.createAlert(title: "Login with provider", message: "Error: \(error.message())")
+            self.present(alert, animated: true)
         }
     }
     
@@ -58,7 +59,7 @@ class LoginWithProvidersController: UIViewController, UITableViewDataSource, UIT
             .getProvider(name: selectedProvider.name)?
             .login(
                 scope: scope,
-                origin: "home",
+                origin: "LoginWithProvidersController.didSelectRowAt",
                 viewController: self
             )
             .onComplete { result in

@@ -10,12 +10,13 @@ class NativePasswordController: UIViewController {
     
     @IBAction func passwordEditingDidEnd(_ sender: Any) {
         guard let pass = password.text, !pass.isEmpty, let user = username.text, !user.isEmpty else { return }
+        let origin = "NativePasswordController.passwordEditingDidEnd"
     
         let fut: Future<AuthToken, ReachFiveError>
         if (user.contains("@")) {
-            fut = AppDelegate.reachfive().loginWithPassword(email: user, password: pass)
+            fut = AppDelegate.reachfive().loginWithPassword(email: user, password: pass, origin: origin)
         } else {
-            fut = AppDelegate.reachfive().loginWithPassword(phoneNumber: user, password: pass)
+            fut = AppDelegate.reachfive().loginWithPassword(phoneNumber: user, password: pass, origin: origin)
         }
         fut.onSuccess(callback: goToProfile)
             .onFailure { error in
@@ -30,7 +31,7 @@ class NativePasswordController: UIViewController {
         guard let window = view.window else { fatalError("The view was not in the app's view hierarchy!") }
         
         AppDelegate.reachfive()
-            .login(withRequest: NativeLoginRequest(anchor: window), usingModalAuthorizationFor: [.Password], display: .Always)
+            .login(withRequest: NativeLoginRequest(anchor: window, origin: "NativePasswordController.viewDidAppear"), usingModalAuthorizationFor: [.Password], display: .Always)
             .onSuccess(callback: goToProfile)
             .onFailure { error in
                 switch error {

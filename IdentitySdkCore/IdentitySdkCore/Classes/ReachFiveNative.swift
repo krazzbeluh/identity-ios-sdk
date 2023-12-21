@@ -20,14 +20,14 @@ public extension ReachFive {
     func signup(withRequest request: PasskeySignupRequest) -> Future<AuthToken, ReachFiveError> {
         let domain = sdkConfig.domain
         let signupOptions = SignupOptions(
-            origin: request.origin ?? "https://\(domain)",
+            origin: request.originWebAuthn ?? "https://\(domain)",
             friendlyName: request.friendlyName,
             profile: request.passkeyPofile,
             clientId: sdkConfig.clientId,
             scope: request.scopes ?? scope
         )
         
-        return credentialManager.signUp(withRequest: signupOptions, anchor: request.anchor)
+        return credentialManager.signUp(withRequest: signupOptions, anchor: request.anchor, originR5: request.origin)
     }
     
     /// Starts an auto-fill assisted passkey login request.
@@ -71,17 +71,17 @@ public extension ReachFive {
     @available(iOS 16.0, *)
     func registerNewPasskey(withRequest request: NewPasskeyRequest, authToken: AuthToken) -> Future<(), ReachFiveError> {
         let domain = sdkConfig.domain
-        let origin = request.origin ?? "https://\(domain)"
+        let originWebAuthn = request.originWebAuthn ?? "https://\(domain)"
         //TODO supprimer l'ancienne passkey du server
-        return credentialManager.registerNewPasskey(withRequest: NewPasskeyRequest(anchor: request.anchor, friendlyName: request.friendlyName, origin: origin), authToken: authToken)
+        return credentialManager.registerNewPasskey(withRequest: NewPasskeyRequest(anchor: request.anchor, friendlyName: request.friendlyName, originWebAuthn: originWebAuthn, origin: request.origin), authToken: authToken)
     }
     
     private func adapt(_ request: NativeLoginRequest) -> NativeLoginRequest {
         let domain = sdkConfig.domain
-        let origin = request.origin ?? "https://\(domain)"
+        let originWebAuthn = request.originWebAuthn ?? "https://\(domain)"
         let scopes = request.scopes ?? scope
         
-        return NativeLoginRequest(anchor: request.anchor, origin: origin, scopes: scopes)
+        return NativeLoginRequest(anchor: request.anchor, originWebAuthn: originWebAuthn, scopes: scopes, origin: request.origin)
     }
 }
 
@@ -105,8 +105,9 @@ public enum NonDiscoverableAuthorization: Equatable {
 /// The behavior of the modal sheet when there are no credential available
 public enum Mode: Equatable {
     /// If credentials are available, presents a modal sign-in sheet.
-    /// If there are no locally saved credentials, if the authorization is for .Passkey, the system presents a QR code to allow signing in with a passkey from a nearby device.
-    /// You can start this request in response to a user interaction
+    /// If there are no locally saved credentials and the authorization is for .Passkey, the system presents a QR code to allow signing in with a passkey from a nearby device.
+    /// If there are no locally saved credentials and the authorization is for .Password, no UI appears.
+    /// You can start this request in response to a user interaction.
     /// Corresponds to `AuthController.performRequests()`
     case Always
     /// If credentials are available, presents a modal sign-in sheet.

@@ -25,6 +25,8 @@ public class CredentialManager: NSObject {
     var signupOrAddPasskey: SignupOrAddPasskey?
     // the scope of the request
     var scope: String?
+    // optional origin for user events
+    var originR5: String?
     
     enum SignupOrAddPasskey {
         case Signup(signupOptions: RegistrationOptions)
@@ -41,11 +43,12 @@ public class CredentialManager: NSObject {
     
     // MARK: - Signup
     @available(iOS 16.0, *)
-    func signUp(withRequest request: SignupOptions, anchor: ASPresentationAnchor) -> Future<AuthToken, ReachFiveError> {
+    func signUp(withRequest request: SignupOptions, anchor: ASPresentationAnchor, originR5: String? = nil) -> Future<AuthToken, ReachFiveError> {
         authController?.cancel()
         promise = Promise()
         authenticationAnchor = anchor
         scope = request.scope
+        self.originR5 = originR5
         
         reachFiveApi.createWebAuthnSignupOptions(webAuthnSignupOptions: request)
             .flatMap { options -> Result<ASAuthorizationRequest, ReachFiveError> in
@@ -84,8 +87,9 @@ public class CredentialManager: NSObject {
         authController?.cancel()
         registrationPromise = Promise()
         authenticationAnchor = request.anchor
+        self.originR5 = request.origin
         
-        reachFiveApi.createWebAuthnRegistrationOptions(authToken: authToken, registrationRequest: RegistrationRequest(origin: request.origin!, friendlyName: request.friendlyName))
+        reachFiveApi.createWebAuthnRegistrationOptions(authToken: authToken, registrationRequest: RegistrationRequest(origin: request.originWebAuthn!, friendlyName: request.friendlyName))
             .flatMap { options -> Result<ASAuthorizationRequest, ReachFiveError> in
                 self.signupOrAddPasskey = .AddPasskey(authToken: authToken)
                 
@@ -121,8 +125,9 @@ public class CredentialManager: NSObject {
         authController?.cancel()
         promise = Promise()
         authenticationAnchor = request.anchor
+        originR5 = request.origin
         
-        let webAuthnLoginRequest = WebAuthnLoginRequest(clientId: reachFiveApi.sdkConfig.clientId, origin: request.origin!, scope: request.scopes)
+        let webAuthnLoginRequest = WebAuthnLoginRequest(clientId: reachFiveApi.sdkConfig.clientId, origin: request.originWebAuthn!, scope: request.scopes)
         scope = webAuthnLoginRequest.scope
         
         reachFiveApi.createWebAuthnAuthenticationOptions(webAuthnLoginRequest: webAuthnLoginRequest)
@@ -147,8 +152,9 @@ public class CredentialManager: NSObject {
         if #available(iOS 16.0, *) { authController?.cancel() }
         promise = Promise()
         authenticationAnchor = request.anchor
+        originR5 = request.origin
         
-        let webAuthnLoginRequest = WebAuthnLoginRequest(clientId: reachFiveApi.sdkConfig.clientId, origin: request.origin!, scope: request.scopes)
+        let webAuthnLoginRequest = WebAuthnLoginRequest(clientId: reachFiveApi.sdkConfig.clientId, origin: request.originWebAuthn!, scope: request.scopes)
         switch username {
         
         case .Unspecified(username: let username):
@@ -189,8 +195,9 @@ public class CredentialManager: NSObject {
         if #available(iOS 16.0, *) { authController?.cancel() }
         promise = Promise()
         authenticationAnchor = request.anchor
+        originR5 = request.origin
         
-        let webAuthnLoginRequest = WebAuthnLoginRequest(clientId: reachFiveApi.sdkConfig.clientId, origin: request.origin!, scope: request.scopes)
+        let webAuthnLoginRequest = WebAuthnLoginRequest(clientId: reachFiveApi.sdkConfig.clientId, origin: request.originWebAuthn!, scope: request.scopes)
         
         return signInWith(webAuthnLoginRequest, withMode: mode, authorizing: requestTypes) { authenticationOptions in
             guard #available(iOS 16.0, *) else { // can't happen, because this is called from a >= iOS 15 context
@@ -307,7 +314,7 @@ extension CredentialManager: ASAuthorizationControllerDelegate {
             
             switch signupOrAddPasskey {
             case let .AddPasskey(authToken):
-                registrationPromise.completeWith(reachFiveApi.registerWithWebAuthn(authToken: authToken, publicKeyCredential: registrationPublicKeyCredential))
+                registrationPromise.completeWith(reachFiveApi.registerWithWebAuthn(authToken: authToken, publicKeyCredential: registrationPublicKeyCredential, originR5: self.originR5))
             
             case let .Signup(signupOptions):
                 guard let scope else {
@@ -316,8 +323,8 @@ extension CredentialManager: ASAuthorizationControllerDelegate {
                 }
                 
                 let webauthnSignupCredential = WebauthnSignupCredential(webauthnId: signupOptions.options.publicKey.user.id, publicKeyCredential: registrationPublicKeyCredential)
-                promise.completeWith(reachFiveApi.signupWithWebAuthn(webauthnSignupCredential: webauthnSignupCredential)
-                    .flatMap({ self.loginCallback(tkn: $0.tkn, scope: scope) }))
+                promise.completeWith(reachFiveApi.signupWithWebAuthn(webauthnSignupCredential: webauthnSignupCredential, originR5: self.originR5)
+                    .flatMap({ self.loginCallback(tkn: $0.tkn, scope: scope, origin: self.originR5) }))
             }
         } else if #available(iOS 16.0, *), let credentialAssertion = authorization.credential as? ASAuthorizationPlatformPublicKeyCredentialAssertion {
             // A passkey was selected to sign in
@@ -335,7 +342,7 @@ extension CredentialManager: ASAuthorizationControllerDelegate {
             let response = R5AuthenticatorAssertionResponse(authenticatorData: authenticatorData, clientDataJSON: clientDataJSON, signature: signature, userHandle: userID)
             
             promise.completeWith(reachFiveApi.authenticateWithWebAuthn(authenticationPublicKeyCredential: AuthenticationPublicKeyCredential(id: id, rawId: id, type: "public-key", response: response))
-                .flatMap({ self.loginCallback(tkn: $0.tkn, scope: scope) }))
+                .flatMap({ self.loginCallback(tkn: $0.tkn, scope: scope, origin: self.originR5) }))
         } else {
             promise.tryFailure(.TechnicalError(reason: "didCompleteWithAuthorization: Received unknown authorization type."))
             registrationPromise.tryFailure(.TechnicalError(reason: "didCompleteWithAuthorization: Received unknown authorization type."))
@@ -383,10 +390,10 @@ extension CredentialManager {
         return nil
     }
     
-    func loginCallback(tkn: String, scope: String) -> Future<AuthToken, ReachFiveError> {
+    func loginCallback(tkn: String, scope: String, origin: String? = nil) -> Future<AuthToken, ReachFiveError> {
         let pkce = Pkce.generate()
         
-        return reachFiveApi.loginCallback(loginCallback: LoginCallback(sdkConfig: reachFiveApi.sdkConfig, scope: scope, pkce: pkce, tkn: tkn))
+        return reachFiveApi.loginCallback(loginCallback: LoginCallback(sdkConfig: reachFiveApi.sdkConfig, scope: scope, pkce: pkce, tkn: tkn, origin: origin))
             .flatMap({ self.authWithCode(code: $0, pkce: pkce) })
     }
     

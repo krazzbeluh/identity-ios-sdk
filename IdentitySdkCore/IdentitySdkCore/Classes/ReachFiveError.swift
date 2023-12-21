@@ -31,7 +31,7 @@ public enum ReachFiveError: Error, CustomStringConvertible {
     
     private func createMessage(reason: String, apiError: ApiError? = nil) -> String {
         let allMessages: String? = apiError.flatMap { error in
-            let topLevelMessage = error.errorUserMsg
+            let topLevelMessage = error.errorUserMsg ?? error.errorDescription
             var fieldMessages = error.errorDetails.flatMap { fieldErrors in fieldErrors.compactMap { $0.message } } ?? []
             
             if let topLevelMessage {
@@ -48,7 +48,7 @@ public enum ReachFiveError: Error, CustomStringConvertible {
         if reason.isEmpty {
             return allMessages ?? "no message"
         } else {
-            return allMessages.map { m in "\(reason): \(m)" } ?? reason
+            return allMessages.map { m in "\(reason)\n \(m)" } ?? reason
         }
     }
     
@@ -63,8 +63,10 @@ public enum ReachFiveError: Error, CustomStringConvertible {
 public class ApiError: Codable, CustomStringConvertible {
     public var description: String {
         mkString(start: "ApiError", fields: (error, "error"),
+            (errorId, "errorId"),
             (errorMessageKey, "errorMessageKey"),
             (errorUserMsg, "errorUserMsg"),
+            (errorDescription, "errorDescription"),
             (errorDetails, "errorDetails"))
     }
     
@@ -74,6 +76,44 @@ public class ApiError: Codable, CustomStringConvertible {
     public let errorMessageKey: String?
     public let errorDescription: String?
     public let errorDetails: [FieldError]?
+    
+    public init(error: String? = nil,
+                errorId: String? = nil,
+                errorUserMsg: String? = nil,
+                errorMessageKey: String? = nil,
+                errorDescription: String? = nil,
+                errorDetails: [FieldError]? = nil) {
+        self.error = error
+        self.errorId = errorId
+        self.errorUserMsg = errorUserMsg
+        self.errorMessageKey = errorMessageKey
+        self.errorDescription = errorDescription
+        self.errorDetails = errorDetails
+    }
+    
+    public convenience init?(fromQueryParams params: [URLQueryItem]?) {
+        guard let params else {
+            return nil
+        }
+        
+        let error = params.first(where: { $0.name == "error" })?.value
+        let errorId = params.first(where: { $0.name == "error_id" })?.value
+        let userMsg = params.first(where: { $0.name == "error_user_msg" })?.value
+        let key = params.first(where: { $0.name == "error_message_key" })?.value
+        let desc = params.first(where: { $0.name == "error_description" })?.value
+        
+        if (error == nil && errorId == nil && userMsg == nil && key == nil && desc == nil) {
+            return nil
+        }
+        
+        self.init(
+            error: error,
+            errorId: errorId,
+            errorUserMsg: userMsg,
+            errorMessageKey: key,
+            errorDescription: desc?.replacingOccurrences(of: "+", with: " ")
+        )
+    }
 }
 
 public class FieldError: Codable, CustomStringConvertible {
@@ -86,4 +126,10 @@ public class FieldError: Codable, CustomStringConvertible {
     public let field: String?
     public let message: String?
     public let code: String?
+    
+    public init(field: String? = nil, message: String? = nil, code: String? = nil) {
+        self.field = field
+        self.message = message
+        self.code = code
+    }
 }

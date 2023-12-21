@@ -9,7 +9,7 @@ class ActionController: UITableViewController {
         
         guard let window = view.window else { fatalError("The view was not in the app's view hierarchy!") }
         
-        let loginRequest = NativeLoginRequest(anchor: window)
+        let loginRequest = NativeLoginRequest(anchor: window, origin: "ActionController: Section Passkey")
         
         // Section Passkey
         if #available(iOS 16.0, *), indexPath.section == 2 {
@@ -32,7 +32,7 @@ class ActionController: UITableViewController {
             // standard webview
             if indexPath.row == 0 {
                 AppDelegate.reachfive()
-                    .webviewLogin(WebviewLoginRequest(state: "state", nonce: "nonce", scope: ["email", "profile"], presentationContextProvider: self))
+                    .webviewLogin(WebviewLoginRequest(state: "state", nonce: "nonce", scope: ["email", "profile"], presentationContextProvider: self, origin: "ActionController.webviewLogin"))
                     .onComplete { self.handleResult(result: $0) }
             }
         }
