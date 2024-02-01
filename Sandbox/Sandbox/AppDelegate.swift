@@ -80,6 +80,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("addPasswordlessCallback \(result)")
             NotificationCenter.default.post(name: .DidReceiveLoginCallback, object: nil, userInfo: ["result": result])
         }
+        reachfive.addMfaCredentialRegistrationCallback{ result in
+            print("addMfaCredentialRegistrationCallback \(result)")
+            NotificationCenter.default.post(name: .DidReceiveMfaVerifyEmail, object: nil, userInfo: ["result": result])
+        }
         
         return reachfive.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
@@ -159,4 +163,5 @@ extension UIViewController {
 
 extension NSNotification.Name {
     static let DidReceiveLoginCallback = Notification.Name("DidReceiveLoginCallback")
+    static let DidReceiveMfaVerifyEmail = Notification.Name("DidReceiveMfaVerifyEmail")
 }

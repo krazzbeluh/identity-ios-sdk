@@ -291,6 +291,86 @@ public class ReachFiveApi {
             .responseJson(type: Profile.self, decoder: decoder)
     }
     
+    public func startMfaPhoneRegistration(
+        _ mfaStartPhoneRegistrationRequest: MfaStartPhoneRegistrationRequest,
+        authToken: AuthToken
+    ) -> Future<MfaStartCredentialRegistrationResponse, ReachFiveError> {
+        AF
+            .request(
+                createUrl(path: "/identity/v1/mfa/credentials/phone-numbers"),
+                method: .post,
+                parameters: mfaStartPhoneRegistrationRequest.dictionary(),
+                encoding: JSONEncoding.default,
+                headers: tokenHeader(authToken)
+            )
+            .validate(contentType: ["application/json"])
+            .responseJson(type: MfaStartCredentialRegistrationResponse.self, decoder: decoder)
+    }
+    
+    public func startMfaEmailRegistration(
+        _ mfaStartEmailRegistrationRequest: MfaStartEmailRegistrationRequest,
+        authToken: AuthToken
+    ) -> Future<MfaStartCredentialRegistrationResponse, ReachFiveError> {
+        AF
+            .request(
+                createUrl(path: "/identity/v1/mfa/credentials/emails"),
+                method: .post,
+                parameters: mfaStartEmailRegistrationRequest.dictionary(),
+                encoding: JSONEncoding.default,
+                headers: tokenHeader(authToken)
+            )
+            .validate(contentType: ["application/json"])
+            .responseJson(type: MfaStartCredentialRegistrationResponse.self, decoder: decoder)
+    }
+    
+    public func verifyMfaEmailRegistrationPost(
+        _ mfaVerifyEmailRegistrationRequest: MfaVerifyEmailRegistrationPostRequest,
+        authToken: AuthToken
+    ) -> Future<(), ReachFiveError> {
+        AF
+            .request(
+                createUrl(path: "/identity/v1/mfa/credentials/emails/verify"),
+                method: .post,
+                parameters: mfaVerifyEmailRegistrationRequest.dictionary(),
+                encoding: JSONEncoding.default,
+                headers: tokenHeader(authToken)
+                )
+            .validate(contentType: ["application/json"])
+            .responseJson(decoder: decoder)
+    }
+    
+    public func verifyMfaEmailRegistrationGet(
+        _ request: MfaVerifyEmailRegistrationGetRequest
+    ) -> Future<(), ReachFiveError> {
+        AF
+            .request(
+                createUrl(path: "/identity/v1/mfa/credentials/emails/verify"),
+                method: .post,
+                parameters: request.dictionary(),
+                encoding: URLEncoding.default
+            )
+            .validate(contentType: ["application/json"])
+            .responseJson(decoder: decoder)
+
+    }
+    
+    public func verifyMfaPhoneRegistration(
+        _ mfaVerifyPhoneRegistrationRequest: MfaVerifyPhoneRegistrationRequest,
+        authToken: AuthToken
+    ) -> Future<(), ReachFiveError> {
+        AF
+            .request(
+                createUrl(path: "/identity/v1/mfa/credentials/phone-numbers/verify"),
+                method: .post,
+                parameters: mfaVerifyPhoneRegistrationRequest.dictionary(),
+                encoding: JSONEncoding.default,
+                headers: tokenHeader(authToken)
+            )
+            .validate(contentType: ["application/json"])
+            .responseJson(decoder: decoder)
+        
+    }
+    
     public func requestPasswordReset(
         requestPasswordResetRequest: RequestPasswordResetRequest
     ) -> Future<(), ReachFiveError> {
@@ -369,7 +449,7 @@ public class ReachFiveApi {
             .validate(contentType: ["application/json"])
             .responseJson(type: RegistrationOptions.self, decoder: decoder)
     }
-    
+
     public func signupWithWebAuthn(webauthnSignupCredential: WebauthnSignupCredential, originR5: String? = nil) -> Future<AuthenticationToken, ReachFiveError> {
         AF
             .request(
