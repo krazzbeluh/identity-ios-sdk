@@ -14,7 +14,6 @@ import IdentitySdkGoogle
 //import IdentitySdkWeChat
 #endif
 
-
 //TODO
 // Mettre une nouvelle page dans une quatrième tabs ou dans l'app réglages:
 // - Paramétrage : scopes, origin, utilisation du refresh au démarage ?
@@ -69,7 +68,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     #endif
     #endif
     
-    
     static func reachfive() -> ReachFive {
         let app = UIApplication.shared.delegate as! AppDelegate
         return app.reachfive
@@ -77,6 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         print("application:didFinishLaunchingWithOptions:\(launchOptions ?? [:])")
+        
         reachfive.addPasswordlessCallback { result in
             print("addPasswordlessCallback \(result)")
             NotificationCenter.default.post(name: .DidReceiveLoginCallback, object: nil, userInfo: ["result": result])
@@ -149,7 +148,7 @@ extension AppDelegate {
 extension UIViewController {
     
     func goToProfile(_ authToken: AuthToken) {
-        AppDelegate.storage.save(key: SecureStorage.authKey, value: authToken)
+        AppDelegate.storage.setToken(authToken)
         
         if let tabBarController = storyboard?.instantiateViewController(withIdentifier: "Tabs") as? UITabBarController {
             tabBarController.selectedIndex = 2 // profile is third from left
