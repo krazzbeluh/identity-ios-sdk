@@ -2,10 +2,6 @@ import UIKit
 import IdentitySdkCore
 import BrightFutures
 
-protocol ProfileRootController {
-    var rootController: UIViewController? { get }
-}
-
 //TODO
 //      - déplacer le bouton login with refresh ici pour que, même logué, on puisse afficher les passkey (qui sont expirées)
 //      - faire du pull-to-refresh soit sur la table des clés soit carrément sur tout le profil (déclencher le refresh token)
@@ -17,29 +13,39 @@ protocol ProfileRootController {
 //      - marquer spécialement l'identifiant principal dans l'UI
 //      - ajouter un bouton + dans la table des clés pour en ajouter une (ou carrément supprimer le bouton "register passkey")
 //      - ajouter un bouton modifier à la table pour pouvoir plus visuellement supprimer des clés
-//      - faire en sorte que les textes (nom, prénom...) soient copiable
+//      - Ajouter des infos sur le jeton dans une nouvelle page
 class ProfileController: UIViewController {
     var authToken: AuthToken?
+    var profile: Profile = Profile() {
+        didSet {
+            self.propertiesToDisplay = [
+                Field(name: "Email", value: profile.email?.appending(profile.emailVerified == true ? " ✔︎" : " ✘")),
+                Field(name: "Phone Number", value: profile.phoneNumber?.appending(profile.phoneNumberVerified == true ? " ✔︎" : " ✘")),
+                Field(name: "Custom Identifier", value: profile.customIdentifier),
+                Field(name: "Given Name", value: profile.givenName),
+                Field(name: "Family Name", value: profile.familyName),
+                Field(name: "Last logged In", value: profile.loginSummary?.lastLogin.map { date in self.format(date: date) } ?? ""),
+                Field(name: "Method", value: profile.loginSummary?.lastProvider)
+            ]
+        }
+    }
     
     var clearTokenObserver: NSObjectProtocol?
     var setTokenObserver: NSObjectProtocol?
     
     var emailVerifyNotification: NSObjectProtocol?
+    
+    var propertiesToDisplay: [Field] = []
+    let mfaRegistrationAvailable = ["Email", "Phone Number"]
+    
     @IBOutlet weak var otherOptions: UITableView!
     
     @IBOutlet weak var profileTabBarItem: UITabBarItem!
-    @IBOutlet weak var profileTableView: ProfileContentTableView!
+    @IBOutlet var profileData: UITableView!
     @IBOutlet weak var mfaButton: UIButton!
     @IBOutlet weak var passkeyButton: UIButton!
     @IBOutlet weak var editProfileButton: UIButton!
     
-    var profile: Profile = Profile.init() {
-        didSet {
-            profileTableView.update(profile: self.profile, authToken: self.authToken)
-        }
-    }
-    
-
     override func viewDidLoad() {
         print("ProfileController.viewDidLoad")
         super.viewDidLoad()
@@ -68,26 +74,25 @@ class ProfileController: UIViewController {
             self.didLogin()
         }
         
-        authToken = AppDelegate.storage.get(key: SecureStorage.authKey)
+        authToken = AppDelegate.storage.getToken()
         if authToken != nil {
             profileTabBarItem.image = SandboxTabBarController.tokenPresent
             profileTabBarItem.selectedImage = profileTabBarItem.image
         }
+        
+        self.profileData.delegate = self
+        self.profileData.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         print("ProfileController.viewWillAppear")
-        
-        mfaButton.isHidden = false
-        editProfileButton.isHidden = false
-                
         fetchProfile()
     }
     
     func fetchProfile() {
         print("ProfileController.fetchProfile")
         
-        authToken = AppDelegate.storage.get(key: SecureStorage.authKey)
+        authToken = AppDelegate.storage.getToken()
         guard let authToken else {
             print("not logged in")
             return
@@ -96,20 +101,44 @@ class ProfileController: UIViewController {
             .getProfile(authToken: authToken)
             .onSuccess { profile in
                 self.profile = profile
-                self.profileTableView.reloadData()
+                self.profileData.reloadData()
+                self.setStatusImage(authToken: authToken)
+                self.mfaButton.isHidden = false
+                self.editProfileButton.isHidden = false
+                self.passkeyButton.isHidden = false
             }
             .onFailure { error in
-                // the token is probably expired, but it is still possible that it can be refreshed
                 self.didLogout()
-                self.profileTabBarItem.image = SandboxTabBarController.tokenExpiredButRefreshable
-                self.profileTabBarItem.selectedImage = self.profileTabBarItem.image
+                if authToken.refreshToken != nil {
+                    // the token is probably expired, but it is still possible that it can be refreshed
+                    self.profileTabBarItem.image = SandboxTabBarController.tokenExpiredButRefreshable
+                    self.profileTabBarItem.selectedImage = self.profileTabBarItem.image
+                } else {
+                    self.profileTabBarItem.image = SandboxTabBarController.loggedOut
+                    self.profileTabBarItem.selectedImage = self.profileTabBarItem.image
+                }
                 print("getProfile error = \(error.message())")
+            }
+    }
+    
+    private func setStatusImage(authToken: AuthToken) {
+        // Use listWebAuthnCredentials to test if token is fresh
+        // A fresh token is also needed for updating the profile and registering MFA credentials
+        AppDelegate.reachfive().listWebAuthnCredentials(authToken: authToken).onSuccess { _ in
+                self.passkeyButton.isEnabled = true
+                self.profileTabBarItem.image = SandboxTabBarController.loggedIn
+                self.profileTabBarItem.selectedImage = self.profileTabBarItem.image
+            }
+            .onFailure { error in
+                self.passkeyButton.isEnabled = false
+                self.profileTabBarItem.image = SandboxTabBarController.loggedInButNotFresh
+                self.profileTabBarItem.selectedImage = self.profileTabBarItem.image
             }
     }
     
     func didLogin() {
         print("ProfileController.didLogin")
-        authToken = AppDelegate.storage.get(key: SecureStorage.authKey)
+        authToken = AppDelegate.storage.getToken()
     }
     
     func didLogout() {
@@ -119,12 +148,13 @@ class ProfileController: UIViewController {
         passkeyButton.isHidden = true
         mfaButton.isHidden = true
         editProfileButton.isHidden = true
+        self.profileData.reloadData()
     }
     
     @IBAction func logoutAction(_ sender: Any) {
         AppDelegate.reachfive().logout()
             .onComplete { result in
-                AppDelegate.storage.clear(key: SecureStorage.authKey)
+                AppDelegate.storage.removeToken()
                 self.navigationController?.popViewController(animated: true)
             }
     }
@@ -141,43 +171,4 @@ class ProfileController: UIViewController {
         }
         return username
     }
-}
-
-extension ProfileRootController {
-    func updatePhoneNumber(authToken: AuthToken?) {
-        var alertController: UIAlertController
-        alertController = UIAlertController(title: "New Phone Number", message: "Please enter the new phone number", preferredStyle: .alert)
-        alertController.addTextField { textField in
-            textField.placeholder = "Updated phone number"
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let submitPhoneNumber = UIAlertAction(title: "submit", style: .default) { _ in
-            let phoneNumber = alertController.textFields![0].text
-            guard let phoneNumber else {
-                print("Phone number cannot be empty")
-                return
-            }
-            handleUpdate(phoneNumber: phoneNumber, authToken: authToken)
-        }
-        alertController.addAction(cancelAction)
-        alertController.addAction(submitPhoneNumber)
-        rootController?.present(alertController, animated: true, completion: nil)
-    }
-    
-    private func handleUpdate(phoneNumber: String, authToken: AuthToken?) {
-        if let authToken {
-            AppDelegate.reachfive()
-                .updatePhoneNumber(authToken: authToken, phoneNumber: phoneNumber)
-                .onSuccess { profile in
-                    let alert = AppDelegate.createAlert(title: "Update", message: "Update Success")
-                    rootController?.present(alert, animated: true, completion: nil)
-                    rootController?.viewWillAppear(true)
-                }
-                .onFailure { error in
-                    let alert = AppDelegate.createAlert(title: "Update", message: "Update Error: \(error.message())")
-                    rootController?.present(alert, animated: true, completion: nil)
-                }
-        }
-    }
-    
 }

@@ -8,8 +8,7 @@ class UpdatePasswordController: UIViewController {
     @IBOutlet weak var username: UITextField!
     
     override func viewWillAppear(_ animated: Bool) {
-        authToken = AppDelegate.storage.get(key: SecureStorage.authKey)
-        if let authToken {
+        if let authToken = AppDelegate.storage.getToken() {
             AppDelegate.reachfive()
                 .getProfile(authToken: authToken)
                 .onSuccess { profile in
@@ -28,11 +27,11 @@ class UpdatePasswordController: UIViewController {
                 .updatePassword(.FreshAccessTokenParams(authToken: authToken, password: newPassword.text ?? ""))
                 .onSuccess {
                     let alert = AppDelegate.createAlert(title: "Update Password", message: "Success")
-                    self.present(alert, animated: true, completion: nil)
+                    self.present(alert, animated: true)
                 }
                 .onFailure { error in
                     let alert = AppDelegate.createAlert(title: "Update Password", message: "Error: \(error.message())")
-                    self.present(alert, animated: true, completion: nil)
+                    self.present(alert, animated: true)
                 }
         }
     }

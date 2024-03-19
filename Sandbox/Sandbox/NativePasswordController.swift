@@ -11,7 +11,7 @@ class NativePasswordController: UIViewController {
     @IBAction func passwordEditingDidEnd(_ sender: Any) {
         guard let pass = password.text, !pass.isEmpty, let user = username.text, !user.isEmpty else { return }
         let origin = "NativePasswordController.passwordEditingDidEnd"
-    
+        
         let fut: Future<AuthToken, ReachFiveError>
         if (user.contains("@")) {
             fut = AppDelegate.reachfive().loginWithPassword(email: user, password: pass, origin: origin)
@@ -21,7 +21,7 @@ class NativePasswordController: UIViewController {
         fut.onSuccess(callback: goToProfile)
             .onFailure { error in
                 let alert = AppDelegate.createAlert(title: "Login", message: "Error: \(error.message())")
-                self.present(alert, animated: true, completion: nil)
+                self.present(alert, animated: true)
             }
     }
     
@@ -38,7 +38,7 @@ class NativePasswordController: UIViewController {
                 case .AuthCanceled: return
                 default:
                     let alert = AppDelegate.createAlert(title: "Login", message: "Error: \(error.message())")
-                    self.present(alert, animated: true, completion: nil)
+                    self.present(alert, animated: true)
                 }
             }
     }
