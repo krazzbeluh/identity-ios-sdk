@@ -2,7 +2,7 @@ import Foundation
 
 public class MfaStartEmailRegistrationRequest: Codable, DictionaryEncodable {
     public let redirectUrl: String?
-    
+
     public init(redirectUrl: String? = nil) {
         self.redirectUrl = redirectUrl
     }
@@ -10,7 +10,7 @@ public class MfaStartEmailRegistrationRequest: Codable, DictionaryEncodable {
 
 public class MfaStartPhoneRegistrationRequest: Codable, DictionaryEncodable {
     public let phoneNumber: String
-    
+
     public init(phoneNumber: String) {
         self.phoneNumber = phoneNumber
     }
@@ -18,7 +18,7 @@ public class MfaStartPhoneRegistrationRequest: Codable, DictionaryEncodable {
 
 public class MfaVerifyEmailRegistrationPostRequest: Codable, DictionaryEncodable {
     public let verificationCode: String
-    
+
     public init(_ verificationCode: String) {
         self.verificationCode = verificationCode
     }
@@ -27,7 +27,7 @@ public class MfaVerifyEmailRegistrationPostRequest: Codable, DictionaryEncodable
 public class MfaVerifyEmailRegistrationGetRequest: Codable, DictionaryEncodable {
     public let c: String
     public let t: String
-    
+
     public init(c: String, t: String) {
         self.c = c
         self.t = t
@@ -36,7 +36,7 @@ public class MfaVerifyEmailRegistrationGetRequest: Codable, DictionaryEncodable 
 
 public class MfaVerifyPhoneRegistrationRequest: Codable, DictionaryEncodable {
     public let verificationCode: String
-    
+
     public init(_ verificationCode: String) {
         self.verificationCode = verificationCode
     }
@@ -44,9 +44,9 @@ public class MfaVerifyPhoneRegistrationRequest: Codable, DictionaryEncodable {
 
 public class MfaStartCredentialRegistrationResponse: Codable, DictionaryEncodable {
     public let status: String
-    public let credential: MfaRegistrationSuccess?
-    
-    public init(status: String, credential: MfaRegistrationSuccess? = nil) {
+    public let credential: MfaCredentialItem?
+
+    public init(status: String, credential: MfaCredentialItem? = nil) {
         self.status = status
         self.credential = credential
     }
@@ -54,20 +54,35 @@ public class MfaStartCredentialRegistrationResponse: Codable, DictionaryEncodabl
 
 public enum Status: String {
     case emailSent = "email_sent"
-    case enabled = "enabled"
+    case enabled
     case smsSent = "sms_sent"
 }
 
-public class MfaRegistrationSuccess: Codable, DictionaryEncodable {
-    public let type: String
-    public let email: String?
-    public let phoneNumber: String?
+public enum MfaCredentialItemType: String, Codable {
+    case email
+    case sms
+}
+
+public class MfaCredentialItem: Codable, DictionaryEncodable {
+    public let createdAt: String
     public let friendlyName: String
-    
-    public init(type: String, friendlyName: String, email: String? = nil, phoneNumber: String? = nil) {
-        self.type = type
-        self.email = email
-        self.phoneNumber = phoneNumber
+    public let phoneNumber: String?
+    public let email: String?
+    public let type: MfaCredentialItemType
+
+    public init(createdAt: String, friendlyName: String, type: MfaCredentialItemType, phoneNumber: String? = nil, email: String? = nil) {
+        self.createdAt = createdAt
         self.friendlyName = friendlyName
+        self.phoneNumber = phoneNumber
+        self.email = email
+        self.type = type
+    }
+}
+
+public class MfaCredentialsListResponse: Codable, DictionaryEncodable {
+    public let credentials: [MfaCredentialItem]
+
+    public init(credentials: [MfaCredentialItem]) {
+        self.credentials = credentials
     }
 }
