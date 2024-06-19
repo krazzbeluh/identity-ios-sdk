@@ -154,6 +154,14 @@ public extension ReachFive {
             }
     }
     
+    func mfaDeleteCredential(phoneNumber phoneNumber: String? = nil, authToken: AuthToken) -> Future<Void, ReachFiveError> {
+        guard let phoneNumber else {
+            return reachFiveApi.deleteMfaEmailCredential(authToken: authToken)
+        }
+        return reachFiveApi
+            .deleteMfaPhoneNumberCredential(phoneNumber: phoneNumber, authToken: authToken)
+    }
+    
     internal func interceptVerifyMfaCredential(_ url: URL) {
         let params = URLComponents(url: url, resolvingAgainstBaseURL: true)?.queryItems
         if let error = params?.first(where: { $0.name == "error" })?.value {
