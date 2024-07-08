@@ -6,11 +6,11 @@ import AuthenticationServices
 class ActionController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+
         guard let window = view.window else { fatalError("The view was not in the app's view hierarchy!") }
-        
+
         let loginRequest = NativeLoginRequest(anchor: window, origin: "ActionController: Section Passkey")
-        
+
         // Section Passkey
         if #available(iOS 16.0, *), indexPath.section == 2 {
             // Login with passkey: modal persistent
@@ -26,7 +26,7 @@ class ActionController: UITableViewController {
                     .onSuccess(callback: goToProfile)
             }
         }
-        
+
         // Section Webview
         if indexPath.section == 3 {
             // standard webview
@@ -36,7 +36,7 @@ class ActionController: UITableViewController {
                     .onComplete { self.handleResult(result: $0) }
             }
         }
-        
+
         // Section Others
         if indexPath.section == 4 {
             // Login with refresh
@@ -54,7 +54,7 @@ class ActionController: UITableViewController {
             }
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         // passkey section restricted to iOS >= 16
         //TODO voir si on peut à la place carrément ne pas afficher la section
@@ -64,7 +64,7 @@ class ActionController: UITableViewController {
             return nil
         }
         #if targetEnvironment(macCatalyst)
-            if indexPath.section == 2, indexPath.row == 3 {
+        if indexPath.section == 2, indexPath.row == 3 {
             let alert = AppDelegate.createAlert(title: "Login", message: "AutoFill not available on macOS")
             present(alert, animated: true)
             return nil
@@ -72,7 +72,7 @@ class ActionController: UITableViewController {
         #endif
         return indexPath
     }
-    
+
     func handleResult(result: Result<AuthToken, ReachFiveError>) {
         switch result {
         case .success(let authToken):

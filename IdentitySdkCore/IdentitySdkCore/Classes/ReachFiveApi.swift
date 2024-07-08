@@ -465,6 +465,19 @@ public class ReachFiveApi {
             .validate(contentType: ["application/json"])
             .responseJson(decoder: decoder)
     }
+
+    public func requestAccountRecovery(
+        _ requestAccountRecoveryRequest: RequestAccountRecoveryRequest
+    ) -> Future<Void, ReachFiveError> {
+        AF
+            .request(createUrl(
+                path: "/identity/v1/account-recovery"),
+            method: .post,
+            parameters: requestAccountRecoveryRequest.dictionary(),
+            encoding: JSONEncoding.default)
+            .validate(contentType: ["application/json"])
+            .responseJson(decoder: decoder)
+    }
     
     public func startPasswordless(_ startPasswordlessRequest: StartPasswordlessRequest) -> Future<Void, ReachFiveError> {
         AF
@@ -588,6 +601,30 @@ public class ReachFiveApi {
                 parameters: publicKeyCredential.dictionary(),
                 encoding: JSONEncoding.default,
                 headers: tokenHeader(authToken)
+            )
+            .validate(contentType: ["application/json"])
+            .responseJson(decoder: decoder)
+    }
+    
+    public func createWebAuthnResetOptions(resetOptions: ResetOptions) -> Future<RegistrationOptions, ReachFiveError> {
+        AF
+            .request(
+                createUrl(path: "/identity/v1/webauthn/reset-options"),
+                method: .post,
+                parameters: resetOptions.dictionary(),
+                encoding: JSONEncoding.default
+            )
+            .validate(contentType: ["application/json"])
+            .responseJson(type: RegistrationOptions.self, decoder: decoder)
+    }
+    
+    public func resetWebAuthn(resetPublicKeyCredential: ResetPublicKeyCredential, originR5: String? = nil) -> Future<Void, ReachFiveError> {
+        AF
+            .request(
+                createUrl(path: "/identity/v1/webauthn/reset", params: ["origin": originR5]),
+                method: .post,
+                parameters: resetPublicKeyCredential.dictionary(),
+                encoding: JSONEncoding.default
             )
             .validate(contentType: ["application/json"])
             .responseJson(decoder: decoder)
