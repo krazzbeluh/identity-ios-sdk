@@ -7,10 +7,17 @@ let package = Package(
     name: "identity-ios-sdk",
     platforms: [.iOS(.v13)],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "IdentitySdkCore",
             targets: ["IdentitySdkCore"]
+        ),
+        .library(
+            name: "IdentitySdkFacebook",
+            targets: ["IdentitySdkFacebook"]
+        ),
+        .library(
+            name: "IdentitySdkGoogle",
+            targets: ["IdentitySdkGoogle"]
         ),
     ],
     dependencies: [
@@ -31,5 +38,20 @@ let package = Package(
                 .product(name: "BrightFutures", package: "BrightFutures"),
             ],
             path: "IdentitySdkCore"),
+        .target(
+            name: "IdentitySdkFacebook",
+            dependencies: [
+                .target(name: "IdentitySdkCore"),
+                .product(name: "FacebookCore", package: "facebook-ios-sdk"),
+                .product(name: "FacebookLogin", package: "facebook-ios-sdk"),
+            ],
+            path: "IdentitySdkFacebook"),
+        .target(
+            name: "IdentitySdkGoogle",
+            dependencies: [
+                .target(name: "IdentitySdkCore"),
+                .product(name: "GoogleSignIn", package: "GoogleSignIn-iOS"),
+            ],
+            path: "IdentitySdkGoogle"),
     ]
 )
